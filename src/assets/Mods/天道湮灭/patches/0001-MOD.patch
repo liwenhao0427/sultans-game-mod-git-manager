@@ -1,0 +1,195 @@
+From 8ac06d991f89c94efc72b9a065e7a3ec3cbdbaa6 Mon Sep 17 00:00:00 2001
+From: Sultan Mod Manager <mod@example.com>
+Date: Sun, 13 Apr 2025 19:35:09 +0800
+Subject: [PATCH] =?UTF-8?q?=E5=BA=94=E7=94=A8MOD:=20=E5=A4=A9=E9=81=93?=
+ =?UTF-8?q?=E6=B9=AE=E7=81=AD?=
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+---
+ event/15000002.json |  26 +++++++++
+ rite/15000002.json  | 136 ++++++++++++++++++++++++++++++++++++++++++++
+ 2 files changed, 162 insertions(+)
+ create mode 100644 event/15000002.json
+ create mode 100644 rite/15000002.json
+
+diff --git a/event/15000002.json b/event/15000002.json
+new file mode 100644
+index 0000000..a0cc8e7
+--- /dev/null
++++ b/event/15000002.json
+@@ -0,0 +1,26 @@
++{
++    "id": 15000002,
++    "text": "天道湮灭",     
++    "is_replay": 1, //是否可以重复触发
++    "auto_start_init": [1],
++    "start_trigger": false, // 是否启动就立即开始校验条件
++    "on":{   //时机
++        "round_begin_ba":1
++    },
++    "condition":{  //条件
++    "!rite":15000002
++    },
++    "settlement": [    //效果 
++        {
++            "tips_resource":"", 
++            "tips_text":"",
++            "action":{
++                "rite":15000002,
++                "success":{
++                    "event_off":15000002
++                }
++            }
++        }
++
++    ]
++}
+\ No newline at end of file
+diff --git a/rite/15000002.json b/rite/15000002.json
+new file mode 100644
+index 0000000..56035f5
+--- /dev/null
++++ b/rite/15000002.json
+@@ -0,0 +1,136 @@
++ {
++        "id": 15000002,
++        "name": "天道湮灭",
++        "text": "这些蕴含业障的苏丹卡，被神秘的秘法所庇护。飞剑难破其形，天雷不伤其髓，丹炉真火与符箓秘术——历代破局者早已试遍诸般手段。\n然此日正午，当你于观星台吐纳时，怀中苏丹卡忽生战栗——那盘踞其中的魔念竟在退缩，因你积累的功德已引动天道法则垂目。\n或许，该在天道碑前引动湮灭之契……",       
++        "tips": "作者演-QQ836952346",
++        "once_new":-1,
++        "round_number": 1,
++        "waiting_round":0,
++        "waiting_round_end_action":[
++        ],        
++        "method_settlement": "",
++        "auto_begin": 0,
++        "auto_result": 0,//需要手动启动,
++        "location": "自宅:[2,12]", 
++        "icon": "rite_9", 
++        "tag_tips": [
++        ],
++        "tag_tips_up":{
++        },
++        "tips_text":[
++            "可湮灭任意苏丹卡",
++            "此契仅能发动无数次"
++        ],
++        "open_conditions": [
++        ],
++        "random_text":{
++        },
++        "random_text_up":{  
++        },
++        "settlement_prior": [
++        ],                
++        "settlement": [
++            {
++                "condition": {
++                    "s1.rare<=":3
++                },
++                "result_title":"因果寂灭·天道无常",
++                "result_text": "以你澄明道心为引，苍穹裂隙中降下寂灭玄光。掌中[s1.name]如枯叶入洪炉，顷刻化作飞灰湮灭。此乃证道之功，天道借你之手标记此等魔障，业报已现初兆。\n光晦交错间，你听见魔修本命法器的碎裂声，天道在其神魂烙下道伤……或于三灾九劫时，或在大道终审日，此獠终将魂飞魄散。\n显此神威后，那冥冥中的天道注视再度归于混沌，然你知晓，法则永悬，因果不空……",
++                "result": 
++                {    
++                    "clean.s1":1
++                },
++                "action": { 
++					"rite":15000002
++                }
++            },
++            {
++                "condition": {
++                    "s1.rare=":4,
++                    "s1.纵欲":1
++                },
++                "result_title":"破妄·红尘劫散",
++                "result_text": "借你无垢道体为凭，九天之上降下寂灭玄光。[s1.name]如琉璃迸裂，其内传出魔修凄厉嘶吼。此乃斩业大德，天道将邪髓摄入法则洪流……须臾间，湮灭化为虚无。",
++                "result": 
++                {    
++                    "clean.s1":1,
++                },
++                "action": { 
++					"rite":15000002
++                }
++            },
++            {
++                "condition": {
++                    "s1.rare=":4,
++                    "s1.杀戮":1
++                },
++                "result_title":"断罪·血海枯竭",
++                "result_text": "以你浩然剑意为引，寂灭玄光如天河倒悬。[s1.name]化作赤金流焰爆散，其内百万怨魂得解脱往生。天道将杀戮精粹炼为三尺青锋，剑鸣似有众生祈愿——此乃「斩业剑」，刃未开锋，因真正杀孽不在皮肉而在因果。",
++                "result": 
++                {    
++                    "clean.s1":1,
++                },
++                "action": { 
++					"rite":15000002
++                }
++            },
++            {
++                "condition": {
++                    "s1.rare=":4,
++                    "s1.征服":1
++                },
++                "result_title":"止戈·王权崩解",
++                "result_text": "随你道诀指引，寂灭玄光中显化太古雷纹。[s1.name]如融金般沸腾，其内传来龙脉断绝之声。天道将权欲残骸化为一丝真气，庇护着你。",
++                "result": 
++                {    
++                    "clean.s1":1,
++                },
++                "action": { 
++					"rite":15000002
++                }
++            },
++            {
++                "condition": {
++                    "s1.rare=":4,
++                    "s1.奢靡":1
++                },
++                "result_title":"返璞·物欲成空",
++                "result_text": "玄光过处，[s1.name]如晨露遇烈阳蒸腾。魔修哀嚎中，湮灭漩涡吐出万千金币——此乃被扭曲的天地灵气重归本源。",
++                "result": 
++                {    
++                    "clean.s1":1,
++                    "coin":50 //金币
++                },
++                "action": { 
++					"rite":15000002
++                }
++            }
++        ],               
++        "settlement_extre": [
++        ],
++        "cards_slot":
++        {
++            "s1":
++                {
++                    "condition": 
++                    {
++                        "type":"sudan"
++                    },
++                    "open_adsorb":0,
++                    "is_key":0,
++                    "is_empty":0, // 不能为空
++                    "is_enemy":0, 
++                    "text":"放入苏丹卡",                   
++                    "pops":[
++                        {
++                            "condition":{
++                            },
++                            "action":{
++                                "pop.5006559_s1_01.self":"<i>（震动）</i>"
++                            }
++                        }
++                    ] 
++                    
++                }
++        }
++    } 
+\ No newline at end of file
+-- 
+2.45.1.windows.1
+

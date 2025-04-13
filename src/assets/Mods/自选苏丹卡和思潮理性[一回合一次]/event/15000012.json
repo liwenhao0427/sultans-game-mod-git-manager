@@ -1,0 +1,91 @@
+{
+    "id": 15000012,
+    "text": "？？？",     
+    "is_replay": 0, //是否可以重复触发
+    "auto_start": false,
+    "start_trigger": true, // 是否启动就立即开始校验条件
+    "on":{   //时机
+    },
+    "condition":{  //条件
+    },
+    "settlement": [    //效果 
+        {
+            "tips_resource":"", 
+            "tips_text":"",
+            "action":{
+                "option": {
+                    "id":"15000012_option_1",
+                    "text": "轮回者掏出一些卡牌，问你需要什么。",
+                    "icon": "cards/2000001",
+                    "items": [
+                        {
+                            "text": "奢靡",
+                            "tag": "op1"
+                        },
+                        {
+                            "text": "纵欲",
+                            "tag": "op2"
+                        },
+                        {
+                            "text": "杀戮",
+                            "tag": "op3"
+                        },
+                        {
+                            "text": "征服",
+                            "tag": "op4"
+                        }
+                        {
+                            "text": "离开",
+                            "tag": "op5"
+                        }
+                    ]
+                },
+                "case:op1": {
+                    "event_on":15000013,//奢靡
+                    "prompt":{
+                        "id":"15000012_prompt_1",
+                        "text":".",
+                        "icon":"cards/2000001"
+                    },
+                    "event_off":15000012
+                },
+                "case:op2": {
+                    "event_on":15000014, //纵欲
+                    "prompt":{
+                        "id":"15000012_prompt_2",
+                        "text":".",
+                        "icon":"cards/2000001"
+                    },
+                    "event_off":15000012
+                },
+                "case:op3": {
+                    "event_on":15000015, //杀戮
+                    "prompt":{
+                        "id":"15000012_prompt_3",
+                        "text":".",
+                        "icon":"cards/2000001"
+                    },
+                    "event_off":15000012
+                },
+                "case:op4": {
+                    "event_on":15000016, //征服
+                    "prompt":{
+                        "id":"15000012_prompt_4",
+                        "text":".",
+                        "icon":"cards/2000001"
+                    },
+                    "event_off":15000012
+                },
+                "case:op5": {
+                    "event_off":15000012,//离开
+                    "prompt":{
+                        "id":"15000012_prompt_5",
+                        "text":".",
+                        "icon":"cards/2000001"
+                    }
+                }
+            }
+        }
+
+    ]
+}

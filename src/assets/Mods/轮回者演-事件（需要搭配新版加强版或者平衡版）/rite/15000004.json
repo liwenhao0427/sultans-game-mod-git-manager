@@ -1,0 +1,78 @@
+ {
+        "id": 15000004,
+        "name": "轮回者",
+        "text": "一个穿着兜帽的神秘人叫住了你",       
+        "tips": "",
+        "once_new":1,
+        "round_number": 1,
+        "waiting_round":0,
+        "waiting_round_end_action":[
+        ],
+        "method_settlement": "",
+        "auto_begin": 0,
+        "auto_result":0,
+        "location": "商业区:6", 
+        "icon": "rite_12", 
+        "tag_tips": [
+        ],
+        "tag_tips_up":{
+        },
+        "tips_text":[
+        ],
+        "open_conditions": [
+        ],
+        "random_text":{
+        },
+        "random_text_up":{
+        },
+        "settlement_prior": [
+        ],                
+        "settlement": [
+            {
+                "condition":
+                {
+                },
+                "result_title":"",
+                "result_text": "“你好，这个世界的主角”\n主角……？你听不懂面前这位俊美男子的话，还有什么叫这个世界？\n“没关系，你只知道我是来帮助你的，你不是正在进行苏丹的游戏吗，那么多一个人帮你想想办法不是很好吗？”\n“这位……”\n“你可以叫我演，这是我的代号，嗯……也是我写诗的笔名”\n“演先生……请问你要怎么帮我？”\n“我先去你家休息一会吧，刚穿越来有点头晕，对了，这是我从系统空间兑换的这个世界的货币，给你一些吧，你现在挺缺钱的吧？”\n你不太理解面前这位男子说的一些词汇，但还是大概理解到他的意思“这怎么好意思？演先生……”\n“打住打住，这个对我没什么用，你就拿着吧”\n“好吧，那请跟我来”",
+                "result": 
+                {
+                      "coin":100
+                },
+                "action":
+                {
+					"rite":15000005
+                }
+            }
+        ],                
+        "settlement_extre": [
+        ],
+        "cards_slot":       
+ {
+            "s1":
+                {
+                    "condition": 
+                    {
+                        "type":"char",
+                        "轮回者":1                       
+                    },
+                    "open_adsorb":0,
+                    "is_key":0,
+                    "is_empty":0,
+                    "is_enemy":0,
+                    "text":"神秘的轮回者" 
+                },
+            "s2":
+                {
+                    "condition": 
+                    {
+                        "主角":1,
+                        "type":"char"                        
+                    },
+                    "open_adsorb":0,
+                    "is_key":0,
+                    "is_empty":0,
+                    "is_enemy":0,
+                    "text":"你必须亲自迎接"
+                }
+        }
+    } 

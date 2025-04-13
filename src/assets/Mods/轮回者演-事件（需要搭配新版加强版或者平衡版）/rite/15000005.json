@@ -1,0 +1,80 @@
+ {
+        "id": 15000005,
+        "name": "轮回者二",
+        "text": "清晨，你发现这位神秘的演先生居然正在写诗？",       
+        "tips": "",
+        "once_new":1,
+        "round_number": 1,
+        "waiting_round":0,
+        "waiting_round_end_action":[
+        ],
+        "method_settlement": "",
+        "auto_begin": 0,
+        "auto_result":0,
+        "location": "自宅:[2,12]", 
+        "icon": "rite_12", 
+        "tag_tips": [
+        ],
+        "tag_tips_up":{
+        },
+        "tips_text":[
+        ],
+        "open_conditions": [
+        ],
+        "random_text":{
+        },
+        "random_text_up":{
+        },
+        "settlement_prior": [
+        ],                
+        "settlement": [
+            {
+                "condition":
+                {
+                },
+                "result_title":"",
+                "result_text": "当暖金色光线漫过他棱角分明的侧脸，你游移的视线忽被他睫毛轻颤截住\n那张被修长手指捏得微微发皱的宣纸，正泛着未干墨迹的微光\n“演先生，请问您这是？”\n“只是一点爱好罢了，写点小诗”\n纸面上呈现的是你所看不懂的文字，但字体充斥着豪放与力量\n“可以问问……你这是写的什么吗”\n“可以，我念给你听”\n“金冠压九郡，苏丹锢苍生”\n“夜诏凝腥血，朝枷锁雁声”\n“星芒裂阙起，赤浪卷旗横”\n“焦土春雷动，千帆破雾征”\n“这诗的律韵好奇怪，是什么意思？先生”\n“意思是苏丹王权暴政，百姓被戏弄，但会有星辰的光芒劈裂王朝积蓄反抗力量，被暴政灼烧成焦土的大地会焕发新生”\n“而你，就是那个星辰”\n“我真的……行吗？”\n“那难不成你要继续这什么苏丹的游戏？还是说你觉得完成了所有苏丹卡，你就没事了？”\n“我……”\n“好好想想吧”",
+                "result": 
+                {
+                    "card":2000171 //谋反的意图获得
+                    "card":2000171 //谋反的意图获得
+                    "card":2000171 //谋反的意图获得
+                },
+                "action":
+                {
+					"rite":15000006
+                }
+            }
+        ],                
+        "settlement_extre": [
+        ],
+        "cards_slot":       
+ {
+            "s1":
+                {
+                    "condition": 
+                    {
+                        "type":"char",
+                        "轮回者":1                       
+                    },
+                    "open_adsorb":0,
+                    "is_key":0,
+                    "is_empty":0,
+                    "is_enemy":0,
+                    "text":"神秘的轮回者" 
+                },
+            "s2":
+                {
+                    "condition": 
+                    {
+                        "主角":1,
+                        "type":"char"                        
+                    },
+                    "open_adsorb":0,
+                    "is_key":0,
+                    "is_empty":0,
+                    "is_enemy":0,
+                    "text":"你必须亲自迎接"
+                }
+        }
+    } 

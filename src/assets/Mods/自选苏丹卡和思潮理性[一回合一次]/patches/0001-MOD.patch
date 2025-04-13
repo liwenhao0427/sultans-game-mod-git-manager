@@ -1,0 +1,1038 @@
+From 58e3c1619a8e02bea30f5a8b631f4050cd7ec73b Mon Sep 17 00:00:00 2001
+From: Sultan Mod Manager <mod@example.com>
+Date: Sun, 13 Apr 2025 19:36:47 +0800
+Subject: [PATCH] =?UTF-8?q?=E5=BA=94=E7=94=A8MOD:=20=E8=87=AA=E9=80=89?=
+ =?UTF-8?q?=E8=8B=8F=E4=B8=B9=E5=8D=A1=E5=92=8C=E6=80=9D=E6=BD=AE=E7=90=86?=
+ =?UTF-8?q?=E6=80=A7[=E4=B8=80=E5=9B=9E=E5=90=88=E4=B8=80=E6=AC=A1]?=
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+---
+ event/15000011.json | 25 +++++++++++++
+ event/15000012.json | 91 +++++++++++++++++++++++++++++++++++++++++++++
+ event/15000013.json | 79 +++++++++++++++++++++++++++++++++++++++
+ event/15000014.json | 79 +++++++++++++++++++++++++++++++++++++++
+ event/15000015.json | 79 +++++++++++++++++++++++++++++++++++++++
+ event/15000016.json | 79 +++++++++++++++++++++++++++++++++++++++
+ event/15000017.json | 86 ++++++++++++++++++++++++++++++++++++++++++
+ event/15000018.json | 79 +++++++++++++++++++++++++++++++++++++++
+ event/15000019.json | 79 +++++++++++++++++++++++++++++++++++++++
+ event/15000020.json | 25 +++++++++++++
+ event/15000021.json | 78 ++++++++++++++++++++++++++++++++++++++
+ rite/15000011.json  | 63 +++++++++++++++++++++++++++++++
+ rite/15000020.json  | 63 +++++++++++++++++++++++++++++++
+ 13 files changed, 905 insertions(+)
+ create mode 100644 event/15000011.json
+ create mode 100644 event/15000012.json
+ create mode 100644 event/15000013.json
+ create mode 100644 event/15000014.json
+ create mode 100644 event/15000015.json
+ create mode 100644 event/15000016.json
+ create mode 100644 event/15000017.json
+ create mode 100644 event/15000018.json
+ create mode 100644 event/15000019.json
+ create mode 100644 event/15000020.json
+ create mode 100644 event/15000021.json
+ create mode 100644 rite/15000011.json
+ create mode 100644 rite/15000020.json
+
+diff --git a/event/15000011.json b/event/15000011.json
+new file mode 100644
+index 0000000..410dcc1
+--- /dev/null
++++ b/event/15000011.json
+@@ -0,0 +1,25 @@
++{
++    "id": 15000011,
++    "text": "演的馈赠",     
++    "is_replay": 1, //是否可以重复触发
++    "auto_start_init": [1],
++    "start_trigger": true, // 是否启动就立即开始校验条件
++    "on":{   //时机
++        "round_begin_ba":1
++    },
++    "condition":{  //条件
++    "!rite":15000011
++    },
++    "settlement": [    //效果 
++        {
++            "tips_resource":"", 
++            "tips_text":"",
++            "action":{
++                "rite":15000011,
++                "success":{
++                }
++            }
++        }
++
++    ]
++}
+\ No newline at end of file
+diff --git a/event/15000012.json b/event/15000012.json
+new file mode 100644
+index 0000000..070821d
+--- /dev/null
++++ b/event/15000012.json
+@@ -0,0 +1,91 @@
++{
++    "id": 15000012,
++    "text": "？？？",     
++    "is_replay": 0, //是否可以重复触发
++    "auto_start": false,
++    "start_trigger": true, // 是否启动就立即开始校验条件
++    "on":{   //时机
++    },
++    "condition":{  //条件
++    },
++    "settlement": [    //效果 
++        {
++            "tips_resource":"", 
++            "tips_text":"",
++            "action":{
++                "option": {
++                    "id":"15000012_option_1",
++                    "text": "轮回者掏出一些卡牌，问你需要什么。",
++                    "icon": "cards/2000001",
++                    "items": [
++                        {
++                            "text": "奢靡",
++                            "tag": "op1"
++                        },
++                        {
++                            "text": "纵欲",
++                            "tag": "op2"
++                        },
++                        {
++                            "text": "杀戮",
++                            "tag": "op3"
++                        },
++                        {
++                            "text": "征服",
++                            "tag": "op4"
++                        }
++                        {
++                            "text": "离开",
++                            "tag": "op5"
++                        }
++                    ]
++                },
++                "case:op1": {
++                    "event_on":15000013,//奢靡
++                    "prompt":{
++                        "id":"15000012_prompt_1",
++                        "text":".",
++                        "icon":"cards/2000001"
++                    },
++                    "event_off":15000012
++                },
++                "case:op2": {
++                    "event_on":15000014, //纵欲
++                    "prompt":{
++                        "id":"15000012_prompt_2",
++                        "text":".",
++                        "icon":"cards/2000001"
++                    },
++                    "event_off":15000012
++                },
++                "case:op3": {
++                    "event_on":15000015, //杀戮
++                    "prompt":{
++                        "id":"15000012_prompt_3",
++                        "text":".",
++                        "icon":"cards/2000001"
++                    },
++                    "event_off":15000012
++                },
++                "case:op4": {
++                    "event_on":15000016, //征服
++                    "prompt":{
++                        "id":"15000012_prompt_4",
++                        "text":".",
++                        "icon":"cards/2000001"
++                    },
++                    "event_off":15000012
++                },
++                "case:op5": {
++                    "event_off":15000012,//离开
++                    "prompt":{
++                        "id":"15000012_prompt_5",
++                        "text":".",
++                        "icon":"cards/2000001"
++                    }
++                }
++            }
++        }
++
++    ]
++}
+\ No newline at end of file
+diff --git a/event/15000013.json b/event/15000013.json
+new file mode 100644
+index 0000000..3d1345a
+--- /dev/null
++++ b/event/15000013.json
+@@ -0,0 +1,79 @@
++{
++    "id": 15000013,
++    "text": "选择了奢靡",     
++    "is_replay": 0, //是否可以重复触发
++    "auto_start": false,
++    "start_trigger": true, // 是否启动就立即开始校验条件
++    "on":{   //时机
++    },
++    "condition":{  //条件
++    },
++    "settlement": [    //效果 
++        {
++            "tips_resource":"", 
++            "tips_text":"",
++            "action":{
++                "option": {
++                    "id":"15000013_option_1",
++                    "text": ".",
++                    "icon": "cards/2000001",
++                    "items": [
++                        {
++                            "text": "石品质",
++                            "tag": "op1"
++                        },
++                        {
++                            "text": "铜品质",
++                            "tag": "op2"
++                        },
++                        {
++                            "text": "银品质",
++                            "tag": "op3"
++                        },
++                        {
++                            "text": "金品质",
++                            "tag": "op4"
++                        }
++                    ]
++                },
++                "case:op1": {
++                    "card": 2010009,//石
++                    "prompt":{
++                        "id":"15000013_prompt_1",
++                        "text":".",
++                        "icon":"cards/2000001"
++                    },
++                    "event_off":15000013
++                },
++                "case:op2": {
++                    "card": 2010010,//铜
++                    "prompt":{
++                        "id":"15000013_prompt_2",
++                        "text":".",
++                        "icon":"cards/2000001"
++                    },
++                    "event_off":15000013
++                },
++                "case:op3": {
++                    "card": 2010011,//银
++                    "prompt":{
++                        "id":"15000013_prompt_3",
++                        "text":".",
++                        "icon":"cards/2000001"
++                    },
++                    "event_off":15000013
++                },
++                "case:op4": {
++                    "card": 2010012,//金
++                    "prompt":{
++                        "id":"15000013_prompt_4",
++                        "text":".",
++                        "icon":"cards/2000001"
++                    }
++                },
++                "event_off":15000013
++            }
++        }
++
++    ]
++}
+\ No newline at end of file
+diff --git a/event/15000014.json b/event/15000014.json
+new file mode 100644
+index 0000000..99fc837
+--- /dev/null
++++ b/event/15000014.json
+@@ -0,0 +1,79 @@
++{
++    "id": 15000014,
++    "text": "选择了纵欲",     
++    "is_replay": 0, //是否可以重复触发
++    "auto_start": false,
++    "start_trigger": true, // 是否启动就立即开始校验条件
++    "on":{   //时机
++    },
++    "condition":{  //条件
++    },
++    "settlement": [    //效果 
++        {
++            "tips_resource":"", 
++            "tips_text":"",
++            "action":{
++                "option": {
++                    "id":"15000014_option_1",
++                    "text": ".",
++                    "icon": "cards/2000001",
++                    "items": [
++                        {
++                            "text": "石品质",
++                            "tag": "op1"
++                        },
++                        {
++                            "text": "铜品质",
++                            "tag": "op2"
++                        },
++                        {
++                            "text": "银品质",
++                            "tag": "op3"
++                        },
++                        {
++                            "text": "金品质",
++                            "tag": "op4"
++                        }
++                    ]
++                },
++                "case:op1": {
++                    "card": 2010005,//石
++                    "prompt":{
++                        "id":"15000014_prompt_1",
++                        "text":".",
++                        "icon":"cards/2000001"
++                    },
++                    "event_off":15000014
++                },
++                "case:op2": {
++                    "card": 2010006,//铜
++                    "prompt":{
++                        "id":"15000014_prompt_2",
++                        "text":".",
++                        "icon":"cards/2000001"
++                    },
++                    "event_off":15000014
++                },
++                "case:op3": {
++                    "card": 2010007,//银
++                    "prompt":{
++                        "id":"15000014_prompt_3",
++                        "text":".",
++                        "icon":"cards/2000001"
++                    },
++                    "event_off":15000014
++                },
++                "case:op4": {
++                    "card": 2010008,//金
++                    "prompt":{
++                        "id":"15000014_prompt_4",
++                        "text":".",
++                        "icon":"cards/2000001"
++                    },
++                    "event_off":15000014
++                }
++            }
++        }
++
++    ]
++}
+\ No newline at end of file
+diff --git a/event/15000015.json b/event/15000015.json
+new file mode 100644
+index 0000000..328f444
+--- /dev/null
++++ b/event/15000015.json
+@@ -0,0 +1,79 @@
++{
++    "id": 15000015,
++    "text": "选择了杀戮",     
++    "is_replay": 0, //是否可以重复触发
++    "auto_start": false,
++    "start_trigger": true, // 是否启动就立即开始校验条件
++    "on":{   //时机
++    },
++    "condition":{  //条件
++    },
++    "settlement": [    //效果 
++        {
++            "tips_resource":"", 
++            "tips_text":"",
++            "action":{
++                "option": {
++                    "id":"15000015_option_1",
++                    "text": ".",
++                    "icon": "cards/2000001",
++                    "items": [
++                        {
++                            "text": "石品质",
++                            "tag": "op1"
++                        },
++                        {
++                            "text": "铜品质",
++                            "tag": "op2"
++                        },
++                        {
++                            "text": "银品质",
++                            "tag": "op3"
++                        },
++                        {
++                            "text": "金品质",
++                            "tag": "op4"
++                        }
++                    ]
++                },
++                "case:op1": {
++                    "card": 2010001,//石
++                    "prompt":{
++                        "id":"15000015_prompt_1",
++                        "text":".",
++                        "icon":"cards/2000001"
++                    },
++                    "event_off":15000015
++                },
++                "case:op2": {
++                    "card": 2010002,//铜
++                    "prompt":{
++                        "id":"15000015_prompt_2",
++                        "text":".",
++                        "icon":"cards/2000001"
++                    },
++                    "event_off":15000015
++                },
++                "case:op3": {
++                    "card": 2010003,//银
++                    "prompt":{
++                        "id":"15000015_prompt_3",
++                        "text":".",
++                        "icon":"cards/2000001"
++                    },
++                    "event_off":15000015
++                },
++                "case:op4": {
++                    "card": 2010004,//金
++                    "prompt":{
++                        "id":"15000015_prompt_4",
++                        "text":".",
++                        "icon":"cards/2000001"
++                    },
++                    "event_off":15000015
++                }
++            }
++        }
++
++    ]
++}
+\ No newline at end of file
+diff --git a/event/15000016.json b/event/15000016.json
+new file mode 100644
+index 0000000..a1ef8ae
+--- /dev/null
++++ b/event/15000016.json
+@@ -0,0 +1,79 @@
++{
++    "id": 15000016,
++    "text": "选择了征服",     
++    "is_replay": 0, //是否可以重复触发
++    "auto_start": false,
++    "start_trigger": true, // 是否启动就立即开始校验条件
++    "on":{   //时机
++    },
++    "condition":{  //条件
++    },
++    "settlement": [    //效果 
++        {
++            "tips_resource":"", 
++            "tips_text":"",
++            "action":{
++                "option": {
++                    "id":"15000016_option_1",
++                    "text": ".",
++                    "icon": "cards/2000001",
++                    "items": [
++                        {
++                            "text": "石品质",
++                            "tag": "op1"
++                        },
++                        {
++                            "text": "铜品质",
++                            "tag": "op2"
++                        },
++                        {
++                            "text": "银品质",
++                            "tag": "op3"
++                        },
++                        {
++                            "text": "金品质",
++                            "tag": "op4"
++                        }
++                    ]
++                },
++                "case:op1": {
++                    "card": 2010013,//石
++                    "prompt":{
++                        "id":"15000016_prompt_1",
++                        "text":".",
++                        "icon":"cards/2000001"
++                    },
++                    "event_off":15000016
++                },
++                "case:op2": {
++                    "card": 2010014,//铜
++                    "prompt":{
++                        "id":"15000016_prompt_2",
++                        "text":".",
++                        "icon":"cards/2000001"
++                    },
++                    "event_off":15000016
++                },
++                "case:op3": {
++                    "card": 2010015,//银
++                    "prompt":{
++                        "id":"15000016_prompt_3",
++                        "text":".",
++                        "icon":"cards/2000001"
++                    },
++                    "event_off":15000016
++                },
++                "case:op4": {
++                    "card": 2010016,//金
++                    "prompt":{
++                        "id":"15000016_prompt_4",
++                        "text":".",
++                        "icon":"cards/2000001"
++                    },
++                    "event_off":15000016
++                }
++            }
++        }
++
++    ]
++}
+\ No newline at end of file
+diff --git a/event/15000017.json b/event/15000017.json
+new file mode 100644
+index 0000000..bd72a29
+--- /dev/null
++++ b/event/15000017.json
+@@ -0,0 +1,86 @@
++{
++    "id": 15000017,
++    "text": "选择了征服",     
++    "is_replay": 0, //是否可以重复触发
++    "auto_start": false,
++    "start_trigger": true, // 是否启动就立即开始校验条件
++    "on":{   //时机
++    },
++    "condition":{  //条件
++    },
++    "settlement": [    //效果 
++        {
++            "tips_resource":"", 
++            "tips_text":"",
++            "action":{
++                "option": {
++                    "id":"15000017_option_1",
++                    "text": ".",
++                    "items": [
++                        {
++                            "text": "理性",
++                            "tag": "op1"
++                        },
++                        {
++                            "text": "纯净的思想",
++                            "tag": "op2"
++                        },
++                        {
++                            "text": "触碰洁净",
++                            "tag": "op3"
++                        },
++                        {
++                            "text": "赎罪祈愿",
++                            "tag": "op4"
++                        },
++                        {
++                            "text": "完美世界",
++                            "tag": "op5"
++                        }
++                    ]
++                },
++                "case:op1": {
++                    "card":2000723  //理性
++                    "prompt":{
++                        "id":"15000017_prompt_1",
++                        "text":".",
++                    },
++                    "event_off":15000017
++                },
++                "case:op2": {
++                    "card":2000725,  //获得初级正教思潮
++                    "prompt":{
++                        "id":"15000017_prompt_2",
++                        "text":".",
++                    },
++                    "event_off":15000017
++                },
++                   "case:op3": {
++                    "card":2000726,  //获得二级思潮
++                    "prompt":{
++                        "id":"15000017_prompt_3",
++                        "text":".",
++                    },
++                    "event_off":15000017
++                },
++                   "case:op4": {
++                    "card":2000727,  //获得三级思潮
++                    "prompt":{
++                        "id":"15000017_prompt_4",
++                        "text":".",
++                    },
++                    "event_off":15000017
++                },
++                    "case:op5": {
++                    "card": 2000728,  //四级正教思潮
++                    "prompt":{
++                        "id":"15000017_prompt_5",
++                        "text":".",
++                    },
++                    "event_off":15000017
++                }
++            }
++        }
++
++    ]
++}
+\ No newline at end of file
+diff --git a/event/15000018.json b/event/15000018.json
+new file mode 100644
+index 0000000..8ee583c
+--- /dev/null
++++ b/event/15000018.json
+@@ -0,0 +1,79 @@
++{
++    "id": 15000018,
++    "text": "选择了邪教思潮",     
++    "is_replay": 0, //是否可以重复触发
++    "auto_start": false,
++    "start_trigger": true, // 是否启动就立即开始校验条件
++    "on":{   //时机
++    },
++    "condition":{  //条件
++    },
++    "settlement": [    //效果 
++        {
++            "tips_resource":"", 
++            "tips_text":"",
++            "action":{
++                "option": {
++                    "id":"15000018_option_1",
++                    "text": ".",
++                    "icon": "cards/2000001",
++                    "items": [
++                        {
++                            "text": "不洁的思绪",
++                            "tag": "op1"
++                        },
++                        {
++                            "text": "窥视黑暗",
++                            "tag": "op2"
++                        },
++                        {
++                            "text": "古老的信仰",
++                            "tag": "op3"
++                        },
++                        {
++                            "text": "新世界",
++                            "tag": "op4"
++                        }
++                    ]
++                },
++                "case:op1": {
++                    "card": 2000724
++                    "prompt":{
++                        "id":"15000018_prompt_1",
++                        "text":".",
++                        "icon":"cards/2000001"
++                    },
++                    "event_off":15000018
++                },
++                "case:op2": {
++                    "card": 2000410
++                    "prompt":{
++                        "id":"15000018_prompt_2",
++                        "text":".",
++                        "icon":"cards/2000001"
++                    },
++                    "event_off":15000018
++                },
++                "case:op3": {
++                    "card": 2000411
++                    "prompt":{
++                        "id":"15000018_prompt_3",
++                        "text":".",
++                        "icon":"cards/2000001"
++                    },
++                    "event_off":15000018
++                },
++                "case:op4": {
++                    "card": 2000412
++                    "prompt":{
++                        "id":"15000018_prompt_4",
++                        "text":".",
++                        "icon":"cards/2000001"
++                    },
++                    "event_off":15000018
++                }
++            }
++        }
++
++    ]
++}
+\ No newline at end of file
+diff --git a/event/15000019.json b/event/15000019.json
+new file mode 100644
+index 0000000..e8f0ab9
+--- /dev/null
++++ b/event/15000019.json
+@@ -0,0 +1,79 @@
++{
++    "id": 15000019,
++    "text": "选择了革命思潮",     
++    "is_replay": 0, //是否可以重复触发
++    "auto_start": false,
++    "start_trigger": true, // 是否启动就立即开始校验条件
++    "on":{   //时机
++    },
++    "condition":{  //条件
++    },
++    "settlement": [    //效果 
++        {
++            "tips_resource":"", 
++            "tips_text":"",
++            "action":{
++                "option": {
++                    "id":"15000019_option_1",
++                    "text": ".",
++                    "icon": "cards/2000001",
++                    "items": [
++                        {
++                            "text": "革命的计划",
++                            "tag": "op1"
++                        },
++                        {
++                            "text": "君权神授",
++                            "tag": "op2"
++                        },
++                        {
++                            "text": "昼夜契约",
++                            "tag": "op3"
++                        },
++                        {
++                            "text": "誓言之证",
++                            "tag": "op4"
++                        }
++                    ]
++                },
++                "case:op1": {
++                    "card": 2000910
++                    "prompt":{
++                        "id":"15000019_prompt_1",
++                        "text":".",
++                        "icon":"cards/2000001"
++                    },
++                    "event_off":15000019
++                },
++                "case:op2": {
++                    "card": 2000911
++                    "prompt":{
++                        "id":"15000019_prompt_2",
++                        "text":".",
++                        "icon":"cards/2000001"
++                    },
++                    "event_off":15000019
++                },
++                "case:op3": {
++                    "card": 2000912
++                    "prompt":{
++                        "id":"15000019_prompt_3",
++                        "text":".",
++                        "icon":"cards/2000001"
++                    },
++                    "event_off":15000019
++                },
++                "case:op4": {
++                    "card": 2000913
++                    "prompt":{
++                        "id":"15000019_prompt_4",
++                        "text":".",
++                        "icon":"cards/2000001"
++                    },
++                    "event_off":15000019
++                }
++            }
++        }
++
++    ]
++}
+\ No newline at end of file
+diff --git a/event/15000020.json b/event/15000020.json
+new file mode 100644
+index 0000000..61a981b
+--- /dev/null
++++ b/event/15000020.json
+@@ -0,0 +1,25 @@
++{
++    "id": 15000020,
++    "text": "演的理性与思潮",     
++    "is_replay": 1, //是否可以重复触发
++    "auto_start_init": [1],
++    "start_trigger": true, // 是否启动就立即开始校验条件
++    "on":{   //时机
++        "round_begin_ba":1
++    },
++    "condition":{  //条件
++    "!rite":15000020
++    },
++    "settlement": [    //效果 
++        {
++            "tips_resource":"", 
++            "tips_text":"",
++            "action":{
++                "rite":15000020,
++                "success":{
++                }
++            }
++        }
++
++    ]
++}
+\ No newline at end of file
+diff --git a/event/15000021.json b/event/15000021.json
+new file mode 100644
+index 0000000..a54c821
+--- /dev/null
++++ b/event/15000021.json
+@@ -0,0 +1,78 @@
++{
++    "id": 15000021,
++    "text": "？？？",     
++    "is_replay": 0, //是否可以重复触发
++    "auto_start": false,
++    "start_trigger": true, // 是否启动就立即开始校验条件
++    "on":{   //时机
++    },
++    "condition":{  //条件
++    },
++    "settlement": [    //效果 
++        {
++            "tips_resource":"", 
++            "tips_text":"",
++            "action":{
++                "option": {
++                    "id":"15000021_option_1",
++                    "text": "轮回者掏出一些卡牌，问你需要什么。",
++                    "icon": "cards/2000001",
++                    "items": [
++                        {
++                            "text": "理性与正教思潮",
++                            "tag": "op1"
++                        }
++                        {
++                            "text": "邪教思潮",
++                            "tag": "op2"
++                        }
++                        {
++                            "text": "革命思潮",
++                            "tag": "op3"
++                        }
++                        {
++                            "text": "离开",
++                            "tag": "op4"
++                        }
++                    ]
++                },
++                "case:op1": {
++                    "event_on":15000017
++                    "prompt":{
++                        "id":"15000021_prompt_1",
++                        "text":".",
++                        "icon":"cards/2000001"
++                    },
++                    "event_off":15000021
++                },
++                "case:op2": {
++                    "event_on":15000018
++                    "prompt":{
++                        "id":"15000021_prompt_2",
++                        "text":".",
++                        "icon":"cards/2000001"
++                    },
++                    "event_off":15000021
++                },
++                "case:op3": {
++                    "event_on":15000019
++                    "prompt":{
++                        "id":"15000021_prompt_3",
++                        "text":".",
++                        "icon":"cards/2000001"
++                    },
++                    "event_off":15000021
++                },
++                "case:op4": {
++                    "event_off":15000021,//离开
++                    "prompt":{
++                        "id":"15000021_prompt_5",
++                        "text":".",
++                        "icon":"cards/2000001"
++                    }
++                }
++            }
++        }
++
++    ]
++}
+\ No newline at end of file
+diff --git a/rite/15000011.json b/rite/15000011.json
+new file mode 100644
+index 0000000..ff10784
+--- /dev/null
++++ b/rite/15000011.json
+@@ -0,0 +1,63 @@
++{
++	"id": 15000011,
++	"name": "演的馈赠",
++	"text": "给我感受MOD神力！",       
++	"tips": "",
++	"once_new":-1,
++	"round_number": 0,
++	"waiting_round":0,
++	"waiting_round_end_action":[
++	],        
++	"method_settlement": "",
++	"auto_begin": 0, 
++	"auto_result": 0,//需要手动启动
++	"location": "野外:[1,14]", 
++	"icon": "rite_1", 
++	"tag_tips": [
++	],
++	"tag_tips_up":{
++	},       
++	"tips_text":[
++		"要开挂吗？少年，我这什么苏丹卡都有哦",
++	],
++	"open_conditions": [
++	],
++	"random_text":{
++	},
++	"random_text_up":{
++	},
++	"settlement_prior": [
++	],                
++	"settlement": [
++	],               
++	"settlement_extre": [
++		{
++			"condition": {
++			},
++			"result_title":"我草还有这种好事？",
++			"result_text": "深蓝，加点！",
++			"result": 
++			{
++			},
++			"action": {
++				"event_on":15000012
++			}
++		}
++	],
++	"cards_slot":
++	{
++		"s1":
++		{
++                    "condition": 
++                    {
++                        "主角":1,
++                        "type":"char"                        
++                    },
++                    "open_adsorb":0,
++                    "is_key":0,
++                    "is_empty":0,
++                    "is_enemy":0,
++                    "text":"你必须亲自迎接"
++		}
++	}
++}
+\ No newline at end of file
+diff --git a/rite/15000020.json b/rite/15000020.json
+new file mode 100644
+index 0000000..d1f4d4b
+--- /dev/null
++++ b/rite/15000020.json
+@@ -0,0 +1,63 @@
++{
++	"id": 15000020,
++	"name": "演的理性与思潮",
++	"text": "给我感受MOD神力！",       
++	"tips": "",
++	"once_new":-1,
++	"round_number": 0,
++	"waiting_round":0,
++	"waiting_round_end_action":[
++	],        
++	"method_settlement": "",
++	"auto_begin": 0, 
++	"auto_result": 0,//需要手动启动
++	"location": "野外:[1,14]", 
++	"icon": "rite_1", 
++	"tag_tips": [
++	],
++	"tag_tips_up":{
++	},       
++	"tips_text":[
++		"要开挂吗？少年，我这什么思潮都有哦还有我的理性",
++	],
++	"open_conditions": [
++	],
++	"random_text":{
++	},
++	"random_text_up":{
++	},
++	"settlement_prior": [
++	],                
++	"settlement": [
++	],               
++	"settlement_extre": [
++		{
++			"condition": {
++			},
++			"result_title":"我草还有这种好事？",
++			"result_text": "深蓝，加点！",
++			"result": 
++			{
++			},
++			"action": {
++				"event_on":15000021
++			}
++		}
++	],
++	"cards_slot":
++	{
++		"s1":
++		{
++                    "condition": 
++                    {
++                        "主角":1,
++                        "type":"char"                        
++                    },
++                    "open_adsorb":0,
++                    "is_key":0,
++                    "is_empty":0,
++                    "is_enemy":0,
++                    "text":"你必须亲自迎接"
++		}
++	}
++}
+\ No newline at end of file
+-- 
+2.45.1.windows.1
+

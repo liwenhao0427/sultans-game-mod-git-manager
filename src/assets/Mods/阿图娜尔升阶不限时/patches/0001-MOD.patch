@@ -1,0 +1,55 @@
+From 2b65bda3c97ea6676cb6aa0c6ad24ee8a40395c2 Mon Sep 17 00:00:00 2001
+From: Sultan Mod Manager <mod@example.com>
+Date: Sun, 13 Apr 2025 19:44:54 +0800
+Subject: [PATCH] =?UTF-8?q?=E5=BA=94=E7=94=A8MOD:=20=E9=98=BF=E5=9B=BE?=
+ =?UTF-8?q?=E5=A8=9C=E5=B0=94=E5=8D=87=E9=98=B6=E4=B8=8D=E9=99=90=E6=97=B6?=
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+---
+ rite/5000103.json | 2 +-
+ rite/5000104.json | 6 +++---
+ 2 files changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/rite/5000103.json b/rite/5000103.json
+index e912183..6b469ed 100644
+--- a/rite/5000103.json
++++ b/rite/5000103.json
+@@ -6,7 +6,7 @@
+         "mapping_id":8001213, 
+         "once_new":1,
+         "round_number": 1,
+-        "waiting_round":7,
++        "waiting_round":0,
+         "waiting_round_end_action":[
+         ],
+         "method_settlement": "",
+diff --git a/rite/5000104.json b/rite/5000104.json
+index 5fb6f86..130a574 100644
+--- a/rite/5000104.json
++++ b/rite/5000104.json
+@@ -6,7 +6,7 @@
+         "mapping_id":8001213, 
+         "once_new":1,
+         "round_number": 1,
+-        "waiting_round":7,
++        "waiting_round":0,
+         "waiting_round_end_action":[
+         ],
+         "method_settlement": "",
+@@ -24,9 +24,9 @@
+             {
+                 "condition": {
+                     "counter.7100003>=":10,      
+-                    "f:s2.魅力+s3.魅力>=":10
++                    "f:s2.魅力+s3.魅力>=":7
+                 },
+-                "tips": "你的权势不能小于10点。装备的魅力之和不能小于10。"
++                "tips": "你的权势不能小于10点。装备的魅力之和不能小于7。"
+             }
+         ],
+         "random_text":{
+-- 
+2.45.1.windows.1
+

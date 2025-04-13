@@ -1,0 +1,79 @@
+ {
+        "id": 15000009,
+        "name": "轮回者四",
+        "text": "有了轮回者帮助，苏丹的统治好像只是一个笑话，凡人难道还能打败天使不成？可这个时候你却发现演一脸凝重的看着你",       
+        "tips": "",
+        "once_new":1,
+        "round_number": 1,
+        "waiting_round":0,
+        "waiting_round_end_action":[
+        ],
+        "method_settlement": "",
+        "auto_begin": 0,
+        "auto_result":0,
+        "location": "商业区:6", 
+        "icon": "rite_12", 
+        "tag_tips": [
+        ],
+        "tag_tips_up":{
+        },
+        "tips_text":[
+        ],
+        "open_conditions": [
+        ],
+        "random_text":{
+        },
+        "random_text_up":{
+        },
+        "settlement_prior": [
+        ],                
+        "settlement": [
+            {
+                "condition":
+                {
+                },
+                "result_title":"",
+                "result_text": "“见鬼……”\n“怎么了？”\n“[s2.name]，我被你们这个世界的神盯上了，我本以为这只是个普通中世纪王朝，没想到他妈的居然还有神明”\n“神？”\n“没有错，而且你们这个世界的神比苏丹还要恶趣味，又或者祂根本不是神，现在只是一种被无尽的欲望吞噬的不可名状之物，鬼知道为什么一个中世纪王朝还带着克苏鲁元素啊？”\n“说到底，这都是我的错，如果不是我穿越来引起祂的注视与好奇，说不定，按照正常流程你推翻了苏丹的统治压根不会遇到这些事”\n“现在的话，就算杀了苏丹也没有用了，我能感受得到祂很快就要诞生，在诞生的那一刻整个世界都要成为祂的牺牲品”\n“那我们现在怎么办……”\n“没办法逃避，那就只能面对，我们自己主动召唤祂，在祂最薄弱的时候，<size=+10><font=\"Title SDF\"><b>弑神</b></font></size>”\n演一脸凝重的看着你，像是下定了什么决心“你等我一天，我去收集需要召唤祂仪式的东西，如果最后不得已，看来我只能使用那种力量了……”\n“你趁这一天帮我准备好仪式现场”",
+                "result": 
+                {
+                                  "card":[2001126,"已拥有+1"] //生成血池
+
+                },
+                "action":
+                {
+					"rite":15000010
+                }
+            }
+        ],                
+        "settlement_extre": [
+        ],
+        "cards_slot":       
+ {
+            "s1":
+                {
+                    "condition": 
+                    {
+                        "type":"char",
+                        "轮回者":1                       
+                    },
+                    "open_adsorb":0,
+                    "is_key":0,
+                    "is_empty":0,
+                    "is_enemy":0,
+                    "text":"神秘的轮回者" 
+                },
+            "s2":
+                {
+                    "condition": 
+                    {
+                        "主角":1,
+                        "type":"char"                        
+                    },
+                    "open_adsorb":0,
+                    "is_key":0,
+                    "is_empty":0,
+                    "is_enemy":0,
+                    "text":"你必须亲自迎接"
+                }
+        }
+    } 

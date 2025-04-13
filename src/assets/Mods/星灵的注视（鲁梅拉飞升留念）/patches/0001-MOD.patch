@@ -1,0 +1,165 @@
+From 1424743576710c354f39fe3e14dcdae21e9ddd01 Mon Sep 17 00:00:00 2001
+From: Sultan Mod Manager <mod@example.com>
+Date: Sun, 13 Apr 2025 19:35:12 +0800
+Subject: [PATCH] =?UTF-8?q?=E5=BA=94=E7=94=A8MOD:=20=E6=98=9F=E7=81=B5?=
+ =?UTF-8?q?=E7=9A=84=E6=B3=A8=E8=A7=86=EF=BC=88=E9=B2=81=E6=A2=85=E6=8B=89?=
+ =?UTF-8?q?=E9=A3=9E=E5=8D=87=E7=95=99=E5=BF=B5=EF=BC=89?=
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+---
+ cards.json        | 66 +++++++++++++++++++++++++++++++++++++++++++++++
+ rite/5006521.json | 30 +++++++++++++++++++++
+ 2 files changed, 96 insertions(+)
+
+diff --git a/cards.json b/cards.json
+index 1482aeb..4ba20e8 100644
+--- a/cards.json
++++ b/cards.json
+@@ -5570,6 +5570,30 @@
+         "equips": [],
+         "is_only": 1
+     },
++	"9000287": {
++        "id": 9000287,
++        "name": "略微变形的银铃",
++        "title": "信物",
++        "text": "哲瓦德在阿鲁米娜5岁丧母时为她手工打造的驱邪银铃，银铃上刻着“别怕，银铃响时，爸爸为你杀噩梦。”",
++        "pops": [],
++        "card_favour": "",
++        "type": "item",
++        "tips": "",
++        "rare": 3,
++        "resource": "cards/2000287",
++        "tag": {
++            "纯色材质": 1,
++			"重投": 3,
++			"生存": 3,
++            "装备": 1,
++            "饰品": 1,
++            "纯色材质": 1
++        },
++        "card_vanishing": 0,
++        "vanish": {},
++        "equips": [],
++        "is_only": 1
++    },			
+     "2000288": {
+         "id": 2000288,
+         "name": "安苏亚的侍女",
+@@ -11989,6 +12013,26 @@
+         "equips": [],
+         "is_only": 1
+     },
++	"9000545": {
++        "id": 9000545,
++        "name": "星灵的注视",
++        "title": "如影随形",
++        "text": "经过了苦难的轮回，鲁梅拉回归了她神圣的本质……而你隐约感到她仍在你的身旁。",
++        "pops": [],
++        "card_favour": "",
++        "type": "item",
++        "tips": "",
++        "rare": 4,
++        "resource": "cards/2000545",
++        "tag": {
++            "魔力": 5,
++            "重投": 3
++        },
++        "card_vanishing": 0,
++        "vanish": {},
++        "equips": [],
++        "is_only": 1
++    },  
+     "2000546": {
+         "id": 2000546,
+         "name": "老赌鬼",
+@@ -16828,6 +16872,27 @@
+         "equips": [],
+         "is_only": 0
+     },
++	"9000712": {
++        "id": 9000712,
++        "name": "新任狼王",
++        "title": "野兽",
++        "text": "新任狼王，名副其实的巨狼，对人类又恨又怕，常年在深山里面游荡。",
++        "pops": [],
++        "card_favour": "",
++        "type": "char",
++        "tips": "",
++        "rare": 2,
++        "resource": "cards/2000712",
++        "tag": {
++            "动物": 1,
++            "战斗": 6,
++            "体魄": 5
++        },
++        "card_vanishing": 0,
++        "vanish": {},
++        "equips": [],
++        "is_only": 0
++    }, 
+     "2000713": {
+         "id": 2000713,
+         "name": "变幻的韵律",
+@@ -18170,6 +18235,7 @@
+         "equips": [
+             "武器",
+             "服装",
++			"饰品",		 
+             "饰品"
+         ],
+         "is_only": 1
+diff --git a/rite/5006521.json b/rite/5006521.json
+index 3d12e73..406de98 100644
+--- a/rite/5006521.json
++++ b/rite/5006521.json
+@@ -31,6 +31,23 @@
+         "settlement": [
+             {
+                 "condition": {
++					"s2":1
++                },
++                "result_title":"",
++                "result_text": "一阵狂躁的黑色旋风冲进你的宅邸，人们惊叫着躲避。而你仿佛预知到了什么，在鲁美拉彻底失去意识之前，紧紧地给予了她最后一次温暖的拥抱。而后，她微笑着在你的臂弯中化作闪着金光的点点星尘。\n骚乱过后，人们发现房间里什么都没少，而鲁梅拉已然消失无踪。你抹去泪滴，望向星空，你知道她去了什么地方，你也知道她哪都没去。",
++                "result": 
++                {
++                    "clean.s1":1,
++                    "card":2000545,
++					"s2+equip":9000545,           
++                },
++                "action": {
++                    "global_counter=7200233": 1, //成就-熟悉的星星
++                }
++            },
++			{
++                "condition": {
++					"s2":1
+                 },
+                 "result_title":"",
+                 "result_text": "一阵狂躁的黑色旋风冲进你的宅邸，人们惊叫着躲避。等骚乱过后，人们发现房间里什么都没少，而鲁梅拉已然消失无踪。你望向星空，只有你知道她去了什么地方。",
+@@ -60,6 +77,19 @@
+                     "is_empty":0,
+                     "is_enemy":0,
+                     "text":"她还是鲁梅拉么？"
++                },
++				"s2":
++                {
++                    "condition": 
++					{
++						"type":"char",
++						"主角":1
++					},
++					"open_adsorb":0,
++					"is_key":0,
++					"is_empty":0,
++					"is_enemy":1,
++					"text":"鲁美拉自母亲离开后就没有得到过拥抱"
+                 }
+         }
+     } 
+\ No newline at end of file
+-- 
+2.45.1.windows.1
+

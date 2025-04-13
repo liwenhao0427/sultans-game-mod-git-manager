@@ -1,0 +1,60 @@
+{
+        "id": 5310001,
+        "text": "开场演出2测试",
+        "is_replay": 0, 
+        "auto_start": false, 
+        "start_trigger": true, 
+        "on":{   
+            "round_begin_ba": 1
+        },
+        "condition":{  
+        },
+        "settlement": [    
+        {
+            "tips_resource":"", 
+            "tips_text":"",
+            "action":{
+                 "option": {
+                    "id":"5310001_option_1",
+                     "text": "选择你引以为傲的个人能力：",
+                     "icon": "cards/2000001",
+                     "items": [
+                         {
+                             "text": "金奢靡开局",
+                             "tag": "op1"
+                         },
+                         {
+                             "text": "金纵欲开局",
+                             "tag": "op2"
+                         },
+                         {
+                             "text": "金征服开局",
+                             "tag": "op3"
+                         },
+                         {
+                             "text": "金杀戮开局",
+                             "tag": "op4"
+                         }
+                     ]
+                 },
+                 "case:op1": {
+                    "g.card":[2010012,"已拥有+1"],
+                    "event_on":5310002
+                 },
+                 "case:op2": {
+                    "g.card":[2010008,"已拥有+1"],
+                    "event_on":5310002
+                 },
+                 "case:op3": {
+                    "g.card":[2010016,"已拥有+1"],
+                    "event_on":5310002
+                 },
+                 "case:op4": {
+                    "g.card":[2010004,"已拥有+1"],
+                    "event_on":5310002
+                 }
+            }
+        }
+
+        ]
+    } 

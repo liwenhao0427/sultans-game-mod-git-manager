@@ -1,0 +1,32 @@
+From f8dd45eb17cb80dbe1985ae9168ad1215dd8b5ce Mon Sep 17 00:00:00 2001
+From: Sultan Mod Manager <mod@example.com>
+Date: Sun, 13 Apr 2025 19:48:15 +0800
+Subject: [PATCH] =?UTF-8?q?=E5=BA=94=E7=94=A8MOD:=20=E5=9B=B0=E9=9A=BE?=
+ =?UTF-8?q?=E6=A8=A1=E5=BC=8F=E9=AA=B0=E5=AD=90=E6=88=90=E5=8A=9F=E7=8E=87?=
+ =?UTF-8?q?=E4=B8=8B=E9=99=8D?=
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+---
+ init/1.json | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/init/1.json b/init/1.json
+index 3c7c9b6..370e9d4 100644
+--- a/init/1.json
++++ b/init/1.json
+@@ -38,8 +38,8 @@
+         {
+             "name": "女术士",
+             "title": "困难",
+-            "desc": "女术士以观察你的苦痛为乐，挑战她的故事是一种自我折磨——\n\n<sprite=0><indent=60><size=85%>骰子成功率33%</size></indent>\n\n<sprite=0><indent=60><size=85%>没有默认倒回次数</size></indent>\n\n<sprite=0><indent=60><size=85%>每周可以调换1次苏丹卡，但每张卡的处决期限为5天</size></indent>\n\n<sprite=0><indent=60><size=85%>你在初始会拥有1枚必定成功的金骰子</size></indent>\n\n<sprite=0><indent=60><size=85%>玩家会需要支付维持生活与社交的额外金币成本</size></indent>\n\n请注意：玩家有机会在游戏中获得额外的金骰子，倒回，重抽等资源，",
+-            "single_dice_face_weight": [150,150,150,150,200,200],
++            "desc": "女术士以观察你的苦痛为乐，挑战她的故事是一种自我折磨——\n\n<sprite=0><indent=60><size=85%>骰子成功率20%</size></indent>\n\n<sprite=0><indent=60><size=85%>没有默认倒回次数</size></indent>\n\n<sprite=0><indent=60><size=85%>每周可以调换1次苏丹卡，但每张卡的处决期限为5天</size></indent>\n\n<sprite=0><indent=60><size=85%>你在初始会拥有1枚必定成功的金骰子</size></indent>\n\n<sprite=0><indent=60><size=85%>玩家会需要支付维持生活与社交的额外金币成本</size></indent>\n\n请注意：玩家有机会在游戏中获得额外的金骰子，倒回，重抽等资源，",
++            "single_dice_face_weight": [100,100,100,100,50,50],
+             "sudan_redraw_times_per_round": 1,
+             "gold_dice_count": 1,
+             "back_to_prev_round_count": 0,
+-- 
+2.45.1.windows.1
+

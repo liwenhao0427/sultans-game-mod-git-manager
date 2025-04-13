@@ -1,0 +1,78 @@
+{
+    "id": 15000021,
+    "text": "？？？",     
+    "is_replay": 0, //是否可以重复触发
+    "auto_start": false,
+    "start_trigger": true, // 是否启动就立即开始校验条件
+    "on":{   //时机
+    },
+    "condition":{  //条件
+    },
+    "settlement": [    //效果 
+        {
+            "tips_resource":"", 
+            "tips_text":"",
+            "action":{
+                "option": {
+                    "id":"15000021_option_1",
+                    "text": "轮回者掏出一些卡牌，问你需要什么。",
+                    "icon": "cards/2000001",
+                    "items": [
+                        {
+                            "text": "理性与正教思潮",
+                            "tag": "op1"
+                        }
+                        {
+                            "text": "邪教思潮",
+                            "tag": "op2"
+                        }
+                        {
+                            "text": "革命思潮",
+                            "tag": "op3"
+                        }
+                        {
+                            "text": "离开",
+                            "tag": "op4"
+                        }
+                    ]
+                },
+                "case:op1": {
+                    "event_on":15000017
+                    "prompt":{
+                        "id":"15000021_prompt_1",
+                        "text":".",
+                        "icon":"cards/2000001"
+                    },
+                    "event_off":15000021
+                },
+                "case:op2": {
+                    "event_on":15000018
+                    "prompt":{
+                        "id":"15000021_prompt_2",
+                        "text":".",
+                        "icon":"cards/2000001"
+                    },
+                    "event_off":15000021
+                },
+                "case:op3": {
+                    "event_on":15000019
+                    "prompt":{
+                        "id":"15000021_prompt_3",
+                        "text":".",
+                        "icon":"cards/2000001"
+                    },
+                    "event_off":15000021
+                },
+                "case:op4": {
+                    "event_off":15000021,//离开
+                    "prompt":{
+                        "id":"15000021_prompt_5",
+                        "text":".",
+                        "icon":"cards/2000001"
+                    }
+                }
+            }
+        }
+
+    ]
+}

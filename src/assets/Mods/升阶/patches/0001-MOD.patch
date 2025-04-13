@@ -1,0 +1,122 @@
+From 13b713d32717aa6110fc9e792b804000aa819d67 Mon Sep 17 00:00:00 2001
+From: Sultan Mod Manager <mod@example.com>
+Date: Sun, 13 Apr 2025 19:35:08 +0800
+Subject: [PATCH] =?UTF-8?q?=E5=BA=94=E7=94=A8MOD:=20=E5=8D=87=E9=98=B6?=
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+---
+ event/15300007.json | 26 ++++++++++++++++++
+ rite/15000007.json  | 64 +++++++++++++++++++++++++++++++++++++++++++++
+ 2 files changed, 90 insertions(+)
+ create mode 100644 event/15300007.json
+ create mode 100644 rite/15000007.json
+
+diff --git a/event/15300007.json b/event/15300007.json
+new file mode 100644
+index 0000000..2da2b9f
+--- /dev/null
++++ b/event/15300007.json
+@@ -0,0 +1,26 @@
++{
++    "id": 15300007,
++    "text": "人物升阶",     
++    "is_replay": 1, //是否可以重复触发
++    "auto_start_init": [1],
++    "start_trigger": false, // 是否启动就立即开始校验条件
++    "on":{   //时机
++        "round_begin_ba":1
++    },
++    "condition":{  //条件
++    "!rite":15300007 
++    },
++    "settlement": [    //效果 
++        {
++            "tips_resource":"", 
++            "tips_text":"",
++            "action":{
++                "rite":15000007,
++                "success":{
++                    "event_off":15300007
++                }
++            }
++        }
++
++    ]
++}
+\ No newline at end of file
+diff --git a/rite/15000007.json b/rite/15000007.json
+new file mode 100644
+index 0000000..98d7c62
+--- /dev/null
++++ b/rite/15000007.json
+@@ -0,0 +1,64 @@
++ {
++        "id": 15000007,
++        "name": "人物升阶",
++        "text": "可将人物卡提升一个阶级",       
++        "tips": "作者演-QQ836952346",
++        "once_new":-1,
++        "round_number": 1,
++        "waiting_round":0,
++        "waiting_round_end_action":[
++        ],
++        "method_settlement": "",
++        "auto_begin": 0,
++        "auto_result":0,
++        "location": "自宅:[2,12]", 
++        "icon": "rite_12", 
++        "tag_tips": [
++        ],
++        "tag_tips_up":{
++        },
++        "tips_text":[
++        ],
++        "open_conditions": [
++        ],
++        "random_text":{
++        },
++        "random_text_up":{
++        },
++        "settlement_prior": [
++        ],                
++        "settlement": [
++            {
++                "condition":
++                {
++                },
++                "result_title":"",
++                "result_text": "你进阶了！",
++                "result": 
++                {
++                    "s1.uprare":1
++                },
++                "action":
++                {
++					"rite":15000007
++                }
++            }
++        ],                
++        "settlement_extre": [
++        ],
++        "cards_slot":       
++ {
++            "s1":
++                {
++                    "condition": 
++                    {
++                        "type":"char",                    
++                    },
++                    "open_adsorb":0,
++                    "is_key":0,
++                    "is_empty":0,
++                    "is_enemy":0,
++                    "text":"任意人物卡" 
++                }
++        }
++    } 
+\ No newline at end of file
+-- 
+2.45.1.windows.1
+

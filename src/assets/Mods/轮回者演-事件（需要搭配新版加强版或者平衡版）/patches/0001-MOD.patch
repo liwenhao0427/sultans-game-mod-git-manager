@@ -1,0 +1,689 @@
+From bac4f2a688e57f903d77c54ad3f4846c1a173c49 Mon Sep 17 00:00:00 2001
+From: Sultan Mod Manager <mod@example.com>
+Date: Sun, 13 Apr 2025 19:35:18 +0800
+Subject: [PATCH] =?UTF-8?q?=E5=BA=94=E7=94=A8MOD:=20=E8=BD=AE=E5=9B=9E?=
+ =?UTF-8?q?=E8=80=85=E6=BC=94-=E4=BA=8B=E4=BB=B6=EF=BC=88=E9=9C=80?=
+ =?UTF-8?q?=E8=A6=81=E6=90=AD=E9=85=8D=E6=96=B0=E7=89=88=E5=8A=A0=E5=BC=BA?=
+ =?UTF-8?q?=E7=89=88=E6=88=96=E8=80=85=E5=B9=B3=E8=A1=A1=E7=89=88=EF=BC=89?=
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+---
+ event/15300004.json | 26 ++++++++++++++
+ event/15300005.json | 24 +++++++++++++
+ event/15300006.json | 24 +++++++++++++
+ event/15300009.json | 24 +++++++++++++
+ event/15300010.json | 24 +++++++++++++
+ rite/15000004.json  | 78 ++++++++++++++++++++++++++++++++++++++++
+ rite/15000005.json  | 80 +++++++++++++++++++++++++++++++++++++++++
+ rite/15000006.json  | 82 ++++++++++++++++++++++++++++++++++++++++++
+ rite/15000009.json  | 79 +++++++++++++++++++++++++++++++++++++++++
+ rite/15000010.json  | 86 +++++++++++++++++++++++++++++++++++++++++++++
+ tag.json            | 36 +++++++++----------
+ 11 files changed, 545 insertions(+), 18 deletions(-)
+ create mode 100644 event/15300004.json
+ create mode 100644 event/15300005.json
+ create mode 100644 event/15300006.json
+ create mode 100644 event/15300009.json
+ create mode 100644 event/15300010.json
+ create mode 100644 rite/15000004.json
+ create mode 100644 rite/15000005.json
+ create mode 100644 rite/15000006.json
+ create mode 100644 rite/15000009.json
+ create mode 100644 rite/15000010.json
+
+diff --git a/event/15300004.json b/event/15300004.json
+new file mode 100644
+index 0000000..2a8b56c
+--- /dev/null
++++ b/event/15300004.json
+@@ -0,0 +1,26 @@
++{
++    "id": 15300004,
++    "text": "轮回者",     
++    "is_replay": 0, //是否可以重复触发
++    "auto_start_init": [1],
++    "start_trigger": false, // 是否启动就立即开始校验条件
++    "on":{   //时机
++        "round_begin_ba":1
++    },
++    "condition":{  //条件
++    "!rite":15300004
++    },
++    "settlement": [    //效果 
++        {
++            "tips_resource":"", 
++            "tips_text":"",
++            "action":{
++                "rite":15000004,
++                "success":{
++                    "event_off":15300004
++                }
++            }
++        }
++
++    ]
++}
+\ No newline at end of file
+diff --git a/event/15300005.json b/event/15300005.json
+new file mode 100644
+index 0000000..36c760c
+--- /dev/null
++++ b/event/15300005.json
+@@ -0,0 +1,24 @@
++{
++    "id": 15300005,
++    "text": "轮回者二",     
++    "is_replay": 0, //是否可以重复触发
++    "auto_start_init": [1],
++    "start_trigger": false, // 是否启动就立即开始校验条件
++    "on":{ 
++    },
++    "condition":{ 
++    },
++    "settlement": [    //效果 
++        {
++            "tips_resource":"", 
++            "tips_text":"",
++            "action":{
++                "rite":15000005,
++                "success":{
++                    "event_off":15300005
++                }
++            }
++        }
++
++    ]
++}
+\ No newline at end of file
+diff --git a/event/15300006.json b/event/15300006.json
+new file mode 100644
+index 0000000..da4abfa
+--- /dev/null
++++ b/event/15300006.json
+@@ -0,0 +1,24 @@
++{
++    "id": 15300006,
++    "text": "轮回者三",     
++    "is_replay": 0, //是否可以重复触发
++    "auto_start_init": [1],
++    "start_trigger": false, // 是否启动就立即开始校验条件
++    "on":{
++    },
++    "condition":{
++    },
++    "settlement": [    //效果 
++        {
++            "tips_resource":"", 
++            "tips_text":"",
++            "action":{
++                "rite":15000006,
++                "success":{
++                    "event_off":15300006
++                }
++            }
++        }
++
++    ]
++}
+\ No newline at end of file
+diff --git a/event/15300009.json b/event/15300009.json
+new file mode 100644
+index 0000000..e650779
+--- /dev/null
++++ b/event/15300009.json
+@@ -0,0 +1,24 @@
++{
++    "id": 15300009,
++    "text": "轮回者四",     
++    "is_replay": 0, //是否可以重复触发
++    "auto_start_init": [1],
++    "start_trigger": false, // 是否启动就立即开始校验条件
++    "on":{
++    },
++    "condition":{
++    },
++    "settlement": [    //效果 
++        {
++            "tips_resource":"", 
++            "tips_text":"",
++            "action":{
++                "rite":15000009,
++                "success":{
++                    "event_off":15300009
++                }
++            }
++        }
++
++    ]
++}
+\ No newline at end of file
+diff --git a/event/15300010.json b/event/15300010.json
+new file mode 100644
+index 0000000..1c9f239
+--- /dev/null
++++ b/event/15300010.json
+@@ -0,0 +1,24 @@
++{
++    "id": 15300010,
++    "text": "轮回者五",     
++    "is_replay": 0, //是否可以重复触发
++    "auto_start_init": [1],
++    "start_trigger": false, // 是否启动就立即开始校验条件
++    "on":{
++    },
++    "condition":{
++    },
++    "settlement": [    //效果 
++        {
++            "tips_resource":"", 
++            "tips_text":"",
++            "action":{
++                "rite":15000010,
++                "success":{
++                    "event_off":15300010
++                }
++            }
++        }
++
++    ]
++}
+\ No newline at end of file
+diff --git a/rite/15000004.json b/rite/15000004.json
+new file mode 100644
+index 0000000..00d3067
+--- /dev/null
++++ b/rite/15000004.json
+@@ -0,0 +1,78 @@
++ {
++        "id": 15000004,
++        "name": "轮回者",
++        "text": "一个穿着兜帽的神秘人叫住了你",       
++        "tips": "",
++        "once_new":1,
++        "round_number": 1,
++        "waiting_round":0,
++        "waiting_round_end_action":[
++        ],
++        "method_settlement": "",
++        "auto_begin": 0,
++        "auto_result":0,
++        "location": "商业区:6", 
++        "icon": "rite_12", 
++        "tag_tips": [
++        ],
++        "tag_tips_up":{
++        },
++        "tips_text":[
++        ],
++        "open_conditions": [
++        ],
++        "random_text":{
++        },
++        "random_text_up":{
++        },
++        "settlement_prior": [
++        ],                
++        "settlement": [
++            {
++                "condition":
++                {
++                },
++                "result_title":"",
++                "result_text": "“你好，这个世界的主角”\n主角……？你听不懂面前这位俊美男子的话，还有什么叫这个世界？\n“没关系，你只知道我是来帮助你的，你不是正在进行苏丹的游戏吗，那么多一个人帮你想想办法不是很好吗？”\n“这位……”\n“你可以叫我演，这是我的代号，嗯……也是我写诗的笔名”\n“演先生……请问你要怎么帮我？”\n“我先去你家休息一会吧，刚穿越来有点头晕，对了，这是我从系统空间兑换的这个世界的货币，给你一些吧，你现在挺缺钱的吧？”\n你不太理解面前这位男子说的一些词汇，但还是大概理解到他的意思“这怎么好意思？演先生……”\n“打住打住，这个对我没什么用，你就拿着吧”\n“好吧，那请跟我来”",
++                "result": 
++                {
++                      "coin":100
++                },
++                "action":
++                {
++					"rite":15000005
++                }
++            }
++        ],                
++        "settlement_extre": [
++        ],
++        "cards_slot":       
++ {
++            "s1":
++                {
++                    "condition": 
++                    {
++                        "type":"char",
++                        "轮回者":1                       
++                    },
++                    "open_adsorb":0,
++                    "is_key":0,
++                    "is_empty":0,
++                    "is_enemy":0,
++                    "text":"神秘的轮回者" 
++                },
++            "s2":
++                {
++                    "condition": 
++                    {
++                        "主角":1,
++                        "type":"char"                        
++                    },
++                    "open_adsorb":0,
++                    "is_key":0,
++                    "is_empty":0,
++                    "is_enemy":0,
++                    "text":"你必须亲自迎接"
++                }
++        }
++    } 
+\ No newline at end of file
+diff --git a/rite/15000005.json b/rite/15000005.json
+new file mode 100644
+index 0000000..429e6a5
+--- /dev/null
++++ b/rite/15000005.json
+@@ -0,0 +1,80 @@
++ {
++        "id": 15000005,
++        "name": "轮回者二",
++        "text": "清晨，你发现这位神秘的演先生居然正在写诗？",       
++        "tips": "",
++        "once_new":1,
++        "round_number": 1,
++        "waiting_round":0,
++        "waiting_round_end_action":[
++        ],
++        "method_settlement": "",
++        "auto_begin": 0,
++        "auto_result":0,
++        "location": "自宅:[2,12]", 
++        "icon": "rite_12", 
++        "tag_tips": [
++        ],
++        "tag_tips_up":{
++        },
++        "tips_text":[
++        ],
++        "open_conditions": [
++        ],
++        "random_text":{
++        },
++        "random_text_up":{
++        },
++        "settlement_prior": [
++        ],                
++        "settlement": [
++            {
++                "condition":
++                {
++                },
++                "result_title":"",
++                "result_text": "当暖金色光线漫过他棱角分明的侧脸，你游移的视线忽被他睫毛轻颤截住\n那张被修长手指捏得微微发皱的宣纸，正泛着未干墨迹的微光\n“演先生，请问您这是？”\n“只是一点爱好罢了，写点小诗”\n纸面上呈现的是你所看不懂的文字，但字体充斥着豪放与力量\n“可以问问……你这是写的什么吗”\n“可以，我念给你听”\n“金冠压九郡，苏丹锢苍生”\n“夜诏凝腥血，朝枷锁雁声”\n“星芒裂阙起，赤浪卷旗横”\n“焦土春雷动，千帆破雾征”\n“这诗的律韵好奇怪，是什么意思？先生”\n“意思是苏丹王权暴政，百姓被戏弄，但会有星辰的光芒劈裂王朝积蓄反抗力量，被暴政灼烧成焦土的大地会焕发新生”\n“而你，就是那个星辰”\n“我真的……行吗？”\n“那难不成你要继续这什么苏丹的游戏？还是说你觉得完成了所有苏丹卡，你就没事了？”\n“我……”\n“好好想想吧”",
++                "result": 
++                {
++                    "card":2000171 //谋反的意图获得
++                    "card":2000171 //谋反的意图获得
++                    "card":2000171 //谋反的意图获得
++                },
++                "action":
++                {
++					"rite":15000006
++                }
++            }
++        ],                
++        "settlement_extre": [
++        ],
++        "cards_slot":       
++ {
++            "s1":
++                {
++                    "condition": 
++                    {
++                        "type":"char",
++                        "轮回者":1                       
++                    },
++                    "open_adsorb":0,
++                    "is_key":0,
++                    "is_empty":0,
++                    "is_enemy":0,
++                    "text":"神秘的轮回者" 
++                },
++            "s2":
++                {
++                    "condition": 
++                    {
++                        "主角":1,
++                        "type":"char"                        
++                    },
++                    "open_adsorb":0,
++                    "is_key":0,
++                    "is_empty":0,
++                    "is_enemy":0,
++                    "text":"你必须亲自迎接"
++                }
++        }
++    } 
+\ No newline at end of file
+diff --git a/rite/15000006.json b/rite/15000006.json
+new file mode 100644
+index 0000000..25ff6c6
+--- /dev/null
++++ b/rite/15000006.json
+@@ -0,0 +1,82 @@
++ {
++        "id": 15000006,
++        "name": "轮回者三",
++        "text": "这处宅邸远离闹市、远离人群，清净得像是荒废了一般。演坐在屋檐和树荫下安静地看书，身边没有任何仆人或者侍从。",       
++        "tips": "",
++        "once_new":1,
++        "round_number": 1,
++        "waiting_round":0,
++        "waiting_round_end_action":[
++        ],
++        "method_settlement": "",
++        "auto_begin": 0,
++        "auto_result":0,
++        "location": "商业区:6", 
++        "icon": "rite_12", 
++        "tag_tips": [
++        ],
++        "tag_tips_up":{
++        },
++        "tips_text":[
++        ],
++        "open_conditions": [
++        ],
++        "random_text":{
++        },
++        "random_text_up":{
++        },
++        "settlement_prior": [
++        ],                
++        "settlement": [
++            {
++                "condition":
++                {
++                },
++                "result_title":"",
++                "result_text": "见到你来，演似乎并不意外，只是淡淡地朝你点了点头。他把你引入屋中，等了一会儿，才开口说道：“苏丹的游戏永远不会结束……”他给你斟了一杯泡着薄荷叶的清茶，声音低沉而笃定，“所有人都会被拖进恐惧和猜忌的漩涡，活得生不如死。尤其是你……[s2.name]，你会为了活下去做尽违心之事——你会杀戮亲朋、失去财富，你会践踏远方的土地，辜负结发的妻子……”\n他把茶杯推到你的面前，迫近一步，压低了声音：“你想不想，提前结束这场游戏？”\n“你有办法？”你不由自主地问道。\n“我可以帮你，你想要力量或者装备，甚至军队，我都能给你”\n“军队？你哪来的军队”\n“我上一个世界是暗黑破坏神的世界，我收服了一批骑士和骷髅，甚至还有天使”\n你哑然沉默了好一会儿，才问道，“你为什么帮我？”\n“不是‘我’，是‘我们’……甚至可以说，是‘你’——只有你有希望做成这件事，因为你是这个世界的主角，这个世界的命运只能由你改变。”演说，“至于我，我帮助了你完成这个世界任务，我会获得积分到下一个世界，所以我们是双赢”\n“所以……要大闹一场吗？”\n“为什么不呢？”",
++                "result": 
++                {
++                    "card":[2000929,"追随者+1"] 
++                    "card":[2000930,"追随者+1"] 
++                    "card":[2001102,"追随者+1"] 
++                    "card":[2001110,"追随者+1"] 
++
++                },
++                "action":
++                {                
++					"rite":15000009
++                }
++            }
++        ],                
++        "settlement_extre": [
++        ],
++        "cards_slot":       
++ {
++            "s1":
++                {
++                    "condition": 
++                    {
++                        "type":"char",
++                        "轮回者":1                       
++                    },
++                    "open_adsorb":0,
++                    "is_key":0,
++                    "is_empty":0,
++                    "is_enemy":0,
++                    "text":"神秘的轮回者" 
++                },
++            "s2":
++                {
++                    "condition": 
++                    {
++                        "主角":1,
++                        "type":"char"                        
++                    },
++                    "open_adsorb":0,
++                    "is_key":0,
++                    "is_empty":0,
++                    "is_enemy":0,
++                    "text":"你必须亲自迎接"
++                }
++        }
++    } 
+\ No newline at end of file
+diff --git a/rite/15000009.json b/rite/15000009.json
+new file mode 100644
+index 0000000..2fd1849
+--- /dev/null
++++ b/rite/15000009.json
+@@ -0,0 +1,79 @@
++ {
++        "id": 15000009,
++        "name": "轮回者四",
++        "text": "有了轮回者帮助，苏丹的统治好像只是一个笑话，凡人难道还能打败天使不成？可这个时候你却发现演一脸凝重的看着你",       
++        "tips": "",
++        "once_new":1,
++        "round_number": 1,
++        "waiting_round":0,
++        "waiting_round_end_action":[
++        ],
++        "method_settlement": "",
++        "auto_begin": 0,
++        "auto_result":0,
++        "location": "商业区:6", 
++        "icon": "rite_12", 
++        "tag_tips": [
++        ],
++        "tag_tips_up":{
++        },
++        "tips_text":[
++        ],
++        "open_conditions": [
++        ],
++        "random_text":{
++        },
++        "random_text_up":{
++        },
++        "settlement_prior": [
++        ],                
++        "settlement": [
++            {
++                "condition":
++                {
++                },
++                "result_title":"",
++                "result_text": "“见鬼……”\n“怎么了？”\n“[s2.name]，我被你们这个世界的神盯上了，我本以为这只是个普通中世纪王朝，没想到他妈的居然还有神明”\n“神？”\n“没有错，而且你们这个世界的神比苏丹还要恶趣味，又或者祂根本不是神，现在只是一种被无尽的欲望吞噬的不可名状之物，鬼知道为什么一个中世纪王朝还带着克苏鲁元素啊？”\n“说到底，这都是我的错，如果不是我穿越来引起祂的注视与好奇，说不定，按照正常流程你推翻了苏丹的统治压根不会遇到这些事”\n“现在的话，就算杀了苏丹也没有用了，我能感受得到祂很快就要诞生，在诞生的那一刻整个世界都要成为祂的牺牲品”\n“那我们现在怎么办……”\n“没办法逃避，那就只能面对，我们自己主动召唤祂，在祂最薄弱的时候，<size=+10><font=\"Title SDF\"><b>弑神</b></font></size>”\n演一脸凝重的看着你，像是下定了什么决心“你等我一天，我去收集需要召唤祂仪式的东西，如果最后不得已，看来我只能使用那种力量了……”\n“你趁这一天帮我准备好仪式现场”",
++                "result": 
++                {
++                                  "card":[2001126,"已拥有+1"] //生成血池
++
++                },
++                "action":
++                {
++					"rite":15000010
++                }
++            }
++        ],                
++        "settlement_extre": [
++        ],
++        "cards_slot":       
++ {
++            "s1":
++                {
++                    "condition": 
++                    {
++                        "type":"char",
++                        "轮回者":1                       
++                    },
++                    "open_adsorb":0,
++                    "is_key":0,
++                    "is_empty":0,
++                    "is_enemy":0,
++                    "text":"神秘的轮回者" 
++                },
++            "s2":
++                {
++                    "condition": 
++                    {
++                        "主角":1,
++                        "type":"char"                        
++                    },
++                    "open_adsorb":0,
++                    "is_key":0,
++                    "is_empty":0,
++                    "is_enemy":0,
++                    "text":"你必须亲自迎接"
++                }
++        }
++    } 
+\ No newline at end of file
+diff --git a/rite/15000010.json b/rite/15000010.json
+new file mode 100644
+index 0000000..bb1a9b6
+--- /dev/null
++++ b/rite/15000010.json
+@@ -0,0 +1,86 @@
++ {
++        "id": 15000010,
++        "name": "轮回者五",
++        "text": "演踉跄着踏入月光，破碎的皮甲里渗出黑红血浆，每步都在青石板上拓出血莲。左手攥着的畸形肉囊随着喘息起伏，表面虬结的血管网中嵌着无数颗异瞳，琥珀色的竖瞳与人类圆眼正以不同频率收缩，黏液滴落处腾起腐蚀青烟。",       
++        "tips": "",
++        "once_new":1,
++        "round_number": 1,
++        "waiting_round":0,
++        "waiting_round_end_action":[
++        ],
++        "method_settlement": "",
++        "auto_begin": 0,
++        "auto_result":0,
++        "location": "商业区:6", 
++        "icon": "rite_12", 
++        "tag_tips": [
++        ],
++        "tag_tips_up":{
++        },
++        "tips_text":[
++        ],
++        "open_conditions": [
++        ],
++        "random_text":{
++        },
++        "random_text_up":{
++        },
++        "settlement_prior": [
++        ],                
++        "settlement": [
++            {
++                "condition":
++                {
++                },
++                "result_title":"",
++                "result_text": "看到你来了，演严肃的拉着你进了房间\n“很好……现在东西都收集完了”\n“你这是……去做了什么？为什么全身是血”\n“也没什么，就是杀了几个邪教”\n“至于我身上的伤，回到主神空间，我就会完好如初了，不必担心”\n这个俊美男人，毫不在意的说道，好像任何事情在他面前都是云淡风轻，受伤也只不过是在正常不过的小事\n你无法理解，你不明白轮回者到底是什么一种群体，你更无法理解的是为什么他有这样的力量，更不明白他为什么要为你做到这种地步\n还有，他是怎么做到的，一个人，捣毁了几个邪教组织？\n“这个是侍奉神的天使尸体”\n“这是祂的圣遗物”\n“这是邪教头子的尸体，哦对了，好像还有一个叫拜铃耶的人跑掉了，不过没有关系，用这个邪教徒的尸体也一样”\n“还有这个王冠和……嗯……伪神的尸体的卵”\n神……的卵？你看着眼前这密密麻麻有着无数眼球的球状物，胃里一阵翻涌\n“是的，邪教圣女生下来的，难以置信吧”\n“好了，开始举行仪式吧，我迫不及待的要帮你弑神了”",
++                "result": 
++                {
++                    "card":[2001042,"已拥有+1","诞生+1"] 
++                    "counter+7000585":1,  //污渍王冠生成的计数器
++                    "card":[2001041,"已拥有+1","诞生+1"] 
++                    "counter+7000584":1  //污渍信徒获得的计数器
++                    "card":[2001039,"已拥有+1","诞生+1"],
++                    "counter+7000582":1, //标识已经掉落了，污渍：天使（2001039）
++                    "card":[2001040,"已拥有+1","诞生+1"]
++                    "counter+7000583":1,  //污渍念珠生成的计数器
++                    "card":[2001123,"已拥有+1"] 
++                    "card":[2000844,"已拥有+1"] 
++                },
++                "action":
++                {
++                }
++            }
++        ],                
++        "settlement_extre": [
++        ],
++        "cards_slot":       
++ {
++            "s1":
++                {
++                    "condition": 
++                    {
++                        "type":"char",
++                        "轮回者":1                       
++                    },
++                    "open_adsorb":0,
++                    "is_key":0,
++                    "is_empty":0,
++                    "is_enemy":0,
++                    "text":"神秘的轮回者" 
++                },
++            "s2":
++                {
++                    "condition": 
++                    {
++                        "主角":1,
++                        "type":"char"                        
++                    },
++                    "open_adsorb":0,
++                    "is_key":0,
++                    "is_empty":0,
++                    "is_enemy":0,
++                    "text":"你必须亲自迎接"
++                }
++        }
++    } 
+\ No newline at end of file
+diff --git a/tag.json b/tag.json
+index 42cafc6..b61b02e 100644
+--- a/tag.json
++++ b/tag.json
+@@ -395,6 +395,24 @@
+         "tag_rank": 50,
+         "attributes": {}
+     },
++    "lunhui": {
++        "id": 9990616,
++        "name": "轮回者",
++        "code": "lunhui",
++        "type": "attribute",
++        "text": "在无尽的空间时间轮回之人",
++        "tips": "",
++        "resource": "tag_0",
++        "can_add": 0,
++        "can_visible": 1,
++        "can_inherit": 1,
++        "can_nagative_and_zero": 0,
++        "fail_tag": [],
++        "tag_vanishing": 0,
++        "tag_sfx": "",
++        "tag_rank": 50,
++        "attributes": {}
++    },
+     "whore": {
+         "id": 3010012,
+         "name": "妓女",
+@@ -5798,23 +5816,5 @@
+         "attributes": {
+             "吸附指定": 1
+         }
+-    },
+-    "lock_147": {
+-        "id": 3020256,
+-        "name": "扎齐伊",
+-        "code": "lock_147",
+-        "type": "attribute",
+-        "text": "标识这是扎齐伊",
+-        "tips": "",
+-        "resource": "tag_0",
+-        "can_add": 0,
+-        "can_visible": 0,
+-        "can_inherit": 1,
+-        "can_nagative_and_zero": 0,
+-        "fail_tag": [],
+-        "tag_vanishing": 0,
+-        "tag_sfx": "",
+-        "tag_rank": 10,
+-        "attributes": {}
+     }
+ }
+\ No newline at end of file
+-- 
+2.45.1.windows.1
+

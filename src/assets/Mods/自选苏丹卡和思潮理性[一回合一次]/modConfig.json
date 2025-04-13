@@ -1,0 +1,69 @@
+{
+  "name": "自选苏丹卡和思潮理性[一回合一次]",
+  "author": "我国就连线",
+  "version": "1.0.0",
+  "gameVersion": "2025.04.08",
+  "updateDate": "2025.04.10",
+  "tag": [
+    "自动导入"
+  ],
+  "source": {
+    "name": "苏丹的游戏吧",
+    "url": "https://tieba.baidu.com/p/9633271389"
+  },
+  "files": [
+    {
+      "source": "event/15000011.json",
+      "mode": "REPLACE"
+    },
+    {
+      "source": "event/15000012.json",
+      "mode": "REPLACE"
+    },
+    {
+      "source": "event/15000013.json",
+      "mode": "REPLACE"
+    },
+    {
+      "source": "event/15000014.json",
+      "mode": "REPLACE"
+    },
+    {
+      "source": "event/15000015.json",
+      "mode": "REPLACE"
+    },
+    {
+      "source": "event/15000016.json",
+      "mode": "REPLACE"
+    },
+    {
+      "source": "event/15000017.json",
+      "mode": "REPLACE"
+    },
+    {
+      "source": "event/15000018.json",
+      "mode": "REPLACE"
+    },
+    {
+      "source": "event/15000019.json",
+      "mode": "REPLACE"
+    },
+    {
+      "source": "event/15000020.json",
+      "mode": "REPLACE"
+    },
+    {
+      "source": "event/15000021.json",
+      "mode": "REPLACE"
+    },
+    {
+      "source": "rite/15000011.json",
+      "mode": "REPLACE"
+    },
+    {
+      "source": "rite/15000020.json",
+      "mode": "REPLACE"
+    }
+  ],
+  "patchFile": "patches\\0001-MOD.patch"
+}

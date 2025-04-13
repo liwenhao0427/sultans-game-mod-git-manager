@@ -1,0 +1,44 @@
+From 2668726d3fccc3b03eb3c86b5a7e3b16c2f568a4 Mon Sep 17 00:00:00 2001
+From: Sultan Mod Manager <mod@example.com>
+Date: Sun, 13 Apr 2025 19:35:07 +0800
+Subject: [PATCH] =?UTF-8?q?=E5=BA=94=E7=94=A8MOD:=20=E4=B8=80=E4=BA=BA?=
+ =?UTF-8?q?=E6=88=90=E5=86=9B=EF=BC=88=E9=83=A8=E9=98=9F=E9=9D=9E=E5=BF=85?=
+ =?UTF-8?q?=E8=A6=81=EF=BC=89?=
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+---
+ rite/5002031.json | 2 +-
+ rite/5008029.json | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/rite/5002031.json b/rite/5002031.json
+index e075228..4cde46b 100644
+--- a/rite/5002031.json
++++ b/rite/5002031.json
+@@ -150,7 +150,7 @@
+                 },
+                 "open_adsorb":0,
+                 "is_key":0,
+-                "is_empty":0,
++                "is_empty":1,
+                 "is_enemy":0,
+                 "text":"你必须派出一支属于自己的军队参战",                   
+                 "pops":[
+diff --git a/rite/5008029.json b/rite/5008029.json
+index 8ee888e..3617bb3 100644
+--- a/rite/5008029.json
++++ b/rite/5008029.json
+@@ -167,7 +167,7 @@
+                 },
+                 "open_adsorb":0,
+                 "is_key":0,
+-                "is_empty":0,
++                "is_empty":1,
+                 "is_enemy":0,
+                 "text":"你必须派遣一支军队" 
+             },
+-- 
+2.45.1.windows.1
+

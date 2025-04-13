@@ -1,0 +1,170 @@
+ {
+        "id": 9000754,
+        "name": "将军夜猎2",
+        "text": "经历了漫长时间的寻觅，哲巴尔总算是又打听到了巨狼的消息。\n“是时候为民除害了！可不能纵容这些杀不尽的畜生四处肆虐！”，在你一脸怀疑地指出目的地是一个纯粹的深山老林后，哲巴尔老脸一红：“咳……再怎么说也是防患于未然……”\n无论如何，既然这个渴望刺激的将军又找到了一处绝佳的狩猎场所，如果你不赶紧跟上的话，巨狼的头颅就要属于将军了！"
+        "tips": "",
+        "once_new":0,
+        "round_number": 1,
+        "waiting_round":2,
+        "waiting_round_end_action":[
+            {
+                "condition": {
+                    
+                },
+                "result_title":"",
+                "result_text": "你错过了这次狩猎，不过不要紧，相信哲巴尔很快又会找到下一个受害“兽”的。",
+                "result": 
+                {
+                    
+                },
+                "action": {
+                    "event_on":9000754
+                }
+            }
+        ],        
+        "method_settlement": "",
+        "auto_begin": 0, 
+        "auto_result": 0,
+        "location": "野外:[1,6]", 
+        "icon": "rite_15", 
+        "tag_tips": [
+        ],
+        "tag_tips_up":{
+            "tips":["体魄","战斗"],
+            "type":"fight_result"
+        },
+        "tips_text":[
+            "经历了上次的斩首行动，新生代的巨狼只会更加狡猾，这将是一场艰苦卓绝的战斗！"	"注意，由于是竞争关系，将军的能力将在判定中视为减值！你需要同时战胜巨狼与将军"
+        ],
+        "open_conditions": [
+        ],
+        "random_text":{
+            
+        },
+        "random_text_up":{
+            "r1":{
+                "text":"你又一次加入了哲巴尔的狩猎，不过，这次你还能战胜哲巴尔吗？",
+                "type":"fight_result",
+                "type_tips":"你的体魄和战斗为你提供的骰子数量将受到凶兽的影响。",
+                "low_target": 1,
+                "low_target_tips": "本次事件没有生命危险，1点成功能让你胜过哲巴尔"
+            }
+        },
+        "settlement_prior": [
+        ],                
+        "settlement": [
+            {
+                "condition":
+                {   
+                    "!s3":1 //主角没去
+                },
+                "result_title":"",
+                "result_text": "哲巴尔一个人解决了猎物，独吞了巨狼的头颅。",
+                "result": 
+                {   
+                    //"clean.s4":1,  //消除征服卡
+                },
+                "action":
+                {
+					"delay": {  //填1就是下回合开始
+                    "id":9000754,
+                    "round": 10,
+                    "event_on":9321139
+					}
+                }
+            },
+            {
+                "condition":
+                {   
+                    "s3":1, //主角去
+                    "r1:战斗+体魄-s2.战斗-s2.体魄-s1.战斗-s1.体魄>=":[1,5]  //战斗过关
+                },
+                "result_title":"你一刀斩下了凶兽的头颅",
+                "result_text": "毫无疑问，你又一次证明了自己的勇武，这让哲巴尔对你大加赞赏。他拾起那颗热气腾腾的血腥头颅，递给你：“这是你应得的，朋友。”",
+                "result": 
+                {   
+                    //"clean.s4":1,  //消除征服卡
+                        
+                    "card":[2000711,"已拥有+1"],// 获得凶兽头颅战利品  
+                    
+
+                },
+                "action":
+                {
+                    "delay": {  //填1就是下回合开始
+                    "id":9000754,
+                    "round": 10,
+                    "event_on":9321139
+					}
+                }
+            },
+            {
+                "condition":
+                {   
+                    "s3":1, //主角去,
+                    "r1:战斗+体魄-s2.战斗-s2.体魄-s1.战斗-s1.体魄<":[1,5]  //战斗不过关
+                },
+                "result_title":"哲巴尔斩下了凶兽的头颅",
+                "result_text": "“哈哈，这次是我赢了！这段时间你还是疏于锻炼呐。”哲巴尔得意洋洋地向你扬了扬这颗热气腾腾的血腥头颅，将它挂到自己的马鞍上：“这颗狼头可就归我咯。”",
+                "result": 
+                {   
+                    //"clean.s4":1,  //消除征服卡
+
+                },
+                "action":
+                {
+                    "delay": {  //填1就是下回合开始
+                    "id":9000754,
+                    "round": 10,
+                    "event_on":9321139
+					}
+                }
+            }
+        ],               
+        "settlement_extre": [
+           
+        ],
+        "cards_slot":
+        {
+            "s1":
+            {
+                "condition": 
+                    {
+                        "type":"char",
+                        "is":2000054            
+                    },
+                    "open_adsorb":1,
+                    "is_key":0,
+                    "is_empty":0,
+                    "is_enemy":1,
+                    "text":"将军的刀刃在渴望冒险的鲜血" 
+            },
+        "s2":
+            {
+                    "condition": 
+                    {
+                        "type":"char",
+                        "is":9000712
+                    },
+                    "open_adsorb":1,
+                    "is_key":0,
+                    "is_empty":0,
+                    "is_enemy":1,
+                    "text":"新生代凶兽"
+                },
+        "s3":
+            {
+                "condition": 
+                    {
+                        "type":"char",
+                        "主角":1
+                    },
+                    "open_adsorb":0,
+                    "is_key":0,
+                    "is_empty":1,
+                    "is_enemy":0,
+                    "text":"你可以也参与此次狩猎"
+            },
+            
+        }
+    } 

@@ -1,0 +1,31 @@
+{
+    "id": 9321139,
+    "text": "巨狼循环",     
+    "is_replay": 1, //是否可以重复触发
+    "auto_start": false,
+    "start_trigger": true, // 是否启动就立即开始校验条件
+    "on":{   //时机
+        "round_begin_ba":1 
+    },
+    "condition":{  //条件
+        "!rite":9000754      //场上无本仪式
+		"table_have.2000054":1,  //哲巴尔没有在仪式里
+    },
+    "settlement": [    //效果 
+        {
+            "tips_resource":"", 
+            "tips_text":"",
+            "action":{
+				//"prompt":{
+                       // "id":"9321139_prompt_1",
+                        //"text":"这是我debug用的",
+                        //"icon":"cards/sudan"
+                    //},
+                "rite":9000754 //将军夜猎2
+				"success":{
+                    "event_off":9321139 //关闭自检
+                }
+            }
+        }
+    ]
+}

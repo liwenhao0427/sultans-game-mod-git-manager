@@ -1,0 +1,64 @@
+ {
+        "id": 15000007,
+        "name": "人物升阶",
+        "text": "可将人物卡提升一个阶级",       
+        "tips": "作者演-QQ836952346",
+        "once_new":-1,
+        "round_number": 1,
+        "waiting_round":0,
+        "waiting_round_end_action":[
+        ],
+        "method_settlement": "",
+        "auto_begin": 0,
+        "auto_result":0,
+        "location": "自宅:[2,12]", 
+        "icon": "rite_12", 
+        "tag_tips": [
+        ],
+        "tag_tips_up":{
+        },
+        "tips_text":[
+        ],
+        "open_conditions": [
+        ],
+        "random_text":{
+        },
+        "random_text_up":{
+        },
+        "settlement_prior": [
+        ],                
+        "settlement": [
+            {
+                "condition":
+                {
+                },
+                "result_title":"",
+                "result_text": "你进阶了！",
+                "result": 
+                {
+                    "s1.uprare":1
+                },
+                "action":
+                {
+					"rite":15000007
+                }
+            }
+        ],                
+        "settlement_extre": [
+        ],
+        "cards_slot":       
+ {
+            "s1":
+                {
+                    "condition": 
+                    {
+                        "type":"char",                    
+                    },
+                    "open_adsorb":0,
+                    "is_key":0,
+                    "is_empty":0,
+                    "is_enemy":0,
+                    "text":"任意人物卡" 
+                }
+        }
+    } 

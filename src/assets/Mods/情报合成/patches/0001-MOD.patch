@@ -1,0 +1,511 @@
+From a5afcbee05d7f6e3dca6025f60b867b648218248 Mon Sep 17 00:00:00 2001
+From: Sultan Mod Manager <mod@example.com>
+Date: Sun, 13 Apr 2025 19:35:10 +0800
+Subject: [PATCH] =?UTF-8?q?=E5=BA=94=E7=94=A8MOD:=20=E6=83=85=E6=8A=A5?=
+ =?UTF-8?q?=E5=90=88=E6=88=90?=
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+---
+ event/15300008.json |  26 +++
+ rite/15000008.json  | 452 ++++++++++++++++++++++++++++++++++++++++++++
+ 2 files changed, 478 insertions(+)
+ create mode 100644 event/15300008.json
+ create mode 100644 rite/15000008.json
+
+diff --git a/event/15300008.json b/event/15300008.json
+new file mode 100644
+index 0000000..4359f64
+--- /dev/null
++++ b/event/15300008.json
+@@ -0,0 +1,26 @@
++{
++    "id": 15300008,
++    "text": "情报合成",     
++    "is_replay": 1, //是否可以重复触发
++    "auto_start_init": [1],
++    "start_trigger": false, // 是否启动就立即开始校验条件
++    "on":{   //时机
++        "round_begin_ba":1
++    },
++    "condition":{  //条件
++    "!rite":15300008
++    },
++    "settlement": [    //效果 
++        {
++            "tips_resource":"", 
++            "tips_text":"",
++            "action":{
++                "rite":15000008,
++                "success":{
++                    "event_off":15300008
++                }
++            }
++        }
++
++    ]
++}
+\ No newline at end of file
+diff --git a/rite/15000008.json b/rite/15000008.json
+new file mode 100644
+index 0000000..bd9afab
+--- /dev/null
++++ b/rite/15000008.json
+@@ -0,0 +1,452 @@
++ {
++        "id": 15000008,
++        "name": "情报合成",
++        "text": "无冷却合成情报",       
++        "tips": "作者演-QQ836952346",
++        "once_new":1,
++        "round_number": 0,
++        "waiting_round":0,
++        "waiting_round_end_action":[
++        ],
++        "method_settlement": "",
++        "auto_begin": 0,
++        "auto_result":0,
++        "location": "自宅:[2,12]", 
++        "icon": "rite_12", 
++        "tag_tips": [
++        ],
++        "tag_tips_up":{
++        },
++        "tips_text":[
++            "配方1：放入3个相同品质的同名情报可以合成1个更高品质的情报",
++            "配方2：放入相同品质的同名思潮可以合成1个对应的升级思潮",],
++        "open_conditions": [
++        ],
++        "random_text":{
++        },
++        "random_text_up":{
++        },
++        "settlement_prior": [
++        ],                
++	"settlement": [
++	],               
++	"settlement_extre": [
++		{
++                "condition": {  //秘密情报合成
++                    "s1.is":2000032,              
++                },
++                "result_title":"话中有话",
++                "result_text": "一个秘密牵扯着另一个秘密，探索的过程中，你不确定自己离真相更近了，还是更远了。",
++                "result": 
++                {
++                    "card": 2000038 
++                },
++                "action": {
++				"rite":15000008
++			}
++            },
++            {
++                "condition": {
++                    "s1.is":2000038,             
++                },
++                "result_title":"话中有话",
++                "result_text": "一个秘密牵扯着另一个秘密，探索的过程中，你不确定自己离真相更近了，还是更远了。",
++                "result": 
++                {
++                    "card": 2000044 
++                },
++                "action": {
++				"rite":15000008
++			}
++            },
++            {
++                "condition": {
++                    "s1.is":2000044,             
++                },
++                "result_title":"话中有话",
++                "result_text": "一个秘密牵扯着另一个秘密，探索的过程中，你不确定自己离真相更近了，还是更远了。",
++                "result": 
++                {
++                    "card": 2000413,
++                },
++                "action": {
++				"rite":15000008
++			}
++            },
++            {
++                "condition": {    //洞察情报合成
++                    "s1.is":2000033,            
++                },
++                "result_title":"相关性的艺术",
++                "result_text": "事物运转的内在哲学大多相通，你窥破了更深层的奥秘。",
++                "result": 
++                {
++                    "card": 2000039 
++                },
++                "action": {
++				"rite":15000008
++			}
++            },
++            {
++                "condition": {
++                    "s1.is":2000039,                
++                },
++                "result_title":"相关性的艺术",
++                "result_text": "事物运转的内在哲学大多相通，你窥破了更深层的奥秘。",
++                "result": 
++                {
++                    "card": 2000045 
++                },
++                "action": {
++				"rite":15000008
++			}
++            },
++            {
++                "condition": {
++                    "s1.is":2000045,                
++                },
++                "result_title":"相关性的艺术",
++                "result_text": "事物运转的内在哲学大多相通，你窥破了更深层的奥秘。",
++                "result": 
++                {
++                    "card": 2000414,
++                },
++                "action": {
++				"rite":15000008
++			}
++            },
++            {
++                "condition": {   //机遇情报合成
++                    "s1.is":2000034,              
++                },
++                "result_title":"做好准备",
++                "result_text": "没有人能总是赢，但你现在有把握在风起之时抓住更多的落叶。",
++                "result": 
++                {
++                    "card": 2000040 
++                },
++                "action": {
++				"rite":15000008
++			}
++            },
++            {
++                "condition": {
++                    "s1.is":2000040,            
++                },
++                "result_title":"做好准备",
++                "result_text": "没有人能总是赢，但你现在有把握在风起之时抓住更多的落叶。",
++                "result": 
++                {
++                    "card": 2000046 
++                },
++                "action": {
++				"rite":15000008
++			}
++            },
++            {
++                "condition": {
++                    "s1.is":2000046,             
++                },
++                "result_title":"做好准备",
++                "result_text": "没有人能总是赢，但你现在有把握在风起之时抓住更多的落叶。",
++                "result": 
++                {
++                    "card": 2000415,
++                },
++                "action": {
++				"rite":15000008
++			}
++            },
++            { 
++                "condition": {   //内幕情报合成
++                    "s1.is":2000035,                
++                },
++                "result_title":"原来如此",
++                "result_text": "突然间，你明悟了那些秘而不宣的眼神和笑容的背后暗含着什么。",
++                "result": 
++                {
++                    "card": 2000041 
++                },
++                "action": {
++				"rite":15000008
++			}
++            },
++            {
++                "condition": {
++                    "s1.is":2000041,              
++                },
++                "result_title":"原来如此",
++                "result_text": "突然间，你明悟了那些秘而不宣的眼神和笑容的背后暗含着什么。",
++                "result": 
++                {
++                    "card": 2000047 
++                },
++                "action": {
++				"rite":15000008
++			}
++            },
++            {
++                "condition": {
++                    "s1.is":2000047,                
++                },
++                "result_title":"原来如此",
++                "result_text": "突然间，你明悟了那些秘而不宣的眼神和笑容的背后暗含着什么。",
++                "result": 
++                {
++                    "card": 2000416, 
++                },
++                "action": {
++				"rite":15000008
++			}
++            },
++            {
++                "condition": {  //预兆情报合成
++                    "s1.is":2000036,              
++                },
++                "result_title":"碎片拼图",
++                "result_text": "同僚们交头接耳的声音被神圣的寂静消解，你眼前闪过一些未来的片段，细思却只有一片模糊。",
++                "result": 
++                {
++                    "card": 2000042 
++                },
++                "action": {
++				"rite":15000008
++			}
++            },
++            {
++                "condition": {
++                    "s1.is":2000042,                
++                },
++                "result_title":"碎片拼图",
++                "result_text": "同僚们交头接耳的声音被神圣的寂静消解，你眼前闪过一些未来的片段，细思却只有一片模糊。",
++                "result": 
++                {
++                    "card": 2000048 
++                },
++                "action": {
++				"rite":15000008
++			}
++            },
++            {
++                "condition": {
++                    "s1.is":2000048,                
++                },
++                "result_title":"碎片拼图",
++                "result_text": "同僚们交头接耳的声音被神圣的寂静消解，你眼前闪过一些未来的片段，细思却只有一片模糊。",
++                "result": 
++                {
++                    "card": 2000417,
++                },
++                "action": {
++				"rite":15000008
++			}
++            },
++            {
++                "condition": {   //战术情报合成
++                    "s1.is":2000037,              
++                },
++                "result_title":"庙算在先",
++                "result_text": "你过去战斗累积的经验和知识在和同僚的交谈中慢慢融会贯通。",
++                "result": 
++                {
++                    "card": 2000043 
++                },
++                "action": {
++				"rite":15000008
++			}
++            },
++            {
++                "condition": {
++                    "s1.is":2000043,               
++                },
++                "result_title":"庙算在先",
++                "result_text": "你过去战斗累积的经验和知识在和同僚的交谈中慢慢融会贯通。",
++                "result": 
++                {
++                    "card": 2000049 
++                },
++                "action": {
++				"rite":15000008
++			}
++            },
++            {
++                "condition": {
++                    "s1.is":2000049,               
++                },
++                "result_title":"庙算在先",
++                "result_text": "你过去战斗累积的经验和知识在和同僚的交谈中慢慢融会贯通。",
++                "result": 
++                {
++                    "card": 2000418, 
++                },
++                "action": {
++				"rite":15000008
++			}
++            },
++            {
++                "condition": {   //秘氛情报合成
++                    "s1.is":2000419,              
++                },
++                "result_title":"煽风点火",
++                "result_text": "那些绮丽的故事在流传间总免不了被人裹上谎言和臆想的细纱，增添几许莫测的神秘。",
++                "result": 
++                {
++                    "card": 2000420 
++                },
++                "action": {
++				"rite":15000008
++			}
++            },
++            {
++                "condition": {
++                    "s1.is":2000420,               
++                },
++                "result_title":"煽风点火",
++                "result_text": "那些绮丽的故事在流传间总免不了被人裹上谎言和臆想的细纱，增添几许莫测的神秘。",
++                "result": 
++                {
++                    "card": 2000421 
++                },
++                "action": {
++				"rite":15000008
++			}
++            },
++            {
++                "condition": {
++                    "s1.is":2000421,               
++                },
++                "result_title":"煽风点火",
++                "result_text": "那些绮丽的故事在流传间总免不了被人裹上谎言和臆想的细纱，增添几许莫测的神秘。",
++                "result": 
++                {
++                    "card": 2000422,
++                },
++                "action": {
++				"rite":15000008
++			}
++            },
++            {
++                "condition": {    //苏丹的恐惧合成
++                    "s2.is":2000100,
++                },
++                "result_title":"眼神交流",
++                "result_text": "所有的恐惧都将找到出口——被压迫的人总会忍不住发问，要怎样才能得到自由？",
++                "result": 
++                {
++                    "card": 2000541,
++                    "clean.s2":3                   
++                },
++                "action": {
++				"rite":15000008
++			}
++            },
++            {
++                "condition": {    //免于恐惧的自由合成
++                    "s2.is":2000541,
++                },
++                "result_title":"心照不宣",
++                "result_text": "所有的问题都将有其答案，就如水流经的地方自然就会成为河流。",
++                "result": 
++                {
++                    "card": 2000171,
++                    "clean.s2":3                
++                },
++                "action": {
++				"rite":15000008
++			}
++            },
++            {
++                "condition": {    //谋反的意图合成
++                    "s2.is":2000171,
++                },
++                "result_title":"世人皆知",
++                "result_text": "越来越多的人汇集在你身边，他们不安地躁动着，怀中利刃渴饮不义君王的鲜血。",
++                "result": 
++                {
++                    "card": 2000172,
++                    "clean.s2":3,
++                },
++                "action": {
++				"rite":15000008
++			}
++            },
++            {
++                "condition": {    //窥视黑暗合成二级
++                    "s2.is":2000724, //不洁的思绪
++                },
++                "result_title":"你装作不经意地泄露了黑暗的秘密",
++                "result_text": "几缕不洁的思绪诱惑着人们，将他们拉向你，将你们一起诱入神秘而危险的黑暗。",
++                "result": 
++                {
++                    "card": 2000410,
++                    "clean.s2":3                    
++                },
++                "action": {
++				"rite":15000008
++			}
++            },
++            {
++                "condition": {    //窥视黑暗合成二级
++                    "s2.is":2000410,  
++                },
++                "result_title":"被忘却的，重新被提及",
++                "result_text": "宫廷中有些始终照不到太阳的角落，不知何时，在这些幽暗僻静之处，人们悄悄刻下了古代神明的话语。",
++                "result": 
++                {
++                    "card": 2000411,
++                    "clean.s2":3                  
++                },
++                "action": {
++				"rite":15000008
++			}
++            },
++            {
++                "condition": {    //古老的信仰合成三级
++                    "s2.is":2000411,
++                },
++                "result_title":"万一是真的呢？",
++                "result_text": "愚民将信将疑，贵族们则待价而沽——只有你已经听到了，那个声音在你脑海里发出迷人而沙哑的嘶吼：那关于新世界的应许。",
++                "result": 
++                {
++                    "card": 2000412,
++                    "clean.s2":3,
++                },
++			"action": {
++				"rite":15000008
++			}
++		}
++	],
++	"cards_slot":
++	{
++            "s1":
++            {
++                "condition":
++                {
++                    "type":"item",
++                    "rare<=":3,
++                    "cost.情报":3,           
++                },
++                "open_adsorb":0,
++                "is_key":0,
++                "is_empty":1,
++                "is_enemy":1,
++                "text":"放入3个同名且同品级的情报进行合成"
++            },
++            "s2":
++            {
++                "condition":
++                {
++                    "type":"item",
++                    "rare<=":3,
++                    "cost.思潮":3,
++                    "!is":2000884,
++                    "!is":2000913,              
++                },
++                "open_adsorb":0,
++                "is_key":0,
++                "is_empty":1,
++                "is_enemy":1,
++                "text":"放入3个同名思潮进行合成"
++			}
++	}
++ }
+\ No newline at end of file
+-- 
+2.45.1.windows.1
+

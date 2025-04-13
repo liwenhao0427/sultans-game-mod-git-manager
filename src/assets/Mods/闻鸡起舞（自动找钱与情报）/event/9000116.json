@@ -1,0 +1,36 @@
+{
+    "id": 9000116,
+    "text": "自动找工作",     
+    "is_replay": 1, //是否可以重复触发
+    "auto_start": true,
+    "start_trigger": true, // 是否启动就立即开始校验条件
+    "on":{   //时机
+        "round_begin_ba":1 // 仪式开始时
+    },
+    "condition":{  //条件
+        "counter.7000115<":1,
+		"counter.7000116<":1
+    },
+    "settlement": [    
+        {
+            "tips_resource":"", 
+            "tips_text":"",
+            "action":{
+                //"prompt":{
+                       // "id":"9000116_prompt_1",
+                       // "text":"debug自用。",
+                        //"icon":"cards/2000001"
+                    //},
+				"counter+7000115":1,
+				"loot": 6000501,
+				"counter+7000116":1,
+				"loot": 6000502
+                //"success":{
+                    //"event_off":9000116 //关闭自检
+                //}
+
+            }
+        }
+
+    ]
+} 

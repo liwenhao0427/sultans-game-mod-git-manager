@@ -1,0 +1,63 @@
+{
+	"id": 15000022,
+	"name": "觉知",
+	"text": "你尝试了一场冥想",       
+	"tips": "",
+	"once_new":-1,
+	"round_number": 0,
+	"waiting_round":0,
+	"waiting_round_end_action":[
+	],        
+	"method_settlement": "",
+	"auto_begin": 0, 
+	"auto_result": 0,//需要手动启动
+	"location": "野外:[1,14]", 
+	"icon": "rite_1", 
+	"tag_tips": [
+	],
+	"tag_tips_up":{
+	},       
+	"tips_text":[
+		"你的意识流入灵魂深渊",
+	],
+	"open_conditions": [
+	],
+	"random_text":{
+	},
+	"random_text_up":{
+	},
+	"settlement_prior": [
+	],                
+	"settlement": [
+	],               
+	"settlement_extre": [
+		{
+			"condition": {
+			},
+			"result_title":"选择你所触碰的碎片",
+			"result_text": "当你的意识坠入灵魂深渊时，五道异色光晕在混沌中次第浮现\n苍青碎片流淌着晨露般的柔光，却在边缘凝结着幽暗的漩涡\n赤金流体如同熔化的欲念之河，在虚空中勾勒出永不餍足的纹路\n银白晶体以绝对几何切割时空，每个棱面都折射出不同的审判天平\n而半透明的琥珀状物质悬浮中央，亿万星辰在其中明灭闪烁，恍若窥见世间万象的瞳孔\n这些具象化的本源之力，此刻正以宿命回旋的轨迹，环绕着觉醒的灵魂缓缓流转。",
+			"result": 
+			{
+			},
+			"action": {
+				"event_on":15000023
+			}
+		}
+	],
+	"cards_slot":
+	{
+		"s1":
+		{
+                    "condition": 
+                    {
+                        "主角":1,
+                        "type":"char"                        
+                    },
+                    "open_adsorb":0,
+                    "is_key":0,
+                    "is_empty":0,
+                    "is_enemy":0,
+                    "text":"冥想之人"
+		}
+	}
+}

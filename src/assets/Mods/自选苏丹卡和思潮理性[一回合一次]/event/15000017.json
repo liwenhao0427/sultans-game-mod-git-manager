@@ -1,0 +1,86 @@
+{
+    "id": 15000017,
+    "text": "选择了征服",     
+    "is_replay": 0, //是否可以重复触发
+    "auto_start": false,
+    "start_trigger": true, // 是否启动就立即开始校验条件
+    "on":{   //时机
+    },
+    "condition":{  //条件
+    },
+    "settlement": [    //效果 
+        {
+            "tips_resource":"", 
+            "tips_text":"",
+            "action":{
+                "option": {
+                    "id":"15000017_option_1",
+                    "text": ".",
+                    "items": [
+                        {
+                            "text": "理性",
+                            "tag": "op1"
+                        },
+                        {
+                            "text": "纯净的思想",
+                            "tag": "op2"
+                        },
+                        {
+                            "text": "触碰洁净",
+                            "tag": "op3"
+                        },
+                        {
+                            "text": "赎罪祈愿",
+                            "tag": "op4"
+                        },
+                        {
+                            "text": "完美世界",
+                            "tag": "op5"
+                        }
+                    ]
+                },
+                "case:op1": {
+                    "card":2000723  //理性
+                    "prompt":{
+                        "id":"15000017_prompt_1",
+                        "text":".",
+                    },
+                    "event_off":15000017
+                },
+                "case:op2": {
+                    "card":2000725,  //获得初级正教思潮
+                    "prompt":{
+                        "id":"15000017_prompt_2",
+                        "text":".",
+                    },
+                    "event_off":15000017
+                },
+                   "case:op3": {
+                    "card":2000726,  //获得二级思潮
+                    "prompt":{
+                        "id":"15000017_prompt_3",
+                        "text":".",
+                    },
+                    "event_off":15000017
+                },
+                   "case:op4": {
+                    "card":2000727,  //获得三级思潮
+                    "prompt":{
+                        "id":"15000017_prompt_4",
+                        "text":".",
+                    },
+                    "event_off":15000017
+                },
+                    "case:op5": {
+                    "card": 2000728,  //四级正教思潮
+                    "prompt":{
+                        "id":"15000017_prompt_5",
+                        "text":".",
+                    },
+                    "event_off":15000017
+                }
+            }
+        }
+
+    ]
+}

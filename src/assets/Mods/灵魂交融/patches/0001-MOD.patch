@@ -1,0 +1,149 @@
+From 4aa76152546f076fa5d46b98781330562b250c42 Mon Sep 17 00:00:00 2001
+From: Sultan Mod Manager <mod@example.com>
+Date: Sun, 13 Apr 2025 19:35:15 +0800
+Subject: [PATCH] =?UTF-8?q?=E5=BA=94=E7=94=A8MOD:=20=E7=81=B5=E9=AD=82?=
+ =?UTF-8?q?=E4=BA=A4=E8=9E=8D?=
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+---
+ event/15300003.json | 26 +++++++++++++
+ rite/15000003.json  | 90 +++++++++++++++++++++++++++++++++++++++++++++
+ 2 files changed, 116 insertions(+)
+ create mode 100644 event/15300003.json
+ create mode 100644 rite/15000003.json
+
+diff --git a/event/15300003.json b/event/15300003.json
+new file mode 100644
+index 0000000..da9cfa1
+--- /dev/null
++++ b/event/15300003.json
+@@ -0,0 +1,26 @@
++{
++    "id": 15300003,
++    "text": "灵魂交融",     
++    "is_replay": 1, //是否可以重复触发
++    "auto_start_init": [1],
++    "start_trigger": false, // 是否启动就立即开始校验条件
++    "on":{   //时机
++        "round_begin_ba":1
++    },
++    "condition":{  //条件
++    "!rite":15000003
++    },
++    "settlement": [    //效果 
++        {
++            "tips_resource":"", 
++            "tips_text":"",
++            "action":{
++                "rite":15000003,
++                "success":{
++                    "event_off":15300003
++                }
++            }
++        }
++
++    ]
++}
+\ No newline at end of file
+diff --git a/rite/15000003.json b/rite/15000003.json
+new file mode 100644
+index 0000000..273b0be
+--- /dev/null
++++ b/rite/15000003.json
+@@ -0,0 +1,90 @@
++ {
++        "id": 15000003,
++        "name": "灵魂交融",
++        "text": "梅姬带着一丝情欲楚楚可怜的看着你，这段时间你忙于苏丹的游戏确实冷落了她，或许你可以展示你的魅力，通过肉欲来让她满足？",       
++        "tips": "作者演-QQ836952346",
++        "once_new":-1,
++        "round_number": 1,
++        "waiting_round":0,
++        "waiting_round_end_action":[
++        ],
++        "method_settlement": "",
++        "auto_begin": 0,
++        "auto_result":0,
++        "location": "自宅:[2,12]", 
++        "icon": "rite_12", 
++        "tag_tips": [
++        ],
++        "tag_tips_up":{
++        },
++        "tips_text":[
++        ],
++        "open_conditions": [
++        ],
++        "random_text":{
++        },
++        "random_text_up":{
++        },
++        "settlement_prior": [
++        ],                
++        "settlement": [
++            {
++                "condition":
++                {
++                },
++                "result_title":"",
++                "result_text": "烛泪沿着铜烛台蜿蜒成琥珀色藤蔓\n她垂落的丝绸衬裙扫过橡木地板纹路\n如同夜风掠过麦田掀起层层细浪\n指尖陷入对方腰际时触到一道陈年箭痕\n凸起的肌理在黑暗中像封印往事的火漆印章\n呼吸悬停在锁骨凹陷处凝成雾气\n发间残留的鸢尾香与皮革鞣制的气息\n在鼻尖交织成中世纪失传的秘药配方\n床幔金线刺绣的狮鹫随晃动苏醒\n利爪阴影攀上石膏穹顶的星空壁画\n耳垂擦过喉结激起一串颤栗\n像沾露玫瑰惊醒了沉睡的石雕圣徒\n掌心抚过后背绷紧的弓弦\n每一寸战栗都回应着塔楼外渐急的雨声\n冰凉的宝石项链陷进胸膛\n在皮肤烙下暂时性的百合花纹章\n她蜷起的足弓抵住对方小腿铠甲般的旧伤\n汗珠滚落浸透亚麻床单的鸢尾花纹\n在晨光未至的私密褶皱里\n催生出靛青色的花\n“这算不算对家族纹章的亵渎”\n梅姬笑着咬断他束发皮绳上纠缠的金线\n晨祷钟声撞碎在彩色玻璃窗的十二使徒脸上\n他们交叠的影子正缓慢爬上\n镌刻着族训的青铜门环",
++                "result": 
++                {
++                    "clean.s3": 1       //消除妻子的不满
++                },
++                "action":
++                {
++					"rite":15000003
++                }
++            }
++        ],                
++        "settlement_extre": [
++        ],
++        "cards_slot":       
++ {
++            "s1":
++                {
++                    "condition": 
++                    {
++                        "type":"char",
++                        "妻子":1                       
++                    },
++                    "open_adsorb":0,
++                    "is_key":0,
++                    "is_empty":0,
++                    "is_enemy":0,
++                    "text":"叫上自己的妻子" 
++                },
++            "s2":
++                {
++                    "condition": 
++                    {
++                        "主角":1,
++                        "type":"char"                        
++                    },
++                    "open_adsorb":0,
++                    "is_key":0,
++                    "is_empty":0,
++                    "is_enemy":0,
++                    "text":"这种事一般不能假手于人，还得自己上"
++                },
++            "s3":
++                {
++                    "condition": 
++                    {
++                        "is":2000083
++                    },
++                    "open_adsorb":0,
++                    "is_key":0,
++                    "is_empty":0,
++                    "is_enemy":0,
++                    "text":"妻子的不满"
++                }
++        }
++    } 
+\ No newline at end of file
+-- 
+2.45.1.windows.1
+

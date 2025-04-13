@@ -1,0 +1,362 @@
+From 4367c5bdbfbc2fd6a7065cbfe6c9a95b46cc2f8a Mon Sep 17 00:00:00 2001
+From: Sultan Mod Manager <mod@example.com>
+Date: Sun, 13 Apr 2025 19:35:12 +0800
+Subject: [PATCH] =?UTF-8?q?=E5=BA=94=E7=94=A8MOD:=20=E6=97=A0=E5=B0=BD?=
+ =?UTF-8?q?=E5=B7=A8=E7=8B=BC=EF=BC=88=E5=AE=9A=E6=9C=9F=E7=8C=8E=E7=8B=BC?=
+ =?UTF-8?q?=E5=A4=B4=EF=BC=89?=
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+---
+ cards.json         |  66 ++++++++++++++++++
+ event/9321139.json |  31 +++++++++
+ rite/5000754.json  |  10 ++-
+ rite/9000754.json  | 170 +++++++++++++++++++++++++++++++++++++++++++++
+ 4 files changed, 276 insertions(+), 1 deletion(-)
+ create mode 100644 event/9321139.json
+ create mode 100644 rite/9000754.json
+
+diff --git a/cards.json b/cards.json
+index 1482aeb..4ba20e8 100644
+--- a/cards.json
++++ b/cards.json
+@@ -5570,6 +5570,30 @@
+         "equips": [],
+         "is_only": 1
+     },
++	"9000287": {
++        "id": 9000287,
++        "name": "略微变形的银铃",
++        "title": "信物",
++        "text": "哲瓦德在阿鲁米娜5岁丧母时为她手工打造的驱邪银铃，银铃上刻着“别怕，银铃响时，爸爸为你杀噩梦。”",
++        "pops": [],
++        "card_favour": "",
++        "type": "item",
++        "tips": "",
++        "rare": 3,
++        "resource": "cards/2000287",
++        "tag": {
++            "纯色材质": 1,
++			"重投": 3,
++			"生存": 3,
++            "装备": 1,
++            "饰品": 1,
++            "纯色材质": 1
++        },
++        "card_vanishing": 0,
++        "vanish": {},
++        "equips": [],
++        "is_only": 1
++    },			
+     "2000288": {
+         "id": 2000288,
+         "name": "安苏亚的侍女",
+@@ -11989,6 +12013,26 @@
+         "equips": [],
+         "is_only": 1
+     },
++	"9000545": {
++        "id": 9000545,
++        "name": "星灵的注视",
++        "title": "如影随形",
++        "text": "经过了苦难的轮回，鲁梅拉回归了她神圣的本质……而你隐约感到她仍在你的身旁。",
++        "pops": [],
++        "card_favour": "",
++        "type": "item",
++        "tips": "",
++        "rare": 4,
++        "resource": "cards/2000545",
++        "tag": {
++            "魔力": 5,
++            "重投": 3
++        },
++        "card_vanishing": 0,
++        "vanish": {},
++        "equips": [],
++        "is_only": 1
++    },  
+     "2000546": {
+         "id": 2000546,
+         "name": "老赌鬼",
+@@ -16828,6 +16872,27 @@
+         "equips": [],
+         "is_only": 0
+     },
++	"9000712": {
++        "id": 9000712,
++        "name": "新任狼王",
++        "title": "野兽",
++        "text": "新任狼王，名副其实的巨狼，对人类又恨又怕，常年在深山里面游荡。",
++        "pops": [],
++        "card_favour": "",
++        "type": "char",
++        "tips": "",
++        "rare": 2,
++        "resource": "cards/2000712",
++        "tag": {
++            "动物": 1,
++            "战斗": 6,
++            "体魄": 5
++        },
++        "card_vanishing": 0,
++        "vanish": {},
++        "equips": [],
++        "is_only": 0
++    }, 
+     "2000713": {
+         "id": 2000713,
+         "name": "变幻的韵律",
+@@ -18170,6 +18235,7 @@
+         "equips": [
+             "武器",
+             "服装",
++			"饰品",		 
+             "饰品"
+         ],
+         "is_only": 1
+diff --git a/event/9321139.json b/event/9321139.json
+new file mode 100644
+index 0000000..61e7473
+--- /dev/null
++++ b/event/9321139.json
+@@ -0,0 +1,31 @@
++{
++    "id": 9321139,
++    "text": "巨狼循环",     
++    "is_replay": 1, //是否可以重复触发
++    "auto_start": false,
++    "start_trigger": true, // 是否启动就立即开始校验条件
++    "on":{   //时机
++        "round_begin_ba":1 
++    },
++    "condition":{  //条件
++        "!rite":9000754      //场上无本仪式
++		"table_have.2000054":1,  //哲巴尔没有在仪式里
++    },
++    "settlement": [    //效果 
++        {
++            "tips_resource":"", 
++            "tips_text":"",
++            "action":{
++				//"prompt":{
++                       // "id":"9321139_prompt_1",
++                        //"text":"这是我debug用的",
++                        //"icon":"cards/sudan"
++                    //},
++                "rite":9000754 //将军夜猎2
++				"success":{
++                    "event_off":9321139 //关闭自检
++                }
++            }
++        }
++    ]
++}
+\ No newline at end of file
+diff --git a/rite/5000754.json b/rite/5000754.json
+index c541e11..97a2c20 100644
+--- a/rite/5000754.json
++++ b/rite/5000754.json
+@@ -88,13 +88,21 @@
+                     "counter=7000237":1 ,     //拳斗士识别难度为简单           
+                     "counter+7000228":1,  //夜猎完成，将军可以进行冒险    
+                     "card":[2000711,"已拥有+1"],// 获得凶兽头颅战利品  
+-                    "card":2000730,  //刷新一张哲巴尔的战斗方式进入卡池待机      
++                    "card":2000730,  //刷新一张哲巴尔的战斗方式进入卡池待机
++					"card":9000712,
++					//刷新新生代凶兽到卡池里
+                     "s3+体魄":1  //体魄加
+ 
+                 },
+                 "action":
+                 {
+                     "event_on":5300263  //开启给苏丹加倦怠的幕后
++					"delay": {  //填1就是1回合后开始
++                    "id":5000754,
++                    "round": 10,
++                    "event_on":9321139
++					}
++					//10天后开启将军夜猎2
+                 }
+             },
+             {
+diff --git a/rite/9000754.json b/rite/9000754.json
+new file mode 100644
+index 0000000..cddb548
+--- /dev/null
++++ b/rite/9000754.json
+@@ -0,0 +1,170 @@
++ {
++        "id": 9000754,
++        "name": "将军夜猎2",
++        "text": "经历了漫长时间的寻觅，哲巴尔总算是又打听到了巨狼的消息。\n“是时候为民除害了！可不能纵容这些杀不尽的畜生四处肆虐！”，在你一脸怀疑地指出目的地是一个纯粹的深山老林后，哲巴尔老脸一红：“咳……再怎么说也是防患于未然……”\n无论如何，既然这个渴望刺激的将军又找到了一处绝佳的狩猎场所，如果你不赶紧跟上的话，巨狼的头颅就要属于将军了！"
++        "tips": "",
++        "once_new":0,
++        "round_number": 1,
++        "waiting_round":2,
++        "waiting_round_end_action":[
++            {
++                "condition": {
++                    
++                },
++                "result_title":"",
++                "result_text": "你错过了这次狩猎，不过不要紧，相信哲巴尔很快又会找到下一个受害“兽”的。",
++                "result": 
++                {
++                    
++                },
++                "action": {
++                    "event_on":9000754
++                }
++            }
++        ],        
++        "method_settlement": "",
++        "auto_begin": 0, 
++        "auto_result": 0,
++        "location": "野外:[1,6]", 
++        "icon": "rite_15", 
++        "tag_tips": [
++        ],
++        "tag_tips_up":{
++            "tips":["体魄","战斗"],
++            "type":"fight_result"
++        },
++        "tips_text":[
++            "经历了上次的斩首行动，新生代的巨狼只会更加狡猾，这将是一场艰苦卓绝的战斗！"	"注意，由于是竞争关系，将军的能力将在判定中视为减值！你需要同时战胜巨狼与将军"
++        ],
++        "open_conditions": [
++        ],
++        "random_text":{
++            
++        },
++        "random_text_up":{
++            "r1":{
++                "text":"你又一次加入了哲巴尔的狩猎，不过，这次你还能战胜哲巴尔吗？",
++                "type":"fight_result",
++                "type_tips":"你的体魄和战斗为你提供的骰子数量将受到凶兽的影响。",
++                "low_target": 1,
++                "low_target_tips": "本次事件没有生命危险，1点成功能让你胜过哲巴尔"
++            }
++        },
++        "settlement_prior": [
++        ],                
++        "settlement": [
++            {
++                "condition":
++                {   
++                    "!s3":1 //主角没去
++                },
++                "result_title":"",
++                "result_text": "哲巴尔一个人解决了猎物，独吞了巨狼的头颅。",
++                "result": 
++                {   
++                    //"clean.s4":1,  //消除征服卡
++                },
++                "action":
++                {
++					"delay": {  //填1就是下回合开始
++                    "id":9000754,
++                    "round": 10,
++                    "event_on":9321139
++					}
++                }
++            },
++            {
++                "condition":
++                {   
++                    "s3":1, //主角去
++                    "r1:战斗+体魄-s2.战斗-s2.体魄-s1.战斗-s1.体魄>=":[1,5]  //战斗过关
++                },
++                "result_title":"你一刀斩下了凶兽的头颅",
++                "result_text": "毫无疑问，你又一次证明了自己的勇武，这让哲巴尔对你大加赞赏。他拾起那颗热气腾腾的血腥头颅，递给你：“这是你应得的，朋友。”",
++                "result": 
++                {   
++                    //"clean.s4":1,  //消除征服卡
++                        
++                    "card":[2000711,"已拥有+1"],// 获得凶兽头颅战利品  
++                    
++
++                },
++                "action":
++                {
++                    "delay": {  //填1就是下回合开始
++                    "id":9000754,
++                    "round": 10,
++                    "event_on":9321139
++					}
++                }
++            },
++            {
++                "condition":
++                {   
++                    "s3":1, //主角去,
++                    "r1:战斗+体魄-s2.战斗-s2.体魄-s1.战斗-s1.体魄<":[1,5]  //战斗不过关
++                },
++                "result_title":"哲巴尔斩下了凶兽的头颅",
++                "result_text": "“哈哈，这次是我赢了！这段时间你还是疏于锻炼呐。”哲巴尔得意洋洋地向你扬了扬这颗热气腾腾的血腥头颅，将它挂到自己的马鞍上：“这颗狼头可就归我咯。”",
++                "result": 
++                {   
++                    //"clean.s4":1,  //消除征服卡
++
++                },
++                "action":
++                {
++                    "delay": {  //填1就是下回合开始
++                    "id":9000754,
++                    "round": 10,
++                    "event_on":9321139
++					}
++                }
++            }
++        ],               
++        "settlement_extre": [
++           
++        ],
++        "cards_slot":
++        {
++            "s1":
++            {
++                "condition": 
++                    {
++                        "type":"char",
++                        "is":2000054            
++                    },
++                    "open_adsorb":1,
++                    "is_key":0,
++                    "is_empty":0,
++                    "is_enemy":1,
++                    "text":"将军的刀刃在渴望冒险的鲜血" 
++            },
++        "s2":
++            {
++                    "condition": 
++                    {
++                        "type":"char",
++                        "is":9000712
++                    },
++                    "open_adsorb":1,
++                    "is_key":0,
++                    "is_empty":0,
++                    "is_enemy":1,
++                    "text":"新生代凶兽"
++                },
++        "s3":
++            {
++                "condition": 
++                    {
++                        "type":"char",
++                        "主角":1
++                    },
++                    "open_adsorb":0,
++                    "is_key":0,
++                    "is_empty":1,
++                    "is_enemy":0,
++                    "text":"你可以也参与此次狩猎"
++            },
++            
++        }
++    } 
+\ No newline at end of file
+-- 
+2.45.1.windows.1
+

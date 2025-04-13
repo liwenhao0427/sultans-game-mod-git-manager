@@ -1,0 +1,24 @@
+{
+    "id": 15300010,
+    "text": "轮回者五",     
+    "is_replay": 0, //是否可以重复触发
+    "auto_start_init": [1],
+    "start_trigger": false, // 是否启动就立即开始校验条件
+    "on":{
+    },
+    "condition":{
+    },
+    "settlement": [    //效果 
+        {
+            "tips_resource":"", 
+            "tips_text":"",
+            "action":{
+                "rite":15000010,
+                "success":{
+                    "event_off":15300010
+                }
+            }
+        }
+
+    ]
+}

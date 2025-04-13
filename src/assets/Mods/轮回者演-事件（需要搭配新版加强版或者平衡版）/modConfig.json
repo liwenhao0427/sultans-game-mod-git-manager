@@ -1,0 +1,61 @@
+{
+  "name": "轮回者演-事件（需要搭配新版加强版或者平衡版）",
+  "author": "我国就连线",
+  "version": "1.0.0",
+  "gameVersion": "2025.04.08",
+  "updateDate": "2025.04.10",
+  "tag": [
+    "自动导入"
+  ],
+  "source": {
+    "name": "苏丹的游戏吧",
+    "url": "https://tieba.baidu.com/p/9633271389"
+  },
+  "files": [
+    {
+      "source": "tag.json",
+      "mode": "REPLACE"
+    },
+    {
+      "source": "event/15300004.json",
+      "mode": "REPLACE"
+    },
+    {
+      "source": "event/15300005.json",
+      "mode": "REPLACE"
+    },
+    {
+      "source": "event/15300006.json",
+      "mode": "REPLACE"
+    },
+    {
+      "source": "event/15300009.json",
+      "mode": "REPLACE"
+    },
+    {
+      "source": "event/15300010.json",
+      "mode": "REPLACE"
+    },
+    {
+      "source": "rite/15000004.json",
+      "mode": "REPLACE"
+    },
+    {
+      "source": "rite/15000005.json",
+      "mode": "REPLACE"
+    },
+    {
+      "source": "rite/15000006.json",
+      "mode": "REPLACE"
+    },
+    {
+      "source": "rite/15000009.json",
+      "mode": "REPLACE"
+    },
+    {
+      "source": "rite/15000010.json",
+      "mode": "REPLACE"
+    }
+  ],
+  "patchFile": "patches\\0001-MOD.patch"
+}

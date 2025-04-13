@@ -1,0 +1,43 @@
+From 2f65ceb4529d2b075aace3c5b684c7cd7a659523 Mon Sep 17 00:00:00 2001
+From: Sultan Mod Manager <mod@example.com>
+Date: Sun, 13 Apr 2025 19:42:39 +0800
+Subject: [PATCH] =?UTF-8?q?=E5=BA=94=E7=94=A8MOD:=20=E5=BC=80=E5=B1=80?=
+ =?UTF-8?q?=E9=A2=9D=E5=A4=96=E9=87=91=E5=A5=A2=E9=9D=A1=EF=BC=88=E5=91=BD?=
+ =?UTF-8?q?=E8=BF=90=E5=95=86=E5=BA=97=E5=A4=84=E9=80=89=E6=8B=A9=E5=BC=80?=
+ =?UTF-8?q?=E5=90=AF=EF=BC=89?=
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+---
+ upgrade.json | 15 +++++++++++++++
+ 1 file changed, 15 insertions(+)
+
+diff --git a/upgrade.json b/upgrade.json
+index 971cd90..e46df4f 100644
+--- a/upgrade.json
++++ b/upgrade.json
+@@ -591,4 +591,19 @@
+         },
+         "incompatible":0
+     },
++	"9300041": {
++        "id": 9300041,
++        "name": "开局金奢靡",
++        "text": "嘘……一个神秘的外来客塞给你一张最高品级的奢靡苏丹卡，他自称来自“苏丹的游戏吧”，这地方名字真怪，不是么？",
++        "cost": 0,
++        "condition":{
++            
++        },
++        "icon":"gain",  //图标
++        "link_card":2010012, //关联卡牌，点击图标弹出对应卡牌的详情界面
++        "effect": {
++            "g.card":[2010012,"已拥有+1"]
++        },
++        "incompatible":0
++    },
+ }
+\ No newline at end of file
+-- 
+2.45.1.windows.1
+

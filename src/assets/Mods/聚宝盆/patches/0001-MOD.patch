@@ -1,0 +1,182 @@
+From c4096852cc3e5e432e4dde133282dd2fbc1e8c9b Mon Sep 17 00:00:00 2001
+From: Sultan Mod Manager <mod@example.com>
+Date: Sun, 13 Apr 2025 19:35:15 +0800
+Subject: [PATCH] =?UTF-8?q?=E5=BA=94=E7=94=A8MOD:=20=E8=81=9A=E5=AE=9D?=
+ =?UTF-8?q?=E7=9B=86?=
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+---
+ event/15123456.json |  26 ++++++++++
+ rite/15123456.json  | 123 ++++++++++++++++++++++++++++++++++++++++++++
+ 2 files changed, 149 insertions(+)
+ create mode 100644 event/15123456.json
+ create mode 100644 rite/15123456.json
+
+diff --git a/event/15123456.json b/event/15123456.json
+new file mode 100644
+index 0000000..1967c16
+--- /dev/null
++++ b/event/15123456.json
+@@ -0,0 +1,26 @@
++{
++    "id": 15123456,
++    "text": "聚宝盆",     
++    "is_replay": 1, //是否可以重复触发
++    "auto_start_init": [1],
++    "start_trigger": false, // 是否启动就立即开始校验条件
++    "on":{   //时机
++        "round_begin_ba":1
++    },
++    "condition":{  //条件
++    "!rite":15123456
++    },
++    "settlement": [    //效果 
++        {
++            "tips_resource":"", 
++            "tips_text":"",
++            "action":{
++                "rite":15123456,
++                "success":{
++                    "event_off":15123456
++                }
++            }
++        }
++
++    ]
++}
+\ No newline at end of file
+diff --git a/rite/15123456.json b/rite/15123456.json
+new file mode 100644
+index 0000000..9b067e8
+--- /dev/null
++++ b/rite/15123456.json
+@@ -0,0 +1,123 @@
++{
++	"id": 15123456,
++	"name": "聚宝盆",
++	"text": "将东西放进去会回收金币",       
++	"tips": "作者演-QQ836952346",
++	"once_new":-1,
++	"round_number": 0,
++	"waiting_round":0,
++	"waiting_round_end_action":[
++	],        
++	"method_settlement": "",
++	"auto_begin": 0, 
++	"auto_result": 0,//需要手动启动
++	"location": "自宅:[2,12]", 
++	"icon": "rite_6", 
++	"tag_tips": [
++	],
++	"tag_tips_up":{
++	},       
++	"tips_text":[
++		"将物品放入对应空位即可获得金币",
++		"不同品级具有不同的金币效果"
++	],
++	"open_conditions": [
++	],
++	"random_text":{
++	},
++	"random_text_up":{
++	},
++	"settlement_prior": [
++	],                
++	"settlement": [
++	],               
++	"settlement_extre": [
++		{
++			"condition": {
++				"s1":1,
++				"s1.rare=":1
++			},
++			"result_title":"",
++			"result_text": "成功",
++			"result": 
++			{
++				"clean.s1": 1,
++				"金币":1
++			},
++			"action": {
++				"rite":15123456
++			}
++		},
++		{
++			"condition": {
++				"s1":1,
++				"s1.rare=":2
++			},
++			"result_title":"",
++			"result_text": "成功",
++			"result": 
++			{
++				"clean.s1": 1,
++				"金币":2
++			},
++			"action": {
++				"rite":15123456
++			}
++		},
++		{
++			"condition": {
++				"s1":1,
++				"s1.rare=":3
++			},
++			"result_title":"",
++			"result_text": "成功",
++			"result": 
++			{
++				"clean.s1": 1,
++				"金币":3
++			},
++			"action": {
++				"rite":15123456
++			}
++		},
++		{
++			"condition": {
++				"s1":1,
++				"s1.rare=":4
++			},
++			"result_title":"",
++			"result_text": "成功",
++			"result": 
++			{
++				"clean.s1": 1,
++				"金币":4
++			},
++			"action": {
++				"rite":15123456
++			}
++		}
++	],
++	"cards_slot":
++	{
++		"s1":
++			{
++				"condition": 
++				{
++					"type":"item",
++					"any":{
++						"装备":1,
++						"淫具":1,
++						"读物":1
++						"情报":1
++					},
++					//"rare=":1,
++					"已拥有":1
++				},
++				"open_adsorb":0,
++				"is_key":0,
++				"is_empty":0,
++				"is_enemy":0,
++				"text":"需要放进聚宝盆的物品"
++			}
++	}
++ }
+\ No newline at end of file
+-- 
+2.45.1.windows.1
+

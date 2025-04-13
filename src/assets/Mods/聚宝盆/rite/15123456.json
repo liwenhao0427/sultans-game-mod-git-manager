@@ -1,0 +1,123 @@
+{
+	"id": 15123456,
+	"name": "聚宝盆",
+	"text": "将东西放进去会回收金币",       
+	"tips": "作者演-QQ836952346",
+	"once_new":-1,
+	"round_number": 0,
+	"waiting_round":0,
+	"waiting_round_end_action":[
+	],        
+	"method_settlement": "",
+	"auto_begin": 0, 
+	"auto_result": 0,//需要手动启动
+	"location": "自宅:[2,12]", 
+	"icon": "rite_6", 
+	"tag_tips": [
+	],
+	"tag_tips_up":{
+	},       
+	"tips_text":[
+		"将物品放入对应空位即可获得金币",
+		"不同品级具有不同的金币效果"
+	],
+	"open_conditions": [
+	],
+	"random_text":{
+	},
+	"random_text_up":{
+	},
+	"settlement_prior": [
+	],                
+	"settlement": [
+	],               
+	"settlement_extre": [
+		{
+			"condition": {
+				"s1":1,
+				"s1.rare=":1
+			},
+			"result_title":"",
+			"result_text": "成功",
+			"result": 
+			{
+				"clean.s1": 1,
+				"金币":1
+			},
+			"action": {
+				"rite":15123456
+			}
+		},
+		{
+			"condition": {
+				"s1":1,
+				"s1.rare=":2
+			},
+			"result_title":"",
+			"result_text": "成功",
+			"result": 
+			{
+				"clean.s1": 1,
+				"金币":2
+			},
+			"action": {
+				"rite":15123456
+			}
+		},
+		{
+			"condition": {
+				"s1":1,
+				"s1.rare=":3
+			},
+			"result_title":"",
+			"result_text": "成功",
+			"result": 
+			{
+				"clean.s1": 1,
+				"金币":3
+			},
+			"action": {
+				"rite":15123456
+			}
+		},
+		{
+			"condition": {
+				"s1":1,
+				"s1.rare=":4
+			},
+			"result_title":"",
+			"result_text": "成功",
+			"result": 
+			{
+				"clean.s1": 1,
+				"金币":4
+			},
+			"action": {
+				"rite":15123456
+			}
+		}
+	],
+	"cards_slot":
+	{
+		"s1":
+			{
+				"condition": 
+				{
+					"type":"item",
+					"any":{
+						"装备":1,
+						"淫具":1,
+						"读物":1
+						"情报":1
+					},
+					//"rare=":1,
+					"已拥有":1
+				},
+				"open_adsorb":0,
+				"is_key":0,
+				"is_empty":0,
+				"is_enemy":0,
+				"text":"需要放进聚宝盆的物品"
+			}
+	}
+ }

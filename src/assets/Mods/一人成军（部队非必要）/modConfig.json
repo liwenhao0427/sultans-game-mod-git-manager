@@ -1,0 +1,25 @@
+{
+  "name": "一人成军（部队非必要）",
+  "author": "萧敷艾荣",
+  "version": "1.0.0",
+  "gameVersion": "2025.04.08",
+  "updateDate": "2025.04.08",
+  "tag": [
+    "舒适性提升"
+  ],
+  "source": {
+    "name": "苏丹的游戏吧",
+    "url": "https://tieba.baidu.com/p/9623361873?fid=28118002&pid=151931371273#151931371273"
+  },
+  "files": [
+    {
+      "source": "rite/5002031.json",
+      "mode": "REPLACE"
+    },
+    {
+      "source": "rite/5008029.json",
+      "mode": "REPLACE"
+    }
+  ],
+  "patchFile": "patches\\0001-MOD.patch"
+}

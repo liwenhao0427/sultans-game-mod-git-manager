@@ -1,0 +1,16 @@
+{
+  "name": "勇者愤怒抽刃向更强者（法里斯与法德耶共存）",
+  "author": "未知",
+  "version": "1.0.0",
+  "gameVersion": "未知",
+  "updateDate": "2025.04.13",
+  "tag": [
+    "自动导入"
+  ],
+  "source": {
+    "name": "自动生成",
+    "url": "https://github.com/liwenhao0427/sultans-game-mod-manager"
+  },
+  "files": [],
+  "patchFile": "patches\\0001-MOD.patch"
+}

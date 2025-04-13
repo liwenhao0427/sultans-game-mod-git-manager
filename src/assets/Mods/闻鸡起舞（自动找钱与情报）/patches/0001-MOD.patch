@@ -1,0 +1,95 @@
+From 17fc3ec9e9b828e1b8b89a6e78e0d53f720a61a4 Mon Sep 17 00:00:00 2001
+From: Sultan Mod Manager <mod@example.com>
+Date: Sun, 13 Apr 2025 19:42:39 +0800
+Subject: [PATCH] =?UTF-8?q?=E5=BA=94=E7=94=A8MOD:=20=E9=97=BB=E9=B8=A1?=
+ =?UTF-8?q?=E8=B5=B7=E8=88=9E=EF=BC=88=E8=87=AA=E5=8A=A8=E6=89=BE=E9=92=B1?=
+ =?UTF-8?q?=E4=B8=8E=E6=83=85=E6=8A=A5=EF=BC=89?=
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+---
+ event/5300066.json |  1 +
+ event/9000116.json | 36 ++++++++++++++++++++++++++++++++++++
+ rite/5000002.json  |  2 ++
+ 3 files changed, 39 insertions(+)
+ create mode 100644 event/9000116.json
+
+diff --git a/event/5300066.json b/event/5300066.json
+index 01c4eb9..68158d1 100644
+--- a/event/5300066.json
++++ b/event/5300066.json
+@@ -25,6 +25,7 @@
+                 // "rite_pop.5300066_02.5001001": "开启浴场里的消息",
+                 "event_on":5300029, //激活书店
+                 "rite":5000001,  //开启治理家业
++				"event_on":9000116,//激活自动找工作
+                 // "focus.5000001": [800, 2],
+                 // "rite_pop.5300066_02.5000001": "开启治理家业",
+                 "success":{
+diff --git a/event/9000116.json b/event/9000116.json
+new file mode 100644
+index 0000000..0e6953a
+--- /dev/null
++++ b/event/9000116.json
+@@ -0,0 +1,36 @@
++{
++    "id": 9000116,
++    "text": "自动找工作",     
++    "is_replay": 1, //是否可以重复触发
++    "auto_start": true,
++    "start_trigger": true, // 是否启动就立即开始校验条件
++    "on":{   //时机
++        "round_begin_ba":1 // 仪式开始时
++    },
++    "condition":{  //条件
++        "counter.7000115<":1,
++		"counter.7000116<":1
++    },
++    "settlement": [    
++        {
++            "tips_resource":"", 
++            "tips_text":"",
++            "action":{
++                //"prompt":{
++                       // "id":"9000116_prompt_1",
++                       // "text":"debug自用。",
++                        //"icon":"cards/2000001"
++                    //},
++				"counter+7000115":1,
++				"loot": 6000501,
++				"counter+7000116":1,
++				"loot": 6000502
++                //"success":{
++                    //"event_off":9000116 //关闭自检
++                //}
++
++            }
++        }
++
++    ]
++} 
+\ No newline at end of file
+diff --git a/rite/5000002.json b/rite/5000002.json
+index 769277d..1f0fbdc 100644
+--- a/rite/5000002.json
++++ b/rite/5000002.json
+@@ -2864,6 +2864,7 @@
+                 "action":
+                 {
+                     "loot": 6000501, 
++					"event_on":9000116,	
+                     "prompt":{
+                         "id":"5000002_prompt_104",
+                         "text":"想到了一个赚钱的好主意。",
+@@ -2887,6 +2888,7 @@
+                 "action":
+                 {
+                     "loot": 6000502, 
++					"event_on":9000116,										
+                     "prompt":{
+                         "id":"5000002_prompt_103",
+                         "text":"想到了一个获取情报的好主意。",
+-- 
+2.45.1.windows.1
+

@@ -1,0 +1,79 @@
+{
+    "id": 15000016,
+    "text": "选择了征服",     
+    "is_replay": 0, //是否可以重复触发
+    "auto_start": false,
+    "start_trigger": true, // 是否启动就立即开始校验条件
+    "on":{   //时机
+    },
+    "condition":{  //条件
+    },
+    "settlement": [    //效果 
+        {
+            "tips_resource":"", 
+            "tips_text":"",
+            "action":{
+                "option": {
+                    "id":"15000016_option_1",
+                    "text": ".",
+                    "icon": "cards/2000001",
+                    "items": [
+                        {
+                            "text": "石品质",
+                            "tag": "op1"
+                        },
+                        {
+                            "text": "铜品质",
+                            "tag": "op2"
+                        },
+                        {
+                            "text": "银品质",
+                            "tag": "op3"
+                        },
+                        {
+                            "text": "金品质",
+                            "tag": "op4"
+                        }
+                    ]
+                },
+                "case:op1": {
+                    "card": 2010013,//石
+                    "prompt":{
+                        "id":"15000016_prompt_1",
+                        "text":".",
+                        "icon":"cards/2000001"
+                    },
+                    "event_off":15000016
+                },
+                "case:op2": {
+                    "card": 2010014,//铜
+                    "prompt":{
+                        "id":"15000016_prompt_2",
+                        "text":".",
+                        "icon":"cards/2000001"
+                    },
+                    "event_off":15000016
+                },
+                "case:op3": {
+                    "card": 2010015,//银
+                    "prompt":{
+                        "id":"15000016_prompt_3",
+                        "text":".",
+                        "icon":"cards/2000001"
+                    },
+                    "event_off":15000016
+                },
+                "case:op4": {
+                    "card": 2010016,//金
+                    "prompt":{
+                        "id":"15000016_prompt_4",
+                        "text":".",
+                        "icon":"cards/2000001"
+                    },
+                    "event_off":15000016
+                }
+            }
+        }
+
+    ]
+}
