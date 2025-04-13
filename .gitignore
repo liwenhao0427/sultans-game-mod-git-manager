@@ -23,3 +23,5 @@ pnpm-debug.log*
 *.sw?
 /src/build/
 /src/assets/build
+/src
+*.pyc

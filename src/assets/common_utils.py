@@ -194,19 +194,56 @@ def reset_to_game_version(config_dir, game_path):
     # 检查是否存在对应标签
     stdout, stderr, code = run_git_command(['git', 'tag', '-l', tag_name], cwd=config_dir)
     if stdout.strip() == "":
-        # 标签不存在，创建新标签
-        print(f"[Git] 未找到游戏版本标签 {tag_name}，创建新标签")
+        # 标签不存在，创建新标签 - 游戏版本已更新
+        print(f"[Git] 未找到游戏版本标签 {tag_name}，检测到游戏版本更新")
         
-        # 丢弃所有未提交的更改
-        run_git_command(['git', 'reset', '--hard'], cwd=config_dir)
+        # 创建临时目录用于存储当前游戏文件
+        temp_dir = os.path.join(os.path.dirname(config_dir), "temp_game_files")
+        if os.path.exists(temp_dir):
+            shutil.rmtree(temp_dir)
+        os.makedirs(temp_dir)
         
-        # 添加所有文件并提交
-        run_git_command(['git', 'add', '.'], cwd=config_dir)
+        # 复制当前游戏配置文件到临时目录
+        for item in os.listdir(config_dir):
+            if item != '.git':  # 排除.git目录
+                src_path = os.path.join(config_dir, item)
+                dst_path = os.path.join(temp_dir, item)
+                if os.path.isdir(src_path):
+                    shutil.copytree(src_path, dst_path)
+                else:
+                    shutil.copy2(src_path, dst_path)
+        
+        # 清空仓库中的所有文件（除了.git目录）
+        for item in os.listdir(config_dir):
+            if item != '.git':
+                item_path = os.path.join(config_dir, item)
+                if os.path.isdir(item_path):
+                    shutil.rmtree(item_path)
+                else:
+                    os.remove(item_path)
+        
+        # 将临时目录中的文件复制回仓库
+        for item in os.listdir(temp_dir):
+            src_path = os.path.join(temp_dir, item)
+            dst_path = os.path.join(config_dir, item)
+            if os.path.isdir(src_path):
+                shutil.copytree(src_path, dst_path)
+            else:
+                shutil.copy2(src_path, dst_path)
+        
+        # 删除临时目录
+        shutil.rmtree(temp_dir)
+        
+        # 添加所有文件并提交（包括删除的文件）
+        run_git_command(['git', 'add', '--all'], cwd=config_dir)
         stdout, stderr, code = run_git_command(
             ['git', 'commit', '-m', f'游戏版本更新 {datetime.now().strftime("%Y-%m-%d %H:%M:%S")}'],
             cwd=config_dir,
             check=False
         )
+        
+        if code != 0 and "nothing to commit" not in stderr:
+            print(f"[警告] 提交游戏版本更新时出现问题: {stderr}")
         
         # 创建标签
         stdout, stderr, code = run_git_command(['git', 'tag', tag_name], cwd=config_dir)
@@ -224,7 +261,7 @@ def reset_to_game_version(config_dir, game_path):
     
     print(f"[Git] 已重置到游戏版本 {tag_name}")
     return True
-
+    
 def prepare_git_environment(game_path):
     """准备Git环境"""
     config_dir = get_config_dir(game_path)
