@@ -4,6 +4,7 @@ import json
 import shutil
 import subprocess
 from pathlib import Path
+from datetime import datetime  # 添加这一行
 
 # 导入公共工具
 from common_utils import (
@@ -19,16 +20,66 @@ def apply_patch(patch_file, config_dir, mod_name):
         print(f"[错误] 补丁文件不存在: {patch_file}")
         return False
     
-    # 使用git am命令应用补丁
-    stdout, stderr, code = run_git_command(['git', 'am','--3way','--ignore-space-change','--keep-cr' , patch_file], cwd=config_dir, check=False)
-    if code != 0:
-        print(f"[错误] 应用补丁失败: {stderr}")
-        # 中止补丁应用
-        run_git_command(['git', 'am', '--abort'], cwd=config_dir, check=False)
+    # 首先尝试使用git am命令应用补丁
+    print(f"[尝试] 使用git am应用补丁...")
+    stdout, stderr, code = run_git_command(['git', 'am', '--ignore-space-change','--keep-cr', patch_file], cwd=config_dir, check=False)
+    if code == 0:
+        print(f"[成功] 使用git am应用补丁成功")
+        return True
+    
+    # git am失败，中止补丁应用
+    print(f"[警告] git am应用补丁失败: {stderr}")
+    run_git_command(['git', 'am', '--abort'], cwd=config_dir, check=False)
+    
+    # 尝试使用git apply命令（方法1）
+    print(f"[尝试] 使用git apply方法1应用补丁...")
+    stdout, stderr, code = run_git_command(['git', 'apply', '--ignore-space-change',  patch_file], cwd=config_dir, check=False)
+    if code == 0:
+        # 应用成功，添加并提交更改
+        print(f"[成功] 使用git apply方法1应用补丁成功")
+        run_git_command(['git', 'add', '--all'], cwd=config_dir)
+        commit_msg = f"应用MOD: {mod_name}"
+        stdout, stderr, code = run_git_command(['git', 'commit', '-m', commit_msg], cwd=config_dir, check=False)
+        if code == 0:
+            return True
+        else:
+            print(f"[错误] 提交更改失败: {stderr}")
+            return False
+    
+    # 方法1失败，尝试方法2
+    print(f"[警告] git apply方法1应用补丁失败: {stderr}")
+    
+    # 尝试使用git apply命令（方法2）
+    print(f"[尝试] 使用git apply方法2应用补丁...")
+    stdout, stderr, code = run_git_command(['git', 'apply', '--reject', '--whitespace=fix', patch_file], cwd=config_dir, check=False)
+    
+    # 检查是否有.rej文件（冲突文件）
+    has_reject_files = False
+    for root, dirs, files in os.walk(config_dir):
+        for file in files:
+            if file.endswith('.rej'):
+                has_reject_files = True
+                reject_path = os.path.join(root, file)
+                print(f"[警告] 发现冲突文件: {os.path.relpath(reject_path, config_dir)}")
+    
+    if has_reject_files:
+        print(f"[错误] 补丁应用存在冲突，无法自动解决")
+        # 清理工作目录
+        run_git_command(['git', 'reset', '--hard'], cwd=config_dir)
         return False
     
-    print(f"[成功] 已应用MOD: {mod_name}")
-    return True
+    # 没有冲突，添加并提交更改
+    run_git_command(['git', 'add', '--all'], cwd=config_dir)
+    commit_msg = f"应用MOD: {mod_name}"
+    stdout, stderr, code = run_git_command(['git', 'commit', '-m', commit_msg], cwd=config_dir, check=False)
+    if code == 0:
+        print(f"[成功] 使用git apply方法2应用补丁成功")
+        return True
+    else:
+        print(f"[错误] 提交更改失败: {stderr}")
+        # 清理工作目录
+        run_git_command(['git', 'reset', '--hard'], cwd=config_dir)
+        return False
 
 def install_mods():
     """安装MOD主函数"""
@@ -49,6 +100,16 @@ def install_mods():
         if not prepare_git_environment(game_path):
             print("准备Git环境失败，安装中止")
             return False
+        
+        # 获取游戏版本日期
+        game_exe_path = os.path.join(game_path, "Sultan's Game.exe")
+        if not os.path.exists(game_exe_path):
+            print("[错误] 找不到游戏可执行文件")
+            return False
+        
+        game_mod_time = os.path.getmtime(game_exe_path)
+        game_version_date = datetime.fromtimestamp(game_mod_time).strftime("%Y%m%d")
+        print(f"[信息] 当前游戏版本日期: {game_version_date}")
         
         # 创建MOD分支
         mod_branch = "mods_applied"
@@ -77,6 +138,7 @@ def install_mods():
         # 遍历Mods目录
         total_count = 0
         success_count = 0
+        skipped_count = 0
         
         # 按照优先级排序MOD
         mod_list = []
@@ -105,6 +167,22 @@ def install_mods():
             if "patchFile" not in mod_config:
                 print(f"[跳过] {mod_name} 没有补丁文件")
                 continue
+            
+            # 检查updateTo属性
+            if "updateTo" in mod_config:
+                update_to_date = mod_config["updateTo"]
+                # 尝试将updateTo转换为标准格式（如果不是标准格式）
+                if isinstance(update_to_date, str):
+                    # 移除所有非数字字符
+                    update_to_date = ''.join(filter(str.isdigit, update_to_date))
+                    # 确保至少有8位数字（YYYYMMDD）
+                    if len(update_to_date) >= 8:
+                        update_to_date = update_to_date[:8]  # 只取前8位
+                        # 比较日期
+                        if update_to_date < game_version_date:
+                            print(f"[跳过] {mod_name} 的补丁版本({update_to_date})低于当前游戏版本({game_version_date})")
+                            skipped_count += 1
+                            continue
             
             # 获取优先级
             priority = mod_config.get("priority", 100)  # 默认优先级为100
@@ -135,11 +213,11 @@ def install_mods():
                 success_count += 1
             else:
                 # 补丁应用失败，执行还原操作
-                print(f"[错误] 应用MOD {mod_name} 失败，执行还原操作")
+                print(f"[错误] 应用MOD {mod_name} 失败，安装停止")
                 # prepare_git_environment(game_path)
                 return False
         
-        print(f"\n[完成] 共处理 {total_count} 个MOD，成功 {success_count} 个")
+        print(f"\n[完成] 共处理 {total_count} 个MOD，成功 {success_count} 个，跳过 {skipped_count} 个")
         
         if success_count > 0:
             print("\n[成功] 所有MOD已成功安装")
