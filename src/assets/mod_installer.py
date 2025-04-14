@@ -20,9 +20,43 @@ def apply_patch(patch_file, config_dir, mod_name):
         print(f"[错误] 补丁文件不存在: {patch_file}")
         return False
     
+    # 尝试修复补丁文件编码
+    try:
+        # 读取补丁文件内容
+        with open(patch_file, 'rb') as f:
+            patch_content = f.read()
+        
+        # 尝试检测编码并修复
+        try:
+            # 尝试用UTF-8解码
+            patch_text = patch_content.decode('utf-8')
+        except UnicodeDecodeError:
+            # UTF-8解码失败，尝试用GBK或其他编码
+            try:
+                patch_text = patch_content.decode('gbk')
+                # 转换为UTF-8
+                patch_content = patch_text.encode('utf-8')
+                # 创建临时补丁文件
+                temp_patch_file = patch_file + ".utf8"
+                with open(temp_patch_file, 'wb') as f:
+                    f.write(patch_content)
+                patch_file = temp_patch_file
+                print(f"[信息] 已修复补丁文件编码")
+            except UnicodeDecodeError:
+                # 如果GBK也失败，尝试latin-1（这个编码可以解码任何字节序列）
+                patch_text = patch_content.decode('latin-1')
+                patch_content = patch_text.encode('utf-8')
+                temp_patch_file = patch_file + ".utf8"
+                with open(temp_patch_file, 'wb') as f:
+                    f.write(patch_content)
+                patch_file = temp_patch_file
+                print(f"[信息] 已使用通用编码修复补丁文件")
+    except Exception as e:
+        print(f"[警告] 修复补丁文件编码时出错: {e}")
+    
     # 首先尝试使用git am命令应用补丁
     print(f"[尝试] 使用git am应用补丁...")
-    stdout, stderr, code = run_git_command(['git', 'am', '--ignore-space-change','--keep-cr', patch_file], cwd=config_dir, check=False)
+    stdout, stderr, code = run_git_command(['git', 'am', '--ignore-whitespace', '--keep-cr', patch_file], cwd=config_dir, check=False)
     if code == 0:
         print(f"[成功] 使用git am应用补丁成功")
         return True
@@ -33,7 +67,7 @@ def apply_patch(patch_file, config_dir, mod_name):
     
     # 尝试使用git apply命令（方法1）
     print(f"[尝试] 使用git apply方法1应用补丁...")
-    stdout, stderr, code = run_git_command(['git', 'apply', '--ignore-space-change',  patch_file], cwd=config_dir, check=False)
+    stdout, stderr, code = run_git_command(['git', 'apply', '--ignore-whitespace', patch_file], cwd=config_dir, check=False)
     if code == 0:
         # 应用成功，添加并提交更改
         print(f"[成功] 使用git apply方法1应用补丁成功")
@@ -51,19 +85,67 @@ def apply_patch(patch_file, config_dir, mod_name):
     
     # 尝试使用git apply命令（方法2）
     print(f"[尝试] 使用git apply方法2应用补丁...")
-    stdout, stderr, code = run_git_command(['git', 'apply', '--reject', '--whitespace=fix', patch_file], cwd=config_dir, check=False)
+    try:
+        # 使用更宽松的选项
+        stdout, stderr, code = run_git_command(['git', 'apply', '--reject', '--whitespace=fix', '--ignore-whitespace', patch_file], cwd=config_dir, check=False)
+        # 确保stdout和stderr不为None
+        stdout = stdout or ""
+        stderr = stderr or ""
+    except Exception as e:
+        print(f"[警告] git apply方法2执行异常: {e}")
+        stdout = ""
+        stderr = str(e)
+        code = 1  # 设置错误码
     
     # 检查是否有.rej文件（冲突文件）
     has_reject_files = False
+    conflict_files = []
     for root, dirs, files in os.walk(config_dir):
         for file in files:
             if file.endswith('.rej'):
                 has_reject_files = True
                 reject_path = os.path.join(root, file)
-                print(f"[警告] 发现冲突文件: {os.path.relpath(reject_path, config_dir)}")
+                original_file = reject_path[:-4]  # 移除.rej后缀
+                rel_path = os.path.relpath(original_file, config_dir)
+                conflict_files.append(rel_path)
+                print(f"[警告] 发现冲突文件: {rel_path}")
     
     if has_reject_files:
         print(f"[错误] 补丁应用存在冲突，无法自动解决")
+        
+        # 分析冲突文件，查找可能导致冲突的MOD
+        for conflict_file in conflict_files:
+            print(f"\n[分析] 分析冲突文件: {conflict_file}")
+            
+            # 查找修改过该文件的提交
+            stdout, stderr, code = run_git_command(
+                ['git', 'log', '--format=%H:%s', '--', conflict_file], 
+                cwd=config_dir, 
+                check=False
+            )
+            
+            if stdout and code == 0:
+                commits = stdout.strip().split('\n')
+                conflict_mods = []
+                
+                for commit in commits:
+                    if ':' in commit:
+                        commit_hash, commit_msg = commit.split(':', 1)
+                        if commit_msg.startswith("应用MOD:"):
+                            mod_name = commit_msg[5:].strip()
+                            if mod_name not in conflict_mods:
+                                conflict_mods.append(mod_name)
+                
+                if conflict_mods:
+                    print(f"[提示] 以下MOD可能与当前MOD({mod_name})在文件 {conflict_file} 上存在冲突:")
+                    for i, conflict_mod in enumerate(conflict_mods, 1):
+                        print(f"  {i}. {conflict_mod}")
+                    print("[建议] 请检查这些MOD的兼容性，或调整它们的安装顺序")
+                else:
+                    print(f"[信息] 未找到修改过文件 {conflict_file} 的MOD记录")
+            else:
+                print(f"[信息] 无法获取文件 {conflict_file} 的修改历史")
+        
         # 清理工作目录
         run_git_command(['git', 'reset', '--hard'], cwd=config_dir)
         return False
@@ -76,7 +158,7 @@ def apply_patch(patch_file, config_dir, mod_name):
         print(f"[成功] 使用git apply方法2应用补丁成功")
         return True
     else:
-        print(f"[错误] 提交更改失败: {stderr}")
+        print(f"[错误] 提交更改失败: {stderr or '未知错误'}")
         # 清理工作目录
         run_git_command(['git', 'reset', '--hard'], cwd=config_dir)
         return False
