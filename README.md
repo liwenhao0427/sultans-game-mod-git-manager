@@ -2,7 +2,7 @@
 
 苏丹的游戏 MOD 管理器是一个用于游戏MOD管理的项目，它使用Git来管理和更新MOD。
 
-访问地址：  https://liwenhao0427.github.io/sultans-game-mod-manager/
+访问地址：  https://liwenhao0427.github.io/sultans-game-mod-git-manager/
 
 相关项目： 苏丹的游戏剧情阅读器： https://liwenhao0427.github.io/sudans-game-reader/
 
