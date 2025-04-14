@@ -1,0 +1,16 @@
+{
+  "name": "更多结婚选项",
+  "author": "SKP85",
+  "version": "1.0.0",
+  "gameVersion": "2025.04.12",
+  "updateDate": "2025.04.14",
+  "tag": [
+    "自动导入"
+  ],
+  "source": {
+    "name": "SKP85",
+    "url": "https://www.nexusmods.com/sultansgame/mods/3"
+  },
+  "files": [],
+  "patchFile": "patches\\0001-MOD.patch"
+}

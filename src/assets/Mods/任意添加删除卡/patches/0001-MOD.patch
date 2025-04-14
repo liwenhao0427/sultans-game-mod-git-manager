@@ -1,0 +1,2884 @@
+From faa34fb4cc20483d4501a4c58d8828eadf9b1b42 Mon Sep 17 00:00:00 2001
+From: Sultan Mod Manager <mod@example.com>
+Date: Mon, 14 Apr 2025 18:20:10 +0800
+Subject: [PATCH] =?UTF-8?q?=E5=BA=94=E7=94=A8MOD:=20=E4=BB=BB=E6=84=8F?=
+ =?UTF-8?q?=E6=B7=BB=E5=8A=A0=E5=88=A0=E9=99=A4=E5=8D=A1?=
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+---
+ cards.json                 | 282 ++++++++++++++++--
+ event/1600005.json         |  26 ++
+ event/5310002.json         |  19 +-
+ rite/1600001.json          |  83 ++++++
+ rite/1600002.json          |  83 ++++++
+ rite/1600003.json          | 416 ++++++++++++++++++++++++++
+ rite/1600004.json          |  96 ++++++
+ rite/1600005.json          | 595 +++++++++++++++++++++++++++++++++++++
+ rite/1600006.json          | 118 ++++++++
+ rite/1600007.json          | 144 +++++++++
+ rite/5000002.json          | 156 ++++++++--
+ rite/5000129.json          |   4 +
+ rite_template/8000113.json |  10 +-
+ upgrade.json               | 216 +++++++++++---
+ 14 files changed, 2151 insertions(+), 97 deletions(-)
+ create mode 100644 event/1600005.json
+ create mode 100644 rite/1600001.json
+ create mode 100644 rite/1600002.json
+ create mode 100644 rite/1600003.json
+ create mode 100644 rite/1600004.json
+ create mode 100644 rite/1600005.json
+ create mode 100644 rite/1600006.json
+ create mode 100644 rite/1600007.json
+
+diff --git a/cards.json b/cards.json
+index 1482aeb..a94c0ae 100644
+--- a/cards.json
++++ b/cards.json
+@@ -242,6 +242,70 @@
+         ],
+         "is_only": 1
+     },
++    "2030001": {
++        "id": 2030001,
++        "name": "梅布尔",
++        "title": "驯兽师",
++        "text": "没落的贵族，曾远游神秘的东方国度，掌握着一门驯兽的技能，因受到过你的庇护而追随你，祝一臂之力。俺寻思能跟她学习御兽！",
++        "pops": [],
++        "card_favour": "驯兽师",
++        "type": "char",
++        "tips": "",
++        "rare": 3,
++        "resource": "cards/2000509",
++        "tag": {
++            "体魄": 4,
++            "魅力": 3,
++            "智慧": 3,
++            "社交": 3,
++            "战斗": 3,
++            "生存": 2,
++            "女性": 1,
++            "贵族": 1,
++            "纯色材质": 1
++        },
++        "card_vanishing": 0,
++        "vanish": {},
++        "equips": [
++            "武器",
++            "服装",
++            "饰品",
++            "驯兽"
++        ],
++        "is_only": 1
++    },
++    "2030002": {
++        "id": 2030002,
++        "name": "肯德拉",
++        "title": "御兽者",
++        "text": "来自被苏丹征服的草原，掌握着一门驯兽的技能，俺寻思能跟她学习御兽！",
++        "pops": [],
++        "card_favour": "御兽者",
++        "type": "char",
++        "tips": "",
++        "rare": 1,
++        "resource": "cards/2000569",
++        "tag": {
++            "体魄": 3,
++            "魅力": 4,
++            "智慧": 2,
++            "社交": 3,
++            "战斗": 1,
++            "生存": 2,
++            "女性": 1,
++            "奴隶": 1,
++            "纯色材质": 1
++        },
++        "card_vanishing": 0,
++        "vanish": {},
++        "equips": [
++            "武器",
++            "服装",
++            "饰品",
++            "驯兽"
++        ],
++        "is_only": 1
++    },
+     "2000011": {
+         "id": 2000011,
+         "name": "萨米尔",
+@@ -1415,7 +1479,6 @@
+             "男性": 1,
+             "贵族": 1,
+             "爱书人": 1,
+-            "扎齐伊": 1,
+             "反对": 1,
+             "纯色材质": 1
+         },
+@@ -6573,8 +6636,7 @@
+             "魔力": 10,
+             "银趴绝缘者": 1,
+             "怪物": 1,
+-            "纯色材质": 1,
+-            "金色文字": 1,
++            "纯色材质": 1
+         },
+         "card_vanishing": 0,
+         "vanish": {},
+@@ -7004,8 +7066,7 @@
+                     "have.不举的传言":1,
+                     "!is":2000184, //没有双头龙
+                     "!is_rite":5006559,
+-                    "!is_rite":5006558,
+-                    "!is_rite":5000158,           
++                    "!is_rite":5006558     
+                 },
+                 "result_text": "你用出了纵欲卡，那么之前关于你不举的传言是假的？准备接受戏弄苏丹的代价吧！",
+                 "result": 
+@@ -7046,8 +7107,7 @@
+                 "condition": {       
+                     "have.不举的传言":1,
+                     "!is_rite":5006559,
+-                    "!is_rite":5006558,                    
+-                    "!is_rite":5000158,       
++                    "!is_rite":5006558       
+                 },
+                 "result_text": "你用出了纵欲卡，那么之前关于你不举的传言是假的？准备接受戏弄苏丹的代价吧！",
+                 "result": 
+@@ -7088,8 +7148,7 @@
+                 "condition": {       
+                     "have.不举的传言":1,
+                     "!is_rite":5006559,
+-                    "!is_rite":5006558,                    
+-                    "!is_rite":5000158,       
++                    "!is_rite":5006558       
+                 },
+                 "result_text": "你用出了纵欲卡，那么之前关于你不举的传言是假的？准备接受戏弄苏丹的代价吧！",
+                 "result": 
+@@ -7130,8 +7189,7 @@
+                 "condition": {       
+                     "have.不举的传言":1,
+                     "!is_rite":5006559,
+-                    "!is_rite":5006558,                    
+-                    "!is_rite":5000158,      
++                    "!is_rite":5006558      
+                 },
+                 "result_text": "你用出了纵欲卡，那么之前关于你不举的传言是假的？准备接受戏弄苏丹的代价吧！",
+                 "result": 
+@@ -8697,8 +8755,7 @@
+             "可堆叠": 1,
+             "改革": 2,
+             "深度": 4,
+-            "纯色材质": 1,
+-            "金色文字": 1,
++            "纯色材质": 1
+         },
+         "card_vanishing": 0,
+         "vanish": {},
+@@ -13339,6 +13396,7 @@
+             "生存": 1,
+             "银趴绝缘者": 1,
+             "有跟班": 1
++            
+         },
+         "card_vanishing": 0,
+         "vanish": {},
+@@ -17170,8 +17228,7 @@
+             "已拥有": 1,
+             "可堆叠": 1,
+             "传统": 2,
+-            "深度": 4,
+-            "金色文字": 1,
++            "深度": 4
+         },
+         "card_vanishing": 0,
+         "vanish": {},
+@@ -19768,8 +19825,7 @@
+         "resource": "cards/2000847",
+         "tag": {
+             "正神的面容": 1,
+-            "深度": 3,
+-            "金色文字": 1,
++            "深度": 3
+         },
+         "card_vanishing": 0,
+         "vanish": {},
+@@ -19789,8 +19845,7 @@
+         "resource": "cards/2000848",
+         "tag": {
+             "正神的面容": 1,
+-            "深度": 4,
+-            "金色文字": 1,
++            "深度": 4
+         },
+         "card_vanishing": 0,
+         "vanish": {},
+@@ -25863,6 +25918,195 @@
+         "equips": [],
+         "is_only": 0
+     },
++    "2050001": {
++        "id": 2050001,
++        "name": "灰风",
++        "title": "狼王",
++        "text": "凶猛的狼，灰色的毛发，行动迅捷，名字源于其速度和体色。",
++        "pops": [],
++        "card_favour": "",
++        "type": "item",
++        "tips": "",
++        "rare": 3,
++        "resource": "cards/2000712",
++        "tag": {
++            "体魄": 5,
++            "魅力": 2,
++            "智慧": 1,
++            "战斗": 3,
++            "生存": 3,
++            "奇珍": 1,
++            "装备": 1,
++            "动物": 1,
++            "驯兽": 1,
++            "银趴绝缘者": 1,
++            "怪物": 1,
++            "已装备": 1,
++            "纯色材质": 1
++            
++        },
++        "card_vanishing": 0,
++        "vanish": {},
++        "equips": [],
++        "is_only": 1
++    },
++    "2050002": {
++        "id": 2050002,
++        "name": "索罗",
++        "title": "狮王",
++        "text": "体格极为巨大，作为雄狮，它的体重超过二百公斤，肩高1.2米，体长含尾 可达3米左右，整体身材魁梧，肌肉发达",
++        "pops": [],
++        "card_favour": "",
++        "type": "item",
++        "tips": "",
++        "rare": 4,
++        "resource": "cards/2000426",
++        "tag": {
++            "体魄": 6,
++            "魅力": 2,
++            "智慧": 1,
++            "战斗": 4,
++            "生存": 3,
++            "奇珍": 1,
++            "装备": 1,
++            "动物": 1,
++            "驯兽": 1,
++            "银趴绝缘者": 1,
++            "怪物": 1,
++            "已装备": 1,
++            "纯色材质": 1
++            
++        },
++        "card_vanishing": 0,
++        "vanish": {},
++        "equips": [],
++        "is_only": 1
++    },
++    "2050003": {
++        "id": 2050003,
++        "name": "魔戒",
++        "title": "饰品",
++        "text": "拥有未知魔力的戒指，传说苏丹有一枚同款！",
++        "pops": [],
++        "card_favour": "",
++        "type": "item",
++        "tips": "",
++        "rare": 4,
++        "resource": "cards/2000281",
++        "tag": {
++            "装备": 1,
++            "饰品": 1,
++            "魔戒": 1,
++            "魔力": 5,
++            "隐匿": 3,
++            "魅力": 3,
++            "重投": 3,
++            "魅力护符": 3,
++            "已拥有": 1,
++            "已装备": 1,
++            "纯色材质": 1
++        },
++        "card_vanishing": 0,
++        "vanish": {},
++        "equips": [],
++        "is_only": 1
++    },
++    "2050005": {
++        "id": 2050005,
++        "name": "禁忌之书",
++        "title": "禁忌卷轴",
++        "text": "记载了诸多禁忌之术！蕴含某种魔力，掌握它可以获得神秘力量！—————俺寻思能获得援助！但是代价是什么呢！？",
++        "pops": [],
++        "card_favour": "",
++        "type": "item",
++        "tips": "",
++        "rare": 4,
++        "resource": "cards/2000754",
++        "tag": {
++            "装备": 1,
++            "武器": 1,
++            "智慧": 1,
++            "战斗": 3,
++            "魔力": 5,
++            "重投": 1,
++            "已拥有": 1,
++            "已装备": 1,
++            "纯色材质": 1
++            
++            
++            
++            
++        },
++        "card_vanishing": 0,
++        "vanish": {},
++        "equips": [],
++        "is_only": 1
++    },
++    "2050006": {
++        "id": 2050006,
++        "name": "影子分身",
++        "title": "禁忌之影",
++        "text": "使用禁忌之书上记载的'影之术'产生的禁忌之影！他可以代替你操办一切事务！但是代价是什么呢！？",
++        "pops": [],
++        "card_favour": "",
++        "type": "char",
++        "tips": "",
++        "rare": 4,
++        "resource": "cards/2000077",
++        "tag": {
++            "体魄": 10,
++            "魅力": 10,
++            "智慧": 10,
++            "主角": 1,
++            "战斗": 10,
++            "社交": 10,
++            "隐匿": 10,
++            "贵族": 1,
++            "怪物": 1,
++            "支持": 1,
++            "装备": 1,
++            "驯兽": 1,
++            
++        },
++        "card_vanishing": 0,
++        "vanish": {},
++        "equips": [
++         
++        ],
++        "is_only": 1
++    },
++    "2050007": {
++        "id": 2050007,
++        "name": "玖健黎德",
++        "title": "禁忌绿先知",
++        "text": "他总是宣称着自己信仰的神独一无二，掌握着禁忌之书上多种术法，听说最擅长的是‘模仿术’，俺寻思能看他表演！",
++        "pops": [],
++        "card_favour": "绿先知",
++        "type": "char",
++        "tips": "",
++        "rare": 3,
++        "resource": "cards/2000617",
++        "tag": {
++            "体魄": 2,
++            "魅力": 3,
++            "智慧": 3,
++            "社交": 2,
++            "战斗": 1,
++            "生存": 2,
++            "男性": 1,
++            "纯色材质": 1
++            
++        },
++        "card_vanishing": 0,
++        "vanish": {},
++        "equips": [
++            "武器",
++            "服装",
++            "饰品",
++            "驯兽"
++        ],
++        "is_only": 1
++    },
+     "2001137": {
+         "id": 2001137,
+         "name": "百目斗篷",
+diff --git a/event/1600005.json b/event/1600005.json
+new file mode 100644
+index 0000000..252d487
+--- /dev/null
++++ b/event/1600005.json
+@@ -0,0 +1,26 @@
++{
++    "id": 1600005,
++    "text": "走私贸易",     
++    "is_replay": 1, //是否可以重复触发
++    "auto_start_init": [1],
++    "start_trigger": false, // 是否启动就立即开始校验条件
++    "on":{   //时机
++        "round_begin_ba":1
++    },
++    "condition":{  //条件
++        "global_counter.7230001>=":1 
++    },
++    "settlement": [    //效果 
++        {
++            "tips_resource":"", 
++            "tips_text":"",
++            "action":{
++                "rite":1600005,
++                "success":{
++                    "event_off":1600005
++                }
++            }
++        }
++
++    ]
++}
+\ No newline at end of file
+diff --git a/event/5310002.json b/event/5310002.json
+index d8e4f66..503b988 100644
+--- a/event/5310002.json
++++ b/event/5310002.json
+@@ -26,7 +26,11 @@
+                          {
+                              "text": "激进：一位贵族追随者",
+                              "tag": "op2"
+-                         }
++                         },
++                         {
++                            "text": "成年人的选择！",
++                            "tag": "op3"
++                        }
+                      ]
+                  },
+                  "case:op1": {
+@@ -44,7 +48,20 @@
+                     "table.主角专属1-主角专属1":1,
+                     "event_on":5310003,
+                     "counter+7000634":1, //标识选择了法拉杰
++                 },
++                 "case:op3": {
++                    "table.主角专属1+追随者":1,
++                    "table.主角专属1-主角专属1":1,
++                    "table.主角专属3+追随者":1,
++                    "table.主角专属4+追随者":1,
++                    "table.主角专属5+追随者":1,
++                    "table.主角专属3-主角专属3":1,
++                    "table.主角专属4-主角专属4":1,
++                    "table.主角专属5-主角专属5":1,
++                    "event_on":5310003,
++                    "counter+7000634":1, //标识选择了我全都要！
+                  }
++                
+             }
+         }
+ 
+diff --git a/rite/1600001.json b/rite/1600001.json
+new file mode 100644
+index 0000000..7936371
+--- /dev/null
++++ b/rite/1600001.json
+@@ -0,0 +1,83 @@
++{
++    "id": 1600001,
++    "name": "御兽训练",
++    "text": "经过专业的训练，练掌握尖端的御兽术。",
++    "tips": "增加一个御兽槽位",
++    "mapping_id":8001048, //
++    "once_new": 1,
++    "round_number": 0,
++    "waiting_round": 3,
++    "waiting_round_end_action": [],
++    "method_settlement": "",
++    "auto_begin": 0,
++    "auto_result": 0,
++    "location": "自宅:[2,12]",
++    "icon": "rite_23",
++    "tag_tips": [],
++    "tag_tips_up": {},
++    "tips_text": [
++        "可以使自己或追随者获得一个宠物装备槽"
++    ],
++    "open_conditions": [],
++    "random_text": {},
++    "random_text_up": {},
++    "settlement_prior": [],
++    "settlement": [
++            {
++                "condition": {
++                    "s2":1
++ 
++                },
++                "result_title":"学习一下尖端的御兽吧",
++                "result_text": "似乎掌握了了不得的技术！把狮子王叫来！或者来只小猫小马小鳄鱼试试也行……吧？",
++                "result": 
++                { 
++                    
++                "s2+equip_slot":"animal_handling",  //获得动物槽位
++                
++               
++        
++                },
++                "action": {
++                }
++            }
++        ],                
++        "settlement_extre": [
++          
++        ],
++        "cards_slot"://这是触发条件卡
++        {
++          
++            "s1":
++            {
++                "condition":
++                {
++                    "type": "char",//物品卡似乎没有？
++                    "is":2030001 //驯兽师
++               
++                },
++                "open_adsorb":1,
++                "is_key":0,
++                "is_empty":0,
++                "is_enemy":0,
++                "text":"梅布尔"
++            },
++            "s2":
++            {
++                "condition": {
++                "type": "char",
++                "any": {
++                    "!动物": 1,
++                    "is": 2000461
++                },
++                "!怪物": 1
++                
++            },
++            "open_adsorb": 0,
++            "is_key": 0,
++            "is_empty": 0,
++            "is_enemy": 0,
++                "text":"你可以亲自，或让一名追随者接受训练"
++            }
++        }
++    } 
+\ No newline at end of file
+diff --git a/rite/1600002.json b/rite/1600002.json
+new file mode 100644
+index 0000000..96778a5
+--- /dev/null
++++ b/rite/1600002.json
+@@ -0,0 +1,83 @@
++{
++    "id": 1600002,
++    "name": "御兽训练",
++    "text": "经过专业的训练，练掌握尖端的御兽术。",
++    "tips": "增加一个御兽槽位",
++    "mapping_id":8001048, //
++    "once_new": 1,
++    "round_number": 0,
++    "waiting_round": 3,
++    "waiting_round_end_action": [],
++    "method_settlement": "",
++    "auto_begin": 0,
++    "auto_result": 0,
++    "location": "自宅:[2,12]",
++    "icon": "rite_23",
++    "tag_tips": [],
++    "tag_tips_up": {},
++    "tips_text": [
++        "可以使自己或追随者获得一个宠物装备槽"
++    ],
++    "open_conditions": [],
++    "random_text": {},
++    "random_text_up": {},
++    "settlement_prior": [],
++    "settlement": [
++            {
++                "condition": {
++                    "s2":1
++ 
++                },
++                "result_title":"学习一下尖端的御兽吧",
++                "result_text": "似乎掌握了了不得的技术！把狮子王叫来！或者来只小猫小马小鳄鱼试试也行……吧？",
++                "result": 
++                { 
++                    
++                "s2+equip_slot":"animal_handling",  //获得动物槽位
++                
++               
++        
++                },
++                "action": {
++                }
++            }
++        ],                
++        "settlement_extre": [
++          
++        ],
++        "cards_slot"://这是触发条件卡
++        {
++          
++            "s1":
++            {
++                "condition":
++                {
++                    "type": "char",//物品卡似乎没有？
++                    "is":2030002 //御兽者
++               
++                },
++                "open_adsorb":1,
++                "is_key":0,
++                "is_empty":0,
++                "is_enemy":0,
++                "text":"肯德拉"
++            },
++            "s2":
++            {
++                "condition": {
++                "type": "char",
++                "any": {
++                    "!动物": 1,
++                    "is": 2000461
++                },
++                "!怪物": 1
++                
++            },
++            "open_adsorb": 0,
++            "is_key": 0,
++            "is_empty": 0,
++            "is_enemy": 0,
++                "text":"你可以亲自，或让一名追随者接受训练"
++            }
++        }
++    } 
+\ No newline at end of file
+diff --git a/rite/1600003.json b/rite/1600003.json
+new file mode 100644
+index 0000000..fbcf6e0
+--- /dev/null
++++ b/rite/1600003.json
+@@ -0,0 +1,416 @@
++{
++    "id": 1600003,
++    "name": "苍白纸人儿的援助",
++    "text": "苍白纸人儿\n         ———— 制作者",
++    "tips": "bilibili苍白纸人儿",
++    "mapping_id":8001123, //
++    "once_new": 1,
++    "round_number": 0,
++    "waiting_round": 1,
++    "waiting_round_end_action": [],
++    "method_settlement": "",
++    "auto_begin": 0,
++    "auto_result": 0,//需要手动启动,
++    "location": "野外:[10,15]",
++    "icon": "rite_9",
++    "tag_tips": [],
++    "tag_tips_up": {},
++    "tips_text": [
++        "放入你想的一切进行仪式吧,\n金币？（奢靡）\n装备？（杀戮）\n动物？（征服）\n或者是人呢！\n别担心，它们不会消失！\n除非那是..."
++    ],
++    "open_conditions": [
++      
++        ],
++    "random_text": {},
++    "random_text_up": {},
++    "settlement_prior": [],
++    "settlement": [
++            {
++                
++                "condition": {
++                "is":[2000680,2000326,2000083,2000558,2010001,2010002,2010003,2010004,2010005,2010006,2010007,2010008,2010009,2010010,2010011,2010012,2010013,2010014,2010015,2010016]
++            },
++            "result_title":"既然你已一键三连",
++            "result_text": "这[s1.name]卡我就帮你斩断吧\n苍白纸人儿手起刀落...",
++            "result": 
++            {    
++                "clean.s1":1
++                
++            },
++            "action": { 
++                
++            }
++            },
++            {
++                "condition": {
++                    "is":[2000986,2001032] //乙太   小狗哨子 
++                    
++                },
++                "result_title":"既然你已一键三连",
++                "result_text": "这[s1.name]我就帮你再创造一份吧\n苍白纸人儿使用魔力...",
++                "result": 
++                {    
++                    "copy.s1":1
++                },
++                "action": { 
++                    
++                }
++            },
++            {
++                "condition": {
++                   "动物": 1,
++                   "rare=":3,
++                   "is":2000461
++                
++                },
++                "result_title":"既然你已一键三连",
++                "result_text": "我就帮你创造一张征服吧\n苍白纸人儿使用魔力...",
++                "result": 
++                {    
++                    "card":[2010015,"已拥有+1"]  //银
++                },
++                "action": { 
++                    
++                }
++            },
++            {
++                "condition": {
++                   "动物": 1,
++                   "rare=":4
++                
++                },
++                "result_title":"既然你已一键三连",
++                "result_text": "我就帮你创造一张征服吧\n苍白纸人儿使用魔力...",
++                "result": 
++                {    
++                    "card":[2010016,"已拥有+1"]  //金
++                },
++                "action": { 
++                    
++                }
++            },
++            {
++                "condition": {
++                   "动物": 1,
++                   "rare=":1
++                
++                },
++                "result_title":"既然你已一键三连",
++                "result_text": "我就帮你创造一张征服吧\n苍白纸人儿使用魔力...",
++                "result": 
++                {    
++                    "card":[2010013,"已拥有+1"]  //石
++                },
++                "action": { 
++                    
++                }
++            },
++            {
++                "condition": {
++                   "动物": 1,
++                   "rare=":2
++                
++                },
++                "result_title":"既然你已一键三连",
++                "result_text": "我就帮你创造一张征服吧\n苍白纸人儿使用魔力...",
++                "result": 
++                {    
++                    "card":[2010014,"已拥有+1"]  //铜
++                },
++                "action": { 
++                    
++                }
++            },
++            {
++                "condition": {
++                   "装备": 1,
++                   "!动物": 1,
++                   "!怪物": 1,
++                   "rare=":1
++                
++                },
++                "result_title":"既然你已一键三连",
++                "result_text": "我就帮你创造一张杀戮吧\n苍白纸人儿使用魔力...",
++                "result": 
++                {    
++                    "card":[2010001,"已拥有+1"]  //石
++                },
++                "action": { 
++                    
++                }
++            },
++            {
++                "condition": {
++                   "装备": 1,
++                   "!动物": 1,
++                   "!怪物": 1,
++                   "rare=":2
++                
++                },
++                "result_title":"既然你已一键三连",
++                "result_text": "我就帮你创造一张杀戮吧\n苍白纸人儿使用魔力...",
++                "result": 
++                {    
++                    "card":[2010002,"已拥有+1"]  //铜
++                },
++                "action": { 
++                    
++                }
++            },
++            {
++                "condition": {
++                   "装备": 1,
++                   "!动物": 1,
++                   "!怪物": 1,
++                   "rare=":3
++                
++                },
++                "result_title":"既然你已一键三连",
++                "result_text": "我就帮你创造一张杀戮吧\n苍白纸人儿使用魔力...",
++                "result": 
++                {    
++                    "card":[2010003"已拥有+1"]  //银
++                },
++                "action": { 
++                    
++                }
++            },
++            {
++                "condition": {
++                   "装备": 1,
++                   "!动物": 1,
++                   "!怪物": 1,
++                   "rare=":4
++                
++                },
++                "result_title":"既然你已一键三连",
++                "result_text": "我就帮你创造一张杀戮吧\n苍白纸人儿使用魔力...",
++                "result": 
++                {    
++                    "card":[2010004,"已拥有+1"]  //金
++                },
++                "action": { 
++                    
++                }
++            },
++            {
++                "condition": {
++                  "type": "char",
++                  "!动物": 1,
++                   "!怪物": 1,
++                   "rare=":1
++                
++                },
++                "result_title":"既然你已一键三连",
++                "result_text": "我就帮你创造一张纵欲吧\n苍白纸人儿使用魔力...",
++                "result": 
++                {    
++                    "card":[2010005,"已拥有+1"]  //石
++                },
++                "action": { 
++                    
++                }
++            },
++            {
++                "condition": {
++                  "type": "char",
++                  "!动物": 1,
++                   "!怪物": 1,
++                   "rare=":2
++                
++                },
++                "result_title":"既然你已一键三连",
++                "result_text": "我就帮你创造一张纵欲吧\n苍白纸人儿使用魔力...",
++                "result": 
++                {    
++                    "card":[2010006,"已拥有+1"]  //tong
++                },
++                "action": { 
++                    
++                }
++            },
++            {
++                "condition": {
++                  "type": "char",
++                  "!动物": 1,
++                   "!怪物": 1,
++                   "rare=":3
++                
++                },
++                "result_title":"既然你已一键三连",
++                "result_text": "我就帮你创造一张纵欲吧\n苍白纸人儿使用魔力...",
++                "result": 
++                {    
++                    "card":[2010007,"已拥有+1"]  //yin
++                },
++                "action": { 
++                    
++                }
++            },
++            {
++                "condition": {
++                  "type": "char",
++                  "!动物": 1,
++                   "!怪物": 1,
++                   "rare=":4
++                
++                },
++                "result_title":"既然你已一键三连",
++                "result_text": "我就帮你创造一张纵欲吧\n苍白纸人儿使用魔力...",
++                "result": 
++                {    
++                    "card":[2010008,"已拥有+1"]  //jin
++                },
++                "action": { 
++                    
++                }
++            },
++            {
++                "condition": {
++                    "type":"item",
++                  "s1.金币=":1 //放的是金币
++                  
++                },
++                "result_title":"既然你已一键三连",
++                "result_text": "我就帮你创造一张奢靡吧\n苍白纸人儿使用魔力...",
++                "result": 
++                {    
++                    "card":[2010012,"已拥有+1"]  //金
++                     
++                },
++                "action": { 
++                    
++                }
++            },
++            {
++                "condition": {
++                  "type": "item",
++                  "s1.金币=":4 //放的是金币
++                  
++                
++                },
++                "result_title":"既然你已一键三连",
++                "result_text": "我就帮你创造一张奢靡吧\n苍白纸人儿使用魔力...",
++                "result": 
++                {    
++                    "card":[2010009,"已拥有+1"]  //shi
++                },
++                "action": { 
++                    
++                }
++            },
++            {
++                "condition": {
++                   "type":[ "item", "char"],
++                  "s1.金币=":3  //放的是金币
++                    
++                },
++                "result_title":"既然你已一键三连",
++                "result_text": "我就帮你创造一张奢靡吧\n苍白纸人儿使用魔力...",
++                "result": 
++                {    
++                    "card":[2010010,"已拥有+1"]  //tong
++                },
++                "action": { 
++                    
++                }
++            },
++            {
++                "condition": {
++                  "type": "item",
++                  "s1.金币=":2  //放的是金币
++                
++                },
++                "result_title":"既然你已一键三连",
++                "result_text": "我就帮你创造一张奢靡吧\n苍白纸人儿使用魔力...",
++                "result": 
++                {    
++                    "card":[2010011,"已拥有+1"]  //银
++                },
++                "action": { 
++                    
++                }
++            },
++            {
++                "condition": {
++                  "type": "item",
++                  "s1.金币>=":5  //放的是金币
++                
++                },
++                "result_title":"既然你已一键三连",
++                "result_text": "我就帮你创造一张奢靡吧\n苍白纸人儿使用魔力...",
++                "result": 
++                {    
++                    "card":[2010012,"已拥有+1"]  //jin
++                },
++                "action": { 
++                    
++                }
++            },
++            {
++                "condition": {
++                  "is":2050006
++                
++                },
++                "result_title":"既然你已一键三连",
++                "result_text": "我就帮你创造一张奢靡吧\n苍白纸人儿使用魔力...",
++                "result": 
++                {    
++                    "card":[2010012,"已拥有+1"]  //jin
++                },
++                "action": { 
++                    
++                }
++            }
++            
++            
++        ],                
++        "settlement_extre": [
++          
++        ],
++        "cards_slot":
++    {
++        "s1":
++            {
++                "condition": 
++                {
++                    "any":{
++                            "type":["sudan", "item", "char"],
++                            
++                        }
++                },
++                "open_adsorb":0,
++                "is_key":0,
++                "is_empty":0, // 不能为空
++                "is_enemy":0, 
++                "text":"放入你想的一切进行仪式吧,金币？装备？动物,或者是人呢！别担心，它们不会消失！除非那是...",                   
++                "pops":[
++                    {
++                        "condition":{
++                        },
++                        "action":{
++                            "pop.5006559_s1_01.self":"<i>强大的魔力...</i>"
++                        }
++                    },
++                    {
++                        "condition":{
++                            "!type":"char",
++                            "!装备":1,
++                            "!情报":1,
++                            "!金币":1,
++                            "!大餐":1,
++                            "情报":1,
++                            "怪物":1,
++                            "!is":2000558,
++                            "!is":2000083  
++                        },
++                        "action":{
++                            "pop.5006557_s1_06.self":"这可无能为力"
++                        }
++                    }
++                ] 
++                
++            }
++            
++    }
++} 
+\ No newline at end of file
+diff --git a/rite/1600004.json b/rite/1600004.json
+new file mode 100644
+index 0000000..3bba195
+--- /dev/null
++++ b/rite/1600004.json
+@@ -0,0 +1,96 @@
++{
++  "id": 1600004,
++  "name": "魔戒之力",
++  "text": "强大的魔戒啊！其中究竟蕴含了什么样的魔力！？",       
++  "tips": "bilibili苍白纸人儿",
++  "mapping_id":8001049, //
++  "once_new":1,
++  "round_number": 0,
++  "waiting_round":1,
++  "waiting_round_end_action":[
++  ],
++  "method_settlement": "",
++  "auto_begin": 0,
++  "auto_result":0,
++  "location": "商业区:[7,19]",
++  "icon": "rite_20", 
++  "tag_tips": [
++  ],
++  "tag_tips_up":{
++  },
++  "tips_text":["\n试试让不同的角色来体验它吧！\n黄金品阶之下的角色才能进阶"
++  ],
++  "open_conditions": [
++  ],
++  "random_text":{
++  },
++  "random_text_up":{
++  },
++  "settlement_prior": [
++  ],                
++  "settlement": [
++      {
++          "condition":
++          {"s1.rare<=":3
++             },
++          "result_title":"耳边似乎响起旋律！",
++          "result_text": "[s1.name] 超进化！\n有什么 WOW WOW~~ 会传达至这片天空吧\n但是 WOW WOW~~ 明天会怎样谁都无法预料\n无限大的梦想之后 是这空无一物的世界\n ...  ...  \n看似不可靠的翅膀 也一定能展翅高飞\n On My Love~~~",
++          "result": 
++          {
++            
++            "s1.uprare":1,
++            "s1-纵欲的痕迹":1,
++            "s1+体魄": 1, //体魄+1
++            "s1+魅力": 1, //魅力+1
++            "s1+智慧": 1, //智慧+1
++            "s1+战斗": 1, //战斗+1
++            "s1+社交": 1, //体魄+1
++            "s1+魔力": 1 //魔力+1
++            
++          
++          
++          },
++          "action":
++          {
++    
++          }
++      }
++  ],                
++  "settlement_extre": [
++  ],
++  "cards_slot":       
++  {
++    "s1":
++        {
++            "condition": 
++            {
++                "type":"char" ,
++                
++                "!is": 2000129,
++                "!怪物":1,
++                "rare<=":3
++                            
++            },
++            "open_adsorb":0,
++            "is_key":0,
++            "is_empty":0,
++            "is_enemy":0,
++            "text":"强大的魔戒啊！其中究竟蕴含了什么样的魔力！？\n试试让不同的角色来体验它吧！\n黄金品阶之下的角色才能进阶！" 
++        },
++      "s2":
++              {
++                  "condition": 
++                  {
++                      "is":2050003
++                                             
++                  },
++                  "open_adsorb":1,
++                  "is_key":0,
++                  "is_empty":0,
++                  "is_enemy":0,
++                  "text":"魔戒"
++              }
++        
++}
++
++} 
+\ No newline at end of file
+diff --git a/rite/1600005.json b/rite/1600005.json
+new file mode 100644
+index 0000000..eb72e41
+--- /dev/null
++++ b/rite/1600005.json
+@@ -0,0 +1,595 @@
++{
++    "id": 1600005,
++    "name": "援助部落",
++    "text": "苍白纸人儿\n         ———— 制作者",
++    "tips": "bilibili苍白纸人儿",
++    "mapping_id":8000011, //
++    "once_new": -1,
++    "round_number": 1,
++    "waiting_round": 0,
++    "waiting_round_end_action": [],
++    "method_settlement": "",
++    "auto_begin": 0,
++    "auto_result": 0,//需要手动启动,
++    "location": "野外:[1,6]",
++    "icon": "rite_9",
++    "tag_tips": [],
++    "tag_tips_up": {},
++    "tips_text": [
++        "放入你不想要的一切吧！落后的部落什么都要！"
++    ],
++    "open_conditions": [
++      
++        ],
++    "random_text": {},
++    "random_text_up": {},
++    "settlement_prior": [],
++    "settlement": [
++            {
++                
++                "condition": { 
++                    "s1":1
++                    
++                
++            },
++            "result_title":"苍白纸人帮你联络了部落",
++            "result_text": "既然你都不要了\n就捐助给落后的部落吧\n...",
++            "result": 
++            {    
++                "clean.s1":1,
++                "clean.s2":1,
++                "clean.s3":1,
++                "clean.s4":1,
++                "clean.s5":1,
++                "clean.s6":1,
++                "clean.s7":1,
++                "clean.s8":1,
++                "clean.s9":1,
++                "clean.s10":1
++                
++                
++                
++
++            },
++            "action": {"rite":1600005 
++                
++            }
++            },
++            {
++                
++                "condition": { 
++                    "s2":1
++                    
++                
++            },
++            "result_title":"苍白纸人帮你联络了部落",
++            "result_text": "既然你都不要了\n就捐助给落后的部落吧\n...",
++            "result": 
++            {    
++                "clean.s1":1,
++                "clean.s2":1,
++                "clean.s3":1,
++                "clean.s4":1,
++                "clean.s5":1,
++                "clean.s6":1,
++                "clean.s7":1,
++                "clean.s8":1,
++                "clean.s9":1,
++                "clean.s10":1
++
++            },
++            "action": {"rite":1600005 
++                
++            }
++            },
++            {
++                
++                "condition": { 
++                    "s3":1
++                    
++                
++            },
++            "result_title":"苍白纸人帮你联络了部落",
++            "result_text": "既然你都不要了\n就捐助给落后的部落吧\n...",
++            "result": 
++            {    
++                "clean.s1":1,
++                "clean.s2":1,
++                "clean.s3":1,
++                "clean.s4":1,
++                "clean.s5":1,
++                "clean.s6":1,
++                "clean.s7":1,
++                "clean.s8":1,
++                "clean.s9":1,
++                "clean.s10":1
++
++            },
++            "action": {"rite":1600005 
++                
++            }
++            },
++            {
++                
++                "condition": { 
++                    "s4":1
++                    
++                
++            },
++            "result_title":"苍白纸人帮你联络了部落",
++            "result_text": "既然你都不要了\n就捐助给落后的部落吧\n...",
++            "result": 
++            {    
++                "clean.s1":1,
++                "clean.s2":1,
++                "clean.s3":1,
++                "clean.s4":1,
++                "clean.s5":1,
++                "clean.s6":1,
++                "clean.s7":1,
++                "clean.s8":1,
++                "clean.s9":1,
++                "clean.s10":1
++
++            },
++            "action": {"rite":1600005 
++                
++            }
++            },
++            {
++                
++                "condition": { 
++                    "s5":1
++                    
++                
++            },
++            "result_title":"苍白纸人帮你联络了部落",
++            "result_text": "既然你都不要了\n就捐助给落后的部落吧\n...",
++            "result": 
++            {    
++                "clean.s1":1,
++                "clean.s2":1,
++                "clean.s3":1,
++                "clean.s4":1,
++                "clean.s5":1,
++                "clean.s6":1,
++                "clean.s7":1,
++                "clean.s8":1,
++                "clean.s9":1,
++                "clean.s10":1
++            },
++            "action": {"rite":1600005 
++                
++            }
++            },
++            {
++                
++                "condition": { 
++                    "s6":1
++                    
++                
++            },
++            "result_title":"苍白纸人帮你联络了部落",
++            "result_text": "既然你都不要了\n就捐助给落后的部落吧\n...",
++            "result": 
++            {    
++                "clean.s1":1,
++                "clean.s2":1,
++                "clean.s3":1,
++                "clean.s4":1,
++                "clean.s5":1,
++                "clean.s6":1,
++                "clean.s7":1,
++                "clean.s8":1,
++                "clean.s9":1,
++                "clean.s10":1
++            },
++            "action": {"rite":1600005 
++                
++            }
++            },
++            {
++                
++                "condition": { 
++                    "s7":1
++                    
++                
++            },
++            "result_title":"苍白纸人帮你联络了部落",
++            "result_text": "既然你都不要了\n就捐助给落后的部落吧\n...",
++            "result": 
++            {    
++                "clean.s1":1,
++                "clean.s2":1,
++                "clean.s3":1,
++                "clean.s4":1,
++                "clean.s5":1,
++                "clean.s6":1,
++                "clean.s7":1,
++                "clean.s8":1,
++                "clean.s9":1,
++                "clean.s10":1
++
++            },
++            "action": {"rite":1600005 
++                
++            }
++            },
++            {
++                
++                "condition": { 
++                    "s8":1
++                    
++                
++            },
++            "result_title":"苍白纸人帮你联络了部落",
++            "result_text": "既然你都不要了\n就捐助给落后的部落吧\n...",
++            "result": 
++            {    
++                "clean.s1":1,
++                "clean.s2":1,
++                "clean.s3":1,
++                "clean.s4":1,
++                "clean.s5":1,
++                "clean.s6":1,
++                "clean.s7":1,
++                "clean.s8":1,
++                "clean.s9":1,
++                "clean.s10":1
++
++            },
++            "action": {"rite":1600005 
++                
++            }
++            },
++            {
++                
++                "condition": { 
++                    "s9":1
++                    
++                
++            },
++            "result_title":"苍白纸人帮你联络了部落",
++            "result_text": "既然你都不要了\n就捐助给落后的部落吧\n...",
++            "result": 
++            {    
++                "clean.s1":1,
++                "clean.s2":1,
++                "clean.s3":1,
++                "clean.s4":1,
++                "clean.s5":1,
++                "clean.s6":1,
++                "clean.s7":1,
++                "clean.s8":1,
++                "clean.s9":1,
++                "clean.s10":1
++
++            },
++            "action": {"rite":1600005 
++                
++            }
++            },
++            {
++                
++                "condition": { 
++                    "s10":1
++                    
++                
++            },
++            "result_title":"苍白纸人帮你联络了部落",
++            "result_text": "既然你都不要了\n就捐助给落后的部落吧\n...",
++            "result": 
++            {    
++                "clean.s1":1,
++                "clean.s2":1,
++                "clean.s3":1,
++                "clean.s4":1,
++                "clean.s5":1,
++                "clean.s6":1,
++                "clean.s7":1,
++                "clean.s8":1,
++                "clean.s9":1,
++                "clean.s10":1
++
++            },
++            "action": {"rite":1600005 
++                
++            }
++            }
++            
++            
++        ],                
++        "settlement_extre": [
++          
++        ],
++        "cards_slot":
++    {
++        "s1":
++            {
++                "condition": 
++                {
++                    "any":{
++                        "type": ["item","sudan","char"],
++                     "!主角":1
++                    }
++                    
++                    
++                      
++                },
++                "open_adsorb":0,
++                "is_key":0,
++                "is_empty":1, // 不能为空
++                "is_enemy":0, 
++                "text":"放入你不想要的一切吧！落后的部落什么都要！",                   
++                "pops":[
++                    {
++                        "condition":{
++                            
++                        },
++                        "action":{
++                            "pop.5006559_s1_01.self":"<i>部落会拿走你放入的一切...</i>"
++                        }
++                    }
++                    
++                ] 
++                
++            },
++            "s2":
++            {
++                "condition": 
++                {
++                    "any":{
++                        "type": ["item","sudan","char"]
++                     ,"!主角":1
++                    }
++                      
++                },
++                "open_adsorb":0,
++                "is_key":0,
++                "is_empty":1, // 不能为空
++                "is_enemy":0, 
++                "text":"放入你不想要的一切吧！落后的部落什么都要！",                   
++                "pops":[
++                    {
++                        "condition":{
++                            
++                        },
++                        "action":{
++                            "pop.5006559_s1_01.self":"<i>部落会拿走你放入的一切...</i>"
++                        }
++                    }
++                    
++                ] 
++                
++            },
++            "s3":
++            {
++                "condition": 
++                {
++                   "any":{
++                        "type": ["item","sudan","char"]
++                        ,"!主角":1
++                    }
++                },
++                "open_adsorb":0,
++                "is_key":0,
++                "is_empty":1, // 不能为空
++                "is_enemy":0, 
++                "text":"放入你不想要的一切吧！落后的部落什么都要！",                   
++                "pops":[
++                    {
++                        "condition":{
++                            
++                        },
++                        "action":{
++                            "pop.5006559_s1_01.self":"<i>部落会拿走你放入的一切...</i>"
++                        }
++                    }
++                    
++                ] 
++                
++            },
++            "s4":
++            {
++                "condition": 
++                {
++                    
++                    "any":{
++                        "type": ["item","sudan","char"]
++                        ,"!主角":1
++                    }
++                      
++                },
++                "open_adsorb":0,
++                "is_key":0,
++                "is_empty":1, // 不能为空
++                "is_enemy":0, 
++                "text":"放入你不想要的一切吧！落后的部落什么都要！",                   
++                "pops":[
++                    {
++                        "condition":{
++                            
++                        },
++                        "action":{
++                            "pop.5006559_s1_01.self":"<i>部落会拿走你放入的一切...</i>"
++                        }
++                    }
++                    
++                ] 
++                
++            },
++            "s5":
++            {
++                "condition": 
++                {
++                    "any":{
++                        "type": ["item","sudan","char"],"!主角":1
++                     
++                    }
++                },
++                "open_adsorb":0,
++                "is_key":0,
++                "is_empty":1, // 不能为空
++                "is_enemy":0, 
++                "text":"放入你不想要的一切吧！落后的部落什么都要！",                   
++                "pops":[
++                    {
++                        "condition":{
++                            
++                        },
++                        "action":{
++                            "pop.5006559_s1_01.self":"<i>部落会拿走你放入的一切...</i>"
++                        }
++                    }
++                    
++                ] 
++                
++            },
++            "s6":
++            {
++                "condition": 
++                {
++                   "any":{
++                        "type": ["item","sudan","char"]
++                        ,"!主角":1
++                    }
++                      
++                },
++                "open_adsorb":0,
++                "is_key":0,
++                "is_empty":1, // 不能为空
++                "is_enemy":0, 
++                "text":"放入你不想要的一切吧！落后的部落什么都要！",                   
++                "pops":[
++                    {
++                        "condition":{
++                            
++                        },
++                        "action":{
++                            "pop.5006559_s1_01.self":"<i>部落会拿走你放入的一切...</i>"
++                        }
++                    }
++                    
++                ] 
++                
++            },
++            "s7":
++            {
++                "condition": 
++                {
++                    
++                    "any":{
++                        "type": ["item","sudan","char"]
++                        ,"!主角":1
++                    }
++                      
++                },
++                "open_adsorb":0,
++                "is_key":0,
++                "is_empty":1, // 不能为空
++                "is_enemy":0, 
++                "text":"放入你不想要的一切吧！落后的部落什么都要！",                   
++                "pops":[
++                    {
++                        "condition":{
++                            
++                        },
++                        "action":{
++                            "pop.5006559_s1_01.self":"<i>部落会拿走你放入的一切...</i>"
++                        }
++                    }
++                    
++                ] 
++                
++            },
++            "s8":
++            {
++                "condition": 
++                {
++                    
++                   "any":{
++                        "type": ["item","sudan","char"]
++                        ,"!主角":1
++                    }
++                      
++                },
++                "open_adsorb":0,
++                "is_key":0,
++                "is_empty":1, // 不能为空
++                "is_enemy":0, 
++                "text":"放入你不想要的一切吧！落后的部落什么都要！",                   
++                "pops":[
++                    {
++                        "condition":{
++                            
++                        },
++                        "action":{
++                            "pop.5006559_s1_01.self":"<i>部落会拿走你放入的一切...</i>"
++                        }
++                    }
++                    
++                ] 
++                
++            },
++            "s9":
++            {
++                "condition": 
++                {
++                    
++                   "any":{
++                        "type": ["item","sudan","char"]
++                        ,"!主角":1
++                    }
++                      
++                },
++                "open_adsorb":0,
++                "is_key":0,
++                "is_empty":1, // 不能为空
++                "is_enemy":0, 
++                "text":"放入你不想要的一切吧！落后的部落什么都要！",                   
++                "pops":[
++                    {
++                        "condition":{
++                            
++                        },
++                        "action":{
++                            "pop.5006559_s1_01.self":"<i>部落会拿走你放入的一切...</i>"
++                        }
++                    }
++                    
++                ] 
++                
++            },
++            "s10":
++            {
++                "condition": 
++                {
++                    
++                    "any":{
++                        "type": ["item","sudan","char"]
++                        ,"!主角":1
++                    }
++                      
++                },
++                "open_adsorb":0,
++                "is_key":0,
++                "is_empty":1, // 不能为空
++                "is_enemy":0, 
++                "text":"放入你不想要的一切吧！落后的部落什么都要！",                   
++                "pops":[
++                    {
++                        "condition":{
++                            
++                        },
++                        "action":{
++                            "pop.5006559_s1_01.self":"<i>部落会拿走你放入的一切...</i>"
++                        }
++                    }
++                    
++                ] 
++                
++            }
++            
++            
++    }
++} 
+\ No newline at end of file
+diff --git a/rite/1600006.json b/rite/1600006.json
+new file mode 100644
+index 0000000..0591f0d
+--- /dev/null
++++ b/rite/1600006.json
+@@ -0,0 +1,118 @@
++{
++    "id": 1600006,
++    "name": "多重影分身！",
++    "text": "见识下真正的影分身吧！\n准备好迎接我们的新伙伴了吗！？",       
++    "tips": "bilibili苍白纸人儿",
++    "mapping_id":8001049, //
++    "once_new":1,
++    "round_number": 0,
++    "waiting_round":1,
++    "waiting_round_end_action":[
++    ],
++    "method_settlement": "",
++    "auto_begin": 0,
++    "auto_result":0,
++    "location": "商业区:[7,19]",
++    "icon": "rite_20", 
++    "tag_tips": [
++    ],
++    "tag_tips_up":{
++    },
++    "tips_text":["苍白纸人儿的魔力吗...不这是查克拉！？\n准备好迎接我们的新伙伴了吗！"
++    ],
++    "open_conditions": [
++    ],
++    "random_text":{
++    },
++    "random_text_up":{
++    },
++    "settlement_prior": [
++    ],                
++    "settlement": [
++        {
++            "condition":
++            {"s1":1
++               },
++            "result_title":"全来吧你",
++            "result_text": " 苍白纸人儿使用了影分身！\n卡其吗息脑姬资!",
++            "result": 
++            {
++              "card":[2000005,"追随者+1"],
++              "card":[2000008,"追随者+1"],
++              "card":[2000009,"追随者+1"],
++              "card":[2000011,"追随者+1","反对-1","支持+1"],
++              "card":[2000012,"追随者+1","反对-1","支持+1"],
++              "card":[2000013,"追随者+1"],
++              "card":[2000014,"追随者+1"],
++              "card":[2000351,"追随者+1","反对-1","支持+1"],
++              "card":[2000352,"追随者+1","支持+1"],//"玛希尔"
++              "card":[2000056,"追随者+1"],
++              "card":[2000057,"追随者+1"],
++              "card":[2000069,"追随者+1"],
++              "card":[2000123,"追随者+1"],
++              "card":[2000062,"追随者+1","反对-1","支持+1"],
++              "card":[2000063,"追随者+1","反对-1","支持+1"],
++              "card":[2000064,"追随者+1","反对-1","支持+1"],
++              "card":[2000114,"追随者+1"],
++              "card":[2000061,"追随者+1","反对-1","支持+1"],
++              "card":[2000055,"追随者+1"],
++              "card":[2000054,"追随者+1","反对-1","支持+1"],
++              "card":[2000164,"追随者+1","支持+1"],//阿穆尔
++              "card":[2000350,"追随者+1","支持+1"],//法尔达克
++              "card":[2000022,"追随者+1"],
++              "card":[2000065,"追随者+1","反对-1","支持+1"],
++              "card":[2000080,"追随者+1"],
++              "card":[2000081,"追随者+1"],
++              "card":[2000082,"追随者+1"],//
++              "card":[2000337,"已拥有"],//茉莉
++              "card":[2000605,"追随者+1","已拥有+1"],
++              "card":[2000195,"追随者+1"],//"拉伊德"
++              "card":[2000196,"追随者+1"],//"杰莫尔",
++              "card":[2000197,"追随者+1"],//"哈马尔",
++              "card":[2000771,"追随者+1"],//"芮尔",
++
++     
++             
++            
++            },
++            "action":
++            {
++      
++            }
++        }
++    ],                
++    "settlement_extre": [
++    ],
++    "cards_slot":       
++    {
++      "s1":
++          {
++              "condition": 
++              {
++                  "type":"item", 
++                  "cost.金币":10   //10金币
++                              
++              },
++              "open_adsorb":0,
++              "is_key":0,
++              "is_empty":0,
++              "is_enemy":0,
++              "text":"强大的魔戒啊！其中究竟蕴含了什么样的魔力！？\n试试让不同的角色来体验它吧！\n黄金品阶之下的角色才能进阶！" 
++          },
++        "s2":
++                {
++                    "condition": 
++                    {
++                        "is":2050006
++                                               
++                    },
++                    "open_adsorb":1,
++                    "is_key":0,
++                    "is_empty":0,
++                    "is_enemy":0,
++                    "text":"影子"
++                }
++          
++  }
++  
++  } 
+\ No newline at end of file
+diff --git a/rite/1600007.json b/rite/1600007.json
+new file mode 100644
+index 0000000..6c24e9c
+--- /dev/null
++++ b/rite/1600007.json
+@@ -0,0 +1,144 @@
++{
++    "id": 1600007,
++    "name": "绿先知魔力",
++    "text": "苍白纸人儿\n         ———— 制作者",
++    "tips": "bilibili苍白纸人儿",
++    "mapping_id":8000063, //
++    "once_new": 1,
++    "round_number": 0,
++    "waiting_round": 1,
++    "waiting_round_end_action": [],
++    "method_settlement": "",
++    "auto_begin": 0,
++    "auto_result": 0,//需要手动启动,
++    "location": "自宅:[2,12]",
++    "icon": "rite_20",
++    "tag_tips": [],
++    "tag_tips_up": {},
++    "tips_text": [
++        "放入你想的一切验证绿先知的魔力吧,\n我保证你会得到双份！..."
++    ],
++    "open_conditions": [
++      
++        ],
++    "random_text": {},
++    "random_text_up": {},
++    "settlement_prior": [],
++    "settlement": [
++            {
++                
++                "condition": {
++                "!消耗品":1
++            },
++            "result_title":"既然你已一键三连",
++            "result_text": "这[s1.name]卡我就帮你复制吧\n...",
++            "result": 
++            {    
++                "copy.s1":1
++            },
++            "action": {
++            }
++            },
++            {
++                
++                "condition": {
++                "消耗品":1
++            },
++            "result_title":"",
++            "result_text": "",
++            "result": 
++            {    
++                "copy.s1":1
++                
++
++
++            },
++            "action": {
++            }
++            }
++            
++            
++        ],                
++        "settlement_extre": [
++            {
++                
++                "condition": {
++                "消耗品":1
++            },
++            "result_title":"既然你已一键三连",
++            "result_text": "这[s1.name]卡我就帮你复制吧\n...",
++            "result": 
++            {    
++                "copy.s1":1
++                
++
++
++            },
++            "action": {
++            }
++            }
++            
++          
++        ],
++        "cards_slot":
++    {
++        "s1":
++            {
++                "condition": 
++                {
++                    
++                    "type":["item",
++                     "char"]
++                    
++                      
++                },
++                "open_adsorb":0,
++                "is_key":0,
++                "is_empty":0, // 不能为空
++                "is_enemy":0, 
++                "text":"放入你想的一切验证绿先知的魔力吧,\n我保证你会得到双份！...除非那是...",                   
++                "pops":[
++                    {
++                        "condition":{
++                            
++                        },
++                        "action":{
++                            "pop.5006559_s1_01.self":"<i>绿先知的魔力...</i>"
++                        }
++                    }
++                    
++                ] 
++                
++            },
++            "s2":
++            {
++                "condition": 
++                {
++                    
++                            
++                            
++                            "is":[2050007]
++                  
++                        
++                },
++                "open_adsorb":1,
++                "is_key":0,
++                "is_empty":0, // 不能为空
++                "is_enemy":0, 
++                "text":"绿先知",                   
++                "pops":[
++                    {
++                        "condition":{
++                            
++                        },
++                        "action":{
++                            "pop.5006559_s1_01.self":"<i>绿先知的魔力...</i>"
++                        }
++                    }
++                    
++                ] 
++                
++            }
++            
++    }
++} 
+\ No newline at end of file
+diff --git a/rite/5000002.json b/rite/5000002.json
+index 02e4970..fce41f3 100644
+--- a/rite/5000002.json
++++ b/rite/5000002.json
+@@ -378,6 +378,126 @@
+                     }
+                 }
+             },
++            {
++                "condition":
++                {                  
++                    "s1.is":2050007 //禁忌绿先知
++                },
++                "result_title":"",
++                "result_text": "绿先知掌握着多种秘术，制作者bilibili苍白纸人儿",
++                "result": 
++                {
++                },
++                "action":
++                {
++                    "rite": 1600007,
++                    "prompt":{
++                        "id":"5000002_prompt_505",
++                        "text":"绿先知现在准备好了，小小的展露一下这禁忌的力量吧",
++                        "icon":"cards/2000001"
++                    } 
++                }
++            },
++            {
++                "condition":
++                {                  
++                    "s1.is":2050006 //禁忌之影
++                },
++                "result_title":"",
++                "result_text": "多重影分身？！，制作者bilibili苍白纸人儿",
++                "result": 
++                {
++                },
++                "action":
++                {
++                    "rite": 1600006,
++                    "prompt":{
++                        "id":"5000002_prompt_504",
++                        "text":"来点小小的震撼吧，苍白，让我看看你的极限！",
++                        "icon":"cards/2000001"
++                    } 
++                }
++            },
++            {
++                "condition":
++                {                  
++                    "s1.is":2050003 //魔戒
++                },
++                "result_title":"",
++                "result_text": "蕴含巨大魔力的戒指，制作者bilibili苍白纸人儿",
++                "result": 
++                {
++                },
++                "action":
++                {
++                    "rite": 1600004,
++                    "prompt":{
++                        "id":"5000002_prompt_503",
++                        "text":"强大的魔戒！其中的魔力唤醒了一个‘神秘援助’！",
++                        "icon":"cards/2000001"
++                    } 
++                }
++            },
++            {
++                "condition":
++                {                  
++                    "s1.is":2050005 //禁忌卷轴
++                },
++                "result_title":"",
++                "result_text": "记载了某些禁忌仪式，制作者bilibili苍白纸人儿",
++                "result": 
++                {
++                },
++                "action":
++                {
++                    "rite": 1600003,
++                    "prompt":{
++                        "id":"5000002_prompt_502",
++                        "text":"开启了禁忌之书上记载的仪式，一个‘神秘援助’即将来临！",
++                        "icon":"cards/2000001"
++                    } 
++                }
++            },
++            {
++                "condition":
++                {                  
++                    "s1.is":2030002 //御兽者
++                },
++                "result_title":"",
++                "result_text": "",
++                "result": 
++                {
++                },
++                "action":
++                {
++                    "rite": 1600002,
++                    "prompt":{
++                        "id":"5000002_prompt_501",
++                        "text":"你找到了御兽者，请她为你和你的人传授御兽技巧。",
++                        "icon":"cards/2000001"
++                    } 
++                }
++            },
++            {
++                "condition":
++                {                  
++                    "s1.is":2030001 //驯兽师
++                },
++                "result_title":"",
++                "result_text": "",
++                "result": 
++                {
++                },
++                "action":
++                {
++                    "rite": 1600001,
++                    "prompt":{
++                        "id":"5000002_prompt_500",
++                        "text":"你找到了驯兽师，请她为你和你的人传授御兽技巧。",
++                        "icon":"cards/2000001"
++                    } 
++                }
++            },
+             {
+                 "condition": //常规结果：看书
+                 {                  
+@@ -3335,7 +3455,7 @@
+                     "event_on": 5320505
+                 }
+             },
+-//生命权杖-奇珍------------------------------------------------------------------------------------------------------------------
++//生命权杖------------------------------------------------------------------------------------------------------------------
+             {
+                 "condition":
+                 {                  
+@@ -4127,18 +4247,14 @@
+                 {   
+                     "no_prompt":{ 
+                         "clean.rite":5000823,
+-                        "clean.rite":5000824,
+-                        "clean.rite":5000812  //暂时关闭芮尔的匪帮
++                        "clean.rite":5000824
+                     },
+                     "rite":5000822,
+                     "prompt":{
+                         "id":"5000002_prompt_114",
+                         "text":"你从这些杂乱的线索中提炼了有效的信息。这是一个负责抓捕游牧民的猎团，其首领和驻扎地点都很清晰了，你随时都可以派人前去剿灭。",
+                         "icon":"cards/2000490" 
+-                    },
+-                    "no_prompt":{ 
+-                        "rite":5000812  //重启芮尔的匪帮
+-                    },
++                    }
+ 
+                 }
+             },
+@@ -4156,18 +4272,14 @@
+                 {   
+                     "no_prompt":{
+                         "clean.rite":5000822,
+-                        "clean.rite":5000824,
+-                        "clean.rite":5000812  //暂时关闭芮尔的匪帮
++                        "clean.rite":5000824
+                     },
+                     "rite":5000823,
+                     "prompt":{
+                         "id":"5000002_prompt_115",
+                         "text":"你从这些杂乱的线索中提炼了有效的信息。这是一个负责抓捕蛮族的猎团，其首领和驻扎地点都很清晰了，你随时都可以派人前去剿灭。",
+                         "icon":"cards/2000490"
+-                    },
+-                    "no_prompt":{ 
+-                        "rite":5000812  //重启芮尔的匪帮
+-                    },
++                    }
+                 }
+             },
+             {
+@@ -4184,18 +4296,14 @@
+                 {   
+                     "no_prompt":{
+                         "clean.rite":5000823,
+-                        "clean.rite":5000822,
+-                        "clean.rite":5000812  //暂时关闭芮尔的匪帮
++                        "clean.rite":5000822
+                     },
+-                    "rite":5000824,
+                     "prompt":{
+                         "id":"5000002_prompt_116",
+                         "text":"你从这些杂乱的线索中提炼了有效的信息。令人吃惊的是，这个猎团的目标竟然是本国的流民——都是一些自由民！他们会烧掉这些人的身份纸，把他们卖作奴隶，而这根本不合法！\n好在，这个猎团首领和驻扎地点非常清晰，你随时都可以派人前去剿灭。",
+                         "icon":"cards/2000490"
+                     },
+-                    "no_prompt":{ 
+-                        "rite":5000812  //重启芮尔的匪帮
+-                    },
++                    "rite":5000824
+                 }
+             },
+ //寻思族长的祝福 白银马鞍    ------------------------------------------------------------------------------------------------------------------ 
+@@ -4233,7 +4341,6 @@
+             {
+                 "condition":
+                 {                  
+-                    "counter.7000546>=":1,  //已经得知他的身份
+                     "s1.is":2000013 //流浪剑客
+                 },
+                 "result_title":"",
+@@ -5484,11 +5591,10 @@
+                 "result_text": "",
+                 "result": 
+                 {
+-                    "s1+回收":1,
+                 },
+                 "action":
+                 {
+-                    "rite": 5000515, 
++                    "event_on": 5000515, 
+                     "prompt":{
+                         "id":"5000002_prompt_328", 
+                         "text":"白蜜琥珀宝珠能用来驱散诅咒",
+@@ -5690,7 +5796,8 @@
+                     {
+                         "condition":{
+                             "type":"char",
+-                            "怪物":1
++                            "怪物":1,
++                            "!is":2050006
+                         },
+                         "action":{
+                             "choose":{
+@@ -5702,7 +5809,8 @@
+                         "condition":{
+                             "type":"item",
+                             "装备":1,
+-                            "!is":2000734, //骨笛
++                            "!is":[2000734,2050005,2050003]  //骨笛 
++                            
+                         },
+                         "action":{
+                             "choose":{
+diff --git a/rite/5000129.json b/rite/5000129.json
+index 0cb5398..1e2b076 100644
+--- a/rite/5000129.json
++++ b/rite/5000129.json
+@@ -38,7 +38,11 @@
+                 "result_text": "装备分为【武器】【饰品】【服装】【动物】4类。\n每种类型的装备一位角色一般只允许装备1件。\n可以在卡牌详情中查看当前角色可以装备的装备类型。\n装备卡牌的属性将会被角色卡牌继承。\n你只能为自己或追随者装备卡牌。\n可以在角色详情对装备进行装备，查看和卸除。",
+                 "result": 
+                 {   
++                    "card":[2000266,"已拥有+1"], //一大捧花束 2魅力铜
++                    "card":[2000268,"已拥有+1"], //金丝盛装 3魅力银
++                    "card":[2000858,"已拥有+1"],  //朝露之冠 5魅力金
+                     "card":2000040 //送1个机遇情报                               
++                    
+                 },
+                 "action":
+                 {
+diff --git a/rite_template/8000113.json b/rite_template/8000113.json
+index dbbe71e..6eed664 100644
+--- a/rite_template/8000113.json
++++ b/rite_template/8000113.json
+@@ -34,7 +34,8 @@
+             "slot_bg": "normal_4",
+             "pos": {
+                 "x": 1329,
+-                "y": 1079
++                "y": 685
++                
+             },
+             "scale": {
+                 "x": 0.7,
+@@ -48,11 +49,12 @@
+             "slot_bg": "normal_4",
+             "pos": {
+                 "x": 1328,
+-                "y": 685
++                "y": 1200
++                
+             },
+             "scale": {
+-                "x": 0.7,
+-                "y": 0.7
++                "x": 1,
++                "y": 1
+             },
+             "rotation_z": 0
+         },
+diff --git a/upgrade.json b/upgrade.json
+index 971cd90..f3bbcc0 100644
+--- a/upgrade.json
++++ b/upgrade.json
+@@ -3,7 +3,7 @@
+         "id": 3300042,
+         "name": "神之侧身像",
+         "text": "现在，你能看见神了——这是升华的阶梯，也是通向无限疯狂的诅咒。（解锁游戏与神明相关的隐藏故事与额外结局，开启后，游戏会变得更复杂，更困难，可以根据需要自主开关。）",
+-        "cost": 40,
++        "cost": 0,
+         "condition":{
+         },
+         "icon":"gain",  //图标
+@@ -18,7 +18,7 @@
+         "id": 3300002,
+         "name": "钻石般的友谊",
+         "text": "一位贵妇曾经与你合作经营珠宝设计的生意。你只知道她心灵手巧，没想到在危难关头她仍然没有抛弃自己的合作伙伴。",
+-        "cost": 20,
++        "cost": 0,
+         "condition":{
+         },
+         "icon":"gain",  //图标
+@@ -32,7 +32,7 @@
+         "id": 3300003,
+         "name": "绣娘的报恩",
+         "text": "曾经你的家族扶持了一位奴隶的事业，让她成为自由人，现在她女儿来向你报恩了……你们全家都没精打采的样子，这很不好，她这么说着就拿出了化妆盒。",
+-        "cost": 20,
++        "cost": 0,
+         "condition":{
+         },
+         "icon":"gain",  //图标
+@@ -46,7 +46,7 @@
+         "id": 3300004,
+         "name": "血浓于水",
+         "text": "父亲在遗嘱里提到了这个女子，你知道这位美艳的舞姬继承了家族的一栋房舍，但母亲与妻子的厌恶让你们没有深交。现在，你大难临头，她却主动前来，为你奔走。",
+-        "cost": 20,
++        "cost": 0,
+         "condition":{
+         },
+         "icon":"gain",  //图标
+@@ -60,7 +60,7 @@
+         "id": 3300005,
+         "name": "最后的酒肉朋友",
+         "text": "曾经你有很多很多朋友，妻子说他们都是酒肉朋友，现在你可以骄傲地挺起胸，至少你还剩下一个酒肉朋友。",
+-        "cost": 20,
++        "cost": 0,
+         "condition":{
+         },
+         "icon":"gain",  //图标
+@@ -74,7 +74,7 @@
+         "id": 3300006,
+         "name": "被选中的人",
+         "text": "他的爵位比你高，但作为蒙受苏丹恩宠的小猫咪，每一代贝姬夫人都能自由选择自己的主人。",
+-        "cost": 10,
++        "cost": 0,
+         "condition":{
+         },
+         "icon":"gain",  //图标
+@@ -88,7 +88,7 @@
+         "id": 3300007,
+         "name": "管不住的手",
+         "text": "你曾经发誓再去开他家的“锦盒”就砍自己的手，但显然你失败了。",
+-        "cost": 10,
++        "cost": 0,
+         "condition":{
+         },
+         "icon":"gain",  //图标
+@@ -117,7 +117,7 @@
+         "id": 3300009,
+         "name": "打熬筋骨",
+         "text": "你之前每天都要举一百下石锁，现在，肌肉来报恩了。体魄+2",
+-        "cost": 5,
++        "cost": 0,
+         "condition":{
+         },
+         "icon":"buff",  //图标
+@@ -131,7 +131,7 @@
+         "id": 3300010,
+         "name": "一副好皮相",
+         "text": "曾经，你也会担心，自己的美貌掩盖了真正的才华……现在你知道自己能依靠的只有美貌了。魅力+2",
+-        "cost": 5,
++        "cost": 0,
+         "condition":{
+         },
+         "icon":"buff",  //图标
+@@ -145,7 +145,7 @@
+         "id": 3300011,
+         "name": "自寻烦恼",
+         "text": "智慧是一种诅咒，特别是在世道黑暗的时候，越清醒的人越痛苦。好在你的遭遇足以令人绝望，是时候冷静下来想办法了。智慧+2",
+-        "cost": 5,
++        "cost": 0,
+         "condition":{
+         },
+         "icon":"buff",  //图标
+@@ -159,7 +159,7 @@
+         "id": 3300012,
+         "name": "八面玲珑",
+         "text": "从小你就招人喜欢，现在你迫切需要保持这件事。社交+2",
+-        "cost": 3,
++        "cost": 0,
+         "condition":{
+         },
+         "icon":"buff",  //图标
+@@ -173,7 +173,7 @@
+         "id": 3300013,
+         "name": "好勇斗狠",
+         "text": "过去，这只是招惹是非的不良爱好，现在，是非终于找到了你。战斗+2",
+-        "cost": 3,
++        "cost": 0,
+         "condition":{
+         },
+         "icon":"buff",  //图标
+@@ -187,7 +187,7 @@
+         "id": 3300014,
+         "name": "黑街浪子",
+         "text": "曾经你只是在犯罪的边沿游走，结交一些不三不四的朋友，现在是时候真的试试了。隐匿+2",
+-        "cost": 3,
++        "cost": 0,
+         "condition":{
+         },
+         "icon":"buff",  //图标
+@@ -201,7 +201,7 @@
+         "id": 3300015,
+         "name": "荒野猎人",
+         "text": "从小你就热爱荒野胜过宫廷，现在你发现，宫廷也是一片荒野。生存+2",
+-        "cost": 3,
++        "cost": 0,
+         "condition":{
+         },
+         "icon":"buff",  //图标
+@@ -215,7 +215,7 @@
+         "id": 3300016,
+         "name": "高门贵女",
+         "text": "妻子的家族十分显贵，但自从她嫁给你之后，仿佛已经忘记了那些排场与腔调。现在，她准备全力以赴，拿出十二分的气势与你共渡难关。",
+-        "cost": 10,
++        "cost": 0,
+         "condition":{},
+         "icon":"buff",  //图标
+         "link_card":2000457, //关联卡牌，点击图标弹出对应卡牌的详情界面
+@@ -230,7 +230,7 @@
+         "id": 3300017,
+         "name": "贵血传承",
+         "text": "据说，妻子的家族祖上曾经与皇室联姻。时过境迁，这早已成为了一句虚荣的玩笑，但现在，你们连夜研究族谱，要把一切优势都握在手中。",
+-        "cost": 20,
++        "cost": 0,
+         "condition":{
+             "unlock_upgrade":3300016 //购买了3100002这个成长项目
+         },
+@@ -246,59 +246,59 @@
+     "3300018": {
+         "id": 3300018,
+         "name": "一笔财富",
+-        "text": "开局增加5枚金币",
+-        "cost": 2,
++        "text": "开局增加10枚金币",
++        "cost": 0,
+         "condition":{
+         },
+         "icon":"gain",  //图标
+         "link_card":2000029, //关联卡牌，点击图标弹出对应卡牌的详情界面
+         "effect": {
+-            "g.coin":5
++            "g.coin":10
+         },
+         "incompatible":0
+     },
+     "3300019": {
+         "id": 3300019,
+         "name": "一笔财富+",
+-        "text": "开局增加5枚金币",
+-        "cost": 2,
++        "text": "开局增加20枚金币",
++        "cost": 0,
+         "condition":{
+             "unlock_upgrade":3300018
+         },
+         "icon":"gain",  //图标
+         "link_card":2000029, //关联卡牌，点击图标弹出对应卡牌的详情界面
+         "effect": {
+-            "g.coin":5
++            "g.coin":20
+         },
+         "incompatible":0
+     },
+     "3300020": {
+         "id": 3300020,
+         "name": "一笔财富++",
+-        "text": "开局增加5枚金币",
+-        "cost": 2,
++        "text": "开局增加25枚金币",
++        "cost": 0,
+         "condition":{
+             "unlock_upgrade":3300019
+         },
+         "icon":"gain",  //图标
+         "link_card":2000029, //关联卡牌，点击图标弹出对应卡牌的详情界面
+         "effect": {
+-            "g.coin":5
++            "g.coin":25
+         },
+         "incompatible":0
+     },
+     "3300021": {
+         "id": 3300021,
+         "name": "一笔财富+++",
+-        "text": "开局增加5枚金币",
+-        "cost": 2,
++        "text": "开局增加25枚金币",
++        "cost": 0,
+         "condition":{
+             "unlock_upgrade":3300020
+         },
+         "icon":"gain",  //图标
+         "link_card":2000029, //关联卡牌，点击图标弹出对应卡牌的详情界面
+         "effect": {
+-            "g.coin":5
++            "g.coin":25
+         },
+         "incompatible":0
+     },
+@@ -306,7 +306,7 @@
+         "id": 3300022,
+         "name": "幸运护符",
+         "text": "装备这件饰品的角色获得重投+1（每次检定都可以额外重投一次）。",
+-        "cost": 10,
++        "cost": 0,
+         "condition":{
+         },
+         "icon":"gain",  //图标
+@@ -320,7 +320,7 @@
+         "id": 3300023,
+         "name": "再生护符",
+         "text": "装备这件饰品的角色每次仪式之后都会自动让伤口痊愈。",
+-        "cost": 10,
++        "cost": 0,
+         "condition":{
+         },
+         "icon":"gain",  //图标
+@@ -334,7 +334,7 @@
+         "id": 3300024,
+         "name": "魅力护符",
+         "text": "装备这件饰品的角色，每周上朝一次，就可以获得苏丹一周的肯定。",
+-        "cost": 20,
++        "cost": 0,
+         "condition":{
+         },
+         "icon":"gain",  //图标
+@@ -348,7 +348,7 @@
+         "id": 3300025,
+         "name": "更强的崇拜者",
+         "text": "你只知道他出身不凡，但没想到他是一位领主的儿子……",
+-        "cost": 10,
++        "cost": 0,
+         "condition":{},
+         "icon":"buff",  //图标
+         "link_card":2000522, //关联卡牌，点击图标弹出对应卡牌的详情界面
+@@ -361,7 +361,7 @@
+         "id": 3300026,
+         "name": "更强的崇拜者+",
+         "text": "虽然这很危险，但他公然宣扬自己稀薄的皇室血统，来为你助威",
+-        "cost": 20,
++        "cost": 0,
+         "condition":{
+             "unlock_upgrade":3300025
+         },
+@@ -376,7 +376,7 @@
+         "id": 3300027,
+         "name": "身怀绝技的奴隶",
+         "text": "铁头听说了你的遭遇之后，立即跟你表演了一个脑门碎大石——除此之外，他别的也不会什么了……（铁头战斗+2 体魄+1）。",
+-        "cost": 8,
++        "cost": 0,
+         "condition":{
+         },
+         "icon":"buff",  //图标
+@@ -391,7 +391,7 @@
+         "id": 3300028,
+         "name": "身怀绝技的奴隶+",
+         "text": "快脚听说了你的遭遇之后，什么也没说，但你能感到他每天送信的时候跑的更快了（快脚隐匿+1，生存+2）。",
+-        "cost": 8,
++        "cost": 0,
+         "condition":{
+             "unlock_upgrade":3300027
+         },
+@@ -408,7 +408,7 @@
+         "id": 3300029,
+         "name": "身怀绝技的奴隶++",
+         "text": "小圆按照妻子的意思，开始梳妆打扮，因为现在你需要处理的事情太多了，一位端庄的侍女比卑微的奴隶有用很多（小圆，魅力+1，社交+1）。",
+-        "cost": 8,
++        "cost": 0,
+         "condition":{
+             "unlock_upgrade":3300028
+         },
+@@ -424,7 +424,7 @@
+         "id": 3300030,
+         "name": "洗浴金卡",
+         "text": "哇，你和你老婆真的是很爱洗澡，这张金卡里充的次数，怕是这辈子都用不完了——特别是如果你玩不好这个游戏的话。可以代替金币免费去洗澡，并且可以让不是贵族的盟友去洗澡。",
+-        "cost": 20,
++        "cost": 0,
+         "condition":{
+         },
+         "icon":"gain",  //图标
+@@ -438,7 +438,7 @@
+         "id": 3300031,
+         "name": "借书证",
+         "text": "书店老板只把这张借书卡发给真正爱惜书本的人——看完之后把书还给他就好了。可以代替金币去书店买书，真正的免费。",
+-        "cost": 20,
++        "cost": 0,
+         "condition":{
+         },
+         "icon":"gain",  //图标
+@@ -452,7 +452,7 @@
+         "id": 3300032,
+         "name": "家传宝甲升级",
+         "text": "你对着祖传的铠甲祈祷，没想到，它真的有所回应。",
+-        "cost": 10,
++        "cost": 0,
+         "condition":{},
+         "icon":"buff",  //图标
+         "link_card":2000526, //关联卡牌，点击图标弹出对应卡牌的详情界面
+@@ -465,7 +465,7 @@
+         "id": 3300033,
+         "name": "家传宝甲升级+",
+         "text": "你对着祖传的铠甲祈祷，没想到，它真的有所回应。",
+-        "cost": 10,
++        "cost": 0,
+         "condition":{
+             "unlock_upgrade":3300032
+         },
+@@ -480,7 +480,7 @@
+         "id": 3300034,
+         "name": "女术士的福利",
+         "text": "你都玩了这么多次游戏了……女术士偶尔会让你悄悄换掉一张苏丹卡，反正苏丹也记不清楚了。（每局游戏额外5次）",
+-        "cost": 30,
++        "cost": 0,
+         "condition":{
+         },
+         "icon":"gain",  //图标
+@@ -494,7 +494,7 @@
+         "id": 3300035,
+         "name": "群星的庇佑",
+         "text": "群星观看了你那么多次游戏……偶尔，星斗也会愿意为你倒转。（每局游戏获得额外5次回到上一回合的次数。对简单难度没有效果）",
+-        "cost": 30,
++        "cost": 0,
+         "condition":{
+         },
+         "icon":"gain",  //图标
+@@ -508,7 +508,7 @@
+         "id": 3300036,
+         "name": "秘密双胞胎",
+         "text": "在你们诞生的时候，宫廷正动荡不堪——于是你们的父母出于某些考虑，隐瞒了双胞胎的事情。所有人都以为你们是一个人，事实上，你们的确一体同心，无论是生命和命运都紧紧相连。",
+-        "cost": 30,
++        "cost": 0,
+         "condition":{
+         },
+         "icon":"gain",  //图标
+@@ -522,7 +522,7 @@
+         "id": 3300037,
+         "name": "额外的房产",
+         "text": "那些继承了很多家业的人总是过得更轻松……你想成为这种人么？",
+-        "cost": 15,
++        "cost": 0,
+         "condition":{
+         },
+         "icon":"gain",  //图标
+@@ -536,7 +536,7 @@
+         "id": 3300038,
+         "name": "岩石苏丹卡+",
+         "text": "女术士的牌盒里多出了4张岩石品级的苏丹卡，分别是杀戮卡，纵欲卡，奢靡卡和征服卡……她就知道你会爱上这个游戏的。",
+-        "cost": 10,
++        "cost": 0,
+         "condition":{
+         },
+         "icon":"gain",  //图标
+@@ -550,7 +550,7 @@
+         "id": 3300039,
+         "name": "青铜苏丹卡+",
+         "text": "女术士的牌盒里多出了4张青铜品级的苏丹卡，分别是杀戮卡，纵欲卡，奢靡卡和征服卡……你想要单独的纵欲卡？想得美呢。",
+-        "cost": 10,
++        "cost": 0,
+         "condition":{
+             "unlock_upgrade":3300038 //购买了3300038这个成长项目
+         },
+@@ -565,7 +565,7 @@
+         "id": 3300040,
+         "name": "白银苏丹卡+",
+         "text": "女术士的牌盒里多出了4张白银品级的苏丹卡，分别是杀戮卡，纵欲卡，奢靡卡和征服卡……哇，注意身体啊。",
+-        "cost": 10,
++        "cost": 0,
+         "condition":{
+             "unlock_upgrade":3300039 //购买了3300038这个成长项目
+         },
+@@ -580,7 +580,7 @@
+         "id": 3300041,
+         "name": "黄金苏丹卡+",
+         "text": "女术士的牌盒里多出了4张黄金品级的苏丹卡，分别是杀戮卡，纵欲卡，奢靡卡和征服卡……请允许我称呼您为真正的游戏大师。",
+-        "cost": 10,
++        "cost": 0,
+         "condition":{
+             "unlock_upgrade":3300040 //购买了3300038这个成长项目
+         },
+@@ -591,4 +591,122 @@
+         },
+         "incompatible":0
+     },
+-}
+\ No newline at end of file
++    "3300100": {
++        "id": 3300100,
++        "name": "驯兽师",
++        "text": "没落的贵族，曾远游神秘的东方国度，掌握着一门驯兽的技能，因受到过你的庇护而追随你，祝一臂之力。俺寻思能跟她学习御兽！",
++        "cost": 0,
++        "condition":{
++        },
++        "icon":"gain",  //图标
++        "link_card":2030001, //关联卡牌，点击图标弹出对应卡牌的详情界面
++        "effect": {
++            "g.card":[2030001,"追随者+1"]
++        },
++        "incompatible":0
++    },
++    "3300101": {
++        "id": 3300101,
++        "name": "御兽者",
++        "text": "来自被苏丹征服的草原，几经辗转成了你的女奴，她掌握着一门驯兽的技能，俺寻思能跟她学习御兽！",
++        "cost": 0,
++        "condition":{
++        },
++        "icon":"gain",  //图标
++        "link_card":2030002, //关联卡牌，点击图标弹出对应卡牌的详情界面
++        "effect": {
++            "g.card":[2030002,"追随者+1"]
++        },
++        "incompatible":0
++    },
++    "3300102": {
++        "id": 3300102,
++        "name": "狼王",
++        "text": "群狼的头领，似乎对你有极高的信任和忠诚。",
++        "cost": 0,
++        "condition":{
++        },
++        "icon":"gain",  //图标
++        "link_card":2050001, //关联卡牌，点击图标弹出对应卡牌的详情界面
++        "effect": {
++            "g.card":[2050001,"已拥有+1"]
++        },
++        "incompatible":0
++    },
++    "3300103": {
++        "id": 3300103,
++        "name": "狮王",
++        "text": "体型硕大的雄狮，似乎对你有极高的信任和忠诚。",
++        "cost": 0,
++        "condition":{
++        },
++        "icon":"gain",  //图标
++        "link_card":2050002, //关联卡牌，点击图标弹出对应卡牌的详情界面
++        "effect": {
++            "g.card":[2050002,"已拥有+1"]
++        },
++        "incompatible":0
++    },
++    "3300105": {
++        "id": 3300105,
++        "name": "魔戒",
++        "text": "拥有未知魔力的戒指，传说苏丹有一枚同款！",
++        "cost": 0,
++        "condition":{
++        },
++        "icon":"gain",  //图标
++        "link_card":2050003, //关联卡牌，点击图标弹出对应卡牌的详情界面
++        "effect": {
++            "g.card":[2050003,"已拥有+1"]
++        },
++        "incompatible":0
++    },
++    "3300107": {
++        "id": 3300107,
++        "name": "禁忌之影",
++        "text": "使用禁忌之书上记载的'影之术'产生的禁忌之影！他可以代替你操办一切事务！但是代价是什么呢！？",
++        "cost": 0,
++        "condition":{
++        },
++        "icon":"gain",  //图标
++        "link_card":2050006, //关联卡牌，点击图标弹出对应卡牌的详情界面
++        "effect": {
++            "g.card":[2050006,"追随者+1"]
++        },
++        "incompatible":0
++    },
++    "3300106": {
++        "id": 3300106,
++        "name": "禁忌之书",
++        "text": "记载了诸多禁忌之术！蕴含某种魔力，掌握它可以获得神秘力量！—————俺寻思能获得援助！但是代价是什么呢！？",
++        "cost": 0,
++        "condition":{
++        },
++        "icon":"gain",  //图标
++        "link_card":2050005, //关联卡牌，点击图标弹出对应卡牌的详情界面
++        "effect": {
++            "g.card":[2050005,"已拥有+1"]
++        },
++        "incompatible":0
++    },
++    "3300108": {
++        "id": 3300108,
++        "name": "禁忌绿先知",
++        "text": "他总是宣称着自己信仰的神独一无二，掌握着禁忌之书上多种术法，听说最擅长的是‘模仿术’，俺寻思能看他表演！",
++        "cost": 0,
++        "condition":{
++        },
++        "icon":"gain",  //图标
++        "link_card":2050007, //关联卡牌，点击图标弹出对应卡牌的详情界面
++        "effect": {
++            "g.card":[2050007,"追随者+1"]
++        },
++        "incompatible":0
++    },
++
++
++    
++    
++    
++    
++}
+-- 
+2.49.0.windows.1
+

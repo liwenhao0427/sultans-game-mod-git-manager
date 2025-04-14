@@ -1,0 +1,4640 @@
+From f4e7455004ec90a13442d211277cf96cdd242a6e Mon Sep 17 00:00:00 2001
+From: Sultan Mod Manager <mod@example.com>
+Date: Mon, 14 Apr 2025 18:20:26 +0800
+Subject: [PATCH] =?UTF-8?q?=E5=BA=94=E7=94=A8MOD:=20=E6=9B=B4=E5=A4=9A?=
+ =?UTF-8?q?=E7=BB=93=E5=A9=9A=E9=80=89=E9=A1=B9?=
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+---
+ cards.json         |  30 +-
+ event/5300325.json |   2 +-
+ event/5300527.json |   2 +-
+ event/5310463.json |   4 +-
+ event/5310464.json |   4 +-
+ event/5310607.json |   3 +-
+ event/5320090.json |   4 +-
+ event/5320104.json |   7 +-
+ event/5320126.json |   2 -
+ event/5320127.json |   2 +-
+ event/5320128.json |   2 +-
+ event/5320137.json |   2 +-
+ event/5320138.json |   6 +-
+ event/5320139.json |   6 +-
+ event/5320261.json |   1 -
+ event/5320270.json |   2 +-
+ event/5320522.json |   2 +-
+ event/5321069.json |   4 +-
+ event/5321070.json |   4 +-
+ event/5321151.json |   2 +-
+ event/5321153.json |   9 +-
+ init/1.json        |   4 +-
+ rite/5000002.json  |  29 +-
+ rite/5000063.json  |   1 -
+ rite/5000064.json  |   1 -
+ rite/5000104.json  |   7 +-
+ rite/5000522.json  |   1 -
+ rite/5000523.json  |   1 -
+ rite/5000524.json  |   1 -
+ rite/5000525.json  |   1 -
+ rite/5000559.json  |   1 -
+ rite/5000562.json  |   1 -
+ rite/5000579.json  |   3 +-
+ rite/5000580.json  |   1 -
+ rite/5000581.json  |   1 -
+ rite/5000582.json  |   1 -
+ rite/5000583.json  |   1 -
+ rite/5000611.json  |   1 -
+ rite/5000612.json  |   1 -
+ rite/5000613.json  |   1 -
+ rite/5000615.json  |   1 -
+ rite/5000616.json  |   1 -
+ rite/5000617.json  |   1 -
+ rite/5000619.json  |   1 -
+ rite/5000620.json  |   1 -
+ rite/5000621.json  |   1 -
+ rite/5000623.json  |   1 -
+ rite/5000624.json  |   1 -
+ rite/5000632.json  |   1 -
+ rite/5000633.json  |   1 -
+ rite/5000634.json  |   1 -
+ rite/5000635.json  |   1 -
+ rite/5000636.json  |   1 -
+ rite/5000638.json  |   3 +-
+ rite/5000639.json  |   3 +-
+ rite/5000640.json  |   1 -
+ rite/5000641.json  |   1 -
+ rite/5000652.json  |   3 +-
+ rite/5000667.json  |   1 -
+ rite/5000668.json  |   1 -
+ rite/5000669.json  |   1 -
+ rite/5000670.json  |   1 -
+ rite/5000672.json  |   1 -
+ rite/5000673.json  |   1 -
+ rite/5000674.json  |   1 -
+ rite/5000675.json  |   1 -
+ rite/5000676.json  |   1 -
+ rite/5000677.json  |   1 -
+ rite/5000678.json  |   1 -
+ rite/5000679.json  |   1 -
+ rite/5000680.json  |   3 +-
+ rite/5000681.json  |   1 -
+ rite/5000682.json  |   1 -
+ rite/5000683.json  |   1 -
+ rite/5000684.json  |   1 -
+ rite/5000685.json  |   1 -
+ rite/5000686.json  |   1 -
+ rite/5000687.json  |   1 -
+ rite/5000702.json  |   1 -
+ rite/5000703.json  |   1 -
+ rite/5000704.json  |   1 -
+ rite/5000705.json  |   1 -
+ rite/5000706.json  |   1 -
+ rite/5000709.json  |   2 +-
+ rite/5000710.json  |   2 +-
+ rite/5000711.json  |   1 -
+ rite/5000737.json  |   1 -
+ rite/5000738.json  |   1 -
+ rite/5000740.json  |   1 -
+ rite/5000742.json  |   1 -
+ rite/5000743.json  |   1 -
+ rite/5000744.json  |   1 -
+ rite/5000745.json  |   1 -
+ rite/5000746.json  |   2 -
+ rite/5000747.json  |   1 -
+ rite/5000749.json  |   1 -
+ rite/5000754.json  |   1 -
+ rite/5000755.json  |   1 -
+ rite/5000756.json  |   1 -
+ rite/5000757.json  |   1 -
+ rite/5000758.json  |   1 -
+ rite/5000759.json  |   1 -
+ rite/5000760.json  |   1 -
+ rite/5000761.json  |   1 -
+ rite/5000762.json  |   1 -
+ rite/5000763.json  |   1 -
+ rite/5000764.json  |   1 -
+ rite/5000766.json  |   1 -
+ rite/5000767.json  |   1 -
+ rite/5000770.json  |   6 +-
+ rite/5000771.json  |   1 -
+ rite/5000772.json  |   1 -
+ rite/5000773.json  |   1 -
+ rite/5000774.json  |   1 -
+ rite/5000775.json  |   1 -
+ rite/5000776.json  |   1 -
+ rite/5000777.json  |   1 -
+ rite/5000778.json  |   1 -
+ rite/5000779.json  |   1 -
+ rite/5000780.json  |   1 -
+ rite/5000781.json  |   1 -
+ rite/5000784.json  |   1 -
+ rite/5000785.json  |   5 +-
+ rite/5000786.json  |   1 -
+ rite/5000787.json  |   1 -
+ rite/5000788.json  |   1 -
+ rite/5000789.json  |   1 -
+ rite/5000790.json  |   1 -
+ rite/5000791.json  |   3 +-
+ rite/5000792.json  |   3 +-
+ rite/5000793.json  |   3 +-
+ rite/5000794.json  |   1 -
+ rite/5000795.json  |   1 -
+ rite/5000796.json  |   1 -
+ rite/5000797.json  |   1 -
+ rite/5000798.json  |   1 -
+ rite/5000799.json  |   1 -
+ rite/5000800.json  |   1 -
+ rite/5000801.json  |  10 +-
+ rite/5000802.json  |  10 +-
+ rite/5000803.json  |   9 +-
+ rite/5000810.json  |   1 -
+ rite/5000811.json  |   2 +-
+ rite/5000813.json  |   1 -
+ rite/5000814.json  |   1 -
+ rite/5000815.json  |   1 -
+ rite/5000816.json  |   1 -
+ rite/5000817.json  |   1 -
+ rite/5000818.json  |   1 -
+ rite/5000819.json  |   1 -
+ rite/5000820.json  |   1 -
+ rite/5000821.json  |   1 -
+ rite/5000822.json  |   1 -
+ rite/5000823.json  |   1 -
+ rite/5000824.json  |   1 -
+ rite/5000826.json  |   1 -
+ rite/5000827.json  |   1 -
+ rite/5000850.json  |   2 +-
+ rite/5000852.json  |  13 +-
+ rite/5000853.json  |   5 +-
+ rite/5000856.json  |   2 +-
+ rite/5000857.json  |   2 +-
+ rite/5000858.json  |   2 +-
+ rite/5000859.json  |   2 +-
+ rite/5000860.json  |   2 +-
+ rite/5000861.json  |   4 +-
+ rite/5001004.json  |   2 +-
+ rite/5002027.json  |   2 +-
+ rite/5003020.json  |   2 +-
+ rite/5003021.json  |   2 +-
+ rite/5003022.json  |   2 +-
+ rite/5003023.json  |   2 +-
+ rite/5003024.json  |   2 +-
+ rite/5003025.json  |   2 +-
+ rite/5003026.json  |   2 +-
+ rite/5004501.json  |   2 +-
+ rite/5004517.json  |   9 +-
+ rite/5004910.json  |  12 +-
+ rite/5005104.json  |   1 -
+ rite/5006027.json  |   2 +-
+ rite/5006071.json  |   2 +-
+ rite/5006556.json  |   9 +-
+ rite/5006599.json  |  34 +-
+ rite/5006628.json  |   1 -
+ rite/5006646.json  |   6 +-
+ rite/5006675.json  |  12 -
+ rite/5006676.json  |   1 -
+ rite/5008033.json  |  10 +-
+ rite/5008050.json  |   5 +-
+ rite/5008051.json  |  12 +-
+ rite/5008060.json  |   2 +-
+ rite/5008065.json  |  10 +-
+ rite/5008066.json  |   2 +-
+ rite/5008077.json  |   4 -
+ rite/5008085.json  |   3 +-
+ rite/5008088.json  |   1 -
+ rite/5008091.json  |   1 -
+ rite/5008094.json  |   2 +-
+ rite/5008106.json  |  22 +-
+ rite/5008113.json  |   2 +-
+ rite/5008132.json  |   5 +-
+ rite/5008157.json  |   5 +-
+ rite/5008161.json  |   4 +-
+ rite/5008179.json  |   1 -
+ rite/5008189.json  | 863 +++++++++++++++++++++++++++------------------
+ rite/5010023.json  |   4 +-
+ rite/5010034.json  |   4 +-
+ rite/5010050.json  |   2 +-
+ rite/5010056.json  |   2 +-
+ rite/5010059.json  |   1 -
+ rite/5010061.json  |   2 +-
+ rite/5010064.json  |   8 +-
+ 212 files changed, 722 insertions(+), 726 deletions(-)
+
+diff --git a/cards.json b/cards.json
+index 1482aeb..8e57da6 100644
+--- a/cards.json
++++ b/cards.json
+@@ -1415,7 +1415,6 @@
+             "男性": 1,
+             "贵族": 1,
+             "爱书人": 1,
+-            "扎齐伊": 1,
+             "反对": 1,
+             "纯色材质": 1
+         },
+@@ -6573,8 +6572,7 @@
+             "魔力": 10,
+             "银趴绝缘者": 1,
+             "怪物": 1,
+-            "纯色材质": 1,
+-            "金色文字": 1,
++            "纯色材质": 1
+         },
+         "card_vanishing": 0,
+         "vanish": {},
+@@ -7004,8 +7002,7 @@
+                     "have.不举的传言":1,
+                     "!is":2000184, //没有双头龙
+                     "!is_rite":5006559,
+-                    "!is_rite":5006558,
+-                    "!is_rite":5000158,           
++                    "!is_rite":5006558     
+                 },
+                 "result_text": "你用出了纵欲卡，那么之前关于你不举的传言是假的？准备接受戏弄苏丹的代价吧！",
+                 "result": 
+@@ -7046,8 +7043,7 @@
+                 "condition": {       
+                     "have.不举的传言":1,
+                     "!is_rite":5006559,
+-                    "!is_rite":5006558,                    
+-                    "!is_rite":5000158,       
++                    "!is_rite":5006558       
+                 },
+                 "result_text": "你用出了纵欲卡，那么之前关于你不举的传言是假的？准备接受戏弄苏丹的代价吧！",
+                 "result": 
+@@ -7088,8 +7084,7 @@
+                 "condition": {       
+                     "have.不举的传言":1,
+                     "!is_rite":5006559,
+-                    "!is_rite":5006558,                    
+-                    "!is_rite":5000158,       
++                    "!is_rite":5006558       
+                 },
+                 "result_text": "你用出了纵欲卡，那么之前关于你不举的传言是假的？准备接受戏弄苏丹的代价吧！",
+                 "result": 
+@@ -7130,8 +7125,7 @@
+                 "condition": {       
+                     "have.不举的传言":1,
+                     "!is_rite":5006559,
+-                    "!is_rite":5006558,                    
+-                    "!is_rite":5000158,      
++                    "!is_rite":5006558      
+                 },
+                 "result_text": "你用出了纵欲卡，那么之前关于你不举的传言是假的？准备接受戏弄苏丹的代价吧！",
+                 "result": 
+@@ -7869,7 +7863,7 @@
+         "type": "char",
+         "tips": "",
+         "rare": 1,
+-        "resource": "cards/2000370",
++        "resource": ["cards/2000370","cards/2000794"],
+         "tag": {
+             "体魄": 2,
+             "魅力": 1,
+@@ -8697,8 +8691,7 @@
+             "可堆叠": 1,
+             "改革": 2,
+             "深度": 4,
+-            "纯色材质": 1,
+-            "金色文字": 1,
++            "纯色材质": 1
+         },
+         "card_vanishing": 0,
+         "vanish": {},
+@@ -17170,8 +17163,7 @@
+             "已拥有": 1,
+             "可堆叠": 1,
+             "传统": 2,
+-            "深度": 4,
+-            "金色文字": 1,
++            "深度": 4
+         },
+         "card_vanishing": 0,
+         "vanish": {},
+@@ -19768,8 +19760,7 @@
+         "resource": "cards/2000847",
+         "tag": {
+             "正神的面容": 1,
+-            "深度": 3,
+-            "金色文字": 1,
++            "深度": 3
+         },
+         "card_vanishing": 0,
+         "vanish": {},
+@@ -19789,8 +19780,7 @@
+         "resource": "cards/2000848",
+         "tag": {
+             "正神的面容": 1,
+-            "深度": 4,
+-            "金色文字": 1,
++            "深度": 4
+         },
+         "card_vanishing": 0,
+         "vanish": {},
+diff --git a/event/5300325.json b/event/5300325.json
+index 7cf551c..8d30285 100644
+--- a/event/5300325.json
++++ b/event/5300325.json
+@@ -18,7 +18,7 @@
+                 "rite":5000104,
+                 "prompt": {
+                     "id": "prompt_5300325_01",
+-                    "text": "阿图娜尔先向你款款行礼，脸上挂着柔和的微笑。她告诉你——她未来能够帮你更多，只要你先为她提供一些帮助。"
++                    "text": "阿图娜尔先向你款款行礼，脸上挂着柔和的微笑。她开口却有点紧张：如果……有朝一日她真正成了你的人，那她就能帮你更多，只是现在，还请你先帮她一次。"
+                 },
+                 "success":{
+                     "event_off":5300325
+diff --git a/event/5300527.json b/event/5300527.json
+index ad40971..81668f8 100644
+--- a/event/5300527.json
++++ b/event/5300527.json
+@@ -9,7 +9,7 @@
+         "round_begin_ba":1 
+     },
+     "condition":{  //条件
+-        "table_have.2000064":1  //奈布哈尼闲置
++        
+     },
+     "settlement": [    //效果 
+         {
+diff --git a/event/5310463.json b/event/5310463.json
+index cc2bab0..c51ff7e 100644
+--- a/event/5310463.json
++++ b/event/5310463.json
+@@ -24,9 +24,7 @@
+                     "card":2000920,
+                     "card":2000921,
+                     "card":2000922,
+-                    "table.2000024=上朝":0,
+-                    "table.传令官=传令官":0,
+-                    "table.旗手=旗手":0,
++                    "table.2000024=上朝":0
+                 },
+                 "rite":5010014, //触发直面苏丹
+                 "prompt":{
+diff --git a/event/5310464.json b/event/5310464.json
+index 614d60b..7f0bfa3 100644
+--- a/event/5310464.json
++++ b/event/5310464.json
+@@ -16,9 +16,7 @@
+             "tips_text":"",
+             "action":{     
+                 "no_prompt":{
+-                    "table.2000024=上朝":0,
+-                    "table.传令官=传令官":0,
+-                    "table.旗手=旗手":0,
++                    "table.2000024=上朝":0
+                 },
+                 "rite":5010015, //触发铁卫得背叛
+                 "prompt":{
+diff --git a/event/5310607.json b/event/5310607.json
+index 2b04ab0..86c2ea5 100644
+--- a/event/5310607.json
++++ b/event/5310607.json
+@@ -14,8 +14,7 @@
+             "table_have.2000726":1,
+             "table_have.2000727":1,
+             "table_have.2000728":1  //任一正教的理念闲置
+-        },
+-        "counter.7000591<":1  //还没成为教领
++        }  
+     },
+     "settlement": [ //效果 
+         {
+diff --git a/event/5320090.json b/event/5320090.json
+index 0c0d463..8c60e12 100644
+--- a/event/5320090.json
++++ b/event/5320090.json
+@@ -8,14 +8,14 @@
+         "round_begin_ba": 1
+     },
+     "condition":{  //条件
+-        "table_have.不举的传言":1 //主角闲置
++        "table_have.主角":1 //主角闲置
+     },
+     "settlement": [    //效果 
+         {
+             "tips_resource":"", 
+             "tips_text":"",
+             "action":{
+-                "table.不举的传言-equip":2000681, //移除不举的传言
++                "table.主角-equip":2000681, //移除不举的传言
+                 "prompt":{
+                     "id":"5320090_prompt_01",
+                     "text":"苏丹的使者带来了一个血淋淋的盒子，可让你紧张了好一会儿……还好里面只是一根虎鞭，来自于苏丹今天才猎到的猛虎……这份无上的恩典当然立即就治好了你假装的阳痿。",
+diff --git a/event/5320104.json b/event/5320104.json
+index 0a9c3ad..e575c04 100644
+--- a/event/5320104.json
++++ b/event/5320104.json
+@@ -21,11 +21,11 @@
+                     "icon":"cards/2000055",
+                     "items": [
+                         {
+-                            "text": "不合理，您应该更靠前",
++                            "text": "帝国的审美确实该重新教一教了。",
+                             "tag": "op1"
+                         },
+                         {
+-                            "text": "您不该把这种东西当真……",
++                            "text": "这点排名，何必太较真？",
+                             "tag": "op2"
+                         }
+                     ]
+@@ -36,9 +36,10 @@
+                     },
+                     "card": [2000690,"已拥有+1"], //帝国之花
+                     "event_on":5320107, //触发后续对应npc死亡的反馈
++					"event_on":5320126, //无需杀人可继续剧情
+                     "prompt":{
+                         "id":"5320104_prompt_01",
+-                        "text":"你点点头，应和了她的说法。\n你告诉她，在你看来她应该至少排在前三，苏丹的女人也就罢了，其他女人都比不了她那石榴石般闪耀又充满魅力的美貌。\n娜依拉听完咯咯笑了:“您总知道怎么才能让我高兴，要是世间的男人都多向您学学就好了，但是啊，即使是您，也毕竟只是个男人……我们女人，如果要开始竞争，就必须争到第一。前三不算什么，帝国前三的美人和帝国第三百的美人，根本没区别！所以说……”\n她随手撩动着垂落在酥胸上的那几缕发丝，像是在想什么。过了一会，她转向你，眼神中透露着恶毒的灵感。\n“要是排在我前面的六个女人能因为不知道为什么突然消失，那就好了……我会为这些‘巧合’好好和您喝一杯的。”她咯咯笑了起来，细腻的手指轻轻抚过你的面颊和下巴，带着某种意犹未尽的暗示，而后扭动着腰肢离开了你的家。",
++                        "text":"你点点头，应和了她的说法。\n你告诉她，在你看来她应该至少排在前三，苏丹的女人也就罢了，其他女人都比不了她那石榴石般闪耀又充满魅力的美貌。\n娜依拉听完咯咯笑了:“您总知道怎么才能让我高兴，要是世间的男人都多向您学学就好了，但是啊，即使是您，也毕竟只是个男人……我们女人，如果要开始竞争，就必须争到第一。前三不算什么，帝国前三的美人和帝国第三百的美人，根本没区别！所以说……”\n她随手撩动着垂落在酥胸上的那几缕发丝，像是在想什么。过了一会，她转向你，眼神中闪过一抹精明而狡黠的灵光。\n“听说，首都最近开始流行赠礼排名榜”，她轻轻靠近，嘴唇几乎贴上你的耳垂，“只要礼物足够稀有、够贵重，我的名字就能往上升。”\n她咯咯笑了起来，细腻的手指轻轻抚过你的面颊和下巴，带着某种意犹未尽的暗示，“如果这些东西恰巧出现在我手中……我一定会好好‘报答’你。说完，她扭动着腰肢离开了你的家。",
+                         "icon":["cards/2000055","cards/2000001",null]
+                     }
+                 },
+diff --git a/event/5320126.json b/event/5320126.json
+index b817217..4e29aa2 100644
+--- a/event/5320126.json
++++ b/event/5320126.json
+@@ -8,8 +8,6 @@
+         "round_begin_ba": 1
+     },
+     "condition":{
+-        "counter.7000213>=": 3, //死亡计数
+-        "!have.妻子":1, //妻子没有存货
+         "counter.7100003>=":10, //权势大于等10
+         "counter.7100004>=":10 //侠名大于等10
+     },
+diff --git a/event/5320127.json b/event/5320127.json
+index 13fef98..8ec5e95 100644
+--- a/event/5320127.json
++++ b/event/5320127.json
+@@ -22,7 +22,7 @@
+                 "rite": 5000654, //杀夫
+                 "prompt":{
+                     "id":"5320127_prompt_01",
+-                    "text":"你借故杀死妻子的做法给了娜依拉灵感。她找到你，就为了一件事……",
++                    "text":"你没想到，那些与你之间暧昧不明的眼神与暗示，会让娜依拉动了真心。她找到你，就为了一件事……",
+                     "icon":"cards/2000055"
+                 }
+             }
+diff --git a/event/5320128.json b/event/5320128.json
+index d81e9a2..32b3510 100644
+--- a/event/5320128.json
++++ b/event/5320128.json
+@@ -17,7 +17,7 @@
+             "action":{
+                 "option": {
+                     "id":"5320128_option_1",
+-                    "text": "这天早上，你家门外突然传来喧哗之声，还扑来浓郁的玫瑰花香。你诧异地打开门，发现一台八个奴隶扛着的、无比华丽的轿子正停在门口，娜依拉坐在上面。她斜靠着小山一样高的软垫，身上裹着象征圣洁的白纱，双手戴满了金手镯，连脚踝上都缀满了宝石和黄金。\n“帝国最美的女人想要嫁给你，我亲爱的。”她抬起涂满金粉的眼皮，提高嗓门，“您愿意接受我做您的妻子吗？”\n周围围观的人们爆发出阵阵欢呼，娜依拉大概就是算准了会这样，才这么大张旗鼓地向你求婚。她想把你架在道德制高点上，赌你不会当众拒绝一位女士的求爱……当然啦，她很有魅力，也有大量的财产，或许确实是个不错的新妻选择……你决定怎么办？",
++                    "text": "这天早上，你家门外突然传来喧哗之声，还扑来浓郁的玫瑰花香。你诧异地打开门，发现一台八个奴隶扛着的、无比华丽的轿子正停在门口，娜依拉坐在上面。她斜靠着小山一样高的软垫，身上裹着象征圣洁的白纱，双手戴满了金手镯，连脚踝上都缀满了宝石和黄金。\n“帝国最美的女人想要嫁给你，我亲爱的。”她抬起涂满金粉的眼皮，提高嗓门，“您愿意接受我做您的妻子吗？”\n周围围观的人们爆发出阵阵欢呼，娜依拉大概就是算准了会这样，才这么大张旗鼓地向你求婚。她想把你架在道德制高点上，赌你不会当众拒绝一位女士的求爱……当然啦，她很有魅力，也有大量的财产，或许确实是个不错的侧室选择……你决定怎么办？",
+                     "icon": "cards/2000055",
+                     "items": [
+                         {
+diff --git a/event/5320137.json b/event/5320137.json
+index 969d645..bbe824f 100644
+--- a/event/5320137.json
++++ b/event/5320137.json
+@@ -2,7 +2,7 @@
+     "id": 5320137,
+     "text": "娜依拉声望事件--全能老妇",     
+     "is_replay": 0, //是否可以重复触发
+-    "auto_start_init": [1],
++    "auto_start": false,
+     "start_trigger": false, // 是否启动就立即开始校验条件
+     "on":{   //时机
+         "round_begin_ba": 1
+diff --git a/event/5320138.json b/event/5320138.json
+index 969bb6b..49d3183 100644
+--- a/event/5320138.json
++++ b/event/5320138.json
+@@ -19,7 +19,7 @@
+             "action":{
+                 "option":{
+                     "id":"5320138_option_01",
+-                    "text":"娜依拉突然来拜访你了。她嘴上说着没什么大事，还不住对你撒娇、献媚、调情，但她的眼神总在你的宅邸里四处窥视，似乎在找什么……过了好一会，她终于是叹了口气，道出了实情。\n“我听说……您买了个老女奴？她该不会，恰好叫……卡雅？”\n你回忆了一下，那个生病的老女奴似乎确实叫这个。娜依拉激动起来，她抓着你的手，说什么都要你把老女奴转卖给她。\n“她是个叛徒……是个恶毒的女人！卖给我，让我杀了她！”她提出了10枚金币的高价，但是……",
++                    "text":"娜依拉比平常更早回了家。她嘴上说着没什么大事，还不住对你撒娇、献媚、调情。但你很快察觉，她的笑容下藏着点别的情绪……过了好一会，她终于是叹了口气，道出了实情。\n“我听说……您买了个老女奴？她该不会，恰好叫……卡雅？”\n你回忆了一下，那个生病的老女奴似乎确实叫这个。娜依拉猛地坐直身子，目光灼灼地看着你，像是突然从温柔的爱人变成了警觉的猎豹。\n“她是个叛徒……是个恶毒的女人！她不该出现在我的家——我们 的家里！”她看着你，眼神中是藏不住的怒火，但是……",
+                     "icon":"cards/2000055",
+                     "items": [
+                         {
+@@ -37,7 +37,7 @@
+                     "coin": 10,
+                     "prompt":{
+                         "id":"5320138_prompt_01",
+-                        "text":"你答应了。没理由为了一个没什么用的老奴隶惹这位贵妇人生气。她露出了毒蛇般的笑意……然后她吻了你，就急匆匆地告辞了。\n那之后，娜依拉再也没有和你提过卡雅，你也没有再见过那个女奴、或是听说过关于她的消息。",
++                        "text":"你答应了。没理由为了一个没什么用的老奴隶惹她生气。她露出了毒蛇般的笑意……然后她吻了你，就急匆匆地告辞了。\n那之后，娜依拉再也没有和你提过卡雅，你也没有再见过那个女奴、或是听说过关于她的消息。",
+                         "icon":"cards/2000055"
+                     }
+                 },
+@@ -70,7 +70,7 @@
+                         "coin": 10,
+                         "prompt":{
+                             "id":"5320138_prompt_03",
+-                            "text":"见她的态度坚决，你没再说什么，只是叫来了仆人，让他们把卡雅送到娜依拉的轿子上去。娜依拉亲昵地吻了你的脸，给你留下了她许诺过的金钱。\n那之后，娜依拉再也没有和你提过卡雅，你也没有再见过那个女奴、或是听说过她的消息。",
++                            "text":"见她的态度坚决，你没再说什么，只是叫来了仆人，让他们把卡雅送到娜依拉的房间里去。娜依拉亲昵地吻了你的脸，旋即回到房间关上了门。\n那之后，娜依拉再也没有和你提过卡雅，你也没有再见过那个女奴、或是听说过她的消息。",
+                             "icon":"cards/2000055"
+                         }
+                     }
+diff --git a/event/5320139.json b/event/5320139.json
+index f038e9e..599adcc 100644
+--- a/event/5320139.json
++++ b/event/5320139.json
+@@ -19,7 +19,7 @@
+             "action":{
+                 "option":{
+                     "id":"5320139_option_01",
+-                    "text":"娜依拉突然来拜访你了。她嘴上说着没什么大事，还不住对你撒娇、献媚、调情，但她的眼神总在你的宅邸里四处窥视，似乎在找什么……过了好一会，她终于是叹了口气，道出了实情。\n“我听说……您买了个老女奴？她该不会，恰好叫……卡雅？”\n你回忆了一下，那个生病的老女奴似乎确实叫这个。娜依拉激动起来，她抓着你的手，说什么都要你把老女奴转卖给她。\n“她是个叛徒……是个恶毒的女人！卖给我，让我杀了她！”她提出了10枚金币的高价，但是……",
++                    "text":"娜依拉比平常更早回了家。她嘴上说着没什么大事，还不住对你撒娇、献媚、调情。但你很快察觉，她的笑容下藏着点别的情绪……过了好一会，她终于是叹了口气，道出了实情。\n“我听说……您买了个老女奴？她该不会，恰好叫……卡雅？”\n你回忆了一下，那个生病的老女奴似乎确实叫这个。娜依拉猛地坐直身子，目光灼灼地看着你，像是突然从温柔的爱人变成了警觉的猎豹。\n“她是个叛徒……是个恶毒的女人！她不该出现在我的家——我们 的家里！”她看着你，眼神中是藏不住的怒火，但是……",
+                     "icon":"cards/2000178",
+                     "items": [
+                         {
+@@ -37,7 +37,7 @@
+                     "coin": 10,
+                     "prompt":{
+                         "id":"5320139_prompt_01",
+-                        "text":"你答应了。没理由为了一个没什么用的老奴隶惹这位贵妇人生气。她露出了毒蛇般的笑意……然后她吻了你，就急匆匆地告辞了。\n那之后，娜依拉再也没有和你提过那个女人，你也没有再见过她、或是听说过她的消息。",
++                        "text":"你答应了。没理由为了一个没什么用的老奴隶惹她生气。她露出了毒蛇般的笑意……然后她吻了你，就急匆匆地告辞了。\n那之后，娜依拉再也没有和你提过那个女人，你也没有再见过她、或是听说过她的消息。",
+                         "icon":"cards/2000055"
+                     }
+                 },
+@@ -70,7 +70,7 @@
+                         "coin": 10,
+                         "prompt":{
+                             "id":"5320139_prompt_03",
+-                            "text":"见她的态度坚决，你没再说什么，只是叫来了仆人，让他们把卡雅送到娜依拉的轿子上去。娜依拉亲昵地吻了你的脸，给你留下了她许诺过的金钱。",
++                            "text":"见她的态度坚决，你没再说什么，只是叫来了仆人，让他们把卡雅送到娜依拉的房间里去。娜依拉亲昵地吻了你的脸，旋即回到房间关上了门。",
+                             "icon":"cards/2000055"
+                         }
+                     }
+diff --git a/event/5320261.json b/event/5320261.json
+index 35d58ef..5705579 100644
+--- a/event/5320261.json
++++ b/event/5320261.json
+@@ -10,7 +10,6 @@
+     "condition":{
+         "table_have.2000010":1,
+         "counter.7000541<":1, //证明莎姬的信物非正常消解
+-        "counter.7000439<":1, //集结部队之前
+     },
+     "settlement": [    //效果 
+         {
+diff --git a/event/5320270.json b/event/5320270.json
+index 3cc46af..8c0de0a 100644
+--- a/event/5320270.json
++++ b/event/5320270.json
+@@ -9,7 +9,7 @@
+     },
+     "condition":{
+         "table_have.2000010":1,
+-        //"have.2001019":1, //信物还在
++        "have.2001019":1, //信物还在
+         "counter.7000530<":1, //莎姬的噩梦还没解决  
+     },
+     "settlement": [    //效果 
+diff --git a/event/5320522.json b/event/5320522.json
+index 9792785..54264a4 100644
+--- a/event/5320522.json
++++ b/event/5320522.json
+@@ -16,13 +16,13 @@
+             "tips_text":"",
+             "action":{
+                 "counter+7000169":1, //酒与肉触发计数
+-                "table.2000061-事件提示":1,
+                 "rite":5006029, //启动仪式酒与肉
+                 "prompt":{
+                     "id":"5320522_prompt_01",
+                     "text":"阿迪莱叩响你的家门。她一手提着包油腻腻的烤羊肉，另一手抱着酒瓶，似乎是在从集市回家的路上顺道过来的。\n“啊，是您，一起喝一杯吗？”她冲你举举酒瓶，就像是集市上的屠夫邀请卖家禽的小贩一样，“虽说我本来是来找您夫人的……”",
+                     "icon":"cards/2000061"
+                 },
++                "table.2000061-事件提示":1,
+                 "success":{
+                     "event_off":5320522
+                 }
+diff --git a/event/5321069.json b/event/5321069.json
+index 4112b9b..eb5949b 100644
+--- a/event/5321069.json
++++ b/event/5321069.json
+@@ -1,7 +1,7 @@
+ {
+     "id": 5321069,
+     "text": "老乡见老乡",     
+-    "is_replay": 1, //是否可以重复触发
++    "is_replay": 0, //是否可以重复触发
+     "auto_start_init": [1],
+     "auto_start": false,   
+     "start_trigger": false, // 是否启动就立即开始校验条件
+@@ -11,7 +11,7 @@
+     "condition":{  //条件
+         "counter.7000377>=":1, //触发质子去舍馆
+         "table_have.2000350":1,   //质子在手牌
+-        "counter.7100004>=":3,  //侠名大于等于3
++        "table_have.黑街声望>=":1              //黑街lv1
+         
+     },
+     "settlement": [    //效果 
+diff --git a/event/5321070.json b/event/5321070.json
+index 8a0f232..29c97ed 100644
+--- a/event/5321070.json
++++ b/event/5321070.json
+@@ -1,7 +1,7 @@
+ {
+     "id": 5321070,
+     "text": "质子声望事件为您效劳",     
+-    "is_replay": 1, //是否可以重复触发
++    "is_replay": 0, //是否可以重复触发
+     "auto_start_init": [1],
+     "start_trigger": false, // 是否启动就立即开始校验条件
+     "on":{   //时机
+@@ -11,7 +11,7 @@
+         "counter.7000378>=":1, //触发老乡见老乡
+         "hand_have.2000350":1,   //质子在手牌
+         "counter.7100003>=":5, //权势大于等于5
+-        "counter.7100004>=":5,  //侠名大于等于5
++        "table_have.黑街声望>=":2               //黑街lv2
+         
+     },
+     "settlement": [    //效果 
+diff --git a/event/5321151.json b/event/5321151.json
+index 0fa9695..9c8c57d 100644
+--- a/event/5321151.json
++++ b/event/5321151.json
+@@ -9,7 +9,7 @@
+     },
+     "condition":{
+ 
+-        "table_have.2000173":1  //法德耶还活着
++        "have.2000173":1  //法德耶还活着
+     },
+     "settlement": [    //效果 
+         {
+diff --git a/event/5321153.json b/event/5321153.json
+index 3b34324..6390b6d 100644
+--- a/event/5321153.json
++++ b/event/5321153.json
+@@ -1,9 +1,9 @@
+ {
+     "id": 5321153,
+     "text": "找人陪新月玩",     
+-    "is_replay":1, //是否可以重复触发
++    "is_replay":0, //是否可以重复触发
+      "auto_start_init": [1],
+-    "start_trigger":false, // 是否启动就立即开始校验条件
++    "start_trigger":true, // 是否启动就立即开始校验条件
+     "on":{   //时机
+     "round_begin_ba":3
+     },
+@@ -18,7 +18,10 @@
+             "tips_resource":"", 
+             "tips_text":"",
+             "action":{
+-                "rite":5008161
++                "rite":5008161,
++                "success":{
++                    "event_off":5321153
++                }
+             }
+         }
+ 
+diff --git a/init/1.json b/init/1.json
+index 3c7c9b6..a35a6e7 100644
+--- a/init/1.json
++++ b/init/1.json
+@@ -18,9 +18,9 @@
+         {
+             "name": "梅姬",
+             "title": "简单",
+-            "desc": "梅姬是最温柔的叙事者，她对你充满耐心与善意—— \n\n<sprite=0><indent=60><size=85%>故事里的主角总是幸运的，骰子成功率60%</size></indent>\n\n<sprite=0><indent=60><size=85%>如果你对故事不满意，梅姬总会愿意重新再编一个：可以无限次倒回上一回合</size></indent>\n\n<sprite=0><indent=60><size=85%> 这是一个不那么严苛的故事：每周你可以调换3次苏丹卡，每张卡的处决期限为7天</size></indent>\n\n<sprite=0><indent=60><size=85%>你在初始会拥有3枚必定成功的金骰子</size></indent>\n\n请注意：玩家有机会在游戏中获得额外的金骰子，倒回，重抽等资源，",
++            "desc": "梅姬是最温柔的叙事者，她对你充满耐心与善意—— \n\n<sprite=0><indent=60><size=85%>故事里的主角总是幸运的，骰子成功率60%</size></indent>\n\n<sprite=0><indent=60><size=85%>如果你对故事不满意，梅姬总会愿意重新再编一个：可以无限次倒回上一回合</size></indent>\n\n<sprite=0><indent=60><size=85%> 这是一个不那么严苛的故事：每周你可以调换20次苏丹卡，每张卡的处决期限为7天</size></indent>\n\n<sprite=0><indent=60><size=85%>你在初始会拥有3枚必定成功的金骰子</size></indent>\n\n请注意：玩家有机会在游戏中获得额外的金骰子，倒回，重抽等资源，",
+             "single_dice_face_weight": [100,100,100,100,300,300],
+-            "sudan_redraw_times_per_round": 3,
++            "sudan_redraw_times_per_round": 20,
+             "gold_dice_count": 3,
+             "back_to_prev_round_count": 9999,
+             "sudan_life_time": 7
+diff --git a/rite/5000002.json b/rite/5000002.json
+index 02e4970..9f7f2b6 100644
+--- a/rite/5000002.json
++++ b/rite/5000002.json
+@@ -3335,7 +3335,7 @@
+                     "event_on": 5320505
+                 }
+             },
+-//生命权杖-奇珍------------------------------------------------------------------------------------------------------------------
++//生命权杖------------------------------------------------------------------------------------------------------------------
+             {
+                 "condition":
+                 {                  
+@@ -4127,18 +4127,14 @@
+                 {   
+                     "no_prompt":{ 
+                         "clean.rite":5000823,
+-                        "clean.rite":5000824,
+-                        "clean.rite":5000812  //暂时关闭芮尔的匪帮
++                        "clean.rite":5000824
+                     },
+                     "rite":5000822,
+                     "prompt":{
+                         "id":"5000002_prompt_114",
+                         "text":"你从这些杂乱的线索中提炼了有效的信息。这是一个负责抓捕游牧民的猎团，其首领和驻扎地点都很清晰了，你随时都可以派人前去剿灭。",
+                         "icon":"cards/2000490" 
+-                    },
+-                    "no_prompt":{ 
+-                        "rite":5000812  //重启芮尔的匪帮
+-                    },
++                    }
+ 
+                 }
+             },
+@@ -4156,18 +4152,14 @@
+                 {   
+                     "no_prompt":{
+                         "clean.rite":5000822,
+-                        "clean.rite":5000824,
+-                        "clean.rite":5000812  //暂时关闭芮尔的匪帮
++                        "clean.rite":5000824
+                     },
+                     "rite":5000823,
+                     "prompt":{
+                         "id":"5000002_prompt_115",
+                         "text":"你从这些杂乱的线索中提炼了有效的信息。这是一个负责抓捕蛮族的猎团，其首领和驻扎地点都很清晰了，你随时都可以派人前去剿灭。",
+                         "icon":"cards/2000490"
+-                    },
+-                    "no_prompt":{ 
+-                        "rite":5000812  //重启芮尔的匪帮
+-                    },
++                    }
+                 }
+             },
+             {
+@@ -4184,18 +4176,14 @@
+                 {   
+                     "no_prompt":{
+                         "clean.rite":5000823,
+-                        "clean.rite":5000822,
+-                        "clean.rite":5000812  //暂时关闭芮尔的匪帮
++                        "clean.rite":5000822
+                     },
+-                    "rite":5000824,
+                     "prompt":{
+                         "id":"5000002_prompt_116",
+                         "text":"你从这些杂乱的线索中提炼了有效的信息。令人吃惊的是，这个猎团的目标竟然是本国的流民——都是一些自由民！他们会烧掉这些人的身份纸，把他们卖作奴隶，而这根本不合法！\n好在，这个猎团首领和驻扎地点非常清晰，你随时都可以派人前去剿灭。",
+                         "icon":"cards/2000490"
+                     },
+-                    "no_prompt":{ 
+-                        "rite":5000812  //重启芮尔的匪帮
+-                    },
++                    "rite":5000824
+                 }
+             },
+ //寻思族长的祝福 白银马鞍    ------------------------------------------------------------------------------------------------------------------ 
+@@ -5484,11 +5472,10 @@
+                 "result_text": "",
+                 "result": 
+                 {
+-                    "s1+回收":1,
+                 },
+                 "action":
+                 {
+-                    "rite": 5000515, 
++                    "event_on": 5000515, 
+                     "prompt":{
+                         "id":"5000002_prompt_328", 
+                         "text":"白蜜琥珀宝珠能用来驱散诅咒",
+diff --git a/rite/5000063.json b/rite/5000063.json
+index 7f819b2..9af2cb1 100644
+--- a/rite/5000063.json
++++ b/rite/5000063.json
+@@ -3,7 +3,6 @@
+         "name": "召唤龙卷风",
+         "text": "透过风之护符，你可以尝试束缚一个强大的空气精魂，在你需要的时候，它会为了自由而施放出狂风。",       
+         "tips": "",
+-        "mapping_id":8001244,
+         "once_new":0,
+         "round_number": 3,
+         "waiting_round":1,
+diff --git a/rite/5000064.json b/rite/5000064.json
+index c64e1b6..b3cd450 100644
+--- a/rite/5000064.json
++++ b/rite/5000064.json
+@@ -3,7 +3,6 @@
+         "name": "打碎提灯",
+         "text": "三只犯过错误的妖精被囚禁在这里：一只因为偷窃，一只因为偷情，还有一只则因为高贵。",       
+         "tips": "",
+-        "mapping_id":8001246,
+         "once_new":0,
+         "round_number": 1,
+         "waiting_round":1,
+diff --git a/rite/5000104.json b/rite/5000104.json
+index 5fb6f86..44f9368 100644
+--- a/rite/5000104.json
++++ b/rite/5000104.json
+@@ -1,7 +1,7 @@
+  {
+         "id": 5000104,
+         "name": "阿图娜尔的请求",
+-        "text": "阿图娜尔渴望变得更具影响力，这显然对你也有好处。",       
++        "text": "阿图娜尔渴望变得更具影响力，这显然对你也有好处，可能还有别的“好处”？",       
+         "tips": "",
+         "mapping_id":8001213, 
+         "once_new":1,
+@@ -41,12 +41,13 @@
+                 {
+                 },
+                 "result_title":"",
+-                "result_text": "黄金和宝石的妆点衬托出了高贵的气质，但更重要的是……你也注意到了，对吗，她不再习惯性地低着头，她学会了不再隐藏自己的美。",
++                "result_text": "黄金和宝石的妆点衬托出了高贵的气质，但更重要的是……你也注意到了，对吗，她不再习惯性地低着头，她学会了不再隐藏自己的美。\n她悄悄看了你一眼，声音轻得几乎听不见：“如果……我能永远戴着你送的东西，也一直站在你身边，那该有多好。”，你欣然应允",
+                 "result": 
+                 { 
+                     "clean.s2":1,
+                     "clean.s3":1,
+-                    "s1+魅力":2,
++                    "s1+侧室":1,
++					"s1+魅力":2,
+                     "s1+体魄":1,
+                     "s1+社交":2,
+                     "s1.uprare":1,  //升级稀有度
+diff --git a/rite/5000522.json b/rite/5000522.json
+index f400a50..5b19218 100644
+--- a/rite/5000522.json
++++ b/rite/5000522.json
+@@ -3,7 +3,6 @@
+         "name": "安苏亚的请求I",
+         "text": "安苏亚答应帮你找机会窃走苏丹的戒指，但前提是她必须逐步得到苏丹的信任和恩宠，得到侍寝的机会，而这并不容易……现在，她需要一笔资金用于打点宫里大小事宜。",       
+         "tips": "",
+-        "mapping_id":8001283, 
+         "once_new":0,
+         "round_number": 1,
+         "waiting_round":5,
+diff --git a/rite/5000523.json b/rite/5000523.json
+index 9c80291..567b735 100644
+--- a/rite/5000523.json
++++ b/rite/5000523.json
+@@ -3,7 +3,6 @@
+         "name": "安苏亚的请求",
+         "text": "安苏亚答应帮你找机会窃取苏丹的戒指，但前提是她必须逐步得到苏丹的信任和恩宠，得到侍寝的机会。她需要你给她传递一些在宫里不方面出面打听的情报，以免处处受制于人。",       
+         "tips": "",
+-        "mapping_id":8001283, 
+         "once_new":0,
+         "round_number": 1,
+         "waiting_round":5,
+diff --git a/rite/5000524.json b/rite/5000524.json
+index a2041d6..f4153c9 100644
+--- a/rite/5000524.json
++++ b/rite/5000524.json
+@@ -3,7 +3,6 @@
+         "name": "安苏亚的请求",
+         "text": "安苏亚答应帮你找机会窃取苏丹的戒指，但前提是她必须逐步得到苏丹的信任和恩宠，得到侍寝的机会。然而孤身一人在后宫，难免独木难支。她需要你在朝堂获得足够的影响力，以此暗中支持她的某些行动。除此之外，她希望能和你或者你的使者见一面，谈谈今后的安排。",       
+         "tips": "",
+-        "mapping_id":8001283, 
+         "once_new":0,
+         "round_number": 1,
+         "waiting_round":5,
+diff --git a/rite/5000525.json b/rite/5000525.json
+index e8488b0..7f22715 100644
+--- a/rite/5000525.json
++++ b/rite/5000525.json
+@@ -3,7 +3,6 @@
+         "name": "静待时机",
+         "text": "如果时机成熟，你可以给安苏亚妃传信，她会为你窃走苏丹的戒指，为你的弑君计划制造可乘之机。",       
+         "tips": "",
+-        "mapping_id":8001283, 
+         "once_new":0,
+         "round_number": 1,
+         "waiting_round":0,
+diff --git a/rite/5000559.json b/rite/5000559.json
+index 28fb33a..88df06e 100644
+--- a/rite/5000559.json
++++ b/rite/5000559.json
+@@ -3,7 +3,6 @@
+         "name": "潜入篡改",
+         "text": "你试图潜入宫廷，帮助萨达尔尼妃修正苏丹的起居记录。",       
+         "tips": "",
+-        "mapping_id":8001283, 
+         "once_new":0,
+         "round_number": 1,
+         "waiting_round":0, 
+diff --git a/rite/5000562.json b/rite/5000562.json
+index de097fa..3e913fe 100644
+--- a/rite/5000562.json
++++ b/rite/5000562.json
+@@ -3,7 +3,6 @@
+         "name": "真正的报偿",
+         "text": "你希望能说服萨达尔尼帮助你弑君，而这样的密谋只适合当面说。你决定冒险潜入宫廷，和萨达尔尼见上一面。",       
+         "tips": "",
+-        "mapping_id":8001283, 
+         "once_new":0,
+         "round_number": 1,
+         "waiting_round":0,
+diff --git a/rite/5000579.json b/rite/5000579.json
+index 27ff1e8..756709e 100644
+--- a/rite/5000579.json
++++ b/rite/5000579.json
+@@ -3,7 +3,6 @@
+         "name": "星神的契约",
+         "text": "有了吸引圣主的种子……你完全可以自己举行一个召唤祂的仪式。无论是深渊恶魔，还是天上的星灵，这类仪式的核心都是一样的——困住目标，然后讨价还价。",       
+         "tips": "",
+-        "mapping_id":8001245,
+         "once_new":0,
+         "round_number": 1,
+         "waiting_round":1,
+@@ -112,7 +111,7 @@
+                     },
+                     "action": {         
+                         "event_on":5320256, //莎姬的礼物    
+-                        "event_on":5320279 //星之衰 
++                        "event_on":5320579 //星之衰 
+                     }
+                 },
+                 {
+diff --git a/rite/5000580.json b/rite/5000580.json
+index 3ffa4ca..fdf9028 100644
+--- a/rite/5000580.json
++++ b/rite/5000580.json
+@@ -3,7 +3,6 @@
+         "name": "向星星许愿",
+         "text": "圣主正在适应祂新的躯体，也在等待你的许愿。",       
+         "tips": "",
+-        "mapping_id":8001247,
+         "once_new":0,
+         "round_number": 1,
+         "waiting_round":5,
+diff --git a/rite/5000581.json b/rite/5000581.json
+index 121fcd8..601231a 100644
+--- a/rite/5000581.json
++++ b/rite/5000581.json
+@@ -3,7 +3,6 @@
+         "name": "猎神",
+         "text": "整个仪式非常简单——把贪婪的神骗进容器里，然后用黑暗堵住祂的退路，用镜子反制祂的挣扎——最后用刀切开容器，释放出神圣的精华，跟杀一头牲口没有什么区别。",       
+         "tips": "",
+-        "mapping_id":8001248,
+         "once_new":0,
+         "round_number": 1,
+         "waiting_round":3,
+diff --git a/rite/5000582.json b/rite/5000582.json
+index 7ae04b8..d39c849 100644
+--- a/rite/5000582.json
++++ b/rite/5000582.json
+@@ -3,7 +3,6 @@
+         "name": "焚星",
+         "text": "纯净者教会需要你帮助他们寻找那异端之神在星空中的根源——这需要大量的计算和时间，但为了见证纯净之神的奇迹，这都是值得的。",       
+         "tips": "",
+-        "mapping_id":8001249,
+         "once_new":0,
+         "round_number": 5,
+         "waiting_round":3,
+diff --git a/rite/5000583.json b/rite/5000583.json
+index 05b38a5..6d7b6e6 100644
+--- a/rite/5000583.json
++++ b/rite/5000583.json
+@@ -3,7 +3,6 @@
+         "name": "星之衰",
+         "text": "圣主在你的灵魂中哀鸣。",       
+         "tips": "",
+-        "mapping_id":8001247,
+         "once_new":0,
+         "round_number": 1,
+         "waiting_round":0,
+diff --git a/rite/5000611.json b/rite/5000611.json
+index bc2dd00..910504d 100644
+--- a/rite/5000611.json
++++ b/rite/5000611.json
+@@ -3,7 +3,6 @@
+         "name": "武术指导",
+         "text": "你决定给扎齐伊找一位经验丰富的高手指点武艺，或者，你打算亲自上阵？",       
+         "tips": "",
+-        "mapping_id":8001252,
+         "once_new":0,
+         "round_number": 1,
+         "waiting_round":0, 
+diff --git a/rite/5000612.json b/rite/5000612.json
+index be82a6a..4fdb00a 100644
+--- a/rite/5000612.json
++++ b/rite/5000612.json
+@@ -3,7 +3,6 @@
+         "name": "唆使犯罪",
+         "text": "你告诉扎齐伊，武者最重要的就是藏匿自身、把握时机。因此，你决定带领他，尝试潜入某位少女的闺房……",       
+         "tips": "",
+-        "mapping_id":8001252,
+         "once_new":0,
+         "round_number": 1,
+         "waiting_round":0, 
+diff --git a/rite/5000613.json b/rite/5000613.json
+index 45468cf..6341dc4 100644
+--- a/rite/5000613.json
++++ b/rite/5000613.json
+@@ -3,7 +3,6 @@
+         "name": "狩猎实战",
+         "text": "只有在真正的狩猎中才能锻炼出真正的战士。你决定带着扎齐伊去见见血。",       
+         "tips": "",
+-        "mapping_id":8001250,
+         "once_new":0,
+         "round_number": 1,
+         "waiting_round":0, 
+diff --git a/rite/5000615.json b/rite/5000615.json
+index c923636..3362821 100644
+--- a/rite/5000615.json
++++ b/rite/5000615.json
+@@ -3,7 +3,6 @@
+         "name": "社交教习",
+         "text": "想要有所成就，一定得在宫廷里吃得开，年轻人早点来见见世面是最好的。",       
+         "tips": "",
+-        "mapping_id":8001008,
+         "once_new":0,
+         "round_number": 1,
+         "waiting_round":0, 
+diff --git a/rite/5000616.json b/rite/5000616.json
+index d7baf6b..3859e12 100644
+--- a/rite/5000616.json
++++ b/rite/5000616.json
+@@ -3,7 +3,6 @@
+         "name": "社交教习",
+         "text": "年轻人就要发挥自己的身体优势，在浴场中夺走所有人的目光。",       
+         "tips": "",
+-        "mapping_id":8001500,
+         "once_new":0,
+         "round_number": 1,
+         "waiting_round":0, 
+diff --git a/rite/5000617.json b/rite/5000617.json
+index c087476..ef46a7d 100644
+--- a/rite/5000617.json
++++ b/rite/5000617.json
+@@ -3,7 +3,6 @@
+         "name": "社交教习",
+         "text": "今天，就要带他进入成人的世界……欢愉之馆会教会年轻人一切。",       
+         "tips": "",
+-        "mapping_id":8001186,
+         "once_new":0,
+         "round_number": 1,
+         "waiting_round":0, 
+diff --git a/rite/5000619.json b/rite/5000619.json
+index 4ee6d72..75289f4 100644
+--- a/rite/5000619.json
++++ b/rite/5000619.json
+@@ -3,7 +3,6 @@
+         "name": "最后的解惑",
+         "text": "你们来到了书店，你告诉他一切谜题的答案，都可以在历史和书中找到。",       
+         "tips": "",
+-        "mapping_id":8001225,
+         "once_new":0,
+         "round_number": 1,
+         "waiting_round":0, 
+diff --git a/rite/5000620.json b/rite/5000620.json
+index 4988225..7190f02 100644
+--- a/rite/5000620.json
++++ b/rite/5000620.json
+@@ -3,7 +3,6 @@
+         "name": "最后的解惑",
+         "text": "你们来到了监狱，让他看看愚蠢之人的下场。",       
+         "tips": "",
+-        "mapping_id":8001241,
+         "once_new":0,
+         "round_number": 1,
+         "waiting_round":0, 
+diff --git a/rite/5000621.json b/rite/5000621.json
+index b4111b1..71e793f 100644
+--- a/rite/5000621.json
++++ b/rite/5000621.json
+@@ -3,7 +3,6 @@
+         "name": "最后的解惑",
+         "text": "你们各自身携利刃，摘掉了身上华而不实的东西，走入下城区的暗巷……",       
+         "tips": "",
+-        "mapping_id":8001131, 
+         "once_new":0,
+         "round_number": 1,
+         "waiting_round":0, 
+diff --git a/rite/5000623.json b/rite/5000623.json
+index 4260160..02e6036 100644
+--- a/rite/5000623.json
++++ b/rite/5000623.json
+@@ -3,7 +3,6 @@
+         "name": "年轻望族的仰慕",
+         "text": "经过一番训练之后，年轻贵族彻底认定了你，现在你有机会向他传播你的思想。",       
+         "tips": "",
+-        "mapping_id":8001077,
+         "once_new":0,
+         "round_number": 1,
+         "waiting_round":3, 
+diff --git a/rite/5000624.json b/rite/5000624.json
+index a2997f6..902d1b1 100644
+--- a/rite/5000624.json
++++ b/rite/5000624.json
+@@ -3,7 +3,6 @@
+         "name": "寡妇的友谊",
+         "text": "孩子就是她的一切，你对孩子的出色教育让她向你释放出了友谊的信号。",       
+         "tips": "",
+-        "mapping_id":8001077,
+         "once_new":0,
+         "round_number": 1,
+         "waiting_round":3, 
+diff --git a/rite/5000632.json b/rite/5000632.json
+index b109bc9..77c0c02 100644
+--- a/rite/5000632.json
++++ b/rite/5000632.json
+@@ -3,7 +3,6 @@
+         "name": "王狮猎场",
+         "text": "到了约定的那一天，阿迪莱早早等在了城门口。英气勃发的女战士脸上没有笑容，只有浓浓的战意。",       
+         "tips": "",
+-        "mapping_id":8001253,
+         "once_new":0,
+         "round_number": 1,
+         "waiting_round":3, 
+diff --git a/rite/5000633.json b/rite/5000633.json
+index c964118..1e472b7 100644
+--- a/rite/5000633.json
++++ b/rite/5000633.json
+@@ -3,7 +3,6 @@
+         "name": "处置阿迪莱",
+         "text": "胜利者有权力处置失败者，这就是战士的荣誉。",       
+         "tips": "",
+-        "mapping_id":8001216,
+         "once_new":0,
+         "round_number": 1,
+         "waiting_round":0, 
+diff --git a/rite/5000634.json b/rite/5000634.json
+index 5142f08..9ab3b98 100644
+--- a/rite/5000634.json
++++ b/rite/5000634.json
+@@ -3,7 +3,6 @@
+         "name": "一件礼物，一个诅咒",
+         "text": "因为那张折断的纵欲卡，坊间最近都在流传着你如何征服一个故作高傲的女人的故事。甚至还有人让欢愉之馆也弄几个穿着铠甲，拿着武器的妓女，那该是怎样带劲儿的滋味！当然了，男人的全副装甲很昂贵，妓女们就用不着浪费那么多铁了，呵呵……而就在流言甚嚣尘上之时，阿迪莱的家人前来拜访……",       
+         "tips": "",
+-        "mapping_id":8001077,
+         "once_new":0,
+         "round_number": 0,
+         "waiting_round":0, 
+diff --git a/rite/5000635.json b/rite/5000635.json
+index 0ceff74..64e1f79 100644
+--- a/rite/5000635.json
++++ b/rite/5000635.json
+@@ -3,7 +3,6 @@
+         "name": "少女审视自己",
+         "text": "阿迪莱在审视自己的成长……",       
+         "tips": "",
+-        "mapping_id":8001008,
+         "once_new":0,
+         "round_number": 0,
+         "waiting_round":0, 
+diff --git a/rite/5000636.json b/rite/5000636.json
+index f76fb5d..e97b685 100644
+--- a/rite/5000636.json
++++ b/rite/5000636.json
+@@ -3,7 +3,6 @@
+         "name": "少女审视自己",
+         "text": "阿迪莱在审视自己的成长……",       
+         "tips": "",
+-        "mapping_id":8001008,
+         "once_new":0,
+         "round_number": 0,
+         "waiting_round":0, 
+diff --git a/rite/5000638.json b/rite/5000638.json
+index e2db5b0..df081d3 100644
+--- a/rite/5000638.json
++++ b/rite/5000638.json
+@@ -3,7 +3,6 @@
+         "name": "女战士的挑战",
+         "text": "一名战士装扮的女性堵在了你的家门口，气势汹汹地要求你给个说法。她宣称那头白犀牛是她盯上很久的猎物，好不容易设下陷阱让白犀牛受伤，结果因为你的轻举妄动，害得她彻底失去了白犀牛的踪迹！阿迪莱越说越生气，最后解下佩剑掷在地上，指着你的鼻子要求和你决斗！",       
+         "tips": "",
+-        "mapping_id":8001107,  
+         "once_new":0,
+         "round_number": 0,
+         "waiting_round":0, 
+@@ -12,7 +11,7 @@
+         "method_settlement": "",
+         "auto_begin": 0, 
+         "auto_result": 0, //自动执行
+-        "location": "自宅:[2,12]", 
++        "location": "野外:[1,6]", 
+         "icon": "rite_17",  
+         "tag_tips": [
+             "战斗",
+diff --git a/rite/5000639.json b/rite/5000639.json
+index b53a5b1..ae01d4c 100644
+--- a/rite/5000639.json
++++ b/rite/5000639.json
+@@ -3,7 +3,6 @@
+         "name": "处置阿迪莱",
+         "text": "胜利者可以任意处置失败者，这就是古代战士的荣誉……也是阿迪莱倔强的坚持。你不知道她是否明白这意味着什么。",       
+         "tips": "",
+-        "mapping_id":8001216,
+         "once_new":0,
+         "round_number": 1,
+         "waiting_round":0, 
+@@ -12,7 +11,7 @@
+         "method_settlement": "",
+         "auto_begin": 0, 
+         "auto_result": 0, //自动执行
+-        "location": "自宅:[2,12]", 
++        "location": "野外:[1,6]", 
+         "icon": "rite_12",  
+         "tag_tips": [
+         ],
+diff --git a/rite/5000640.json b/rite/5000640.json
+index 3831d2d..6f14f75 100644
+--- a/rite/5000640.json
++++ b/rite/5000640.json
+@@ -3,7 +3,6 @@
+         "name": "探访奈费勒",
+         "text": "奈费勒府上大门紧闭，显然不打算招待任何不受欢迎的客人。他当然不欢迎你，如果不是这样的情形，你也根本不想拜访你的这位敌人。可你一直忘不掉他那意有所指的眼神————奈费勒当然不会是害怕……不，等等，他不怕吗？他难道不怕你杀了他？这烦人的家伙曾在大庭广众之下令你数度难堪，他难道忘了，你现在可以合法地杀死他了！\n对呀，我现在可以杀他了。你情不自禁地想到，只要你抽到一张足以脱罪的杀戮卡，再准备一些人手……你可以带上一点【礼物】登门拜访，趁他放下戒备，一击毙命……对了，即使不杀他，你也可以逼问一下他，他看你的那一眼究竟是什么意思？",       
+         "tips": "",
+-        "mapping_id":8001254,
+         "once_new":0,
+         "round_number": 0,
+         "waiting_round":14, 
+diff --git a/rite/5000641.json b/rite/5000641.json
+index 95b5d38..6d6da1b 100644
+--- a/rite/5000641.json
++++ b/rite/5000641.json
+@@ -3,7 +3,6 @@
+         "name": "密会",
+         "text": "这处宅邸远离闹市、远离人群，清净得像是荒废了一般。奈费勒坐在屋檐和树荫下安静地看书，身边没有任何仆人或者侍从。",       
+         "tips": "",
+-        "mapping_id":8001255,
+         "once_new":0,
+         "round_number": 1,
+         "waiting_round":14, 
+diff --git a/rite/5000652.json b/rite/5000652.json
+index d0a00f9..b35f53c 100644
+--- a/rite/5000652.json
++++ b/rite/5000652.json
+@@ -72,6 +72,7 @@
+             {
+                 "condition": {
+                     "s4.奢靡":1
++					"s4.rare=":4
+                 },
+                 "result_title":"",
+                 "result_text": "即使苏丹也不得不承认这是一场高规格的奢华演出。",
+@@ -184,7 +185,7 @@
+                         "all":{
+                             "s3":1,
+                             "type":"sudan",
+-                            "rare=":4,
++                            "rare>=":3,
+                             "any":{
+                                 "杀戮":1,
+                                 "奢靡":1
+diff --git a/rite/5000667.json b/rite/5000667.json
+index ca5f90b..dcea910 100644
+--- a/rite/5000667.json
++++ b/rite/5000667.json
+@@ -3,7 +3,6 @@
+         "name": "苏丹的捉弄",
+         "text": "伟大而仁慈的苏丹给了你一个机会——如此便捷、简单地消耗一张苏丹卡的机会。",       
+         "tips": "",
+-        "mapping_id":8001038,
+         "once_new":0,
+         "round_number": 1,
+         "waiting_round":7, 
+diff --git a/rite/5000668.json b/rite/5000668.json
+index cef6ef1..2c95fc2 100644
+--- a/rite/5000668.json
++++ b/rite/5000668.json
+@@ -3,7 +3,6 @@
+         "name": "修建暗渠",
+         "text": "你知道应对干旱有一个很好的方法就是修建暗渠，汲取地表之下的水脉，而这最重要、也最困难的就是找到最合适的水源地。你决定派遣学者和工匠验证你的这一想法，虽然这需要花费漫长的时间，但为了人民的安定生活，这一定是值得的。",       
+         "tips": "",
+-        "mapping_id":8001256,
+         "once_new":0,
+         "round_number": 7,
+         "waiting_round":0, 
+diff --git a/rite/5000669.json b/rite/5000669.json
+index 59ac665..0974a0d 100644
+--- a/rite/5000669.json
++++ b/rite/5000669.json
+@@ -3,7 +3,6 @@
+         "name": "祈雨献祭",
+         "text": "反常的干旱昭示着神明背弃了这片土地，因此，你建议法尔达克向魔鬼祈求。走投无路的法尔达克没有过多犹豫地同意了这场邪恶的仪式。只要能让天空重新降下雨水，拯救困苦的人民，他愿意抛弃一切。",       
+         "tips": "",
+-        "mapping_id":8001257,
+         "once_new":0,
+         "round_number": 3,
+         "waiting_round":0, 
+diff --git a/rite/5000670.json b/rite/5000670.json
+index d6dc07e..1be4a32 100644
+--- a/rite/5000670.json
++++ b/rite/5000670.json
+@@ -3,7 +3,6 @@
+         "name": "兴修宫殿",
+         "text": "你对法尔达克使用奢靡卡这一不痛不痒的举动让苏丹倍感无聊。他决定惩罚你的不识趣，命令你为法尔达克修建一个奢华铺张的宫殿。",       
+         "tips": "",
+-        "mapping_id":8001063,
+         "once_new":0,
+         "round_number": 3,
+         "waiting_round":7, 
+diff --git a/rite/5000672.json b/rite/5000672.json
+index ae4ea37..d7570ee 100644
+--- a/rite/5000672.json
++++ b/rite/5000672.json
+@@ -3,7 +3,6 @@
+         "name": "严厉刑罚",
+         "text": "针对这些胆敢逃跑的刁民，你认为有必要颁布和实施严厉的、针对性的法案。你决心召集法学者进行研讨，然后以雷霆手段抓捕、惩罚那些犯人，以免今后还有人效仿。",       
+         "tips": "",
+-        "mapping_id":8001008,
+         "once_new":0,
+         "round_number": 3,
+         "waiting_round":0, 
+diff --git a/rite/5000673.json b/rite/5000673.json
+index cb03157..d42aa44 100644
+--- a/rite/5000673.json
++++ b/rite/5000673.json
+@@ -3,7 +3,6 @@
+         "name": "仁慈的许诺",
+         "text": "任谁都知晓，农民选择离开皆是迫于沉重苛刻的赋税。只要你能说服地方贵族稍稍放松对他们的盘剥，他们就会愿意回到自己的土地。但，贵族们不会轻易退让的。苏丹只赐予他们几年内在那片土地征收赋税的权力，他们不会考虑更长远的事情。你要为这件事付出的比你想象的要多得多。",       
+         "tips": "",
+-        "mapping_id":8001008,
+         "once_new":0,
+         "round_number": 3,
+         "waiting_round":0, 
+diff --git a/rite/5000674.json b/rite/5000674.json
+index 3b83618..049823c 100644
+--- a/rite/5000674.json
++++ b/rite/5000674.json
+@@ -3,7 +3,6 @@
+         "name": "促成谈判",
+         "text": "山匪凭借着对地势的熟悉和来去如风的快马，很难强行收服，而他们选择掠劫商队，无非是因为山中没有耕地，无法满足日常所需。你决定派遣你认可的“外交官”和他们谈判。",       
+         "tips": "",
+-        "mapping_id":8001174, 
+         "once_new":0,
+         "round_number": 3,
+         "waiting_round":0, 
+diff --git a/rite/5000675.json b/rite/5000675.json
+index 579922d..99df294 100644
+--- a/rite/5000675.json
++++ b/rite/5000675.json
+@@ -3,7 +3,6 @@
+         "name": "强硬驱逐",
+         "text": "你认为当地人无法剿灭山匪的踪迹完全是因为无能，如果是你亲自出马，情况肯定就不一样了！",       
+         "tips": "",
+-        "mapping_id":8001174, 
+         "once_new":0,
+         "round_number": 3,
+         "waiting_round":0, 
+diff --git a/rite/5000676.json b/rite/5000676.json
+index 28031e2..936425b 100644
+--- a/rite/5000676.json
++++ b/rite/5000676.json
+@@ -3,7 +3,6 @@
+         "name": "核查漏洞",
+         "text": "异教徒借改信之名逃避全额税收这件事各方牵扯很深，且流毒甚广。你认为局势必须改变，但并非一人之力可为。你决定召集各界人士共同定夺。",       
+         "tips": "",
+-        "mapping_id":8001258,
+         "once_new":0,
+         "round_number": 1,
+         "waiting_round":0, 
+diff --git a/rite/5000677.json b/rite/5000677.json
+index b4800a2..7438e3a 100644
+--- a/rite/5000677.json
++++ b/rite/5000677.json
+@@ -3,7 +3,6 @@
+         "name": "神圣审判",
+         "text": "你为异教徒的无耻感到震撼，他们为了一点钱，竟然背弃自己的信仰，还玷污你们的信仰！圣教绝不会善罢甘休的，你决心对他们进行神圣的审判，不论付出怎样的代价！",       
+         "tips": "",
+-        "mapping_id":8001259,
+         "once_new":0,
+         "round_number": 1,
+         "waiting_round":0, 
+diff --git a/rite/5000678.json b/rite/5000678.json
+index cff2016..87fe254 100644
+--- a/rite/5000678.json
++++ b/rite/5000678.json
+@@ -3,7 +3,6 @@
+         "name": "苏丹的质询",
+         "text": "你的善名在王国各地广为传颂，人们称赞你的声音甚至传到了苏丹的耳中。这名多疑的君王第一时间召见了你，想确认你是否还忠于他。",       
+         "tips": "",
+-        "mapping_id":8001008,
+         "once_new":0,
+         "round_number": 1,
+         "waiting_round":3, 
+diff --git a/rite/5000679.json b/rite/5000679.json
+index 926f253..7bcc485 100644
+--- a/rite/5000679.json
++++ b/rite/5000679.json
+@@ -3,7 +3,6 @@
+         "name": "诸地暴乱",
+         "text": "不堪重负的人民揭竿而起，而你在王国各地恶名远扬，他们决定先给你一个惨痛的教训，出一口恶气！",       
+         "tips": "",
+-        "mapping_id":8001260,
+         "once_new":0,
+         "round_number": 1,
+         "waiting_round":3, 
+diff --git a/rite/5000680.json b/rite/5000680.json
+index 91a9424..8e1d755 100644
+--- a/rite/5000680.json
++++ b/rite/5000680.json
+@@ -3,7 +3,6 @@
+         "name": "法尔达克的友谊",
+         "text": "你的襄助赢得了法尔达克的友谊，他决心追随你，而在此之前，你还可以和他聊聊你的思潮。",       
+         "tips": "",
+-        "mapping_id":8001064, 
+         "once_new":0,
+         "round_number": 1,
+         "waiting_round":3, 
+@@ -26,7 +25,7 @@
+         "auto_begin": 0, 
+         "auto_result": 0,                            
+         "location": "上城区:[7,12]", 
+-        "icon": "rite_16",  
++        "icon": "rite_20",  
+         "tag_tips": [
+         ],
+         "tag_tips_up":{
+diff --git a/rite/5000681.json b/rite/5000681.json
+index 7d7a012..4016da7 100644
+--- a/rite/5000681.json
++++ b/rite/5000681.json
+@@ -3,7 +3,6 @@
+         "name": "修建暗渠",
+         "text": "你知道应对干旱有一个很好的方法就是修建暗渠，汲取地表之下的水脉，而这最重要、也最困难的就是找到最合适的水源地。你决定派遣学者和工匠验证你的这一想法，虽然这需要花费漫长的时间，但为了人民的安定生活，这一定是值得的。",       
+         "tips": "",
+-        "mapping_id":8001256,
+         "once_new":0,
+         "round_number": 7,
+         "waiting_round":0, 
+diff --git a/rite/5000682.json b/rite/5000682.json
+index 034d421..71cb586 100644
+--- a/rite/5000682.json
++++ b/rite/5000682.json
+@@ -3,7 +3,6 @@
+         "name": "祈雨献祭",
+         "text": "反常的干旱昭示着神明背弃了这片土地，因此，你建议当地人向魔鬼祈求。走投无路的人们没有过多犹豫地同意了这场邪恶的仪式。只要能让天空重新降下雨水，他们愿意抛弃一切。",       
+         "tips": "",
+-        "mapping_id":8001257,
+         "once_new":0,
+         "round_number": 3,
+         "waiting_round":0, 
+diff --git a/rite/5000683.json b/rite/5000683.json
+index f85790a..90d5f47 100644
+--- a/rite/5000683.json
++++ b/rite/5000683.json
+@@ -3,7 +3,6 @@
+         "name": "悄无声息的离去",
+         "text": "你听说麦娜尔又一次出发了……这一次她没有找任何赞助，离开时只带了一只骆驼。",       
+         "tips": "",
+-        "mapping_id":8001202,  
+         "once_new":0,
+         "round_number": 3,
+         "waiting_round":0, 
+diff --git a/rite/5000684.json b/rite/5000684.json
+index dc3275f..2ee4e8d 100644
+--- a/rite/5000684.json
++++ b/rite/5000684.json
+@@ -3,7 +3,6 @@
+         "name": "以身试刃",
+         "text": "既然盖斯找死，你也就勉强成全他。",       
+         "tips": "",
+-        "mapping_id":8001216,
+         "once_new":1,
+         "round_number": 1,
+         "waiting_round":3,
+diff --git a/rite/5000685.json b/rite/5000685.json
+index acfd3a9..d3390f8 100644
+--- a/rite/5000685.json
++++ b/rite/5000685.json
+@@ -3,7 +3,6 @@
+         "name": "实地走访",
+         "text": "根据女仆给的线索，你着手调查那名税吏的案件——首先要调查清楚的就是，他的妻儿是走哪一条路回乡的，又是在什么地方失踪的？你决定派人亲自走一趟，到实地展开调查。",       
+         "tips": "",
+-        "mapping_id":8001131, 
+         "once_new":1,
+         "round_number": 7,
+         "waiting_round":3,
+diff --git a/rite/5000686.json b/rite/5000686.json
+index cf0aad5..6efbc4d 100644
+--- a/rite/5000686.json
++++ b/rite/5000686.json
+@@ -3,7 +3,6 @@
+         "name": "初步调查",
+         "text": "离开驿站之后，那名夫人肯定是回到了自己的家乡。可为什么没有人见过她呢？你决定去那座城市展开调查。",       
+         "tips": "",
+-        "mapping_id":8001261, 
+         "once_new":1,
+         "round_number": 1,
+         "waiting_round":0,
+diff --git a/rite/5000687.json b/rite/5000687.json
+index 70614ab..caac750 100644
+--- a/rite/5000687.json
++++ b/rite/5000687.json
+@@ -3,7 +3,6 @@
+         "name": "深入调查",
+         "text": "盖斯陪着你来到这座城市的总督府邸，他拿出早准备好的搜查令，要求对他们进行调查。然而，年迈的总督强硬地表示你们没有权力用这么荒谬的理由搜查他们的府邸，而老夫人则声泪俱下地指控盖斯，哭诉自己已经失去了女儿，而这食饷的官吏，竟不去抓捕罪犯，反而盘问到无辜之人头上？她可是死者的母亲啊！\n盖斯难以招架这样的场面，手足无措地看向你。你轻轻叹了口气，看来，你必须拿出一张征服卡，告诉他们你拥有苏丹赐予的特权，你可以做任何事。",       
+         "tips": "",
+-        "mapping_id":8001261, 
+         "once_new":1,
+         "round_number": 1,
+         "waiting_round":0,
+diff --git a/rite/5000702.json b/rite/5000702.json
+index 456ed71..f3bf393 100644
+--- a/rite/5000702.json
++++ b/rite/5000702.json
+@@ -3,7 +3,6 @@
+         "name": "无尽黄沙",
+         "text": "根据哲巴尔家族代代相传的古地图，在大沙漠的中心，有一块水土丰沃，尚未被文明触碰的绿洲。那里有森林也有湖泊，如果想要前往未知的远方冒险，一定要以它作为补给点，才能穿越沙漠。",       
+         "tips": "",
+-        "mapping_id":8001262,   
+         "once_new":0,
+         "round_number": 7, //需要7回合
+         "waiting_round":2, 
+diff --git a/rite/5000703.json b/rite/5000703.json
+index 80fbbb2..652d83b 100644
+--- a/rite/5000703.json
++++ b/rite/5000703.json
+@@ -3,7 +3,6 @@
+         "name": "狂风峡谷",
+         "text": "古代人利用魔法与地形塑造了此处遗迹。它终年刮着狂风，而山谷入口更是飞沙走石。峡谷的两侧是狮鹫与毒蛇的神像，提示着冒险者将面对什么样的挑战……\n 经过商议之后，你们决定分工合作，掩护哲巴尔抵达山谷尽头的藏宝处……如果这本笔记没有说谎的话，那里会有一件宝物。",       
+         "tips": "",
+-        "mapping_id":8001263, 
+         "once_new":0,
+         "round_number": 3, //需要3回合
+         "waiting_round":2, 
+diff --git a/rite/5000704.json b/rite/5000704.json
+index 373d38b..619df9e 100644
+--- a/rite/5000704.json
++++ b/rite/5000704.json
+@@ -3,7 +3,6 @@
+         "name": "暗影神殿",
+         "text": "一个恶灵守护着传说中的暗影罗盘……冒险者可以用血祭贿赂他，哲巴尔的祖先笔记这样记载着。",       
+         "tips": "",
+-        "mapping_id":8001264, 
+         "once_new":0,
+         "round_number": 3, //需要3回合
+         "waiting_round":2, 
+diff --git a/rite/5000705.json b/rite/5000705.json
+index 2ce04e8..5eee0c8 100644
+--- a/rite/5000705.json
++++ b/rite/5000705.json
+@@ -3,7 +3,6 @@
+         "name": "妖精森林",
+         "text": "在传说中，妖精们美丽又残忍，但又经常有人声称自己从妖精女王那里骗到了宝藏……哲巴尔的笔记上记载了一个赌约，胜利者可以把妖精囚禁起来，为自己服务……你不禁在想，这个赌约如果失败了会得到怎样的惩罚。",       
+         "tips": "",
+-        "mapping_id":8001265,   
+         "once_new":0,
+         "round_number": 3, //需要3回合
+         "waiting_round":2, 
+diff --git a/rite/5000706.json b/rite/5000706.json
+index e588346..d391c2e 100644
+--- a/rite/5000706.json
++++ b/rite/5000706.json
+@@ -3,7 +3,6 @@
+         "name": "哲巴尔的友谊",
+         "text": "在传说中，通过遥远的绿洲，由风之护符打开通路，以暗影罗盘和妖精的提灯作为指引，勇者会踏上拯救世界的征途……现在你们已经完成了这些冒险，但并没有世界需要拯救……\n 但无论如何，哲巴尔都非常开心，至少祖先的笔记没有完全骗人。\n 接下来，他将会与你一同战斗，帮你赢下这个残酷的游戏。",       
+         "tips": "",
+-        "mapping_id":8001064, 
+         "once_new":0,
+         "round_number": 1, 
+         "waiting_round":3, //3回合后自动结算
+diff --git a/rite/5000709.json b/rite/5000709.json
+index 4571290..46d6267 100644
+--- a/rite/5000709.json
++++ b/rite/5000709.json
+@@ -3,7 +3,7 @@
+         "name": "刀剑问答",
+         "text": "哲巴尔向你要求一场公开的决斗，这是苏丹的意思。",       
+         "tips": "",
+-        "mapping_id":8001061,
++        "mapping_id":8001134,
+         "once_new":0,
+         "round_number": 1,
+         "waiting_round":2,
+diff --git a/rite/5000710.json b/rite/5000710.json
+index 074f65d..a71585f 100644
+--- a/rite/5000710.json
++++ b/rite/5000710.json
+@@ -3,7 +3,7 @@
+     "name": "护花使者",
+     "text": "你杀了一名无足轻重的妓女——虽然你被苏丹的游戏规则所保护，但这不能阻止奈布哈尼为她哀悼——他要求与你进行神圣的生死决斗，为自己的朋友复仇。",       
+     "tips": "",
+-    "mapping_id":8001061,
++    "mapping_id":8001134,
+     "once_new":0,
+     "round_number": 1, 
+     "waiting_round":0,
+diff --git a/rite/5000711.json b/rite/5000711.json
+index 2de1c16..47a9856 100644
+--- a/rite/5000711.json
++++ b/rite/5000711.json
+@@ -3,7 +3,6 @@
+     "name": "足以传世的画像",
+     "text": "让哑巴女画家为他创作一幅肖像",       
+     "tips": "",
+-    "mapping_id":8001179,
+     "once_new":0,
+     "round_number": 1,
+     "waiting_round":0,
+diff --git a/rite/5000737.json b/rite/5000737.json
+index e1256ca..325da27 100644
+--- a/rite/5000737.json
++++ b/rite/5000737.json
+@@ -3,7 +3,6 @@
+         "name": "活人献祭",
+         "text": "让仪式完成的并非血肉与生命——那样的俗务充斥人间，毫无价值。真正被献祭出去的，能带来力量的是……那不惜杀生也要获取力量的人心。",       
+         "tips": "",
+-        "mapping_id":8001271,
+         "once_new":0,
+         "round_number": 1, 
+         "waiting_round":1, 
+diff --git a/rite/5000738.json b/rite/5000738.json
+index f6ebe58..d6baf43 100644
+--- a/rite/5000738.json
++++ b/rite/5000738.json
+@@ -3,7 +3,6 @@
+         "name": "召唤邪物",
+         "text": "不同的异界怪物有着完全不一样的生态，来历，传说……但它们都有着相同的渴望，渴望来到这凡人的世界。",       
+         "tips": "",
+-        "mapping_id":8001266,
+         "once_new":0,
+         "round_number": 1, 
+         "waiting_round":1, 
+diff --git a/rite/5000740.json b/rite/5000740.json
+index 764c426..ea1b1ed 100644
+--- a/rite/5000740.json
++++ b/rite/5000740.json
+@@ -3,7 +3,6 @@
+         "name": "血炼熔炉",
+         "text": "工匠的极致就是赋予造物生命。但这是属于造物主的领域，而凡人想要接近这个境界，就只能用生命来浇灌自己的造物。",       
+         "tips": "",
+-        "mapping_id":8001267,
+         "once_new":0,
+         "round_number": 1, 
+         "waiting_round":1, 
+diff --git a/rite/5000742.json b/rite/5000742.json
+index a054e02..f9dc3e3 100644
+--- a/rite/5000742.json
++++ b/rite/5000742.json
+@@ -3,7 +3,6 @@
+         "name": "魔力增长仪式",
+         "text": "探入更深的黑暗，用血肉增幅魔力。",       
+         "tips": "",
+-        "mapping_id":8001268,
+         "once_new":0,
+         "round_number": 1, 
+         "waiting_round":1, 
+diff --git a/rite/5000743.json b/rite/5000743.json
+index 35521cb..6f80474 100644
+--- a/rite/5000743.json
++++ b/rite/5000743.json
+@@ -3,7 +3,6 @@
+         "name": "黑暗火锅仪式",
+         "text": "探入更深的黑暗，用血肉增幅魔力。",       
+         "tips": "",
+-        "mapping_id":8001269,
+         "once_new":0,
+         "round_number": 1, 
+         "waiting_round":1, 
+diff --git a/rite/5000744.json b/rite/5000744.json
+index d107f52..cb8620f 100644
+--- a/rite/5000744.json
++++ b/rite/5000744.json
+@@ -3,7 +3,6 @@
+         "name": "看书-禁忌的古书",
+         "text": "阅读可以提升自己，但是这本书真的可以吗……",       
+         "tips": "",
+-        "mapping_id":8001005,
+         "once_new":0,
+         "round_number": 1,
+         "waiting_round":1,
+diff --git a/rite/5000745.json b/rite/5000745.json
+index 66be04a..0393ee7 100644
+--- a/rite/5000745.json
++++ b/rite/5000745.json
+@@ -3,7 +3,6 @@
+         "name": "研究神秘的锅",
+         "text": "商店老板附赠的锅，藏着什么秘密呢？",       
+         "tips": "",
+-        "mapping_id":8001005,
+         "once_new":0,
+         "round_number": 1,
+         "waiting_round":1,
+diff --git a/rite/5000746.json b/rite/5000746.json
+index f58eec9..d096479 100644
+--- a/rite/5000746.json
++++ b/rite/5000746.json
+@@ -3,7 +3,6 @@
+         "name": "传播密教理念",
+         "text": "你打算向自己的追随者传播密教的理念。",       
+         "tips": "",
+-        "mapping_id":8001213, 
+         "once_new":0,
+         "round_number": 1,
+         "waiting_round":1,
+@@ -715,7 +714,6 @@
+                 "result_text": "所有的窗户都被安上了厚厚的窗帘，地下室的面积被扩张了三倍，而地面则被改建为了存放香料的仓库，好掩饰那浓重的熏香与血腥味……\n只要柜台上划出正确的符号，就可以得到一张精美的面具，以及一个大开眼界的机会……好奇之人、贪婪之人、愚蠢之人，纷至沓来……你施展的影响开始如同菌丝一样蔓延到整个城市。",
+                 "result": 
+                 {   
+-                    "clean.s4":1,  //移除空屋
+                     "counter+7000628":1 //表明建立了基地了
+                 },
+                 "action":
+diff --git a/rite/5000747.json b/rite/5000747.json
+index df936c1..e2030cf 100644
+--- a/rite/5000747.json
++++ b/rite/5000747.json
+@@ -3,7 +3,6 @@
+         "name": "处置女邪术师",
+         "text": "你打算如何处置这名信奉密神的邪术师？",       
+         "tips": "",
+-        "mapping_id":8001270, 
+         "once_new":0,
+         "round_number": 1,
+         "waiting_round":1,
+diff --git a/rite/5000749.json b/rite/5000749.json
+index c9e0a14..bc2613d 100644
+--- a/rite/5000749.json
++++ b/rite/5000749.json
+@@ -3,7 +3,6 @@
+     "name": "一起玩个够",
+     "text": "如果只有你一个人，也想不出什么又风雅又能多多花钱的好主意，但当奈布哈尼一起来，花钱的好点子就仿佛喷泉一样源源不绝。",       
+     "tips": "",
+-    "mapping_id":8001049,
+     "once_new":0,
+     "round_number": 1, 
+     "waiting_round":1,
+diff --git a/rite/5000754.json b/rite/5000754.json
+index f6c3465..c541e11 100644
+--- a/rite/5000754.json
++++ b/rite/5000754.json
+@@ -3,7 +3,6 @@
+         "name": "将军夜猎",
+         "text": "渴望着一些刺激的将军找到了绝佳的狩猎场所。现在，交出你的征服卡，然后等着他尽兴之后，把野兽的头颅带回给你。",       
+         "tips": "",
+-        "mapping_id":8001272,
+         "once_new":0,
+         "round_number": 1,
+         "waiting_round":3,
+diff --git a/rite/5000755.json b/rite/5000755.json
+index 69f2ce4..5cfd264 100644
+--- a/rite/5000755.json
++++ b/rite/5000755.json
+@@ -3,7 +3,6 @@
+         "name": "一件残酷的礼物",
+         "text": "你决定将这颗狼头送给你的朋友。",       
+         "tips": "",
+-        "mapping_id":8001246, 
+         "once_new":0,
+         "round_number": 1,
+         "waiting_round":1,
+diff --git a/rite/5000756.json b/rite/5000756.json
+index e4b48af..c648419 100644
+--- a/rite/5000756.json
++++ b/rite/5000756.json
+@@ -3,7 +3,6 @@
+         "name": "狰狞美味",
+         "text": "你把那颗狼头塞给了小圆，不久之后，你家的后院飘来了一阵诱人的肉香……",       
+         "tips": "",
+-        "mapping_id":8001246, 
+         "once_new":0,
+         "round_number": 1,
+         "waiting_round":2,
+diff --git a/rite/5000757.json b/rite/5000757.json
+index fed8e41..749e70d 100644
+--- a/rite/5000757.json
++++ b/rite/5000757.json
+@@ -3,7 +3,6 @@
+         "name": "一件残酷的礼物",
+         "text": "怎么处理这件战利品呢？",       
+         "tips": "",
+-        "mapping_id":8001246, 
+         "once_new":0,
+         "round_number": 1,
+         "waiting_round":1,
+diff --git a/rite/5000758.json b/rite/5000758.json
+index b21fb90..03d5e33 100644
+--- a/rite/5000758.json
++++ b/rite/5000758.json
+@@ -3,7 +3,6 @@
+         "name": "一件凶煞的商品",
+         "text": "你把租用你家商铺的异国商人叫了过来，准备将这颗狼头脱手。",       
+         "tips": "",
+-        "mapping_id":8001213, 
+         "once_new":0,
+         "round_number": 1,
+         "waiting_round":1,
+diff --git a/rite/5000759.json b/rite/5000759.json
+index 71bfa2d..c8970bc 100644
+--- a/rite/5000759.json
++++ b/rite/5000759.json
+@@ -3,7 +3,6 @@
+         "name": "意料中的买家",
+         "text": "哲巴尔前来拜访。",       
+         "tips": "",
+-        "mapping_id":8001213, 
+         "once_new":0,
+         "round_number": 1,
+         "waiting_round":0,
+diff --git a/rite/5000760.json b/rite/5000760.json
+index 2bf3e01..a22e055 100644
+--- a/rite/5000760.json
++++ b/rite/5000760.json
+@@ -3,7 +3,6 @@
+         "name": "黑街的拳斗士？",
+         "text": "缺乏律法管束的黑街里，每天都在上演着血腥的拳斗。只是街头的那些以性命为赌注，而这间地下拳斗场里，充斥着金币和阴谋碰撞的浑浊声音。",       
+         "tips": "",
+-        "mapping_id":8001131, 
+         "once_new":0,
+         "round_number": 1,
+         "waiting_round":1,
+diff --git a/rite/5000761.json b/rite/5000761.json
+index a1a7285..e52f4bc 100644
+--- a/rite/5000761.json
++++ b/rite/5000761.json
+@@ -3,7 +3,6 @@
+         "name": "您也不想别人知道吧",
+         "text": "你拿着哲巴尔遗留的那张面具，准备和他好好谈谈。",       
+         "tips": "",
+-        "mapping_id":8001008,
+         "once_new":0,
+         "round_number": 1,
+         "waiting_round":1,
+diff --git a/rite/5000762.json b/rite/5000762.json
+index 5543276..c18c881 100644
+--- a/rite/5000762.json
++++ b/rite/5000762.json
+@@ -3,7 +3,6 @@
+         "name": "公开的拳斗",
+         "text": "如果你还记得你和哲巴尔的约定，就该去地下拳斗场找他，尽管那里乌烟瘴气，充斥着原始的暴力和粗鄙的喧嚣。",       
+         "tips": "",
+-        "mapping_id":8001131, 
+         "once_new":0,
+         "round_number": 1,
+         "waiting_round":4,
+diff --git a/rite/5000763.json b/rite/5000763.json
+index 2f1b480..87e4c57 100644
+--- a/rite/5000763.json
++++ b/rite/5000763.json
+@@ -3,7 +3,6 @@
+         "name": "黑街扬名",
+         "text": "想出名还不简单！你只要声称自己杀死了那个著名的拳斗士就行了！",       
+         "tips": "",
+-        "mapping_id":8001131, 
+         "once_new":0,
+         "round_number": 1,
+         "waiting_round":1,
+diff --git a/rite/5000764.json b/rite/5000764.json
+index 650b6d8..d076651 100644
+--- a/rite/5000764.json
++++ b/rite/5000764.json
+@@ -3,7 +3,6 @@
+     "name": "有人准备挑战你",
+     "text": "一名妓女在欢愉之馆被你杀害，她的情人、她的朋友、王都最风流的剑客奈布哈尼决心要为她复仇。",       
+     "tips": "",
+-    "mapping_id":8001273, 
+     "once_new":0,
+     "round_number": 5, 
+     "waiting_round":0,
+diff --git a/rite/5000766.json b/rite/5000766.json
+index 5d0bc2f..dd17f8b 100644
+--- a/rite/5000766.json
++++ b/rite/5000766.json
+@@ -3,7 +3,6 @@
+     "name": "避避风头",
+     "text": "尽管奈布哈尼不认为自己做错了什么，但眼下这样的情况，他也只能呆在家里避避风头。",       
+     "tips": "",
+-    "mapping_id":8001275,
+     "once_new":0,
+     "round_number": 3, 
+     "waiting_round":0,
+diff --git a/rite/5000767.json b/rite/5000767.json
+index dd6e09d..72213a6 100644
+--- a/rite/5000767.json
++++ b/rite/5000767.json
+@@ -3,7 +3,6 @@
+     "name": "肉体展览",
+     "text": "三名女奴被拴在奴隶贩子的身后，站成一排，供客人挑选。你可以加入奈布哈尼的消遣游戏，出一半的钱，选一位买下来，然后给她自由。",       
+     "tips": "",
+-    "mapping_id":8001274, 
+     "once_new":0,
+     "round_number": 1, 
+     "waiting_round":2,
+diff --git a/rite/5000770.json b/rite/5000770.json
+index d4bbb6e..5ee65eb 100644
+--- a/rite/5000770.json
++++ b/rite/5000770.json
+@@ -3,7 +3,6 @@
+     "name": "深夜访客",
+     "text": "深夜时分，前院忽然传来一阵喧哗声，你赶到的时候，正看见一名女奴被你的守卫按在地上，正在拼命挣扎。她裹身的破布有被火燎过的痕迹，古怪的蛮族刺青遍布在被灰尘和血污弄脏的深色皮肤上，配着那双疲惫却满含不甘的眼睛，看起来野性十足。但……这些伤、这些血是从何而来？她是谁的女奴，又为何偷偷跑到你的宅院？",       
+     "tips": "",
+-    "mapping_id":8001246,
+     "once_new":0,
+     "round_number": 1, 
+     "waiting_round":3,
+@@ -151,10 +150,7 @@
+                 },
+                 "any":{
+                     "is":2000306,  //草药
+-                    "all":{
+-                        "is":2000382,  //生命之水,
+-                        "cost.可堆叠=":1
+-                    },
++                    "is":2000382,  //生命之水
+                     "cost.金币=":1,  //1金币
+                     "is":2010001 ,  //石杀戮
+                     "is":2010005    //石纵欲
+diff --git a/rite/5000771.json b/rite/5000771.json
+index 0f9e586..578d246 100644
+--- a/rite/5000771.json
++++ b/rite/5000771.json
+@@ -3,7 +3,6 @@
+     "name": "浪子的思绪",
+     "text": "奈布哈尼若有所思……",       
+     "tips": "",
+-    "mapping_id":8001246,
+     "once_new":0,
+     "round_number": 1, 
+     "waiting_round":0,
+diff --git a/rite/5000772.json b/rite/5000772.json
+index b8061ee..d6d04a6 100644
+--- a/rite/5000772.json
++++ b/rite/5000772.json
+@@ -3,7 +3,6 @@
+     "name": "那个女人",
+     "text": "你步入欢愉之馆大门时，正好碰到奈布哈尼出来。见到你，他脸上罕见地露出几分难堪。",       
+     "tips": "",
+-    "mapping_id":8001131, 
+     "once_new":0,
+     "round_number": 1, 
+     "waiting_round":0,
+diff --git a/rite/5000773.json b/rite/5000773.json
+index 162f88f..5da372d 100644
+--- a/rite/5000773.json
++++ b/rite/5000773.json
+@@ -3,7 +3,6 @@
+     "name": "酩酊一醉",
+     "text": "为了安慰奈布哈尼，你提出请他好好喝上一杯。听你这么说，他马上要求去城里最好的酒馆喝个痛快。",       
+     "tips": "",
+-    "mapping_id":8001144,
+     "once_new":0,
+     "round_number": 1, 
+     "waiting_round":6,
+diff --git a/rite/5000774.json b/rite/5000774.json
+index c28b26b..3738eb0 100644
+--- a/rite/5000774.json
++++ b/rite/5000774.json
+@@ -3,7 +3,6 @@
+     "name": "欢愉之馆的新人",
+     "text": "据说，欢愉之馆多了一位新人，据说她娇媚、美丽、楚楚可怜、紫罗兰色的大眼睛永远噙满泪水。除此之外，她还深谙三十种玩法，每个姿势都精妙绝伦……",       
+     "tips": "",
+-    "mapping_id":8001507,
+     "once_new":0,
+     "round_number": 1, 
+     "waiting_round":0,
+diff --git a/rite/5000775.json b/rite/5000775.json
+index e10fa9a..76b608e 100644
+--- a/rite/5000775.json
++++ b/rite/5000775.json
+@@ -3,7 +3,6 @@
+     "name": "浪子的思绪",
+     "text": "奈布哈尼罕见地露出严肃的神情。他告诉你，他有点事想跟你认真地聊聊。",       
+     "tips": "",
+-    "mapping_id":8001246,
+     "once_new":0,
+     "round_number": 1, 
+     "waiting_round":0,
+diff --git a/rite/5000776.json b/rite/5000776.json
+index 87ba76e..246004b 100644
+--- a/rite/5000776.json
++++ b/rite/5000776.json
+@@ -3,7 +3,6 @@
+     "name": "不是故意",
+     "text": "你把索拉薇儿骂哭的事很快在仆人们当中散播开来……",       
+     "tips": "",
+-    "mapping_id":8001246,
+     "once_new":0,
+     "round_number": 1, 
+     "waiting_round":0,
+diff --git a/rite/5000777.json b/rite/5000777.json
+index 36e3731..771ecd0 100644
+--- a/rite/5000777.json
++++ b/rite/5000777.json
+@@ -3,7 +3,6 @@
+     "name": "奢侈的欢欣",
+     "text": "索拉薇儿欢呼着抱紧了你的脖子，期待着你如约为她带来金子做成的昂贵礼物。",       
+     "tips": "",
+-    "mapping_id":8001077,
+     "once_new":0,
+     "round_number": 1, 
+     "waiting_round":3,
+diff --git a/rite/5000778.json b/rite/5000778.json
+index 74401a9..eff9b47 100644
+--- a/rite/5000778.json
++++ b/rite/5000778.json
+@@ -3,7 +3,6 @@
+     "name": "久违的清净",
+     "text": "家里终于没那么闹腾了。",       
+     "tips": "",
+-    "mapping_id":8001077,
+     "once_new":0,
+     "round_number": 1, 
+     "waiting_round":0,
+diff --git a/rite/5000779.json b/rite/5000779.json
+index 023d80a..fa73065 100644
+--- a/rite/5000779.json
++++ b/rite/5000779.json
+@@ -3,7 +3,6 @@
+     "name": "未被满足的渴求",
+     "text": "索拉薇儿不想在和你的妻子住在同一间屋檐下了。她请求你为她准备一栋单独的别墅，这样她就可以做那儿的女主人，想干什么就干什么！",       
+     "tips": "",
+-    "mapping_id":8001077,  
+     "once_new":0,
+     "round_number": 1, 
+     "waiting_round":10,
+diff --git a/rite/5000780.json b/rite/5000780.json
+index 0e21f9d..a526a76 100644
+--- a/rite/5000780.json
++++ b/rite/5000780.json
+@@ -3,7 +3,6 @@
+     "name": "另谋出路",
+     "text": "索拉薇儿离开了你的家，决心另谋出路——她是自由民，你无法干涉她的决定。",       
+     "tips": "",
+-    "mapping_id":8001113,  
+     "once_new":0,
+     "round_number": 1, 
+     "waiting_round":0,
+diff --git a/rite/5000781.json b/rite/5000781.json
+index fb3547c..58fd3c0 100644
+--- a/rite/5000781.json
++++ b/rite/5000781.json
+@@ -3,7 +3,6 @@
+     "name": "懂的都懂",
+     "text": "男人本色，激情畅享，懂的都懂。",       
+     "tips": "",
+-    "mapping_id":8001246,
+     "once_new":0,
+     "round_number": 1, 
+     "waiting_round":1,
+diff --git a/rite/5000784.json b/rite/5000784.json
+index c2291b2..02b1aa2 100644
+--- a/rite/5000784.json
++++ b/rite/5000784.json
+@@ -3,7 +3,6 @@
+     "name": "微小的麻烦",
+     "text": "闲暇时你偶尔会想起你和奈布哈尼救下的那名女奴——噢，当然，她早已是自由人了——不知道她靠着自己的手艺生活得怎么样了？",       
+     "tips": "",
+-    "mapping_id":8001131, 
+     "once_new":0,
+     "round_number": 1, 
+     "waiting_round":5,
+diff --git a/rite/5000785.json b/rite/5000785.json
+index 29e17d2..0c7eaca 100644
+--- a/rite/5000785.json
++++ b/rite/5000785.json
+@@ -3,7 +3,6 @@
+     "name": "精致的礼物",
+     "text": "如此精美的蓝纱，你准备将之送给谁呢？",       
+     "tips": "",
+-    "mapping_id":8001246,
+     "once_new":0,
+     "round_number": 1, 
+     "waiting_round":1,
+@@ -82,8 +81,8 @@
+             "result": 
+             {
+                 "s2+魅力":1,
+-                "counter+7100003":1,  //权势+1
+-                "counter+7000328":1   //使用过精美的蓝纱
++                "counter+7100003":1  //权势+1
++                //"counter+7000328":1   //使用过精美的蓝纱
+             },
+             "action": {
+                 //"event_on":5300291  //工匠街区的意外
+diff --git a/rite/5000786.json b/rite/5000786.json
+index 02dfd4d..e4d5c0c 100644
+--- a/rite/5000786.json
++++ b/rite/5000786.json
+@@ -3,7 +3,6 @@
+     "name": "火中的自由",
+     "text": "大火正在肆虐，无情地吞噬着一切——梦想，自由，希望，所有的一切……",       
+     "tips": "",
+-    "mapping_id":8001131,
+     "once_new":0,
+     "round_number": 1, 
+     "waiting_round":1,
+diff --git a/rite/5000787.json b/rite/5000787.json
+index c36893a..0fcf2fb 100644
+--- a/rite/5000787.json
++++ b/rite/5000787.json
+@@ -3,7 +3,6 @@
+     "name": "探访",
+     "text": "大火烧毁了哈布娜的住处，也烧坏了她的双手……现在，她被安置在奈布哈尼的住处，你有空的时候可以去看看她。",       
+     "tips": "",
+-    "mapping_id":8001276,
+     "once_new":0,
+     "round_number": 1, 
+     "waiting_round":5,
+diff --git a/rite/5000788.json b/rite/5000788.json
+index 2ea025e..66ac98d 100644
+--- a/rite/5000788.json
++++ b/rite/5000788.json
+@@ -3,7 +3,6 @@
+     "name": "你所能做到的",
+     "text": "哈布娜日躺在黑乎乎的屋子里，拒绝见人，甚至拒绝吃饭。这个可怜的女工匠失去了灵活的手指，大概就相当于一只鸟失去了翅膀，彻底失去了活下去的希望。你对此无计可施，也许，只有女人才能安慰女人。",       
+     "tips": "",
+-    "mapping_id":8001277,
+     "once_new":0,
+     "round_number": 1, 
+     "waiting_round":7,
+diff --git a/rite/5000789.json b/rite/5000789.json
+index 6537665..111b1ee 100644
+--- a/rite/5000789.json
++++ b/rite/5000789.json
+@@ -3,7 +3,6 @@
+     "name": "纺织教室",
+     "text": "哈布娜重新燃起了希望，决心开办一间纺织教室，传授自己非凡的技艺。但一人之力终究有限，你可以帮帮她。",       
+     "tips": "",
+-    "mapping_id":8001276,
+     "once_new":0,
+     "round_number": 5, 
+     "waiting_round":0,
+diff --git a/rite/5000790.json b/rite/5000790.json
+index 0e42c04..a7a9433 100644
+--- a/rite/5000790.json
++++ b/rite/5000790.json
+@@ -3,7 +3,6 @@
+     "name": "蓝巾",
+     "text": "哈布娜已经成为了一名娴熟的教师，她的纺织间已经无需你的资助可以运转了——这养活了不知道多少贫苦的女人和她们的家庭。那些女人们把织出来的纱编在发辫里、缠在腰带上，这样她们就能方便地在人群中认出自己的朋友，人们也知道，她们是哈布娜的学生。这似乎给了你一点灵感……",       
+     "tips": "",
+-    "mapping_id":8001276,
+     "once_new":0,
+     "round_number": 1, 
+     "waiting_round":7,
+diff --git a/rite/5000791.json b/rite/5000791.json
+index 45e63f2..4ea6b9f 100644
+--- a/rite/5000791.json
++++ b/rite/5000791.json
+@@ -3,7 +3,6 @@
+         "name": "黑街勇士讨伐战",
+         "text": "你的宅邸被乌泱泱的人群团团围住，人们叫嚣着喊你是个男人就出来迎战。原来，奈布哈尼在他常玩的那条街上宣称你是他见过最强大的男人，方方面面……这激起了这帮小混混们的胜负心。",       
+         "tips": "",
+-        "mapping_id":8001061, 
+         "once_new":0,
+         "round_number": 1, 
+         "waiting_round":3, //3回合后自动结算
+@@ -29,7 +28,7 @@
+         "method_settlement": "",
+         "auto_begin": 0,
+         "auto_result":0,
+-        "location": "自宅:[2,12]",
++        "location": "黑街:[2,5]", 
+         "icon": "rite_17",  
+         "tag_tips": [
+         ],
+diff --git a/rite/5000792.json b/rite/5000792.json
+index 5de37b8..8e3a678 100644
+--- a/rite/5000792.json
++++ b/rite/5000792.json
+@@ -3,7 +3,6 @@
+         "name": "都城武馆征伐战",
+         "text": "你的宅邸被乌泱泱的人群团团围住，一个裸男站在你家门口一边炫耀自己的肌肉，一边叫你出来应战——堂堂正正的那种。原来，奈布哈尼昨天突然出现在某个并不友善的聚会上，把那些鄙夷他作风的人狠狠戏耍了一通，并且轻蔑地说他们算什么勇士，算什么武人，你才是他见过最强大、最勇武的男人……",       
+         "tips": "",
+-        "mapping_id":8001061,
+         "once_new":0,
+         "round_number": 1, 
+         "waiting_round":3, //3回合后自动结算
+@@ -29,7 +28,7 @@
+         "method_settlement": "",
+         "auto_begin": 0,
+         "auto_result":0,
+-        "location": "自宅:[2,12]",  
++        "location": "上城区:[7,12]", 
+         "icon": "rite_17",  
+         "tag_tips": [
+         ],
+diff --git a/rite/5000793.json b/rite/5000793.json
+index 3ee5a27..99321e7 100644
+--- a/rite/5000793.json
++++ b/rite/5000793.json
+@@ -3,7 +3,6 @@
+         "name": "天下武学验证战",
+         "text": "你的宅邸被乌泱泱的人群团团围住，原来，奈布哈尼给一名一直想抬高自己身价的美艳妓女出了个馊主意，她帮你向天下武士下了战书，谁能战胜你，谁就能和她春风一度……于是，她的追捧者纷纷找上门来向你挑战，不过，在见到你之前，他们都被一名异国的魔剑士击败了，他现在就站在你门前，身边跟着一头恐怖的怪物，让你出来和他一决胜负。",       
+         "tips": "",
+-        "mapping_id":8001278,
+         "once_new":0,
+         "round_number": 1, 
+         "waiting_round":3, //3回合后自动结算
+@@ -29,7 +28,7 @@
+         "method_settlement": "",
+         "auto_begin": 0,
+         "auto_result":0,
+-        "location": "自宅:[2,12]",   
++        "location": "商业区:[10,19]", 
+         "icon": "rite_17",  
+         "tag_tips": [
+         ],
+diff --git a/rite/5000794.json b/rite/5000794.json
+index eff74a1..cde9104 100644
+--- a/rite/5000794.json
++++ b/rite/5000794.json
+@@ -3,7 +3,6 @@
+     "name": "天下武学验证战？",
+     "text": "你战胜了挑战者，而那名妓女，也如她单方面的约，来邀请你了来着……",       
+     "tips": "",
+-    "mapping_id":8001278,
+     "once_new":0,
+     "round_number": 1, 
+     "waiting_round":3,
+diff --git a/rite/5000795.json b/rite/5000795.json
+index 513513b..d96e649 100644
+--- a/rite/5000795.json
++++ b/rite/5000795.json
+@@ -3,7 +3,6 @@
+     "name": "最受欢迎的男人",
+     "text": "你给奈布哈尼看了一张纵欲卡之后，他神秘兮兮地叫你好好打扮一番，约你这天一定要到欢愉之馆来。",       
+     "tips": "",
+-    "mapping_id":8001279, 
+     "once_new":0,
+     "round_number": 1, 
+     "waiting_round":3,
+diff --git a/rite/5000796.json b/rite/5000796.json
+index b92541a..1f62775 100644
+--- a/rite/5000796.json
++++ b/rite/5000796.json
+@@ -3,7 +3,6 @@
+     "name": "苏丹的游戏",
+     "text": "现在，高贵而仁慈的君王，要求你加入这场“苏丹的游戏”。",       
+     "tips": "",
+-    "mapping_id":8001280, 
+     "once_new":0,
+     "round_number": 3, 
+     "waiting_round":5,
+diff --git a/rite/5000797.json b/rite/5000797.json
+index b81b9f5..c81814d 100644
+--- a/rite/5000797.json
++++ b/rite/5000797.json
+@@ -3,7 +3,6 @@
+     "name": "游戏的准备",
+     "text": "你已经拥有了金钥匙，但是开启这个欲望的宝库，你还需要付出更多，更多……",       
+     "tips": "",
+-    "mapping_id":8001281,
+     "once_new":0,
+     "round_number": 1, 
+     "waiting_round":0,
+diff --git a/rite/5000798.json b/rite/5000798.json
+index d62c355..85ae7d0 100644
+--- a/rite/5000798.json
++++ b/rite/5000798.json
+@@ -3,7 +3,6 @@
+     "name": "你的游戏",
+     "text": "这是属于你的游戏，你可以决定客人的名单，肆意欢愉，极尽享受——如果苏丹不在场的话。",       
+     "tips": "",
+-    "mapping_id":8001280, 
+     "once_new":0,
+     "round_number": 1, 
+     "waiting_round":0,
+diff --git a/rite/5000799.json b/rite/5000799.json
+index 023b69c..ba395a1 100644
+--- a/rite/5000799.json
++++ b/rite/5000799.json
+@@ -3,7 +3,6 @@
+     "name": "寻欢作乐的高手",
+     "text": "你举办的超级淫乱派对在所有的男人和女人们中间震荡起阵阵激流，这段时间里，关于那场派对的种种谣传和想象是最热门的话题，参与其中的人在一声声追捧中变得无比自豪，未能参与的则总是在布缇娜耳边旁敲侧击下一次会是什么时候……在这样的热潮中，奈布哈尼来到了你的屋檐下。",       
+     "tips": "",
+-    "mapping_id":8001246,
+     "once_new":0,
+     "round_number": 1, 
+     "waiting_round":0,
+diff --git a/rite/5000800.json b/rite/5000800.json
+index fdaac37..49e1047 100644
+--- a/rite/5000800.json
++++ b/rite/5000800.json
+@@ -3,7 +3,6 @@
+     "name": "你的游戏",
+     "text": "这是属于你的游戏，你可以决定客人的名单，肆意欢愉，极尽享受——如果苏丹不在场的话。",       
+     "tips": "",
+-    "mapping_id":8001280, 
+     "once_new":0,
+     "round_number": 1, 
+     "waiting_round":0,
+diff --git a/rite/5000801.json b/rite/5000801.json
+index 7674d1d..5101b3b 100644
+--- a/rite/5000801.json
++++ b/rite/5000801.json
+@@ -1096,8 +1096,7 @@
+                 "!银趴绝缘者":1,
+                 "!怪物":1,
+                 "!动物":1,
+-                "!主角":1,
+-                "!is":2000024 //屏蔽苏丹
++                "!主角":1
+             },
+             "open_adsorb":1,
+             "is_key":0,
+@@ -1154,8 +1153,7 @@
+                 "!银趴绝缘者":1,
+                 "!怪物":1,
+                 "!动物":1,
+-                "!主角":1,
+-                "!is":2000024 //屏蔽苏丹
++                "!主角":1
+             },
+             "open_adsorb":1,
+             "is_key":0,
+@@ -1212,9 +1210,7 @@
+                 "!银趴绝缘者":1,
+                 "!怪物":1,
+                 "!动物":1,
+-                "!主角":1,
+-                "!is":2000024 //屏蔽苏丹
+-                
++                "!主角":1
+             },
+             "open_adsorb":1,
+             "is_key":0,
+diff --git a/rite/5000802.json b/rite/5000802.json
+index 68eb826..a8be5ce 100644
+--- a/rite/5000802.json
++++ b/rite/5000802.json
+@@ -16,7 +16,7 @@
+             "result": 
+             {
+                 //等同于玩家不去
+-                "s4-奈布哈尼准备银趴":1 //移除吸附指定tag
++                "s3-奈布哈尼准备银趴":1 //移除吸附指定tag
+                 //"clean.s1":1 //妓女死亡
+             },
+             "action": {
+@@ -30,7 +30,7 @@
+         }
+     ],
+     "method_settlement": "",
+-    "auto_begin": 0,
++    "auto_begin": 1,
+     "auto_result":0,
+     "location": "商业区:[10,19]", 
+     "icon": "rite_22",  
+@@ -159,14 +159,14 @@
+         {
+             "condition": {
+                 "!s3":1, //没有苏丹卡
+-                "f:s2.体魄+s2.魅力+s2.智慧+s2.隐匿+s2.战斗+s2.社交+s2.生存+s2.魔力=":42  //进入神秘体验
++                "f:s3.体魄+s3.魅力+s3.智慧+s3.隐匿+s3.战斗+s3.社交+s3.生存+s3.魔力=":42  //进入神秘体验
+             },
+             "result_title":"你渴望看到世界的真实吗？",
+             "result_text": "你推开门，没有看到贾丽拉，而是看到一个黑影，在虚无之中等待你……这是什么奇怪的玩法？还是某种幻觉？但在这种无言的诱惑下，你仍然迈入了黑暗之中。",
+             "result": 
+             {
+                 "no_show":{
+-                    "card":2001059  //生成一个神秘的客人
++                    "card":2000896  //生成一个神秘的客人
+                 }
+             },
+             "action": {
+@@ -182,7 +182,7 @@
+             "result": 
+             {
+                 "no_show":{
+-                    "card":2001059  //生成一个神秘的客人
++                    "card":2000896  //生成一个神秘的客人
+                 }
+             },
+             "action": {
+diff --git a/rite/5000803.json b/rite/5000803.json
+index f366801..54b5e66 100644
+--- a/rite/5000803.json
++++ b/rite/5000803.json
+@@ -665,8 +665,7 @@
+                 "!怪物":1,
+                 "!动物":1,
+                 "!银趴绝缘者":1,
+-                "!主角":1 ,
+-                "!is":2000024 //屏蔽苏丹
++                "!主角":1 
+             },
+             "open_adsorb":1,
+             "is_key":0,
+@@ -712,8 +711,7 @@
+                 "!怪物":1,
+                 "!动物":1,
+                 "!银趴绝缘者":1,
+-                "!主角":1,
+-                "!is":2000024 //屏蔽苏丹
++                "!主角":1 
+             },
+             "open_adsorb":1,
+             "is_key":0,
+@@ -767,8 +765,7 @@
+                 "!怪物":1,
+                 "!动物":1,
+                 "!银趴绝缘者":1,
+-                "!主角":1 ,
+-                "!is":2000024 //屏蔽苏丹
++                "!主角":1 
+             },
+             "open_adsorb":1,
+             "is_key":0,
+diff --git a/rite/5000810.json b/rite/5000810.json
+index 82f1d34..62b17b5 100644
+--- a/rite/5000810.json
++++ b/rite/5000810.json
+@@ -3,7 +3,6 @@
+     "name": "帮派斗争",
+     "text": "你的势力已经深入黑街，需要一个代言人，豺狼众是这里的传统势力，而芮尔……最近不知道从哪突然冒出来的野蛮人，正带着一群人和他们斗。你打算支持谁呢？",       
+     "tips": "",
+-    "mapping_id":8001284, 
+     "once_new":0,
+     "round_number": 1, 
+     "waiting_round":3,
+diff --git a/rite/5000811.json b/rite/5000811.json
+index 41459d9..c423d05 100644
+--- a/rite/5000811.json
++++ b/rite/5000811.json
+@@ -98,7 +98,7 @@
+         {
+             "condition":
+             {
+-                "is":2001057,
++                "is":2000966,
+                 "纳入收藏":1
+             },
+             "open_adsorb":1,
+diff --git a/rite/5000813.json b/rite/5000813.json
+index 2ea3a6b..00cb282 100644
+--- a/rite/5000813.json
++++ b/rite/5000813.json
+@@ -3,7 +3,6 @@
+     "name": "追猎豺狼",
+     "text": "芮尔找到了豺狼帮余党的藏身之地，她出动自己所有的人手，决心将他们一举剿灭！",       
+     "tips": "",
+-    "mapping_id":8001285, 
+     "once_new":0,
+     "round_number": 2, 
+     "waiting_round":7,
+diff --git a/rite/5000814.json b/rite/5000814.json
+index 7a5e374..9e160ab 100644
+--- a/rite/5000814.json
++++ b/rite/5000814.json
+@@ -3,7 +3,6 @@
+     "name": "肝胆相照",
+     "text": "芮尔邀请你一同品鉴这颗热气腾腾的新鲜肝脏，她说这玩意儿对身体好，谁知道这是不是真的……",       
+     "tips": "",
+-    "mapping_id":8001131, 
+     "once_new":0,
+     "round_number": 1, 
+     "waiting_round":3,
+diff --git a/rite/5000815.json b/rite/5000815.json
+index e5e47e6..a0f738b 100644
+--- a/rite/5000815.json
++++ b/rite/5000815.json
+@@ -3,7 +3,6 @@
+     "name": "我要去妓院！",
+     "text": "为了拯救自己即将沦为妓女的族人，芮尔想要混进欢愉之馆的拍卖会。你有没有什么好办法？",       
+     "tips": "",
+-    "mapping_id":8001261, 
+     "once_new":0,
+     "round_number": 1, 
+     "waiting_round":7,
+diff --git a/rite/5000816.json b/rite/5000816.json
+index 4c3fc61..7e56123 100644
+--- a/rite/5000816.json
++++ b/rite/5000816.json
+@@ -3,7 +3,6 @@
+     "name": "惊天大姐案",
+     "text": "欢愉之馆新到了一批女奴，今晚即将举办她们的初夜拍卖会。你自然早就拿到了布缇娜的邀请函，而乔装改扮过的芮尔，也如约来到你身边，目露凶光：“我的人已经在附近埋伏好了，如果最后还是不行，就算是硬上，我也要把我的姐妹们救出来。”",       
+     "tips": "",
+-    "mapping_id":8001286, 
+     "once_new":0,
+     "round_number": 1, 
+     "waiting_round":3,
+diff --git a/rite/5000817.json b/rite/5000817.json
+index 33b0897..ba9f201 100644
+--- a/rite/5000817.json
++++ b/rite/5000817.json
+@@ -3,7 +3,6 @@
+     "name": "我，白嫖",
+     "text": "很快，布缇娜就发现那四个女孩不见了。她带着好几个保镖把你堵在房间门口，逼问你到底是怎么一回事？",       
+     "tips": "",
+-    "mapping_id":8001287, 
+     "once_new":0,
+     "round_number": 1, 
+     "waiting_round":3,
+diff --git a/rite/5000818.json b/rite/5000818.json
+index f599403..d67ab77 100644
+--- a/rite/5000818.json
++++ b/rite/5000818.json
+@@ -3,7 +3,6 @@
+     "name": "追查猎奴人",
+     "text": "芮尔没有办法依靠自己找到那帮杀千刀的猎奴人，于是又到你出手的时候了。",       
+     "tips": "",
+-    "mapping_id":8001261, 
+     "once_new":0,
+     "round_number": 1, 
+     "waiting_round":7,
+diff --git a/rite/5000819.json b/rite/5000819.json
+index 367d2b8..6347db6 100644
+--- a/rite/5000819.json
++++ b/rite/5000819.json
+@@ -3,7 +3,6 @@
+     "name": "赤裸的茶会",
+     "text": "诸多线索指引你们来到了贵族区的一栋华丽宅邸旁边。这里的守备显然比欢愉之馆更为森严，你甚至在很多隐秘的角落看到了不少全副武装的死士……芮尔蹲在你身边，不甘心地向你坦诚她的人恐怕打不过这么多人，你们得想一个更周密的计划。",       
+     "tips": "",
+-    "mapping_id":8001288, 
+     "once_new":0,
+     "round_number": 1, 
+     "waiting_round":7,
+diff --git a/rite/5000820.json b/rite/5000820.json
+index 0ceb4ef..c29ac69 100644
+--- a/rite/5000820.json
++++ b/rite/5000820.json
+@@ -3,7 +3,6 @@
+     "name": "从实招来",
+     "text": "现在，这名奴隶猎人是你的俘虏了。你告诉他，如果不能提供一点有价值的情报的话，你会让他生不如死。",       
+     "tips": "",
+-    "mapping_id":8001289, 
+     "once_new":0,
+     "round_number": 1, 
+     "waiting_round":3,
+diff --git a/rite/5000821.json b/rite/5000821.json
+index 72337cf..2c2c749 100644
+--- a/rite/5000821.json
++++ b/rite/5000821.json
+@@ -3,7 +3,6 @@
+     "name": "宰相的暗示",
+     "text": "一次奢靡的私宴间，宰相阿卜德慷慨地向你展露善意，仿佛你们是最好的朋友。直到最后一刻，你即将离席的时候，他才慢悠悠地、半是威胁半是警告地问你，“那天”“在那座宅邸里发生的事”，你该不会还记得吧？",       
+     "tips": "",
+-    "mapping_id":8001063,
+     "once_new":0,
+     "round_number": 1, 
+     "waiting_round":3,
+diff --git a/rite/5000822.json b/rite/5000822.json
+index a08cf18..bba2613 100644
+--- a/rite/5000822.json
++++ b/rite/5000822.json
+@@ -3,7 +3,6 @@
+     "name": "猎团余党",
+     "text": "你找到了那些专门骚扰游牧民的猎团据点，这是一片农庄，在沉重的栅栏门后，猎奴人们严阵以待。\n这会是一场硬仗。",       
+     "tips": "",
+-    "mapping_id":8001290,
+     "once_new":0,
+     "round_number": 1, 
+     "waiting_round":0,
+diff --git a/rite/5000823.json b/rite/5000823.json
+index ecf92db..4c7a833 100644
+--- a/rite/5000823.json
++++ b/rite/5000823.json
+@@ -3,7 +3,6 @@
+     "name": "猎团余党",
+     "text": "你们找到了专门掠夺蛮族的猎团。他们装备精良，严阵以待，这会是一场恶战。\n芮尔以及她的姐妹们目光冰冷，手中的刀已经忍不住要饮血了。",       
+     "tips": "",
+-    "mapping_id":8001290,
+     "once_new":0,
+     "round_number": 1, 
+     "waiting_round":0,
+diff --git a/rite/5000824.json b/rite/5000824.json
+index a4e1534..f13dc36 100644
+--- a/rite/5000824.json
++++ b/rite/5000824.json
+@@ -3,7 +3,6 @@
+     "name": "猎团余党",
+     "text": "这个自由民猎团的据点在一处河边，你们抵达的时候，他们正从船上往下搬运一捆捆武器，看来这会是一场恶战。",       
+     "tips": "",
+-    "mapping_id":8001291,
+     "once_new":0,
+     "round_number": 1, 
+     "waiting_round":0,
+diff --git a/rite/5000826.json b/rite/5000826.json
+index 8e325e8..5633c6e 100644
+--- a/rite/5000826.json
++++ b/rite/5000826.json
+@@ -3,7 +3,6 @@
+     "name": "白银马鞍",
+     "text": "你可以将白银马鞍赠给你的朋友。",       
+     "tips": "",
+-    "mapping_id":8001246,
+     "once_new":0,
+     "round_number": 1, 
+     "waiting_round":1,
+diff --git a/rite/5000827.json b/rite/5000827.json
+index 2060e69..cff1912 100644
+--- a/rite/5000827.json
++++ b/rite/5000827.json
+@@ -3,7 +3,6 @@
+     "name": "蛮野之心",
+     "text": "荒野上的蛮族将这件宝物送给了你，而你打算把它送给芮尔。",       
+     "tips": "",
+-    "mapping_id":8001246,
+     "once_new":0,
+     "round_number": 1, 
+     "waiting_round":1,
+diff --git a/rite/5000850.json b/rite/5000850.json
+index aad4996..97c069a 100644
+--- a/rite/5000850.json
++++ b/rite/5000850.json
+@@ -10,7 +10,7 @@
+         
+     ],
+     "method_settlement": "",
+-    "auto_begin": 0,
++    "auto_begin": 1,
+     "auto_result":0,
+     "location": "野外:[2,14]", 
+     "icon": "rite_23",  
+diff --git a/rite/5000852.json b/rite/5000852.json
+index 0f3b1bc..a9cf8e9 100644
+--- a/rite/5000852.json
++++ b/rite/5000852.json
+@@ -55,6 +55,10 @@
+             {
+                 "clean.s3":1,  //消除苏丹卡
+                 "s2+equip":2000098,  //受伤
++                "no_show":{
++                    "s7-奈布哈尼准备银趴":1 //移除吸附指定
++
++                }
+             },
+             "action": {
+                 "clean.rite":5001001,  //关闭权力的游戏
+@@ -73,7 +77,9 @@
+             "result": 
+             {
+                 "clean.s2":1,  //你被clean了
+-
++                "no_show":{
++                    "s7-奈布哈尼准备银趴":1 //移除吸附指定
++                }
+             },
+             "action": {
+               
+@@ -93,7 +99,7 @@
+                 "clean.s5":1  //消除苏丹的猜忌
+             },
+             "action": {
+-                "global_counter=7200225":1, //成就：没有人比我更懂你
++
+             }
+         }
+     ],
+@@ -156,7 +162,8 @@
+         {
+             "condition":
+             {
+-                "is":2000680  
++                "type":"sudan",
++                "rare<=":3
+             },
+             "open_adsorb":1,
+             "is_key":0,
+diff --git a/rite/5000853.json b/rite/5000853.json
+index 89ca057..0cf9547 100644
+--- a/rite/5000853.json
++++ b/rite/5000853.json
+@@ -95,7 +95,7 @@
+                 "clean.s6":1  //消除苏丹的猜忌
+             },
+             "action": {
+-                "global_counter=7200225":1, //成就：没有人比我更懂你
++
+             }
+         }
+     ],
+@@ -171,7 +171,8 @@
+         {
+             "condition":
+             {
+-                "is":2000680  
++                "type":"sudan",
++                "rare<=":3
+             },
+             "open_adsorb":1,
+             "is_key":0,
+diff --git a/rite/5000856.json b/rite/5000856.json
+index 88878a1..17e3aea 100644
+--- a/rite/5000856.json
++++ b/rite/5000856.json
+@@ -75,7 +75,7 @@
+             "result_text": "还有其他问题，比如什么是纵欲卡……生命权杖是用来干什么的，为什么玩家这么喜欢……你都使出了浑身解数应付了过去。亲戚们酒足饭饱开始玩着手机……这时候，有人在家族群里发了《苏丹的游戏》的全部信息……房间里越来越沉默，终于，有小侄女忍不住问你：“到底你们游戏能不能撅苏丹？”\n你醒了，谢天谢地，你还在贾丽拉的妓院里，你只用吃其他人的下体，而不用在亲戚前面回答之前的问题……",
+             "result": 
+             {
+-                "s4-奈布哈尼准备银趴":1, //移除吸附指定
++                "s13-奈布哈尼准备银趴":1, //移除吸附指定
+             },
+             "action": {
+                 "rite":5000862 //开启奈布哈尼归顺
+diff --git a/rite/5000857.json b/rite/5000857.json
+index 02ba07c..bc4f33a 100644
+--- a/rite/5000857.json
++++ b/rite/5000857.json
+@@ -111,7 +111,7 @@
+             "result_text": "后来，客人来了又去……你筋疲力尽地瘫倒在台上，身上又脏又黏，衣服也被割的破破烂烂，你看起来就像是个被玩坏的布娃娃，台下的人们每个都比你更像贵族。身体被蹂躏也就罢了，你的尊严被人踩在脚下反复的践踏，过去的你绝对想不到，这居然会是如此痛苦的事……而这种痛苦对于欢愉之女们又是多么的习以为常。\n贾丽拉居高临下地用鞭子轻轻抽了你几下，从你有气无力的挣扎中，她判断你已经没法再“工作”了。\n“那就这样吧，我的游戏就到这里，各位贵客、各位下贱的狗，你们今天玩的开心吗？”\n台下传来阵阵欢呼。\n你实在撑不住了，昏昏沉沉地睡了过去……再醒来时，你在自家宅邸的卧室里，身上被清理的干干净净，身边放着你收获的“工资”。\n所有人都很有默契地绝口不提这场游戏。",
+             "result": 
+             {
+-                "s4-奈布哈尼准备银趴":1, //移除吸附指定
++                "s13-奈布哈尼准备银趴":1, //移除吸附指定
+                 "coin": 3 // 这里是给钱，可以文案看着给
+             },
+             "action": {
+diff --git a/rite/5000858.json b/rite/5000858.json
+index 5a54d5b..cd23b16 100644
+--- a/rite/5000858.json
++++ b/rite/5000858.json
+@@ -111,7 +111,7 @@
+             "result_text": "后来，客人来了又去……你筋疲力尽地瘫倒在台上，身上又脏又黏，衣服也被割的破破烂烂，你看起来就像是个被玩坏的布娃娃，台下的人们每个都比你更像贵族。身体被蹂躏也就罢了，你的尊严被人踩在脚下反复的践踏，过去的你绝对想不到，这居然会是如此痛苦的事……而这种痛苦对于欢愉之女们又是多么的习以为常。\n贾丽拉居高临下地用鞭子轻轻抽了你几下，从你有气无力的挣扎中，她判断你已经没法再“工作”了。\n“那就这样吧，我的游戏就到这里，各位贵客、各位下贱的狗，你们今天玩的开心吗？”\n台下传来阵阵欢呼。\n你实在撑不住了，昏昏沉沉地睡了过去……再醒来时，你在自家宅邸的卧室里，身上被清理的干干净净，身边放着你收获的“工资”。\n所有人都很有默契地绝口不提这场游戏。",
+             "result": 
+             {
+-                "s4-奈布哈尼准备银趴":1, //移除吸附指定
++                "s13-奈布哈尼准备银趴":1, //移除吸附指定
+                 "coin": 3 // 这里是给钱，可以文案看着给
+             },
+             "action": {
+diff --git a/rite/5000859.json b/rite/5000859.json
+index 8ef5172..c8bf621 100644
+--- a/rite/5000859.json
++++ b/rite/5000859.json
+@@ -111,7 +111,7 @@
+             "result_text": "后来，客人来了又去……你筋疲力尽地瘫倒在台上，身上又脏又黏，衣服也被割的破破烂烂，你看起来就像是个被玩坏的布娃娃，台下的人们每个都比你更像贵族。身体被蹂躏也就罢了，你的尊严被人踩在脚下反复的践踏，过去的你绝对想不到，这居然会是如此痛苦的事……而这种痛苦对于欢愉之女们又是多么的习以为常。\n贾丽拉居高临下地用鞭子轻轻抽了你几下，从你有气无力的挣扎中，她判断你已经没法再“工作”了。\n“那就这样吧，我的游戏就到这里，各位贵客、各位下贱的狗，你们今天玩的开心吗？”\n台下传来阵阵欢呼。\n你实在撑不住了，昏昏沉沉地睡了过去……再醒来时，你在自家宅邸的卧室里，身上被清理的干干净净，身边放着你收获的“工资”。\n所有人都很有默契地绝口不提这场游戏。",
+             "result": 
+             {
+-                "s4-奈布哈尼准备银趴":1, //移除吸附指定
++                "s13-奈布哈尼准备银趴":1, //移除吸附指定
+                 "coin": 3 // 这里是给钱，可以文案看着给
+             },
+             "action": {
+diff --git a/rite/5000860.json b/rite/5000860.json
+index ae61173..5c9f150 100644
+--- a/rite/5000860.json
++++ b/rite/5000860.json
+@@ -111,7 +111,7 @@
+             "result_text": "后来，客人来了又去……你筋疲力尽地瘫倒在台上，身上又脏又黏，衣服也被割的破破烂烂，你看起来就像是个被玩坏的布娃娃，台下的人们每个都比你更像贵族。身体被蹂躏也就罢了，你的尊严被人踩在脚下反复的践踏，过去的你绝对想不到，这居然会是如此痛苦的事……而这种痛苦对于欢愉之女们又是多么的习以为常。\n贾丽拉居高临下地用鞭子轻轻抽了你几下，从你有气无力的挣扎中，她判断你已经没法再“工作”了。\n“那就这样吧，我的游戏就到这里，各位贵客、各位下贱的狗，你们今天玩的开心吗？”\n台下传来阵阵欢呼。\n你实在撑不住了，昏昏沉沉地睡了过去……再醒来时，你在自家宅邸的卧室里，身上被清理的干干净净，身边放着你收获的“工资”。\n所有人都很有默契地绝口不提这场游戏。",
+             "result": 
+             {
+-                "s4-奈布哈尼准备银趴":1, //移除吸附指定
++                "s13-奈布哈尼准备银趴":1, //移除吸附指定
+                 "coin": 3 // 这里是给钱，可以文案看着给
+             },
+             "action": {
+diff --git a/rite/5000861.json b/rite/5000861.json
+index 92cc37c..a0488c0 100644
+--- a/rite/5000861.json
++++ b/rite/5000861.json
+@@ -97,7 +97,7 @@
+             "result_text": "你的面子，嘴皮子习惯性的挣扎了一下，但屁眼子感受到的压力还是让你哭着赶紧抱住了奈费勒的大腿……他几乎是用拖的把你从欢愉之馆里抓走了，后面的客人骂声不断，但至少你真的逃过了一劫。",
+             "result": 
+             {
+-               "s4-奈布哈尼准备银趴":1, //移除吸附指定
++               "s13-奈布哈尼准备银趴":1, //移除吸附指定
+                "counter-7100004":1,  //侠名-1
+                "counter-7100003":1  //权势-1
+ 
+@@ -114,7 +114,7 @@
+             "result_text": "后来，客人来了又去……你筋疲力尽地瘫倒在台上，身上又脏又黏，衣服也被割的破破烂烂，你看起来就像是个被玩坏的布娃娃，台下的人们每个都比你更像贵族。身体被蹂躏也就罢了，你的尊严被人踩在脚下反复的践踏，过去的你绝对想不到，这居然会是如此痛苦的事……而这种痛苦对于欢愉之女们又是多么的习以为常。\n贾丽拉居高临下地用鞭子轻轻抽了你几下，从你有气无力的挣扎中，她判断你已经没法再“工作”了。\n“那就这样吧，我的游戏就到这里，各位贵客、各位下贱的狗，你们今天玩的开心吗？”\n台下传来阵阵欢呼。\n你实在撑不住了，昏昏沉沉地睡了过去……再醒来时，你在自家宅邸的卧室里，身上被清理的干干净净，身边放着你收获的“工资”。\n所有人都很有默契地绝口不提这场游戏。",
+             "result": 
+             {
+-                "s4-奈布哈尼准备银趴":1, //移除吸附指定
++                "s13-奈布哈尼准备银趴":1, //移除吸附指定
+                 "coin": 5 // 这里是给钱，可以文案看着给
+             },
+             "action": {
+diff --git a/rite/5001004.json b/rite/5001004.json
+index 4b442ae..aa7b88d 100644
+--- a/rite/5001004.json
++++ b/rite/5001004.json
+@@ -429,7 +429,7 @@
+                 "result_text": "如果我们胜利，将不会再有新的暴君诞生。我们将创造未来。",
+                 "result": 
+                 {
+-                    //"clean.s1":1,
++                    "clean.s1":1,
+                     "clean.s4":1,
+                     "clean.s5":1,
+                     "card": 2000910, //革命的计划
+diff --git a/rite/5002027.json b/rite/5002027.json
+index 96340cf..db8f4e3 100644
+--- a/rite/5002027.json
++++ b/rite/5002027.json
+@@ -39,10 +39,10 @@
+                 "result": 
+                 {   
+                     "clean.s1":1 , //消除贾丽拉
++                    "clean.s2":1  //消除主角
+                 },
+                 "action": {
+                     "global_counter=7200248":1, //成就-最最尊贵的肥羊
+-                    "over":13,
+                 }
+             },
+             {
+diff --git a/rite/5003020.json b/rite/5003020.json
+index ea71848..bfbb077 100644
+--- a/rite/5003020.json
++++ b/rite/5003020.json
+@@ -22,7 +22,7 @@
+         ],        
+         "method_settlement": "",
+         "auto_begin": 0,
+-        "auto_result": 1,
++        "auto_result": 0,
+         "location": "宫廷:[2,6]", 
+         "icon": "rite_8", 
+         "tag_tips": [
+diff --git a/rite/5003021.json b/rite/5003021.json
+index dc052d9..a5f9b69 100644
+--- a/rite/5003021.json
++++ b/rite/5003021.json
+@@ -22,7 +22,7 @@
+         ],        
+         "method_settlement": "",
+         "auto_begin": 0,
+-        "auto_result": 1,
++        "auto_result": 0,
+         "location": "自宅:[2,12]", 
+         "icon": "rite_7", 
+         "tag_tips": [
+diff --git a/rite/5003022.json b/rite/5003022.json
+index c8c24ca..03c246d 100644
+--- a/rite/5003022.json
++++ b/rite/5003022.json
+@@ -22,7 +22,7 @@
+         ],        
+         "method_settlement": "",
+         "auto_begin": 0,
+-        "auto_result": 1,
++        "auto_result": 0,
+         "location": "商业区:[10,19]", 
+         "icon": "rite_19", 
+         "tag_tips": [
+diff --git a/rite/5003023.json b/rite/5003023.json
+index 64d342c..c79aa93 100644
+--- a/rite/5003023.json
++++ b/rite/5003023.json
+@@ -22,7 +22,7 @@
+         ],        
+         "method_settlement": "",
+         "auto_begin": 0,
+-        "auto_result": 1,
++        "auto_result": 0,
+         "location": "上城区:[1,6]", 
+         "icon": "rite_12", 
+         "tag_tips": [
+diff --git a/rite/5003024.json b/rite/5003024.json
+index 732244b..21e1b37 100644
+--- a/rite/5003024.json
++++ b/rite/5003024.json
+@@ -22,7 +22,7 @@
+         ],        
+         "method_settlement": "",
+         "auto_begin": 0,
+-        "auto_result": 1,
++        "auto_result": 0,
+         "location": "黑街:[2,5]", 
+         "icon": "rite_3", 
+         "tag_tips": [
+diff --git a/rite/5003025.json b/rite/5003025.json
+index 716a079..686d29a 100644
+--- a/rite/5003025.json
++++ b/rite/5003025.json
+@@ -22,7 +22,7 @@
+         ],        
+         "method_settlement": "",
+         "auto_begin": 0,
+-        "auto_result": 1,
++        "auto_result": 0,
+         "location": "商业区:[10,19]", 
+         "icon": "rite_17", 
+         "tag_tips": [
+diff --git a/rite/5003026.json b/rite/5003026.json
+index 44949e4..40cd656 100644
+--- a/rite/5003026.json
++++ b/rite/5003026.json
+@@ -22,7 +22,7 @@
+         ],        
+         "method_settlement": "",
+         "auto_begin": 0,
+-        "auto_result": 1,
++        "auto_result": 0,
+         "location": "野外:[1,6]", 
+         "icon": "rite_21", 
+         "tag_tips": [
+diff --git a/rite/5004501.json b/rite/5004501.json
+index 54a6114..b5ab0c9 100644
+--- a/rite/5004501.json
++++ b/rite/5004501.json
+@@ -38,7 +38,7 @@
+                 "result": 
+                 {
+                     "no_show":{
+-                        "card":[2000725,"已拥有-1"]  //刷一个初级正教思潮用于决裂仪式
++                        "card":[2000725,"已拥有=0"]  //刷一个初级正教思潮用于决裂仪式
+                     }
+                 },
+                 "action": {
+diff --git a/rite/5004517.json b/rite/5004517.json
+index 61b779a..99fb579 100644
+--- a/rite/5004517.json
++++ b/rite/5004517.json
+@@ -83,8 +83,7 @@
+                 {
+                     "s6+正神的连接":1,  //面容连接强度加一
+                     "no_show":{
+-                        "s1=被抓":0 , //移除s1的吸附指定
+-                        "table.主角=被抓":0,  //伊曼移除被抓tag
++                        "s1=被抓":0  //移除s1的吸附指定
+                     },
+                     "card":[2000326,"已拥有+1"], //疯狂
+                     "clean.s2":4,  //折磨清空
+@@ -442,8 +441,7 @@
+                 "result": 
+                 {
+                     "no_show":{
+-                        "s1=被抓":0,  //移除s1的吸附指定
+-                        "table.主角=被抓":0,  //伊曼移除被抓tag
++                        "s1=被抓":0  //移除s1的吸附指定
+                     }
+                 },
+                 "action": {
+@@ -463,8 +461,7 @@
+                 "result": 
+                 {
+                     "no_show":{
+-                        "s1=被抓":0,  //移除s1的吸附指定
+-                        "table.主角=被抓":0,  //伊曼移除被抓tag
++                        "s1=被抓":0  //移除s1的吸附指定
+                     },
+                     "counter+5000572":1  //和正教决裂
+                 },
+diff --git a/rite/5004910.json b/rite/5004910.json
+index 54df7d9..edfebe5 100644
+--- a/rite/5004910.json
++++ b/rite/5004910.json
+@@ -309,16 +309,8 @@
+             },
+             {
+                 "condition": {
+-                    "any":{
+-                        "all":{
+-                            "s1.is":2000196,  //如果杰莫尔哈马尔同时在场
+-                            "s2.is":2000197  
+-                        },
+-                        "all":{
+-                            "s1.is":2000197,  //如果杰莫尔哈马尔同时在场
+-                            "s2.is":2000196  
+-                        }
+-                    }
++                    "s1.is":2000196,  //如果杰莫尔哈马尔同时在场
++                    "s2.is":2000197  
+                 },
+                 "result_title":"兄弟连心",
+                 "result_text": "密神也是有幽默感的，看看祂们的作品吧！多么棒的兄弟啊！唯一的问题就是，什么是加加？这就是神魔的语言吗？",
+diff --git a/rite/5005104.json b/rite/5005104.json
+index 5e80f89..61ccae4 100644
+--- a/rite/5005104.json
++++ b/rite/5005104.json
+@@ -3,7 +3,6 @@
+         "name": "青铜征服卡",
+         "text": "这是一座临近苏丹国度的富庶城邦，他们长期与东方帝国通商，贩卖珍玩，香料……他们从苏丹手里赚了太多的钱，现在是支付代价的时候了。\n有了讨伐目标之后，群臣一扫之前被这个游戏压抑的暮气，开始兴致勃勃地讨论几乎是必然的胜利——关键还是看苏丹准备派谁去赢得胜利。",       
+         "tips": "",
+-        "mapping_id":8001282, 
+         "once_new":0,
+         "round_number": 1,
+         "waiting_round":0,
+diff --git a/rite/5006027.json b/rite/5006027.json
+index b329bc7..9a11e89 100644
+--- a/rite/5006027.json
++++ b/rite/5006027.json
+@@ -206,7 +206,7 @@
+                         "type":"char", //有权杖的盟友
+                         "生命权杖":1
+                     }
+-                }
++                }   
+             },
+             "open_adsorb":0,
+             "is_key":0,
+diff --git a/rite/5006071.json b/rite/5006071.json
+index bbcd8a5..f206508 100644
+--- a/rite/5006071.json
++++ b/rite/5006071.json
+@@ -33,7 +33,7 @@
+     "tag_tips": [
+     ],
+     "tag_tips_up":{
+-        "tips": ["魔力"],
++        "tips": ["隐匿"],
+         "type": "normal_result"
+     },
+     "tips_text":[
+diff --git a/rite/5006556.json b/rite/5006556.json
+index 794cf01..a9c3c1f 100644
+--- a/rite/5006556.json
++++ b/rite/5006556.json
+@@ -191,8 +191,7 @@
+                     "condition": 
+                     {
+                         "type":"char",
+-                        "追随者":1,
+-                        "!怪物":1,
++                        "追随者":1
+                     },
+                     "open_adsorb":1,
+                     "is_key":0,
+@@ -205,8 +204,7 @@
+                 "condition": 
+                 {
+                     "type":"char",
+-                    "追随者":1,
+-                    "!怪物":1,
++                    "追随者":1
+                 },
+                 "open_adsorb":1,
+                 "is_key":0,
+@@ -219,8 +217,7 @@
+                 "condition": 
+                 {
+                     "type":"char",
+-                    "追随者":1,
+-                    "!怪物":1,
++                    "追随者":1
+                 },
+                 "open_adsorb":1,
+                 "is_key":0,
+diff --git a/rite/5006599.json b/rite/5006599.json
+index 615fa03..3353d4e 100644
+--- a/rite/5006599.json
++++ b/rite/5006599.json
+@@ -1,7 +1,7 @@
+  {
+         "id": 5006599,
+-        "name": "恶毒的花嫁",
+-        "text": "你答应了娶娜依拉，但一场平平无奇的婚礼可满足不了她的期待。\n“听我说，亲爱的，我要做这座城市、这个国家最幸福、最叫人羡慕的女人。”娜依拉柔软的双臂缠绕着你的脖颈，撒着娇要求你在婚礼上将一件最顶级的奇珍或者最罕见的首饰当众献给她，并且折断一张无可比拟的金色奢靡，唯有如此，才能令她享有黄金般的骄傲和荣耀。",       
++        "name": "黄金的花嫁",
++        "text": "你答应了娶娜依拉，但一场平平无奇的婚礼可满足不了她的期待。\n“听我说，亲爱的，我要做这座城市、这个国家最幸福、最叫人羡慕的女人。”娜依拉柔软的双臂缠绕着你的脖颈，撒着娇要求你在婚礼上将一件最顶级的奇珍或者最罕见的首饰当众献给她，并且展现出顶级的奢靡，唯有如此，才能令她享有黄金般的骄傲和荣耀。",       
+         "tips": "",
+         "once_new":0,
+         "round_number": 1,
+@@ -64,9 +64,10 @@
+                 "result_text": "婚礼进行得很顺利，毕竟，娜依拉的高调示爱之后，人们对你们的结合都不怎么感到意外，甚至越看越觉得你们方方面面都很相配。\n娜依拉穿花蝴蝶一般地招待着客人们，调笑声从未断绝，直到宴会的间隙，她紧盯着你，似乎在期待着什么。",
+                 "result": 
+                 {
+-                    "s1+新妻":1             
++                    "s1+侧室":1             
+                 },
+-                "action": {
++                "action":{
++                    "event_on":5320137 //触发老奴任务
+                 }
+             }
+         ],               
+@@ -102,6 +103,24 @@
+                     "global_counter=7200238":1, //成就-黄金品级的虚荣
+                     "event_on": 5320129 //激活满意事件
+                 }
++            },
++			            {
++                "condition": {
++                    "s4.金币":40
++                },
++                "result_title":"你拿出了装满金币的浴缸",
++                "result_text": "直到这一刻，这场婚礼才算得上真正圆满。娜依拉看着极尽奢华的浴缸，眼睛里竟浮现出一丝疯狂的虔诚。\n她大笑着，狠狠地跳进了浴缸，还有什么比得上此时此刻？几枚金币从她指间簌簌落下，她扬起头，抬着下巴环视四周，看啊，金色的婚礼，金色的珍宝，金色的卡片，金色的新娘！\n她把手中的金币扔在地上，接着一跃跳到你怀中，双手勾着你的脖颈献上一个热烈如火的吻。噢，终于、终于，她成为了无可指摘的、最一流的贵妇！",
++                "result": 
++                {
++                    "clean.s3":1,
++                    "coin":15,
++                    "clean.s4":1,
++                    "counter+7100003":2 //权势+2                 
++                },
++                "action": {
++                    "global_counter=7200238":1, //成就-黄金品级的虚荣
++                    "event_on": 5320129 //激活满意事件
++                }
+             },
+             {
+                 "condition": {
+@@ -202,13 +221,14 @@
+                 {
+                     "condition": 
+                     {
+-                        "type":"sudan",
++                        //"type":"sudan",
+                         "any":{
+                             "奢靡":1,
+                             "杀戮":1,
+                             "征服":1, //无法使用，会有气泡提示。这里多此一举的原因是，法图娜的婚礼可以用，这里不可以用加个说明
+-                            "纵欲":1 //无法使用，会有气泡提示。这里多此一举的原因是，法图娜的婚礼可以用，这里不可以用加个说明
+-                        }  
++                            "纵欲":1, //无法使用，会有气泡提示。这里多此一举的原因是，法图娜的婚礼可以用，这里不可以用加个说明
++							"cost.金币":80
++                        }                       					
+                     },
+                     "open_adsorb":0,
+                     "is_key":0,
+diff --git a/rite/5006628.json b/rite/5006628.json
+index c71e577..1728bd1 100644
+--- a/rite/5006628.json
++++ b/rite/5006628.json
+@@ -3,7 +3,6 @@
+         "name": "吹响骨笛",
+         "text": "吹响它吧！",       
+         "tips": "",
+-        "mapping_id":8001246,
+         "once_new":0,
+         "round_number": 1,
+         "waiting_round":0,
+diff --git a/rite/5006646.json b/rite/5006646.json
+index c4eeb02..b13f99d 100644
+--- a/rite/5006646.json
++++ b/rite/5006646.json
+@@ -202,7 +202,7 @@
+                     "any":{
+                         "s4.is":2000371,
+                         "s4.is":2000123,
+-                        "s4.妻子":1
++                        "s4.is":2000006
+                     },
+                     "counter.7000285<":1 //如何救赎
+                 },
+@@ -478,7 +478,7 @@
+                             "any":{
+                                 "s4.is":2000371,
+                                 "s4.is":2000123,
+-                                "s4.妻子":1
++                                "s4.is":2000006,
+                             },
+                             "counter.7000285>=":1 //如何救赎
+                         },
+@@ -552,7 +552,7 @@
+                             "!s4.法拉杰":1,
+                             "!s4.is":2000371,
+                             "!s4.is":2000123,
+-                            "!s4.妻子":1,
++                            "!s4.is":2000006,
+                             "!s4.主角":1,
+                         },
+                         "action":{
+diff --git a/rite/5006675.json b/rite/5006675.json
+index 109c133..c5c9e81 100644
+--- a/rite/5006675.json
++++ b/rite/5006675.json
+@@ -7,18 +7,6 @@
+         "round_number": 3, //立即执行
+         "waiting_round":7,
+         "waiting_round_end_action":[
+-            {
+-                "condition": {
+-                },
+-                "result_title":"",
+-                "result_text": "",
+-                "result": 
+-                { 
+-                },
+-                "action": {
+-                    "counter=7000379":0, //修苗圃的计数器归0
+-                }
+-            },
+         ],        
+         "method_settlement": "",
+         "auto_begin": 0,
+diff --git a/rite/5006676.json b/rite/5006676.json
+index 206e71a..606f307 100644
+--- a/rite/5006676.json
++++ b/rite/5006676.json
+@@ -40,7 +40,6 @@
+                     "card":2000877 //宽容
+                 },
+                 "action": {
+-                    "counter+7000390":1, //获得宽容
+                     "counter+7000421":1, //教育成功的计数
+                     "rite":5006677 //未来的苗圃，常规版
+                 }
+diff --git a/rite/5008033.json b/rite/5008033.json
+index b0fff0f..7ef5fa1 100644
+--- a/rite/5008033.json
++++ b/rite/5008033.json
+@@ -59,15 +59,15 @@
+             {
+                 "!s3":1     //未放置苏丹卡
+             },
+-            "result_title":"恐惧感",
+-            "result_text": "当你再次进入她的房间时，这里已经被弄得一团糟——靠垫，椅子，餐具，全都成为了她发泄怒火的出气筒，甚至她还用你颇为喜欢的一个碟子做了一把尖锐的匕首！\n血的味道唤醒了你……那个为游戏之外的普通人准备的和善面容被戳破了，死亡充满了你的眼神，而暴力支配了你的指头。\n和角斗场那次一样，她再次被这凶恶的力量攫取了魂魄，你的目光就是鞭子，你的双手就是枷锁……而她，无论是否自愿，已然是你的俘虏。\n此事发生于黑暗之中，几乎无人知晓，但从此哲瓦德再也没有在你面前提起过他的女儿，你也再也没有看到过她。",
++            "result_title":"口嫌体正直",
++            "result_text": "当你再次进入她的房间时，这里已经被弄得一团糟——靠垫，椅子，餐具，全都成为了她发泄怒火的出气筒，甚至她还用你颇为喜欢的一个碟子做了一把尖锐的匕首！\n她的目光如受惊的鹿，惊恐中却夹杂着不肯低头的倔强。你几乎是本能地反制了她，把她按倒在铺着丝毯的地面。\n她在你怀中颤抖，一次次推拒却又一次次软下去。你的手指掠过她满是划痕的手腕时，她突然抽泣出声，整个人蜷成一团，像是终于被打碎了骄傲。\n那一夜没有再多的暴力——更多的是她破碎后的低声呢喃，是你轻轻为她盖上衣裳、擦干眼泪时她微不可察的依赖。\n你以为她会恨你、躲你，或被哲瓦德带走，从此消失在你生命里。可几日后，哲瓦德却带着她，再次出现在你的厅堂。\n“她说，她愿意嫁给你。”他面无表情地开口，少女站在他身后，穿着端庄的礼服，脸色依旧苍白，但眼神里却不再有慌张，而是一种怯生又固执的坚定。",
+             "result": 
+             { 
+-               
++                "s1+追随者":1,
++				"s1+侧室":1,
++				"s1+口嫌体正直":1,
+                 "card":2000083,     //妻子的不满
+                 "counter+7000341":1    //标记对阿鲁米娜纵欲 关闭快脚线。不开启大敌
+-     
+-
+             },
+             "action":
+             {
+diff --git a/rite/5008050.json b/rite/5008050.json
+index 4b46a6a..ff61082 100644
+--- a/rite/5008050.json
++++ b/rite/5008050.json
+@@ -88,6 +88,9 @@
+             { 
+                 
+                  "s3-追随者":1,
++				 "s2+追随者":1, //阿鲁米娜入队
++				 "s2=反对":0,
++                 "s2+支持":1,
+                  "counter+7000339": 1, //赎买请求结束
+                  "counter+7000460": 1, //阿鲁米娜和快脚已经结婚
+                  "counter+7100001":1,   //善名+1
+@@ -99,7 +102,7 @@
+                 "delay":{
+                     "id":50080502,
+                     "round": 5,
+-                    "event_on":5321056  //快乐的访客
++                    "event_on":5321056  //快乐的访客，快脚重新加入
+                 }
+                 
+             }
+diff --git a/rite/5008051.json b/rite/5008051.json
+index dd24166..ea12784 100644
+--- a/rite/5008051.json
++++ b/rite/5008051.json
+@@ -41,7 +41,15 @@
+             "result_text": "是快脚。他现在叫阿木剌·图斯，这是哲瓦德为他买的家族和名字，这样他才能名正言顺的跟阿鲁米娜结婚。\n他对你百般感激，态度非常谦恭，和他跋扈的妻子截然相反。据他说，哲瓦德一开始非常不乐意招一个曾经的奴隶做女婿，但渐渐的，即使是他也承认，全世界可能只有快脚能承受阿鲁米娜的脾气了。\n你拍拍他的肩膀，祝他和阿鲁米娜幸福。",
+             "result": 
+             {  
+-                "counter+7100003":1, //权势+1
++                "s1=图片":1,
++				"s1-奴隶":1,
++				"s1+贵族":1,
++				"s1.uprare":1,
++				"s1+魅力":1,
++				"s1+追随者":1,
++				"s1=反对":0,
++				"s1+支持":1,
++				"counter+7100003":1, //权势+1
+                 "loot":6000057, //随机金情报       
+                 "counter+7000503":1, //用来标识快脚成为贵族和阿鲁米娜成婚
+             },
+@@ -61,7 +69,7 @@
+             "condition": 
+             {
+                 "type":"char",
+-                "is":2000794
++                "is":2000370
+             },
+             "open_adsorb":1,
+             "is_key":0,
+diff --git a/rite/5008060.json b/rite/5008060.json
+index feda665..50ee1c3 100644
+--- a/rite/5008060.json
++++ b/rite/5008060.json
+@@ -3,7 +3,7 @@
+     "name": "证婚人",
+     "text": "联姻未必不能得到幸福，为此，你主动提出帮法尔达克物色合适的妻子人选，为他们牵线搭桥……",       
+     "tips": "",
+-    "mapping_id":8001179,
++    "mapping_id":8001109,
+     "once_new":0,
+     "round_number": 1,
+     "waiting_round":5,
+diff --git a/rite/5008065.json b/rite/5008065.json
+index f3dc663..cc6e7fe 100644
+--- a/rite/5008065.json
++++ b/rite/5008065.json
+@@ -3,17 +3,17 @@
+     "name": "老乡见老乡",
+     "text": "自从你拜托他去过一次你的舍馆之后，你注意到，法尔达克似乎更频繁地进出其中……",       
+     "tips": "",
+-    "mapping_id":8001147,
++    "mapping_id":8001003,
+     "once_new":0,
+-    "round_number": 3,
++    "round_number": 4,
+     "waiting_round":1,
+     "waiting_round_end_action":[
+     ],
+     "method_settlement": "",
+-    "auto_begin": 1,
++    "auto_begin": 0,
+     "auto_result":0,
+-    "location": "商业区:[10,19]",
+-    "icon": "rite_8", 
++    "location": "自宅:[2,12]",
++    "icon": "rite_16", 
+     "tag_tips": [
+     ],
+     "tag_tips_up":{
+diff --git a/rite/5008066.json b/rite/5008066.json
+index a418995..6938c0e 100644
+--- a/rite/5008066.json
++++ b/rite/5008066.json
+@@ -3,7 +3,7 @@
+     "name": "为您效劳",
+     "text": "这天晚上，法尔达克带着一个男人来见你。\n这人眼神锐利，衣衫褴褛，走路的姿势总是倾向一边，像是长期佩剑的姿态。\n法尔达克称呼这个男人为“将军”，但当他想要进一步介绍的时候，男人制止了他。\n“我要先证明这位大人是可信的。”男人指着你，“否则，即使是您的命令，我也有权拒绝。”\n那么，你要如何证明自己……？",       
+     "tips": "",
+-    "mapping_id":8001213,   
++    "mapping_id":8001077,   
+     "once_new":0,
+     "round_number": 1,
+     "waiting_round":5,
+diff --git a/rite/5008077.json b/rite/5008077.json
+index 38d5ab1..d2da0a9 100644
+--- a/rite/5008077.json
++++ b/rite/5008077.json
+@@ -34,10 +34,6 @@
+                 "condition": {
+                        "s1":1,
+                        "s4":1,
+-                       "any":{
+-                        "s2.妻子":1,
+-                        "s3.妻子":1
+-                       }
+     
+ 
+                 },
+diff --git a/rite/5008085.json b/rite/5008085.json
+index 3c1923a..1615a4a 100644
+--- a/rite/5008085.json
++++ b/rite/5008085.json
+@@ -39,8 +39,7 @@
+                 "result": 
+                 {  
+ 
+-                    "counter=7000430":0,  //可以继续寻思孩子们
+-                    "counter=7000379":0  //可以继续修建其他孤儿院
++                    "counter=7000430":0  //可以继续寻思孩子们
+                     
+                 },
+                 "action": {
+diff --git a/rite/5008088.json b/rite/5008088.json
+index b7da030..cd92bf1 100644
+--- a/rite/5008088.json
++++ b/rite/5008088.json
+@@ -3,7 +3,6 @@
+         "name": "合宜的一餐",
+         "text": "哈比卜已经来到舍馆的厨房里，打理自己带来的锅子，磨砺自己惯用的厨刀，做好准备迎接这次上任前的考验。",       
+         "tips": "",
+-        "mapping_id":8001242, 
+         "once_new":0,
+         "round_number": 1, //立即执行
+         "waiting_round":7,
+diff --git a/rite/5008091.json b/rite/5008091.json
+index d809ead..ea79c49 100644
+--- a/rite/5008091.json
++++ b/rite/5008091.json
+@@ -89,7 +89,6 @@
+                 "result_text": "你让哈比卜端上了双倍的饭，又告诫大家不排队、敢闹事的人一口都吃不上。于是，在饭菜的香味里，所有人都忘记了此前的怒火和愤怒。",
+                 "result": 
+                 { 
+-                    "clean.s2":1,
+                     "counter+7100004":1, //侠名+1    
+                     "s3+体魄":1                    
+                 },
+diff --git a/rite/5008094.json b/rite/5008094.json
+index 4a8b2b9..0e86d5d 100644
+--- a/rite/5008094.json
++++ b/rite/5008094.json
+@@ -137,7 +137,7 @@
+                 "condition": 
+                 {
+                     "type":"char",
+-                    "妻子":1
++                    "is":2000006
+                 },
+                 "open_adsorb":1,
+                 "is_key":0,
+diff --git a/rite/5008106.json b/rite/5008106.json
+index 5e1698f..550a346 100644
+--- a/rite/5008106.json
++++ b/rite/5008106.json
+@@ -59,8 +59,8 @@
+                     "s2+体魄":1,   
+                     "s4+体魄":1,
+                     "s5+体魄":1,
+-                    "s6+体魄":1,      
+-                    "clean.s3":1
++                    "s6+体魄":1      
++                                   
+                 },
+                 "action": {
+ 
+@@ -123,10 +123,8 @@
+                 "condition": 
+                 {
+                     "type":"char",
+-                    "any":{
+-                        "密教徒":1, //限制是密教徒和黑暗知识
+-                        "黑暗知识":1
+-                    },
++                    "密教徒":1 //限制只能是密教徒
++            
+                 },
+                 "open_adsorb":0,
+                 "is_key":0,
+@@ -139,10 +137,8 @@
+                 "condition": 
+                 {
+                     "type":"char",
+-                   "any":{
+-                        "密教徒":1, //限制是密教徒和黑暗知识
+-                        "黑暗知识":1
+-                    },
++                    "密教徒":1 //限制只能是密教徒
++                  
+                 },
+                 "open_adsorb":0,
+                 "is_key":0,
+@@ -155,10 +151,8 @@
+                 "condition": 
+                 {
+                     "type":"char",
+-                    "any":{
+-                        "密教徒":1, //限制是密教徒和黑暗知识
+-                        "黑暗知识":1
+-                    },
++                    "密教徒":1 //限制只能是密教徒
++                  
+                 },
+                 "open_adsorb":0,
+                 "is_key":0,
+diff --git a/rite/5008113.json b/rite/5008113.json
+index 0a4586b..e3dcfd3 100644
+--- a/rite/5008113.json
++++ b/rite/5008113.json
+@@ -149,7 +149,7 @@
+             {
+                 "condition": {
+ 
+-                    "s2.妻子":1  //派了妻子去
++                    "s2.is":2000006  //派了妻子去
+                 },
+                 "result_title":"哈？你还做这种生意？",
+                 "result_text": "梅姬生气地把这个女人赶走了，然后揪着你的耳朵质问这个阁楼是怎么回事。你费了好大的劲才勉强蒙混过关，但显然，她看向你的眼睛里依然充斥着冰冷和不信任。",
+diff --git a/rite/5008132.json b/rite/5008132.json
+index 069f9c8..5524694 100644
+--- a/rite/5008132.json
++++ b/rite/5008132.json
+@@ -368,10 +368,7 @@
+                     "any":{
+                         "is":2000304, //小鳄鱼
+                         "is":2000202,
+-                        "all":{
+-                            "is":2000382,
+-                            "cost.可堆叠=":1
+-                        },
++                        "is":2000382,
+                         "is":2000215,
+                         "is":2000221,
+                         "is":2000223,
+diff --git a/rite/5008157.json b/rite/5008157.json
+index 01ba18d..7536b56 100644
+--- a/rite/5008157.json
++++ b/rite/5008157.json
+@@ -51,12 +51,11 @@
+                 "result_text": "你不知道法德耶是怎么做到的，她替你承受了苏丹所有的怒火，当然……她付出了生命的代价。",
+                 "result": 
+                 {
+-                    "clean.s1":1,
+-                    "clean.s2":1
+                 },
+                 "action": {
+                     "global_counter=7200221":1, //成就-没有人比我更懂你-替罪
+-                    
++                    "clean.s1":1,
++                    "clean.s2":1
+                 }
+             },
+             {
+diff --git a/rite/5008161.json b/rite/5008161.json
+index 4f5ea1e..d2730f6 100644
+--- a/rite/5008161.json
++++ b/rite/5008161.json
+@@ -56,7 +56,7 @@
+             {
+                 "condition": {
+ 
+-                    "s2.妻子":1,
++                    "s2.is":2000006  //梅姬
+                 },
+                 "result_title":"她没法更喜欢这只小狗",
+                 "result_text": "“哦！我一直都想要一条可爱的小狗！”\n梅姬一把抱住了新月，脸上绽放出好久未曾见过的灿烂笑容。\n那天，梅姬和小狗玩了一整天，她找来各种各样好玩的、好吃的，还用各种幼稚的叠字跟小狗说话。\n到了晚上、到了必须要把小狗送还回去的时候，你问梅姬，要不你们也养条狗好了？\n“不……还是算了。苏丹的游戏说不定哪天就会要了我们的命，如果是人，至少还知道自己去寻找出路，可如果是小狗……我们消失了，它也只会继续等啊、等，一想到这个，就让我心碎。”\n她笑着摇摇头，最后亲吻了一下新月，就把它交还给了法里斯。",
+@@ -185,7 +185,7 @@
+                     "!s2.is":2000014,
+                     "!s2.is":2000061,
+                     "!s2.is":2000460,
+-                    "!s2.妻子":1,
++                    "!s2.is":2000006,
+                     "!s2.is":2000461,
+                     //不是自己
+                    
+diff --git a/rite/5008179.json b/rite/5008179.json
+index 83ee74e..99a3ca9 100644
+--- a/rite/5008179.json
++++ b/rite/5008179.json
+@@ -3,7 +3,6 @@
+         "name": "清洗异端",
+         "text": "纯净者的信徒们再一次在全城狩猎异端……这是他们拥有的特权。只要他们指认谁破坏了纯净者的信仰，就可以根据自己的法典把谁抓起来处置……拜铃耶和密教徒们像老鼠一样东躲西藏，逃过了很多次抓捕，这一次，她们不想躲了，她们紧锣密鼓地筹备起一场仪式，说要给这帮祭司一个教训……",
+         "tips": "",
+-        "mapping_id":8001243, 
+         "once_new":0,
+         "round_number": 1, //立即执行
+         "waiting_round":5,
+diff --git a/rite/5008189.json b/rite/5008189.json
+index bff6300..9b09935 100644
+--- a/rite/5008189.json
++++ b/rite/5008189.json
+@@ -1,460 +1,627 @@
+ {
+     "id": 5008189,
+     "name": "自由之花",
+-    "text": "拜铃耶告诉你，她可以帮助你摆脱那纠缠不休的密神，阻断那个持续不断的噩梦。\n如果她说的是真的……话说回来，纠缠你的可不止那个未能降临的密神来着。",
++    "text": "拜铃耶告诉你，她可以帮助你摆脱那纠缠不休的密神，阻断那个持续不断的噩梦。\n如果她说的是真的……话说回来，纠缠你的可不止那个未能降临的密神来着。",       
+     "tips": "",
+-    "mapping_id": 8001241,
+-    "once_new": 0,
++    "mapping_id":8001241,
++    "once_new":0,
+     "round_number": 1,
+-    "waiting_round": 15,
+-    "waiting_round_end_action": [],
++    "waiting_round":15,
++    "waiting_round_end_action":[
++
++    ],
+     "method_settlement": "",
+     "auto_begin": 1,
+-    "auto_result": 0,
+-    "location": "野外:[9,14]",
+-    "icon": "rite_23",
+-    "tag_tips": [],
+-    "tag_tips_up": {},
+-    "tips_text": [
++    "auto_result":0,
++    "location": "野外:[9,14]",  
++    "icon": "rite_23", 
++    "tag_tips": [
++    ],
++    "tag_tips_up":{
++       
++    },
++    "tips_text":[
++
+         "你想切断与哪位神祇的连接？又或者，只是单纯结束这个噩梦就好。"
+     ],
+     "open_conditions": [
+         {
+             "condition": {
+-                "any": {
+-                    "s3": 1, //至少放入一个面容
+-                    "s4": 1,
+-                    "s2": 1 //或者只放玩家自己
+-                }
++                "any":{
++                    "s3":1,  //至少放入一个面容
++                    "s4":1,
++                    "s2":1   //或者只放玩家自己
++                }     
+             },
+             "tips": "选择放入一个想要切断的“声音”。"
+-        }
++        }  
++      
+     ],
+-    "random_text": {},
+-    "random_text_up": {},
+-    "settlement_prior": [],
++    "random_text":{
++        
++    },
++    "random_text_up":{
++       
++      
++    },
++    "settlement_prior": [
++
++       
++        
++    ],                
+     "settlement": [
+-        //以下主角已经完成了觐见苏丹或让某人受孕邪神---------------------------------------------------------------------    
++    //以下主角已经完成了觐见苏丹或让某人受孕邪神---------------------------------------------------------------------    
+         {
+             "condition": {
+-                "s4": 1, //放入了正神
+-                "counter.7000622>=": 1, //主角已经开启了觐见苏丹
++
++               "s4":1, //放入了正神
++                "counter.7000622>=":1,  //主角已经开启了觐见苏丹
++                       
+             },
+-            "result_title": "",
++            "result_title":"",
+             "result_text": "拜铃耶的长针落在你的手掌上，奇妙的是，完全不疼，反而有种酸胀感。\n她的针蘸着一些草汁，一边刺，一边在喃喃地吟唱着什么……清凉的气息顺着逐渐成型的细腻花瓣舒展开来，而后，那被驱逐的神意开始愤怒地反扑！\n你怎么敢、你怎么敢？你怎么敢对神许下承诺而又毁约？你怎敢不履行神的旨意、在祂已赐下诸多恩典？\n纯净的白色烈焰凝聚成一根粗壮的鞭子，狠狠地抽在你身上，几乎撕裂你的灵魂，你的心裂成两半，一半是被提炼的纯粹与虔诚、一半是你可鄙的罪恶，在火中燃烧殆尽！\n等你慢慢地、慢慢地从幻象中清醒过来时，你已彻底忘记自己是来做什么的了——为什么你坐在一片被烧过的土地上，周围满是灰烬？风卷起那些被烧光了的、仅剩的东西，如沙般散去。你不知道自己失去了什么。",
+-            "result": {
+-                "clean.s1": 1,
+-                "s2+equip": 2000098 //受伤
+-            },
+-            "action": {
+-                "counter+7000637": 1 //完成了自由之花
++            "result": 
++            {
++                "clean.s1":1,
++                "s2+equip":2000098 //受伤
++            },
++            "action": { 
++            "counter+7000637":1  //完成了自由之花
++                
+             }
+         },
+         {
+             "condition": {
+-                "s3": 1, //放入了邪神
+-                "counter.7000623>=": 1, //主角已经让某人受孕邪神
++
++               "s3":1,   //放入了邪神
++                "counter.7000623>=":1,  //主角已经让某人受孕邪神
++                       
+             },
+-            "result_title": "",
++            "result_title":"",
+             "result_text": "拜铃耶的长针落在你的手掌上，奇妙的是，完全不疼，反而有种酸胀感。\n她的针蘸着一些草汁，一边刺，一边在喃喃地吟唱着什么……清凉的气息顺着逐渐成型的细腻花瓣舒展开来，拜铃耶的刺下的每一针都是一处要塞，然而，就在你们以为即将大功告成之际，那被驱逐的神意忽然暴烈地反扑、眨眼间就攻破了你们所有的防线！\n多可笑啊、多可笑啊！愚蠢的凡人，你怎会以为，已经着床的密神，你还有机会将祂重新塞回虚空，你以为你是谁？！哈哈哈哈！！\n那满含恶意的嘲弄声刺穿了你的耳朵、刺穿了你的心灵，留下一个细小却无法愈合的空洞，密神的眼睛从这个空洞里挤了出来，窥视着这个甘甜的世界，祂必将降临、不，祂的一部分已经降临，就借由你的躯体……！\n当你从这几乎想将心剖出的剧痛中清醒过来时，你已彻底忘记自己是来做什么的——为什么你坐在一片繁花灿烂的土地上？每一朵花里为什么都生着怪异的肢体，每一片叶下为什么涌着血污？恍惚间墨迹已经蔓延过整条臂膀，而你摇摇晃晃地走向尚未污染的人间，对这一切，一无所觉。",
+-            "result": {
+-                "clean.s1": 1,
+-                "s2+equip": 2000098 //受伤
+-            },
+-            "action": {
+-                "counter+7000637": 1 //完成了自由之花
++            "result": 
++            {
++                "clean.s1":1,
++                "s2+equip":2000098 //受伤
++            },
++            "action": {   
++                
++            "counter+7000637":1  //完成了自由之花
++
+             }
+         },
+-        //以下是还没正式进入召唤线，放置两个4级神的面容----------------------------------------------------------------------
++
++//以下是还没正式进入召唤线，放置两个4级神的面容----------------------------------------------------------------------
++
+         {
+             "condition": {
+-                "s3": 1,
+-                "s3.rare=": 4,
+-                "s4": 1,
+-                "s4.rare=": 4, //放了2个神，且都是4级
+-                "counter.7000623=": 0,
+-                "counter.7000622=": 0, //还没进入召唤线
+-                "!s2": 1, //只放拜铃耶
+-            },
+-            "result_title": "",
++
++               
++               "s3":1,
++               "s3.rare=":4,    
++               "s4":1,
++               "s4.rare=":4,   //放了2个神，且都是4级
++
++                "counter.7000623=":0,  
++                "counter.7000622=":0,  //还没进入召唤线
++
++                "!s2":1,   //只放拜铃耶
++                       
++            },
++            "result_title":"",
+             "result_text": "几乎在施针的瞬间，拜铃耶就知道自己做不到，但她还是为你倾尽全力了。\n她的针蘸着一些草汁，一边刺，一边在喃喃地吟唱着什么。\n这是一场战斗。\n拜铃耶刺下的每一针都像是一处要塞，她拿出全部力量与神的意志战斗、周旋，但这就像一只蚂蚁向两座高山宣战。无处不在的光明与无处不在的黑暗在她的战场上厮杀，只一个照面，就将她撕成碎片。\n而你在这场风暴的台风眼中，亲眼看见她，就这样微笑着，灰飞烟灭。",
+-            "result": {
+-                "clean.s1": 1, //拜铃耶死
+-            },
+-            "action": {
+-                "counter+7000637": 1 //完成了自由之花        
++            "result": 
++            {
++                
++                "clean.s1":1,  //拜铃耶死
++             
++            },
++            "action": {    
++                "counter+7000637":1  //完成了自由之花        
+             }
+         },
+         {
+             "condition": {
+-                "s3": 1,
+-                "s3.rare=": 4,
+-                "s4": 1,
+-                "s4.rare=": 4, //放了2个神，且都是4级
+-                "counter.7000623=": 0,
+-                "counter.7000622=": 0, //还没进入召唤线
+-                "s2": 1, //放入了自己
+-                "s2.体魄>": 5
+-            },
+-            "result_title": "自由之花",
++
++               
++               "s3":1,
++               "s3.rare=":4,    
++               "s4":1,
++               "s4.rare=":4,   //放了2个神，且都是4级
++
++                "counter.7000623=":0,  
++                "counter.7000622=":0,  //还没进入召唤线
++
++                "s2":1,  //放入了自己
++                "s2.体魄>":5
++                       
++            },
++            "result_title":"自由之花",
+             "result_text": "拜铃耶的长针落在你的手掌上，奇妙的是，完全不疼，反而有种酸胀感。\n她的针蘸着一些草汁，一边刺，一边在喃喃地吟唱着什么。\n这是一场战斗。\n拜铃耶刺下的每一针都像是一处要塞，她、还有你拿出全部力量与神的意志战斗、周旋，但这就像蚂蚁向高山宣战。无处不在的光明与无处不在的黑暗在这个狭窄战场上厮杀，但——祂们都顾及着你的死活哩，如果你死了，谁来帮助祂们降临、谁来抹去祂们降临的罪孽？\n祂们的力量撕扯着你，又修补着你，相互撕扯着，相互制衡着，不知过了多长时间，一万年或是一瞬间，这两股纠缠的力量抵消了，像水浇熄了火，却也被火蒸干了一样。\n你在极度的虚弱中慢慢清醒过来，看到拜铃耶倒在你的面前，脸上凝固着一丝淡淡的……解脱般的微笑。花田已经被笼罩在了夜色之中，自由的气息拂过每一朵开至荼靡的花蕾。",
+-            "result": {
+-                "clean.s1": 1, //拜铃耶死
+-                "s2-体魄": 5,
+-                "s2=魔力": 0,
+-                "s2+equip": 2000098, //受伤
+-                "clean.s3": 1, //被放逐
+-                "clean.s4": 1, //被放逐
+-            },
+-            "action": {
+-                "global_counter=7200244": 1, //结局-洗去掌心污浊
+-                "prompt": {
+-                    "id": "5008189_prompt_10",
+-                    "text": "战战兢兢地又过了好几天，你终于确信自己也解脱了——拜铃耶用自己的生命帮你摆脱了那两位古老神祇的视线。祂们再也没办法逼迫你去做你不想做的事情，祂们再也别想借你的手、借这游戏的力量降临，毁灭这个世界。",
+-                    "icon": [
+-                        "cards/2000022"
+-                    ]
++            "result": 
++            {
++                "clean.s1":1,  //拜铃耶死
++                "s2-体魄":5,
++                "s2=魔力":0,
++                "s2+equip":2000098, //受伤
++
++                "clean.s3":1,  //被放逐
++                "clean.s4":1,  //被放逐
++            },
++            "action": {    
++                "global_counter=7200244":1,//结局-洗去掌心污浊
++                "prompt":{
++                    "id":"5008189_prompt_10",
++                    "text":"战战兢兢地又过了好几天，你终于确信自己也解脱了——拜铃耶用自己的生命帮你摆脱了那两位古老神祇的视线。祂们再也没办法逼迫你去做你不想做的事情，祂们再也别想借你的手、借这游戏的力量降临，毁灭这个世界。",
++                    "icon":["cards/2000022"]
+                 },
+-                "counter+7000637": 1, //完成了自由之花
+-                "counter+7000624": 1, //自由之花中，触发成功对抗神 
+-                "clean.rite": 5010034, //神圣烙印
+-                "clean.rite": 5010036, //觐见苏丹  
+-                "clean.rite": 5010050, //恶之华
+-                "clean.rite": 5010051, //受孕       
++                "counter+7000637":1,  //完成了自由之花
++                "counter+7000624":1, //自由之花中，触发成功对抗神 
++                "clean.rite":5010034, //神圣烙印
++                "clean.rite":5010036, //觐见苏丹  
++                "clean.rite":5010050, //恶之华
++                "clean.rite":5010051, //受孕       
+             }
+         },
+         {
+             "condition": {
+-                "s3": 1,
+-                "s3.rare=": 4,
+-                "s4": 1,
+-                "s4.rare=": 4, //放了2个神，且都是4级
+-                "counter.7000623=": 0,
+-                "counter.7000622=": 0, //还没进入召唤线
+-                "s2": 1, //放入了自己
+-                "s2.体魄<=": 5
+-            },
+-            "result_title": "湮灭之花",
++
++               
++              "s3":1,
++               "s3.rare=":4,    
++               "s4":1,
++               "s4.rare=":4,   //放了2个神，且都是4级
++
++                "counter.7000623=":0,  
++                "counter.7000622=":0,  //还没进入召唤线
++                "s2":1,  //放入了自己
++                "s2.体魄<=":5
++                       
++            },
++            "result_title":"湮灭之花",
+             "result_text": "拜铃耶的长针落在你的手掌上，奇妙的是，完全不疼，反而有种酸胀感。\n她的针蘸着一些草汁，一边刺，一边在喃喃地吟唱着什么。\n这是一场战斗。\n拜铃耶刺下的每一针都像是一处要塞，她、还有你拿出全部力量与神的意志战斗、周旋，但这就像蚂蚁向高山宣战。无处不在的光明与无处不在的黑暗在这个狭窄战场上厮杀，尽管祂们都顾及着你的死活——如果你死了，谁来帮助祂们降临、谁来抹去祂们降临的罪孽？——但，那毕竟是两位最古老、最强大的神祇！只要溢出一丁点力量溢出，就足够把你撕成碎片！\n也好，也好。比起整个世界的毁灭，如果只需要你一个人付出代价，那又有什么不可以的呢？你在极度的虚弱中抬起最后一瞥，你看到拜铃耶的脸上凝固着一丝淡淡的……解脱般的微笑。是啊……解脱……你也露出同样的笑容。\n花田笼罩在夜色之中，自由的气息拂过每一朵绽放的花蕾。",
+-            "result": {
+-                "clean.s1": 1,
+-                "s2-体魄": 5,
+-                "s2=魔力": 0,
+-            },
+-            "action": {
+-                "over": 13 //死亡结局
++            "result": 
++            {
++                "clean.s1":1,
++                "s2-体魄":5,
++                "s2=魔力":0,       
++            },
++            "action": {    
++
++                "over":13   //死亡结局
++
+             }
+         },
+-        //以下是还没正式进入召唤线，只放了正神的情况----------------------------------------------------------------------
++//以下是还没正式进入召唤线，只放了正神的情况----------------------------------------------------------------------
+         {
+             "condition": {
+-                "s4": 1, //放置正神三级/四级
+-                "!have.2000843": 1,
+-                "!have.2000844": 1, //场上没有3级或以上的邪神面容
+-                "counter.7000623=": 0,
+-                "counter.7000622=": 0, //还没进入召唤线
+-                "!s2": 1, //没有放入自己，只有拜铃耶
+-            },
+-            "result_title": "",
++
++                "s4":1,  //放置正神三级/四级
++
++                "!have.2000843":1,
++                "!have.2000844":1,  //场上没有3级或以上的邪神面容
++
++                "counter.7000623=":0,  
++                "counter.7000622=":0,  //还没进入召唤线
++
++                "!s2":1,   //没有放入自己，只有拜铃耶
++                       
++            },
++            "result_title":"",
+             "result_text": "拜铃耶的长针落在你的手掌上，奇妙的是，完全不疼，反而有种酸胀感。\n她的针蘸着一些草汁，一边刺，一边在喃喃地吟唱着什么。\n这是一场战斗。\n拜铃耶刺下的每一针都像是一处要塞，她拿出全部力量与神的意志战斗、周旋，但这就像蚂蚁向高山宣战。\n在开始之前，你问过她，难道不怕神降罪吗？她微笑着回答你，说，“祂当然会。祂会让我发狂、让我死，因为我试图让祂失去你这个最好用的棋子……但您不用在意。我的生命总归应该用在什么地方。”\n就这样，你几乎是眼睁睁看着她衰败下去，像一朵花凋萎，却将所有的养分、活力、全都移植到了你的掌心，那朵美丽的花毛茛正热烈地盛放。\n花田已经被笼罩在了夜色之中，自由的气息拂过每一朵开至荼靡的花蕊。神的声音消失了。你的心从未如此安宁，从未如此悲伤……",
+-            "result": {
+-                "choose": {
+-                    "pop.5008189_result_06_6.s1": "永别了……"
++            "result": 
++            {
++                "choose":{
++                    
++                    "pop.5008189_result_06_6.s1":"永别了……"
+                 },
+-                "clean.s1": 1, //拜铃耶死
+-                "clean.s4": 1, //清除正神的面容
+-                "counter+7000624": 1, //自由之花中，触发成功对抗神                
+-            },
+-            "action": {
+-                "global_counter=7200244": 1, //结局-洗去掌心污浊
+-                "counter+7000637": 1, //完成了自由之花
+-                "clean.rite": 5010034, //神圣烙印
+-                "clean.rite": 5010036, //觐见苏丹
++                "clean.s1":1,  //拜铃耶死
++                "clean.s4":1,  //清除正神的面容
++                "counter+7000624":1, //自由之花中，触发成功对抗神                
++               
++            },
++            "action": { 
++                "global_counter=7200244":1,//结局-洗去掌心污浊
++                "counter+7000637":1,  //完成了自由之花
++                "clean.rite":5010034, //神圣烙印
++                "clean.rite":5010036, //觐见苏丹
++              
+             }
+         },
+         {
+             "condition": {
+-                "s4": 1, //放置正神三级/四级
+-                "!have.2000843": 1,
+-                "!have.2000844": 1, //场上没有3级或以上的邪神面容
+-                "counter.7000623=": 0,
+-                "counter.7000622=": 0, //还没进入召唤线
+-                "s2": 1, //放入自己
+-                "s2.体魄>": 5
+-            },
+-            "result_title": "",
++
++                "s4":1,  //放置正神三级/四级
++
++                "!have.2000843":1,
++                "!have.2000844":1,  //场上没有3级或以上的邪神面容
++
++                "counter.7000623=":0,  
++                "counter.7000622=":0,  //还没进入召唤线
++                "s2":1,   //放入自己
++                "s2.体魄>":5
++                       
++            },
++            "result_title":"",
+             "result_text": "拜铃耶的长针落在你的手掌上，奇妙的是，完全不疼，反而有种酸胀感。\n她的针蘸着一些草汁，一边刺，一边在喃喃地吟唱着什么。\n这是一场战斗。\n拜铃耶刺下的每一针都像是一处要塞，她，还有你，拿出全部力量与神的意志战斗、周旋，但这就像蚂蚁向高山宣战。\n一针……又一针，神不甘地、愤怒地在你和她之间肆虐、破坏，光凝成的白练鞭笞着你们的灵魂，逼着你们退缩、俯首、跪拜、乃至哀求……但是没有，你们谁也没有。直到最后一个针点落下，你满身大汗，像是被人从水中捞出的一样。拜铃耶也没好到哪去，她喘着粗气，手几乎握不稳针了。你掌心中的花毛茛刺青还在酸疼，但神的烙印已经一扫而空。\n“我要歇会，我猜您也要歇会。”她疲惫地闭上眼，朝你笑了笑，你们虚弱地并排躺在床上昏睡过去。窗外，花田已经被笼罩在了夜色之中，自由的气息吹拂着每一朵盛放的花蕾。",
+-            "result": {
+-                "s2-体魄": 5,
+-                "s2=魔力": 0,
+-                "clean.s4": 1, //清除正神的面容
+-                "s1=密教徒": 0,
+-                "s1=黑暗知识": 0,
+-                "s1+追随者": 1,
+-                "choose": {
+-                    "pop.5008189_result_04_4.s1": "终于……"
++            "result": 
++            {
++                "s2-体魄":5,
++                "s2=魔力":0,
++                "clean.s4":1,  //清除正神的面容
++                "s1=密教徒":0,
++                "s1=黑暗知识":0,
++                "s1+追随者":1,
++                "choose":{
++                    
++                    "pop.5008189_result_04_4.s1":"终于……"
+                 },
+-                "s1+命运的羁绊": 1, //+命运的羁绊
+-                "counter+7000624": 1, //自由之花中，触发成功对抗神+1 
++                "s1+命运的羁绊":1, //+命运的羁绊
++                "counter+7000624":1, //自由之花中，触发成功对抗神+1 
++                
++               
+             },
+             "action": {
+-                "global_counter=7200244": 1, //结局-洗去掌心污浊
+-                "counter+7000637": 1, //完成了自由之花 
+-                "clean.rite": 5010034, //神圣烙印
+-                "clean.rite": 5010036, //觐见苏丹
++                "global_counter=7200244":1,//结局-洗去掌心污浊
++                "counter+7000637":1,  //完成了自由之花 
++                "clean.rite":5010034, //神圣烙印
++                "clean.rite":5010036, //觐见苏丹
++
+             }
+         },
+         {
+             "condition": {
+-                "s4": 1, //放置正神三级/四级
+-                "!have.2000843": 1,
+-                "!have.2000844": 1, //场上没有3级或以上的邪神面容
+-                "counter.7000623=": 0,
+-                "counter.7000622=": 0, //还没进入召唤线
+-                "s2": 1, //放入自己
+-                "s2.体魄<=": 5
+-            },
+-            "result_title": "",
++
++                "s4":1,  //放置正神三级/四级
++               
++                "!have.2000843":1,
++                "!have.2000844":1,  //场上没有3级或以上的邪神面容
++
++                "counter.7000623=":0,  
++                "counter.7000622=":0,  //还没进入召唤线
++                "s2":1,   //放入自己
++                "s2.体魄<=":5
++                       
++            },
++            "result_title":"",
+             "result_text": "拜铃耶的长针落在你的手掌上，奇妙的是，完全不疼，反而有种酸胀感。\n她的针蘸着一些草汁，一边刺，一边在喃喃地吟唱着什么。\n这是一场战斗。\n拜铃耶刺下的每一针都像是一处要塞，她，还有你，拿出全部力量与神的意志战斗、周旋，但这就像蚂蚁向高山宣战。\n一针……又一针，神不甘地、愤怒地在你和她之间肆虐、破坏，光凝成的白练鞭笞着你们的灵魂，逼着你们退缩、俯首、跪拜、乃至哀求……但是没有，你们谁也没有：你们坚持到了最后，坚持到……你们的生命被榨干最后一个星点。\n也好，也好。比起整个世界的毁灭，如果只需要你一个人付出代价，那又有什么不可以的呢？你在极度的虚弱中抬起最后一瞥，你看到拜铃耶的脸上凝固着一丝淡淡的……解脱般的微笑。是啊……解脱……你也露出同样的笑容。\n花田笼罩在夜色之中，自由的气息拂过每一朵绽放的花蕾。",
+-            "result": {
+-                "choose": {
+-                    "pop.5008189_result_05_5.s1": "抱歉……"
++            "result": 
++            {
++                "choose":{
++                    
++                    "pop.5008189_result_05_5.s1":"抱歉……"
+                 },
+-                "s2-体魄": 5,
+-                "s2=魔力": 0,
+-                "clean.s1": 1,
+-            },
+-            "action": {
+-                "over": 13 //死亡结局
++                "s2-体魄":5,
++                "s2=魔力":0,
++                "clean.s1":1,
++            },
++            "action": { 
++
++                "over":13 //死亡结局
++
+             }
+         },
+-        //以下是还没正式进入召唤线，只放了邪神的情况----------------------------------------------------------------------
++//以下是还没正式进入召唤线，只放了邪神的情况----------------------------------------------------------------------
+         {
+             "condition": {
+-                "s3": 1, //放置邪神三级/四级
+-                "!have.2000847": 1,
+-                "!have.2000848": 1, //场上没有3级或以上的正神面容
+-                "counter.7000623=": 0,
+-                "counter.7000622=": 0, //还没进入召唤线
+-                "!s2": 1, //没有放入自己，只有拜铃耶
+-            },
+-            "result_title": "",
++
++                "s3":1,  //放置邪神三级/四级
++
++                "!have.2000847":1,
++                "!have.2000848":1, //场上没有3级或以上的正神面容
++
++                "counter.7000623=":0,  
++                "counter.7000622=":0,  //还没进入召唤线
++
++                "!s2":1,   //没有放入自己，只有拜铃耶
++                    
++            },
++            "result_title":"",
+             "result_text": "拜铃耶的长针落在你的手掌上，奇妙的是，完全不疼，反而有种酸胀感。\n她的针蘸着一些草汁，一边刺，一边在喃喃地吟唱着什么。\n这是一场战斗。\n拜铃耶刺下的每一针都像是一处要塞，她拿出全部力量与神的意志战斗、周旋，但这就像蚂蚁向高山宣战。\n在开始之前，你问过她，难道不怕神降罪吗？她微笑着回答你，说，“祂当然会。祂会让我发狂、让我死，因为我试图让祂失去你这个最好用的棋子……但您不用在意。我的生命总归应该用在什么地方。”\n就这样，你几乎是眼睁睁看着她衰败下去，像一朵花凋萎，却将所有的养分、活力、全都移植到了你的掌心，那朵美丽的花毛茛正热烈地盛放。\n花田已经被笼罩在了夜色之中，自由的气息拂过每一朵开至荼靡的花蕊。神的声音消失了。你的心从未如此安宁，从未如此悲伤……",
+-            "result": {
+-                "choose": {
+-                    "pop.5008189_result_07_7.s1": "永别了……"
++            "result": 
++            {
++                "choose":{
++                    
++                    "pop.5008189_result_07_7.s1":"永别了……"
+                 },
+-                "clean.s1": 1, //拜铃耶死
+-                "clean.s3": 1, //清除神的面容
+-                "counter+7000624": 1, //自由之花中，触发成功对抗神                
+-            },
+-            "action": {
+-                "global_counter=7200244": 1, //结局-洗去掌心污浊
+-                "counter+7000637": 1, //完成了自由之花     
+-                "clean.rite": 5010050, //恶之华
+-                "clean.rite": 5010051, //受孕      
++                "clean.s1":1,  //拜铃耶死
++                "clean.s3":1,  //清除神的面容
++                "counter+7000624":1, //自由之花中，触发成功对抗神                
++            
++            },
++            "action": {  
++            "global_counter=7200244":1,//结局-洗去掌心污浊
++            "counter+7000637":1,  //完成了自由之花     
++            "clean.rite":5010050, //恶之华
++            "clean.rite":5010051, //受孕      
++            
+             }
+         },
+         {
+             "condition": {
+-                "s3": 1, //放置邪神三级/四级
+-                "!have.2000847": 1,
+-                "!have.2000848": 1, //场上没有3级或以上的正神面容
+-                "counter.7000623=": 0,
+-                "counter.7000622=": 0, //还没进入召唤线
+-                "s2": 1, //放入自己
+-                "s2.体魄>": 5
+-            },
+-            "result_title": "",
++
++                "s3":1,  //放置邪神三级/四级
++
++                "!have.2000847":1,
++                "!have.2000848":1, //场上没有3级或以上的正神面容
++
++                "counter.7000623=":0,  
++                "counter.7000622=":0,  //还没进入召唤线
++                "s2":1,   //放入自己
++                "s2.体魄>":5
++                    
++            },
++            "result_title":"",
+             "result_text": "拜铃耶的长针落在你的手掌上，奇妙的是，完全不疼，反而有种酸胀感。\n她的针蘸着一些草汁，一边刺，一边在喃喃地吟唱着什么。\n这是一场战斗。\n拜铃耶刺下的每一针都像是一处要塞，她，还有你，拿出全部力量与神的意志战斗、周旋，但这就像蚂蚁向高山宣战。\n一针……又一针，神不甘地、愤怒地在你和她之间肆虐、破坏，疯狂的恶念污染着你们的灵魂，逼着你们退缩、俯首、跪拜、乃至哀求……但是没有，你们谁也没有。直到最后一个针点落下，你满身大汗，像是被人从水中捞出的一样。拜铃耶也没好到哪去，她喘着粗气，手几乎握不稳针了。你掌心中的花毛茛刺青还在酸疼，但神的烙印已经一扫而空。\n“我要歇会，我猜您也要歇会。”她疲惫地闭上眼，朝你笑了笑，你们虚弱地并排躺在床上昏睡过去。窗外，花田已经被笼罩在了夜色之中，自由的气息吹拂着每一朵盛放的花蕾。",
+-            "result": {
+-                "s2-体魄": 5,
+-                "s2=魔力": 0,
+-                "clean.s3": 1, //清除神的面容
+-                "s1=密教徒": 0,
+-                "s1=黑暗知识": 0,
+-                "s1+追随者": 1,
+-                "choose": {
+-                    "pop.5008189_result_08_8.s1": "终于……"
++            "result": 
++            {
++                "s2-体魄":5,
++                "s2=魔力":0,
++
++                "clean.s3":1,  //清除神的面容
++                "s1=密教徒":0,
++                "s1=黑暗知识":0,
++                "s1+追随者":1,
++                "choose":{
++                    "pop.5008189_result_08_8.s1":"终于……"
+                 },
+-                "s1+命运的羁绊": 1, //+命运的羁绊
+-                "counter+7000624": 1, //自由之花中，触发成功对抗神+1 
+-            },
+-            "action": {
+-                "global_counter=7200244": 1, //结局-洗去掌心污浊
+-                "counter+7000637": 1, //完成了自由之花    
+-                "clean.rite": 5010050, //恶之华
+-                "clean.rite": 5010051, //受孕   
++
++                "s1+命运的羁绊":1, //+命运的羁绊
++                "counter+7000624":1, //自由之花中，触发成功对抗神+1 
++                
++            
++            },
++            "action": {  
++            "global_counter=7200244":1,//结局-洗去掌心污浊
++            "counter+7000637":1,  //完成了自由之花    
++            "clean.rite":5010050, //恶之华
++            "clean.rite":5010051, //受孕   
++
+             }
+         },
+         {
+             "condition": {
+-                "s3": 1, //放置邪神三级/四级
+-                "!have.2000847": 1,
+-                "!have.2000848": 1, //场上没有3级或以上的正神面容
+-                "counter.7000623=": 0,
+-                "counter.7000622=": 0, //还没进入召唤线
+-                "s2": 1, //放入自己
+-                "s2.体魄<=": 5
+-            },
+-            "result_title": "",
++
++                "s3":1,  //放置邪神三级/四级
++
++                "!have.2000847":1,
++                "!have.2000848":1, //场上没有3级或以上的正神面容
++
++
++                "counter.7000623=":0,  
++                "counter.7000622=":0,  //还没进入召唤线
++                "s2":1,   //放入自己
++                "s2.体魄<=":5
++                    
++            },
++            "result_title":"",
+             "result_text": "拜铃耶的长针落在你的手掌上，奇妙的是，完全不疼，反而有种酸胀感。\n她的针蘸着一些草汁，一边刺，一边在喃喃地吟唱着什么。\n这是一场战斗。\n拜铃耶刺下的每一针都像是一处要塞，她，还有你，拿出全部力量与神的意志战斗、周旋，但这就像蚂蚁向高山宣战。\n一针……又一针，神不甘地、愤怒地在你和她之间肆虐、破坏，疯狂的恶念污染着你们的灵魂，逼着你们退缩、俯首、跪拜、乃至哀求……但是没有，你们谁也没有：你们坚持到了最后，坚持到……你们的生命被榨干最后一个星点。\n也好，也好。比起整个世界的毁灭，如果只需要你一个人付出代价，那又有什么不可以的呢？你在极度的虚弱中抬起最后一瞥，你看到拜铃耶的脸上凝固着一丝淡淡的……解脱般的微笑。是啊……解脱……你也露出同样的笑容。\n花田笼罩在夜色之中，自由的气息拂过每一朵绽放的花蕾。",
+-            "result": {
+-                "choose": {
+-                    "pop.5008189_result_09_9.s1": "抱歉……"
++            "result": 
++            {
++                "choose":{
++                    
++                    "pop.5008189_result_09_9.s1":"抱歉……"
+                 },
+-                "s2-体魄": 5,
+-                "s2=魔力": 0,
+-                "clean.s1": 1,
+-            },
+-            "action": {
+-                "over": 13 //死亡结局
++                "s2-体魄":5,
++                "s2=魔力":0,
++                "clean.s1":1,
++            },
++            "action": { 
++
++                "over":13 //死亡结局
++
+             }
+-        },
++        },        
++
+         //以下是还没正式进入召唤线，手上有2个4级神，但是只放进去一个。---------------------------------------------------------------------
+         {
+             "condition": {
+-                "s3": 1, //放置邪神三级/四级
+-                "have.2000848": 1, //场上有4级正神面容
+-                "counter.7000623=": 0,
+-                "counter.7000622=": 0, //还没进入召唤线
+-                "!s2": 1, //没有放入自己，只有拜铃耶
+-            },
+-            "result_title": "你隐瞒了至关重要的东西",
++
++                "s3":1,  //放置邪神三级/四级
++                "have.2000848":1,  //场上有4级正神面容
++            
++
++                "counter.7000623=":0,  
++                "counter.7000622=":0,  //还没进入召唤线
++
++                "!s2":1,   //没有放入自己，只有拜铃耶
++                    
++            },
++            "result_title":"你隐瞒了至关重要的东西",
+             "result_text": "拜铃耶的长针落在你的手掌上，奇妙的是，完全不疼，反而有种酸胀感。\n她的针蘸着一些草汁，一边刺，一边在喃喃地吟唱着什么。\n这是一场战斗，而她几乎要成功了——但，就在密神的墨渍退却的瞬间，更冰冷、庞大、狂乱的存在狂笑着占据了你的手心，措手不及间转瞬击溃了拜铃耶辛苦构筑的防线，摧毁了她的针、她的魔力、她的灵魂。你看到惊愕的神色凝固在她的眼瞳里，但你顾不得这么多了！被欺骗、被驱逐的密神随即卷土重来，和毁灭之神搅在一起，无数低语、无数敕令、无数鞭笞、无数诅咒在你身上应验，彼此抵消，彼此制衡，你的灵魂如暴风雨中苦苦支撑的飘摇小船……你还活着，但你知道，你已经失去了摆脱这被神随意拨弄的命运的最后机会。",
+-            "result": {
+-                "clean.s1": 1, //拜铃耶死
+-            },
+-            "action": {
+-                "counter+7000637": 1, //完成了自由之花  
++            "result": 
++            {                
++                "clean.s1":1,  //拜铃耶死
++            },
++            "action": {  
++
++                "counter+7000637":1,  //完成了自由之花  
++            
+             }
+         },
+         {
+             "condition": {
+-                "s3": 1, //放置邪神三级/四级
+-                "have.2000848": 1, //场上有4级正神面容
+-                "counter.7000623=": 0,
+-                "counter.7000622=": 0, //还没进入召唤线
+-                "s2": 1, //放入了自己
+-            },
+-            "result_title": "你忽视了至关重要的东西",
++
++                "s3":1,  //放置邪神三级/四级
++                "have.2000848":1,  //场上有4级正神面容
++
++                "counter.7000623=":0,  
++                "counter.7000622=":0,  //还没进入召唤线
++
++                "s2":1,   //放入了自己
++                    
++            },
++            "result_title":"你忽视了至关重要的东西",
+             "result_text": "拜铃耶的长针落在你的手掌上，奇妙的是，完全不疼，反而有种酸胀感。\n她的针蘸着一些草汁，一边刺，一边在喃喃地吟唱着什么。\n这是一场战斗，而你们几乎要成功了——但，就在密神的墨渍退却的瞬间，更冰冷、庞大、狂乱的存在狂笑着占据了你的手心，措手不及间转瞬击溃了你们辛苦构筑的防线，摧毁了你们的针、你们的魔力，而被欺骗、被驱逐的密神随即卷土重来，和毁灭之神搅在一起，无数低语、无数敕令、无数鞭笞、无数诅咒在你身上应验，如风暴过境，只留下满地狼藉，再也拼凑不出[player.name]的名字。",
+-            "result": {
+-                "clean.s1": 1, //拜铃耶死
+-            },
+-            "action": {
+-                "over": 13
++            "result": 
++            {
++                
++                "clean.s1":1,  //拜铃耶死
++            
++            },
++            "action": {  
++
++            "over":13
++
+             }
+         },
+         {
+             "condition": {
+-                "s4": 1, //放置正神三级/四级
+-                "have.2000844": 1, //场上有4级邪神面容            
+-                "counter.7000623=": 0,
+-                "counter.7000622=": 0, //还没进入召唤线
+-                "!s2": 1, //没有放入自己，只有拜铃耶
+-            },
+-            "result_title": "你隐瞒了至关重要的东西",
++
++                "s4":1,  //放置正神三级/四级
++                "have.2000844":1,  //场上有4级邪神面容            
++
++                "counter.7000623=":0,  
++                "counter.7000622=":0,  //还没进入召唤线
++
++                "!s2":1,   //没有放入自己，只有拜铃耶
++                    
++            },
++            "result_title":"你隐瞒了至关重要的东西",
+             "result_text": "拜铃耶的长针落在你的手掌上，奇妙的是，完全不疼，反而有种酸胀感。\n她的针蘸着一些草汁，一边刺，一边在喃喃地吟唱着什么。\n这是一场战斗，而她几乎要成功了——但，就在纯白光辉渐渐黯淡的瞬间，更疯狂、暴虐、腐朽的存在觑准了时机，狂笑着占据了你的手心，措手不及间转瞬击溃了拜铃耶辛苦构筑的防线，摧毁了她的针、她的魔力、她的灵魂。你看到惊愕的神色凝固在她的眼瞳里，但你顾不得这么多了！被欺骗、被驱逐的纯净之神随即卷土重来，和腐坏之神搅在一起，无数低语、无数敕令、无数鞭笞、无数诅咒在你身上应验，彼此抵消，彼此制衡，你的灵魂如暴风雨中苦苦支撑的飘摇小船……你还活着，但你知道，你已经失去了摆脱这被神随意拨弄的命运的最后机会。",
+-            "result": {
+-                "choose": {
+-                    "pop.5008189_result_13_13.s1": "也许这就是我的命运……"
++            "result": 
++            {
++                "choose":{
++                    
++                    "pop.5008189_result_13_13.s1":"也许这就是我的命运……"
+                 },
+-                "clean.s1": 1, //拜铃耶死
+-            },
+-            "action": {
+-                "counter+7000637": 1, //完成了自由之花  
++                "clean.s1":1,  //拜铃耶死
++
++                
++            
++            },
++            "action": {  
++
++            "counter+7000637":1,  //完成了自由之花  
++
++            
+             }
+         },
+         {
+             "condition": {
+-                "s4": 1, //放置正神三级/四级
+-                "have.2000844": 1, //场上有4级邪神面容
+-                "counter.7000623=": 0,
+-                "counter.7000622=": 0, //还没进入召唤线
+-                "s2": 1, //放入了自己
+-            },
+-            "result_title": "你忽视了至关重要的东西",
++
++                "s4":1,  //放置正神三级/四级
++                "have.2000844":1,  //场上有4级邪神面容
++            
++
++                "counter.7000623=":0,  
++                "counter.7000622=":0,  //还没进入召唤线
++
++                "s2":1,   //放入了自己
++                    
++            },
++            "result_title":"你忽视了至关重要的东西",
+             "result_text": "拜铃耶的长针落在你的手掌上，奇妙的是，完全不疼，反而有种酸胀感。\n她的针蘸着一些草汁，一边刺，一边在喃喃地吟唱着什么。\n这是一场战斗，而你们几乎要成功了——但，就在纯白光辉渐渐黯淡的瞬间，更疯狂、暴虐、腐朽的存在觑准了时机，狂笑着占据了你的手心，措手不及间转瞬击溃了你们辛苦构筑的防线，摧毁了你们的针、你们的魔力，而被欺骗、被驱逐的纯净之神随即卷土重来，和腐坏之神搅在一起，无数低语、无数敕令、无数鞭笞、无数诅咒在你身上应验，如风暴过境，只留下满地狼藉，再也拼凑不出[player.name]的名字。",
+-            "result": {
+-                "clean.s1": 1, //拜铃耶死
+-            },
+-            "action": {
+-                "over": 13
++            "result": 
++            {
++                
++                "clean.s1":1,  //拜铃耶死
++            
++            },
++            "action": {  
++
++            "over":13
++
+             }
+         },
+-        //以下是没有放任何神的面容+放了玩家自己（新增--------------------------------------------------------------------- 
++      
++ //以下是没有放任何神的面容+放了玩家自己（新增--------------------------------------------------------------------- 
++ 
+         {
+             "condition": {
+-                "s2": 1, //放入了自己
+-                "!s3": 1,
+-                "!s4": 1, //没有放置任何想要切断的声音
+-            },
+-            "result_title": "",
++
++            
++                "s2":1,   //放入了自己
++                "!s3":1, 
++                "!s4":1,  //没有放置任何想要切断的声音
++                    
++            },
++            "result_title":"",
+             "result_text": "拜铃耶的长针落在你的手掌上，奇妙的是，完全不疼，反而有种酸胀感。\n她的针蘸着一些草汁，一边刺，一边在喃喃地吟唱着什么。她动作非常熟练，每一针都胸有成竹。清凉的感觉从细密的伤口涌入，你闭上眼睛，困扰你多时的密神的低语就此消散了。",
+-            "result": {},
+-            "action": {
+-                "counter+7000637": 1, //完成了自由之花  
++            "result": 
++            {                
++            
++            },
++            "action": {  
++
++            "counter+7000637":1,  //完成了自由之花  
++
+             }
+         }
++       
++    ],                
++    "settlement_extre": [
++       
+     ],
+-    "settlement_extre": [],
+-    "cards_slot": {
+-        "s1": {
+-            "condition": {
+-                "is": 2000022
+-            },
+-            "open_adsorb": 1,
+-            "is_key": 0,
+-            "is_empty": 0,
+-            "is_enemy": 0,
+-            "text": "拜铃耶",
+-            "pops": [
++    "cards_slot":
++    {
++        "s1":
++            {
++                "condition": 
+                 {
+-                    "condition": {
+-                        "s3": 1, //放了2个神
+-                        "s4": 1,
+-                    },
+-                    "action": {
+-                        "pop.5008189_s1_01.self": "如此可怕的存在，你居然同时面对着两个？！我可能会失败……"
++                    
++                    "is":2000022
++                },
++                "open_adsorb":1,
++                "is_key":0,
++                "is_empty":0,
++                "is_enemy":0,
++                "text":"拜铃耶",
++                "pops": [
++                    {
++                        "condition": {
++                            "s3":1,   //放了2个神
++                            "s4":1,
++                        },
++                        "action": {
++                            "pop.5008189_s1_01.self": "如此可怕的存在，你居然同时面对着两个？！我可能会失败……"
++                        }
+                     }
+-                }
+-            ]
+-        },
+-        "s2": {
+-            "condition": {
+-                "主角": 1,
+-                "type": "char"
+-            },
+-            "open_adsorb": 0,
+-            "is_key": 0,
+-            "is_empty": 1,
+-            "is_enemy": 0,
+-            "text": "你可以选择和拜铃耶一起承担一切，也可以……完全地交托给她"
+-        },
+-        "s3": {
+-            "condition": {
+-                "type": "item",
+-                "邪神的面容": 1,
+-                "rare>=": 3
+-            },
+-            "open_adsorb": 0,
+-            "is_key": 0,
+-            "is_empty": 1,
+-            "is_enemy": 0,
+-            "text": "想要切断的，神的联结"
+-        },
+-        "s4": {
+-            "condition": {
+-                "type": "item",
+-                "正神的面容": 1,
+-                "rare>=": 3
+-            },
+-            "open_adsorb": 0,
+-            "is_key": 0,
+-            "is_empty": 1,
+-            "is_enemy": 0,
+-            "text": "想要切断的，神的联结"
+-        }
++                ]
++            },
++            "s2":
++            {
++                "condition": 
++                {
++                    "主角":1,
++                    "type":"char"
++                },
++                "open_adsorb":0,
++                "is_key":0,
++                "is_empty":1,
++                "is_enemy":0,
++                "text":"你可以选择和拜铃耶一起承担一切，也可以……完全地交托给她"
++            },
++            "s3":
++            {
++                "condition": 
++                {
++                    "type":"item",
++                    "邪神的面容":1,
++                    "rare>=":3
++                },
++                "open_adsorb":0,
++                "is_key":0,
++                "is_empty":1,
++                "is_enemy":0,
++                "text":"想要切断的，神的联结"
++            },
++            "s4":
++            {
++                "condition": 
++                {
++                 
++                    "type":"item",
++                    "正神的面容":1,
++                    "rare>=":3
++                },
++                "open_adsorb":0,
++                "is_key":0,
++                "is_empty":1,
++                "is_enemy":0,
++                "text":"想要切断的，神的联结"
++            }
++
++     
+     }
+-}
+\ No newline at end of file
++} 
+\ No newline at end of file
+diff --git a/rite/5010023.json b/rite/5010023.json
+index a7adf11..297955a 100644
+--- a/rite/5010023.json
++++ b/rite/5010023.json
+@@ -1294,8 +1294,8 @@
+                 "result_title": "是男人就靠自己",
+                 "result_text": "你剥夺了快脚的姓氏，并告诉他，真正的男人必须亲自挣来自己的名字，而不是靠岳父施舍。他看起来很乐观，只是紧紧地握住了阿鲁米娜的小手，给了她很多很多承诺。",
+                 "result": {
+-                    "2000794.uprare":-1, //降低稀有度
+-                    "2000794-贵族":1, //贵族标签
++                    "2000063.uprare":-1, //降低稀有度
++                    "2000063-贵族":1, //贵族标签
+                     "s11+传统": 1
+                 },
+                 "action": {}
+diff --git a/rite/5010034.json b/rite/5010034.json
+index a030a86..ee702f1 100644
+--- a/rite/5010034.json
++++ b/rite/5010034.json
+@@ -3,7 +3,7 @@
+         "name": "神圣的烙印",
+         "text": "一个忠诚的印记……印在你的心脏的位置。",       
+         "tips": "",
+-        "mapping_id":8001293,
++        "mapping_id":8001530,
+         "once_new":1,
+         "round_number": 1,
+         "waiting_round":0,
+@@ -89,7 +89,7 @@
+                     "clean.rite":1, //移除所有仪式
+                     "event_off":1, //关闭所有幕后  
+                     "delay_off":1, //关闭所哟delay
+-                    "total.2000024=上朝":0, //移除苏丹的吸附指定
++                    "table.2000024=上朝":0, //移除苏丹的吸附指定
+                     "total.2001019+冻结":1, //冻结莎姬的信物
+                     "total.sudan+冻结":1, //冻结苏丹卡
+                     "total.2000680+冻结":1, //冻结猜忌
+diff --git a/rite/5010050.json b/rite/5010050.json
+index fbd3666..66defbe 100644
+--- a/rite/5010050.json
++++ b/rite/5010050.json
+@@ -92,7 +92,7 @@
+                     "clean.rite":1, //移除所有仪式
+                     "event_off":1, //关闭所有幕后  
+                     "delay_off":1, //关闭所哟delay
+-                    "total.2000024=上朝":0, //移除苏丹的吸附指定
++                    "table.2000024=上朝":0, //移除苏丹的吸附指定
+                     "total.2001019+冻结":1, //冻结莎姬的信物
+                     "total.sudan+冻结":1, //冻结苏丹卡
+                     "total.2000680+冻结":1, //冻结猜忌
+diff --git a/rite/5010056.json b/rite/5010056.json
+index f931a7b..405db0d 100644
+--- a/rite/5010056.json
++++ b/rite/5010056.json
+@@ -120,7 +120,7 @@
+                 "result_text": "你的伟大事业当然会吓到那些大惊小怪的凡人——他们指望苏丹能主持公道，真是可笑之极……你对此早有安排，不是么？",
+                 "result": 
+                 {
+-                   "s1+已拥有":1  //在这里把血池交给玩家
++                   
+                 },
+                 "action": {
+                     "event_on":5310633  //开启苏丹在玩魅魔
+diff --git a/rite/5010059.json b/rite/5010059.json
+index 873f315..11e312e 100644
+--- a/rite/5010059.json
++++ b/rite/5010059.json
+@@ -3,7 +3,6 @@
+         "name": "神的诞生",
+         "text": "当虔信者匍匐在祂面前时，便能听见大地随着祂的心跳颤抖。为祂准备诞生之后的第一餐吧……在祂享用整个世界之前。",       
+         "tips": "",
+-        "mapping_id":8001292,
+         "once_new":1,
+         "round_number": 0,
+         "waiting_round":3,
+diff --git a/rite/5010061.json b/rite/5010061.json
+index c14ffcf..e33d502 100644
+--- a/rite/5010061.json
++++ b/rite/5010061.json
+@@ -222,7 +222,7 @@
+                     "r1:s1.魅力+s1.生存+s5.魔力+s5.魅力+s5.生存+s5.魔力>=":[5,5],  //风语者成功
+                     "r2:s2.体魄+s2.战斗+s5.魔力+s5.体魄+s5.战斗+s5.魔力>=":[5,5],  //踏火者成功
+                     "r3:s3.智慧+s3.社交+s3.魔力+s5.智慧+s5.社交+s5.魔力>=":[5,5],   //地卜师没能免死
+-                    "r3:s3.智慧+s3.社交+s3.魔力+s5.智慧+s5.社交+s5.魔力<":[10,5] 
++                    "r3:s3.智慧+s3.社交+s3.魔力+s5.智慧+s5.社交+s5.魔<":[10,5] 
+                 },
+                 "result_title":"守望石",
+                 "result_text": "大地将真正的末日藏在天上——[s3.name]已经知晓了这个秘密。于是[s3.gender]恳求大地让自己也化作一块岩石……只要[s3.gender]还在看着天空，只要愚蠢的人类还没有将它拆毁，那末日的凶星就不会落下。",
+diff --git a/rite/5010064.json b/rite/5010064.json
+index cfc2cdb..366e099 100644
+--- a/rite/5010064.json
++++ b/rite/5010064.json
+@@ -125,7 +125,7 @@
+                 },
+                 "open_adsorb":1,
+                 "is_key":0,
+-                "is_empty":1,
++                "is_empty":0,
+                 "is_enemy":1, 
+                 "text":"唯有真神方能得到天使的侍奉"
+             },
+@@ -137,7 +137,7 @@
+                 },
+                 "open_adsorb":1,
+                 "is_key":0,
+-                "is_empty":1,
++                "is_empty":0,
+                 "is_enemy":1, 
+                 "text":"从太古，到今日，祂所篡夺的，一切的功",
+                 
+@@ -150,7 +150,7 @@
+                 },
+                 "open_adsorb":1,
+                 "is_key":0,
+-                "is_empty":1,
++                "is_empty":0,
+                 "is_enemy":1, 
+                 "text":"愚蠢的人类，不计其数，合众为一"
+             },
+@@ -162,7 +162,7 @@
+                 },
+                 "open_adsorb":1,
+                 "is_key":0,
+-                "is_empty":1,
++                "is_empty":0,
+                 "is_enemy":1, 
+                 "text":"人类主动让一个疯神加冕为世界之主",
+             },
+-- 
+2.49.0.windows.1
+

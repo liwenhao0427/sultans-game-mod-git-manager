@@ -1,0 +1,17 @@
+{
+  "name": "任意添加删除卡",
+  "author": "bilibili苍白纸人儿",
+  "version": "1.0.0",
+  "gameVersion": "2025.04.12",
+  "updateDate": "2025.04.14",
+  "tag": [
+    "自动导入"
+  ],
+  "source": {
+    "name": "B站",
+    "url": "https://www.bilibili.com/video/BV1ccRCYeEXN/"
+  },
+  "files": [],
+  "patchFile": "patches\\0001-MOD.patch",
+  "remark": "1.打开游戏根目录 \n\n2.*进入下面路径的文件夹中\n\n“你的steam放的盘”\\STEAM\\steamapps\\common\\Sultan's Game\\Sultan's Game_Data\\StreamingAssets\\config\n\n3.*覆盖文件夹所有文件   {除了上述修改不会影响任何游戏性}\n\n\n\n-------------@bilibili苍白纸人儿------------------------\n\n\n\n&&&如果你不想开新档 也可以先覆盖好文件  然后通过修改存档增加手牌的方式去加我做的卡牌\n修改存档方法可以去b站搜  有很多up发  但一定记得改之前做存档备份！！！\n存档位置在：C:\\Users\\你的电脑用户名\\AppData\\LocalLow\\DoubleCross\\SultansGame\\SAVEDATA\n要改存档之前做备份！！"
+}
