@@ -103,8 +103,6 @@
         <el-form-item label="导出内容">
           <el-checkbox v-model="exportOptions.includeMods" disabled>MOD文件</el-checkbox>
           <el-checkbox v-model="exportOptions.includeManager">MOD管理器(exe)</el-checkbox>
-          <el-checkbox v-model="exportOptions.includeScript">MOD安装脚本(py)</el-checkbox>
-          <el-checkbox v-model="exportOptions.includeTextLoader">加载本地Mods配置(exe)</el-checkbox>
         </el-form-item>
         <el-form-item label="文件名">
           <el-input v-model="exportOptions.fileName" placeholder="导出文件名"></el-input>

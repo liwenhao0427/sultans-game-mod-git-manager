@@ -4,13 +4,16 @@ import json
 import shutil
 import subprocess
 from pathlib import Path
-from datetime import datetime  # 添加这一行
+from datetime import datetime
 
 # 导入公共工具
 from common_utils import (
     print_header, ensure_directory, get_application_path, get_game_path,
     get_config_dir, prepare_git_environment, run_git_command
 )
+
+# 导入MOD配置检查工具
+from check_mod_configs import check_mod_configs
 
 def apply_patch(patch_file, config_dir, mod_name, mod_config):
     """应用补丁文件"""
@@ -191,9 +194,11 @@ def install_mods():
         # 获取配置目录
         config_dir = get_config_dir(game_path)
         
-        # 准备Git环境
-        if not prepare_git_environment(game_path):
-            print("准备Git环境失败，安装中止")
+        # 不再调用prepare_git_environment，因为已经在check_mod_configs中完成
+        # 这里可以添加一个简单的检查，确保Git环境已经准备好
+        stdout, stderr, code = run_git_command(['git', 'status'], cwd=config_dir, check=False)
+        if code != 0:
+            print("Git环境未准备好，安装中止")
             return False
         
         # 获取游戏版本日期
@@ -345,8 +350,12 @@ def main():
             input("按任意键继续...")
             return
         
+        # 先检查并准备MOD配置
+        print("[准备阶段] 检查MOD配置和补丁文件...")
+        check_mod_configs()
+        
         # 安装MOD
-        print("[安装阶段] 开始处理MOD文件...\n")
+        print("\n[安装阶段] 开始处理MOD文件...\n")
         if install_mods():
             print("\n[完成] MOD安装成功")
         else:

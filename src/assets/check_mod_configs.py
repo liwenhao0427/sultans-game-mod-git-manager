@@ -266,8 +266,6 @@ def check_mod_configs():
     print("\n处理完成!")
     print(f"总计 {total_mods} 个MOD目录")
     print(f"成功处理 {processed_mods} 个MOD")
-    
-    input("按任意键退出...")
 
 if __name__ == "__main__":
     check_mod_configs()
