@@ -12,7 +12,7 @@ from common_utils import (
     get_config_dir, prepare_git_environment, run_git_command
 )
 
-def apply_patch(patch_file, config_dir, mod_name):
+def apply_patch(patch_file, config_dir, mod_name, mod_config):
     """应用补丁文件"""
     print(f"[应用] MOD: {mod_name}")
     
@@ -54,11 +54,26 @@ def apply_patch(patch_file, config_dir, mod_name):
     except Exception as e:
         print(f"[警告] 修复补丁文件编码时出错: {e}")
     
+    # 准备提交信息
+    author = mod_config.get("author", "未知作者")
+    source = mod_config.get("source", "")
+    version = mod_config.get("version", "")
+    
+    commit_msg = f"应用MOD: {mod_name}"
+    if author:
+        commit_msg += f"\n作者: {author}"
+    if source:
+        commit_msg += f"\n来源: {source}"
+    if version:
+        commit_msg += f"\n版本: {version}"
+    
     # 首先尝试使用git am命令应用补丁
     print(f"[尝试] 使用git am应用补丁...")
     stdout, stderr, code = run_git_command(['git', 'am', '--ignore-whitespace', '--keep-cr', patch_file], cwd=config_dir, check=False)
     if code == 0:
         print(f"[成功] 使用git am应用补丁成功")
+        # 修改最后一次提交的信息
+        run_git_command(['git', 'commit', '--amend', '-m', commit_msg], cwd=config_dir, check=False)
         return True
     
     # git am失败，中止补丁应用
@@ -72,7 +87,6 @@ def apply_patch(patch_file, config_dir, mod_name):
         # 应用成功，添加并提交更改
         print(f"[成功] 使用git apply方法1应用补丁成功")
         run_git_command(['git', 'add', '--all'], cwd=config_dir)
-        commit_msg = f"应用MOD: {mod_name}"
         stdout, stderr, code = run_git_command(['git', 'commit', '-m', commit_msg], cwd=config_dir, check=False)
         if code == 0:
             return True
@@ -132,9 +146,9 @@ def apply_patch(patch_file, config_dir, mod_name):
                     if ':' in commit:
                         commit_hash, commit_msg = commit.split(':', 1)
                         if commit_msg.startswith("应用MOD:"):
-                            mod_name = commit_msg[5:].strip()
-                            if mod_name not in conflict_mods:
-                                conflict_mods.append(mod_name)
+                            conflict_mod_name = commit_msg[5:].strip().split('\n')[0]  # 获取MOD名称，去除可能的作者信息
+                            if conflict_mod_name not in conflict_mods:
+                                conflict_mods.append(conflict_mod_name)
                 
                 if conflict_mods:
                     print(f"[提示] 以下MOD可能与当前MOD({mod_name})在文件 {conflict_file} 上存在冲突:")
@@ -152,7 +166,6 @@ def apply_patch(patch_file, config_dir, mod_name):
     
     # 没有冲突，添加并提交更改
     run_git_command(['git', 'add', '--all'], cwd=config_dir)
-    commit_msg = f"应用MOD: {mod_name}"
     stdout, stderr, code = run_git_command(['git', 'commit', '-m', commit_msg], cwd=config_dir, check=False)
     if code == 0:
         print(f"[成功] 使用git apply方法2应用补丁成功")
@@ -291,7 +304,7 @@ def install_mods():
             patch_file = os.path.join(mod_dir, mod_config["patchFile"])
             
             # 应用补丁
-            if apply_patch(patch_file, config_dir, mod_name):
+            if apply_patch(patch_file, config_dir, mod_name, mod_config):
                 success_count += 1
             else:
                 # 补丁应用失败，执行还原操作
