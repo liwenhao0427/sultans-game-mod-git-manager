@@ -72,7 +72,7 @@ def apply_patch(patch_file, config_dir, mod_name, mod_config):
     
     # 首先尝试使用git am命令应用补丁
     print(f"[尝试] 使用git am应用补丁...")
-    stdout, stderr, code = run_git_command(['git', 'am', '--ignore-whitespace', '--keep-cr', patch_file], cwd=config_dir, check=False)
+    stdout, stderr, code = run_git_command(['git', 'am', '--reject', '--ignore-whitespace', '--keep-cr', patch_file], cwd=config_dir, check=False)
     if code == 0:
         print(f"[成功] 使用git am应用补丁成功")
         # 修改最后一次提交的信息
@@ -80,39 +80,8 @@ def apply_patch(patch_file, config_dir, mod_name, mod_config):
         return True
     
     # git am失败，中止补丁应用
-    print(f"[警告] git am应用补丁失败: {stderr}")
+    print(f"[警告] git am应用补丁失败: {mod_name}")
     run_git_command(['git', 'am', '--abort'], cwd=config_dir, check=False)
-    
-    # 尝试使用git apply命令（方法1）
-    print(f"[尝试] 使用git apply方法1应用补丁...")
-    stdout, stderr, code = run_git_command(['git', 'apply', '--ignore-whitespace', patch_file], cwd=config_dir, check=False)
-    if code == 0:
-        # 应用成功，添加并提交更改
-        print(f"[成功] 使用git apply方法1应用补丁成功")
-        run_git_command(['git', 'add', '--all'], cwd=config_dir)
-        stdout, stderr, code = run_git_command(['git', 'commit', '-m', commit_msg], cwd=config_dir, check=False)
-        if code == 0:
-            return True
-        else:
-            print(f"[错误] 提交更改失败: {stderr}")
-            return False
-    
-    # 方法1失败，尝试方法2
-    print(f"[警告] git apply方法1应用补丁失败: {stderr}")
-    
-    # 尝试使用git apply命令（方法2）
-    print(f"[尝试] 使用git apply方法2应用补丁...")
-    try:
-        # 使用更宽松的选项
-        stdout, stderr, code = run_git_command(['git', 'apply', '--reject', '--whitespace=fix', '--ignore-whitespace', patch_file], cwd=config_dir, check=False)
-        # 确保stdout和stderr不为None
-        stdout = stdout or ""
-        stderr = stderr or ""
-    except Exception as e:
-        print(f"[警告] git apply方法2执行异常: {e}")
-        stdout = ""
-        stderr = str(e)
-        code = 1  # 设置错误码
     
     # 检查是否有.rej文件（冲突文件）
     has_reject_files = False
@@ -124,26 +93,28 @@ def apply_patch(patch_file, config_dir, mod_name, mod_config):
                 reject_path = os.path.join(root, file)
                 original_file = reject_path[:-4]  # 移除.rej后缀
                 rel_path = os.path.relpath(original_file, config_dir)
-                conflict_files.append(rel_path)
+                conflict_files.append((rel_path, reject_path))
+                
                 print(f"[警告] 发现冲突文件: {rel_path}")
     
     if has_reject_files:
         print(f"[错误] 补丁应用存在冲突，无法自动解决")
         
         # 分析冲突文件，查找可能导致冲突的MOD
-        for conflict_file in conflict_files:
-            print(f"\n[分析] 分析冲突文件: {conflict_file}")
+        conflict_analysis = {}  # 用于存储分析结果
+        for rel_path, reject_path in conflict_files:
+            print(f"\n[分析] 分析冲突文件: {rel_path}")
             
             # 查找修改过该文件的提交
             stdout, stderr, code = run_git_command(
-                ['git', 'log', '--format=%H:%s', '--', conflict_file], 
+                ['git', 'log', '--format=%H:%s', '--', rel_path], 
                 cwd=config_dir, 
                 check=False
             )
             
+            conflict_mods = []
             if stdout and code == 0:
                 commits = stdout.strip().split('\n')
-                conflict_mods = []
                 
                 for commit in commits:
                     if ':' in commit:
@@ -154,29 +125,69 @@ def apply_patch(patch_file, config_dir, mod_name, mod_config):
                                 conflict_mods.append(conflict_mod_name)
                 
                 if conflict_mods:
-                    print(f"[提示] 以下MOD可能与当前MOD({mod_name})在文件 {conflict_file} 上存在冲突:")
+                    print(f"[提示] 以下MOD可能与当前MOD({mod_name})在文件 {rel_path} 上存在冲突:")
                     for i, conflict_mod in enumerate(conflict_mods, 1):
                         print(f"  {i}. {conflict_mod}")
                     print("[建议] 请检查这些MOD的兼容性，或调整它们的安装顺序")
                 else:
-                    print(f"[信息] 未找到修改过文件 {conflict_file} 的MOD记录")
+                    print(f"[信息] 未找到修改过文件 {rel_path} 的MOD记录")
             else:
-                print(f"[信息] 无法获取文件 {conflict_file} 的修改历史")
+                print(f"[信息] 无法获取文件 {rel_path} 的修改历史")
+            
+            # 保存分析结果
+            conflict_analysis[rel_path] = {
+                'reject_path': reject_path,
+                'conflict_mods': conflict_mods
+            }
+        
+        # 完成分析后，创建冲突文件夹并复制文件
+        conflict_dir = os.path.join(os.path.dirname(config_dir), "conflict_files", mod_name)
+        if os.path.exists(conflict_dir):
+            shutil.rmtree(conflict_dir)
+        os.makedirs(conflict_dir, exist_ok=True)
+        
+        # 创建分析结果文件
+        analysis_file = os.path.join(conflict_dir, "conflict_analysis.txt")
+        with open(analysis_file, 'w', encoding='utf-8') as f:
+            f.write(f"MOD: {mod_name} 冲突分析\n")
+            f.write("=" * 50 + "\n\n")
+            
+            for rel_path, info in conflict_analysis.items():
+                f.write(f"文件: {rel_path}\n")
+                if info['conflict_mods']:
+                    f.write("可能冲突的MOD:\n")
+                    for i, conflict_mod in enumerate(info['conflict_mods'], 1):
+                        f.write(f"  {i}. {conflict_mod}\n")
+                else:
+                    f.write("未找到可能冲突的MOD\n")
+                f.write("\n" + "-" * 40 + "\n\n")
+        
+        print(f"\n[信息] 冲突分析已保存到: {analysis_file}")
+        
+        # 复制冲突文件到冲突文件夹
+        for rel_path, info in conflict_analysis.items():
+            reject_path = info['reject_path']
+            
+            # 创建目标目录结构
+            target_dir = os.path.join(conflict_dir, os.path.dirname(rel_path))
+            os.makedirs(target_dir, exist_ok=True)
+            
+            # 复制.rej文件
+            target_rej = os.path.join(conflict_dir, rel_path + '.rej')
+            shutil.copy2(reject_path, target_rej)
+            
+            # 复制原始文件
+            original_file = reject_path[:-4]
+            if os.path.exists(original_file):
+                target_orig = os.path.join(conflict_dir, rel_path)
+                shutil.copy2(original_file, target_orig)
+            
+            print(f"[信息] 已将冲突文件保存到: {os.path.join(conflict_dir, rel_path + '.rej')}")
         
         # 清理工作目录
         run_git_command(['git', 'reset', '--hard'], cwd=config_dir)
-        return False
-    
-    # 没有冲突，添加并提交更改
-    run_git_command(['git', 'add', '--all'], cwd=config_dir)
-    stdout, stderr, code = run_git_command(['git', 'commit', '-m', commit_msg], cwd=config_dir, check=False)
-    if code == 0:
-        print(f"[成功] 使用git apply方法2应用补丁成功")
-        return True
-    else:
-        print(f"[错误] 提交更改失败: {stderr or '未知错误'}")
-        # 清理工作目录
-        run_git_command(['git', 'reset', '--hard'], cwd=config_dir)
+        # 确保移除所有未跟踪的文件，特别是.rej文件
+        run_git_command(['git', 'clean', '-fd'], cwd=config_dir, check=False)
         return False
 
 def install_mods():
@@ -239,6 +250,7 @@ def install_mods():
         total_count = 0
         success_count = 0
         skipped_count = 0
+        failed_count = 0
         
         # 按照优先级排序MOD
         mod_list = []
@@ -298,7 +310,10 @@ def install_mods():
         mod_list.sort(key=lambda x: x["priority"])
         
         # 应用所有MOD补丁
-        for mod_info in mod_list:
+        current_branch = mod_branch
+        failed_branches = []  # 用于记录失败MOD的分支
+        
+        for i, mod_info in enumerate(mod_list):
             mod_name = mod_info["name"]
             mod_dir = mod_info["dir"]
             mod_config = mod_info["config"]
@@ -309,24 +324,143 @@ def install_mods():
             patch_file = os.path.join(mod_dir, mod_config["patchFile"])
             
             # 应用补丁
+            print(f"\n[应用] MOD ({i+1}/{len(mod_list)}): {mod_name}")
+            
+            # 在当前MOD分支上尝试应用补丁
             if apply_patch(patch_file, config_dir, mod_name, mod_config):
                 success_count += 1
+                print(f"[成功] MOD {mod_name} 应用成功")
             else:
-                # 补丁应用失败，执行还原操作
-                print(f"[错误] 应用MOD {mod_name} 失败，安装停止")
-                # prepare_git_environment(game_path)
-                return False
+                failed_count += 1
+                print(f"[失败] MOD {mod_name} 应用失败，尝试在新分支上安装")
+                
+                # 舍弃所有未提交的更改
+                run_git_command(['git', 'reset', '--hard'], cwd=config_dir, check=False)
+                
+                # 从主分支切出新分支尝试安装失败的MOD
+                stdout, stderr, code = run_git_command(['git', 'checkout', 'master'], cwd=config_dir)
+                if code != 0:
+                    print(f"[错误] 无法切换到主分支: {stderr}")
+                    # 尝试切回原MOD分支
+                    run_git_command(['git', 'checkout', current_branch], cwd=config_dir, check=False)
+                    continue
+                
+                # 创建失败MOD的专用分支，确保分支名称有效
+                safe_mod_name = ''.join(c if c.isalnum() or c in '_-' else '_' for c in mod_name)
+                failed_branch = f"failed_mod_{safe_mod_name}_{i}"
+                
+                # 检查分支是否已存在，如果存在则删除
+                stdout, stderr, code = run_git_command(['git', 'branch'], cwd=config_dir)
+                if failed_branch in stdout:
+                    run_git_command(['git', 'branch', '-D', failed_branch], cwd=config_dir, check=False)
+                
+                # 创建新分支
+                stdout, stderr, code = run_git_command(['git', 'checkout', '-b', failed_branch], cwd=config_dir)
+                if code != 0:
+                    print(f"[错误] 无法创建失败MOD分支 {failed_branch}: {stderr}")
+                    # 尝试切回原MOD分支
+                    run_git_command(['git', 'checkout', current_branch], cwd=config_dir, check=False)
+                    continue
+                
+                # 在新分支上尝试应用补丁
+                print(f"[尝试] 在新分支 {failed_branch} 上安装MOD: {mod_name}")
+                if apply_patch(patch_file, config_dir, mod_name, mod_config):
+                    print(f"[信息] MOD {mod_name} 在独立分支上安装成功")
+                    print(f"[信息] 您可以稍后手动解决冲突并合并此分支")
+                    failed_branches.append(failed_branch)
+                else:
+                    print(f"[信息] MOD {mod_name} 在独立分支上也安装失败")
+                
+                # 确保工作目录干净，移除所有未跟踪的文件
+                print(f"[清理] 移除所有未跟踪的文件...")
+                run_git_command(['git', 'clean', '-fd'], cwd=config_dir, check=False)
+                
+                # 切回原MOD分支继续安装其他MOD
+                stdout, stderr, code = run_git_command(['git', 'checkout', current_branch], cwd=config_dir)
+                if code != 0:
+                    print(f"[错误] 无法切回MOD分支 {current_branch}: {stderr}")
+                    # 再次尝试清理并切换
+                    run_git_command(['git', 'reset', '--hard'], cwd=config_dir, check=False)
+                    run_git_command(['git', 'clean', '-fd'], cwd=config_dir, check=False)
+                    
+                    stdout, stderr, code = run_git_command(['git', 'checkout', current_branch], cwd=config_dir)
+                    if code != 0:
+                        # 这是一个严重错误，但我们尝试恢复
+                        print(f"[错误] 再次尝试切回失败，尝试从主分支重新创建MOD分支")
+                        stdout, stderr, code = run_git_command(['git', 'checkout', 'master'], cwd=config_dir)
+                        if code == 0:
+                            # 重新创建MOD分支
+                            if mod_branch in run_git_command(['git', 'branch'], cwd=config_dir)[0]:
+                                run_git_command(['git', 'branch', '-D', mod_branch], cwd=config_dir, check=False)
+                            run_git_command(['git', 'checkout', '-b', mod_branch], cwd=config_dir, check=False)
+                            current_branch = mod_branch
+                        else:
+                            return False
         
-        print(f"\n[完成] 共处理 {total_count} 个MOD，成功 {success_count} 个，跳过 {skipped_count} 个")
-        
+        # 如果至少有一个MOD成功应用，确保我们在主MOD分支上
         if success_count > 0:
-            print("\n[成功] 所有MOD已成功安装")
+            # 确保我们在主MOD分支上
+            stdout, stderr, code = run_git_command(['git', 'checkout', mod_branch], cwd=config_dir)
+            if code != 0:
+                print(f"[错误] 无法切换到主MOD分支: {stderr}")
+                return False
+            
+            print(f"\n[完成] 共处理 {total_count} 个MOD，成功 {success_count} 个，失败 {failed_count} 个，跳过 {skipped_count} 个")
+            
+            # 显示失败MOD的分支信息
+            if failed_count > 0:
+                print("\n[信息] 以下MOD在独立分支上安装，您可以稍后手动解决冲突:")
+                
+                # 获取当前存在的分支列表
+                stdout, stderr, code = run_git_command(['git', 'branch'], cwd=config_dir)
+                existing_branches = []
+                if code == 0:
+                    all_branches = stdout.strip().split('\n')
+                    existing_branches = [b.strip().replace('* ', '') for b in all_branches]
+                
+                # 检查记录的失败分支是否仍然存在
+                existing_failed_branches = []
+                for branch in failed_branches:
+                    if branch in existing_branches:
+                        existing_failed_branches.append(branch)
+                    else:
+                        print(f"[警告] 分支 {branch} 已不存在，可能在处理过程中被删除")
+                
+                # 如果没有找到任何失败分支，再次尝试从所有分支中查找
+                if not existing_failed_branches:
+                    existing_failed_branches = [b for b in existing_branches if b.startswith('failed_mod_')]
+                    if existing_failed_branches:
+                        print("[信息] 从现有分支中找到以下失败MOD分支:")
+                
+                # 显示失败分支
+                if existing_failed_branches:
+                    for i, branch in enumerate(existing_failed_branches, 1):
+                        print(f"  {i}. {branch}")
+                    
+                    print("\n[提示] 您可以使用以下命令查看和合并这些分支:")
+                    print("  git checkout <分支名>  # 切换到分支")
+                    print("  git checkout mods_applied  # 切回MOD主分支")
+                    print("  git merge <分支名>  # 合并分支")
+
+                    print("[检查] 验证失败MOD分支是否存在...")
+                    stdout, stderr, code = run_git_command(['git', 'branch'], cwd=config_dir)
+                    if code == 0:
+                        existing_branches = stdout.strip().split('\n')
+                        existing_branches = [b.strip().replace('* ', '') for b in existing_branches]
+                        
+                        for branch in failed_branches:
+                            if branch not in existing_branches:
+                                print(f"[警告] 失败MOD分支 {branch} 不存在，尝试恢复...")
+                                # 这里可以添加恢复分支的逻辑，如果需要的话
+                else:
+                    print("[警告] 未找到任何失败MOD的分支，可能在处理过程中被删除")
+            
             return True
         else:
             print("\n[警告] 没有成功安装任何MOD")
             prepare_git_environment(game_path)
             return False
-    
+            
     except Exception as e:
         print(f"[错误] 安装过程中发生异常: {e}")
         # 发生任何异常，执行还原操作
