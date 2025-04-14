@@ -292,7 +292,7 @@
     </el-dialog>
     
     <div class="footer">
-      <p>苏丹的游戏 MOD 管理器 &copy; 2025 by <a href="https://github.com/liwenhao0427/sultans-game-mod-manager" target="_blank">liwenhao0427</a></p>
+      <p>苏丹的游戏 MOD 管理器 &copy; 2025 by <a href="https://github.com/liwenhao0427/sultans-game-mod-git-manager" target="_blank">liwenhao0427</a></p>
     </div>
   </div>
 </template>
