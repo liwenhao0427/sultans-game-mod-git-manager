@@ -1,0 +1,3436 @@
+From 891bb156e10a5eac9b693162d2a59aa89b5e6cd2 Mon Sep 17 00:00:00 2001
+From: Sultan Mod Manager <mod@example.com>
+Date: Mon, 14 Apr 2025 11:23:41 +0800
+Subject: [PATCH] =?UTF-8?q?=E5=BA=94=E7=94=A8MOD:=20=E6=9C=AA=E6=9D=A5?=
+ =?UTF-8?q?=E8=A7=86=5F2.0?=
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+---
+ event/5300176.json |  4 ++--
+ event/5300177.json |  4 ++--
+ event/5300178.json |  4 ++--
+ event/5300272.json |  6 +++---
+ event/5300501.json |  6 +++---
+ event/5300502.json |  8 ++++----
+ event/5300503.json |  8 ++++----
+ event/5300504.json |  6 +++---
+ event/5300505.json |  8 ++++----
+ event/5300506.json |  8 ++++----
+ event/5300507.json |  8 ++++----
+ event/5300508.json |  6 +++---
+ event/5300509.json |  6 +++---
+ event/5300510.json |  6 +++---
+ event/5300511.json |  8 ++++----
+ event/5300512.json |  6 +++---
+ event/5300513.json |  6 +++---
+ event/5300514.json |  8 ++++----
+ event/5300515.json |  6 +++---
+ event/5300516.json |  8 ++++----
+ event/5300518.json |  6 +++---
+ event/5300519.json |  6 +++---
+ event/5300520.json |  6 +++---
+ event/5300521.json |  6 +++---
+ event/5300522.json |  6 +++---
+ event/5300523.json |  6 +++---
+ event/5300524.json |  6 +++---
+ event/5300525.json |  6 +++---
+ event/5300526.json |  8 ++++----
+ event/5300547.json |  4 ++--
+ event/5300602.json |  8 ++++----
+ event/5300603.json |  8 ++++----
+ event/5300604.json |  8 ++++----
+ event/5300605.json |  8 ++++----
+ event/5300606.json |  8 ++++----
+ event/5300607.json |  6 +++---
+ event/5300608.json |  8 ++++----
+ event/5300609.json |  8 ++++----
+ event/5300610.json |  8 ++++----
+ event/5300611.json |  8 ++++----
+ event/5300612.json |  8 ++++----
+ event/5300613.json |  6 +++---
+ event/5300614.json |  6 +++---
+ event/5300615.json |  6 +++---
+ event/5320011.json |  4 ++--
+ event/5320021.json |  6 +++---
+ event/5320022.json |  6 +++---
+ event/5320025.json |  4 ++--
+ event/5320216.json |  8 ++++----
+ event/5321102.json |  6 +++---
+ event/5321103.json |  4 ++--
+ event/5321108.json |  4 ++--
+ event/5399999.json | 32 ++++++++++++++++++++++++++++++++
+ rite/5000001.json  |  7 ++++---
+ rite/5000003.json  |  2 +-
+ rite/5000009.json  |  7 ++++---
+ rite/5000064.json  |  3 ++-
+ rite/5000100.json  | 10 ++++++++--
+ rite/5000101.json  |  4 ++--
+ rite/5000102.json  |  4 +++-
+ rite/5000103.json  |  5 ++++-
+ rite/5000104.json  |  6 +++++-
+ rite/5000105.json  |  6 +++++-
+ rite/5000106.json  |  6 +++++-
+ rite/5000107.json  |  6 +++++-
+ rite/5000108.json  |  6 +++++-
+ rite/5000129.json  |  2 +-
+ rite/5000501.json  |  2 +-
+ rite/5000513.json  |  3 ++-
+ rite/5000514.json  |  6 +++++-
+ rite/5000600.json  |  4 +++-
+ rite/5000601.json  |  5 ++++-
+ rite/5000602.json  |  3 +++
+ rite/5000603.json  |  2 ++
+ rite/5000605.json  |  9 ++++++++-
+ rite/5000611.json  |  5 ++++-
+ rite/5000612.json  |  6 +++++-
+ rite/5000613.json  |  6 +++++-
+ rite/5000615.json  |  5 ++++-
+ rite/5000616.json  |  7 ++++++-
+ rite/5000617.json  |  6 +++++-
+ rite/5000619.json  |  1 +
+ rite/5000620.json  |  2 ++
+ rite/5000621.json  |  2 ++
+ rite/5000622.json  |  6 +++++-
+ rite/5000630.json  |  5 ++++-
+ rite/5000705.json  |  6 +++++-
+ rite/5000713.json  |  4 ++--
+ rite/5000720.json  |  4 +++-
+ rite/5000723.json  |  4 +++-
+ rite/5000728.json  |  4 +++-
+ rite/5000731.json  |  5 ++++-
+ rite/5000732.json  |  8 +++++++-
+ rite/5000734.json  | 12 +++++++++---
+ rite/5000754.json  |  6 ++++--
+ rite/5000812.json  | 17 ++++++++++-------
+ rite/5001001.json  |  9 ++++++---
+ rite/5001010.json  |  3 ++-
+ rite/5001501.json  |  8 +++++---
+ rite/5001503.json  |  2 +-
+ rite/5002003.json  |  7 ++++---
+ rite/5002004.json  |  7 ++++---
+ rite/5002005.json  |  7 ++++---
+ rite/5002006.json  |  8 ++++++--
+ rite/5002007.json  |  2 +-
+ rite/5002035.json  |  7 ++++---
+ rite/5002036.json  |  2 ++
+ rite/5002037.json  |  4 +++-
+ rite/5002038.json  |  2 ++
+ rite/5002501.json  |  6 ++++--
+ rite/5002502.json  |  6 +++++-
+ rite/5002503.json  |  4 +++-
+ rite/5002504.json  |  3 ++-
+ rite/5002505.json  |  7 ++++++-
+ rite/5002506.json  |  3 ++-
+ rite/5002507.json  |  3 ++-
+ rite/5002508.json  |  4 +++-
+ rite/5002509.json  |  4 +++-
+ rite/5002510.json  |  4 +++-
+ rite/5002511.json  |  4 +++-
+ rite/5002512.json  |  3 ++-
+ rite/5002513.json  |  3 ++-
+ rite/5002514.json  |  3 ++-
+ rite/5002515.json  |  3 ++-
+ rite/5002516.json  |  5 ++++-
+ rite/5002517.json  |  7 ++++++-
+ rite/5003001.json  |  8 +++++++-
+ rite/5003020.json  |  5 ++++-
+ rite/5003021.json  |  5 ++++-
+ rite/5003022.json  |  6 +++++-
+ rite/5003023.json  |  5 ++++-
+ rite/5003024.json  |  6 +++++-
+ rite/5003025.json  |  6 +++++-
+ rite/5003026.json  |  5 ++++-
+ rite/5006557.json  |  2 +-
+ rite/5006560.json  |  4 +++-
+ rite/5006561.json  |  3 ++-
+ rite/5006562.json  |  3 ++-
+ rite/5006563.json  |  3 ++-
+ rite/5006564.json  |  3 ++-
+ rite/5006565.json  |  3 ++-
+ rite/5006566.json  |  3 ++-
+ rite/5006567.json  |  3 ++-
+ rite/5006568.json  |  3 ++-
+ rite/5006616.json  |  5 +++--
+ rite/5006617.json  |  6 +++++-
+ rite/5006677.json  | 12 ++++++------
+ rite/5008001.json  |  6 +++++-
+ rite/5008002.json  |  8 +++++---
+ rite/5008005.json  |  6 +++---
+ rite/5008006.json  |  9 +++++----
+ rite/5008007.json  |  9 +++++----
+ rite/5008008.json  |  6 +++++-
+ rite/5008065.json  |  2 +-
+ 154 files changed, 574 insertions(+), 308 deletions(-)
+ create mode 100644 event/5399999.json
+
+diff --git a/event/5300176.json b/event/5300176.json
+index 88ebfaa..e4188eb 100644
+--- a/event/5300176.json
++++ b/event/5300176.json
+@@ -20,11 +20,11 @@
+                     "icon": ["common/position_pingming_2","cards/2000199","cards/2000001"],
+                     "items": [
+                         {
+-                            "text": "你们走吧，把书留下",
++                            "text": "你们走吧，把书留下【善名+1】",
+                             "tag": "op1"
+                         },
+                         {
+-                            "text": "我要惩罚你们", 
++                            "text": "我要惩罚你们【侠名+1 金币+3】", 
+                             "tag": "op2"
+                         }
+                     ]
+diff --git a/event/5300177.json b/event/5300177.json
+index 0212b7b..28fd345 100644
+--- a/event/5300177.json
++++ b/event/5300177.json
+@@ -20,11 +20,11 @@
+                     "icon": ["common/position_guizu_1","",""],
+                     "items": [
+                         {
+-                            "text": "当面讽刺他",
++                            "text": "当面讽刺他【侠名+1 金币+6】",
+                             "tag": "op1"
+                         },
+                         {
+-                            "text": "回去收拾他", //这里玩家可能没绣娘
++                            "text": "回去收拾他【权势+1】", //这里玩家可能没绣娘
+                             "tag": "op2"
+                         }
+                     ]
+diff --git a/event/5300178.json b/event/5300178.json
+index c0072d0..035e4cc 100644
+--- a/event/5300178.json
++++ b/event/5300178.json
+@@ -20,11 +20,11 @@
+                     "icon": ["common/position_shangye_1","",""],
+                     "items": [
+                         {
+-                            "text": "和他争抢",
++                            "text": "和他争抢【侠名+1 罪证】",
+                             "tag": "op1"
+                         },
+                         {
+-                            "text": "看看今天带的卡", //这里玩家可能没绣娘
++                            "text": "看看今天带的卡【恶名+1 金币+3】", //这里玩家可能没绣娘
+                             "tag": "op2"
+                         }
+                     ]
+diff --git a/event/5300272.json b/event/5300272.json
+index 25ca17c..6402006 100644
+--- a/event/5300272.json
++++ b/event/5300272.json
+@@ -20,15 +20,15 @@
+                     "icon": "cards/2000001",
+                     "items": [
+                         {
+-                            "text": "劝说被冷落的人",
++                            "text": "劝说被冷落的人【善名+1】",
+                             "tag": "op1"
+                         },
+                         {
+-                            "text": "劝说被偏爱的人",
++                            "text": "劝说被偏爱的人【权势+1】",
+                             "tag": "op2"
+                         },
+                         {
+-                            "text": "作壁上观",
++                            "text": "作壁上观【奈布哈尼禁用3天】",
+                             "tag": "op3"
+                         }
+                     ]
+diff --git a/event/5300501.json b/event/5300501.json
+index 6e9944d..72e7ce8 100644
+--- a/event/5300501.json
++++ b/event/5300501.json
+@@ -21,15 +21,15 @@
+                     "icon": "cards/2000001",
+                     "items": [
+                         {
+-                            "text": "这钱是我给他的",
++                            "text": "这钱是我给他的【善名+1 恶名-1】",
+                             "tag": "op1"
+                         },
+                         {
+-                            "text": "就用他的身体来抵罪吧",
++                            "text": "就用他的身体来抵罪吧【等死的奴隶】",
+                             "tag": "op2"
+                         },
+                         {
+-                            "text": "留下钱，让他滚",
++                            "text": "留下钱，让他滚【金币+3】",
+                             "tag": "op3"
+                         }
+                     ]
+diff --git a/event/5300502.json b/event/5300502.json
+index e9aa1e0..e7e43d3 100644
+--- a/event/5300502.json
++++ b/event/5300502.json
+@@ -21,19 +21,19 @@
+                     "icon": "cards/2000001",
+                     "items": [
+                         {
+-                            "text": "愤怒地转身离去",
++                            "text": "愤怒地转身离去【铜秘密】",
+                             "tag": "op1"
+                         },
+                         {
+-                            "text": "找机会敲他闷棍",
++                            "text": "找机会敲他闷棍【背叛的朋友】",
+                             "tag": "op2"
+                         },
+                         {
+-                            "text": "在宫廷上羞辱他",
++                            "text": "在宫廷上羞辱他【恶名+1 权势+1】",
+                             "tag": "op3"
+                         },
+                         {
+-                            "text": "免了他的债",
++                            "text": "免了他的债【善名+1 权势+1】",
+                             "tag": "op4"
+                         }
+                     ]
+diff --git a/event/5300503.json b/event/5300503.json
+index d0dd134..065dae1 100644
+--- a/event/5300503.json
++++ b/event/5300503.json
+@@ -21,19 +21,19 @@
+                     "icon": "cards/2000001",
+                     "items": [
+                         {
+-                            "text": "满足他的幻想",
++                            "text": "满足他的幻想【石纵欲仪式】",
+                             "tag": "op1"
+                         },
+                         {
+-                            "text": "教训他一顿",
++                            "text": "教训他一顿【侠名+1】",
+                             "tag": "op2"
+                         },
+                         {
+-                            "text": "置之不理",
++                            "text": "置之不理【恶名+1 善名-1】",
+                             "tag": "op3"
+                         },
+                         {
+-                            "text": "只是女人？",
++                            "text": "只是女人？【石纵欲仪式】",
+                             "tag": "op4"
+                         }
+                     ]
+diff --git a/event/5300504.json b/event/5300504.json
+index 02177ed..9c66a44 100644
+--- a/event/5300504.json
++++ b/event/5300504.json
+@@ -21,15 +21,15 @@
+                     "icon": "cards/2000001",
+                     "items": [
+                         {
+-                            "text": "女仆小圆",
++                            "text": "女仆小圆【妻子的不满】",
+                             "tag": "op1"
+                         },
+                         {
+-                            "text": "跑腿的快脚",
++                            "text": "跑腿的快脚【铜洞察】",
+                             "tag": "op2"
+                         },
+                         {
+-                            "text": "贵族友人",
++                            "text": "贵族友人【金币+3】",
+                             "tag": "op3"
+                         }
+                     ]
+diff --git a/event/5300505.json b/event/5300505.json
+index ac0e4e0..1bb033f 100644
+--- a/event/5300505.json
++++ b/event/5300505.json
+@@ -21,19 +21,19 @@
+                     "icon": "cards/2000001",
+                     "items": [
+                         {
+-                            "text": "灵魂",
++                            "text": "灵魂【灵视+1 银预兆】",
+                             "tag": "op1"
+                         },
+                         {
+-                            "text": "智识",
++                            "text": "智识【银洞察】",
+                             "tag": "op2"
+                         },
+                         {
+-                            "text": "身体",
++                            "text": "身体【灵视-1 银战术】",
+                             "tag": "op3"
+                         },
+                         {
+-                            "text": "神性",
++                            "text": "神性【灵视+1 银秘氛】",
+                             "tag": "op4"
+                         }
+                     ]
+diff --git a/event/5300506.json b/event/5300506.json
+index 707548a..2427462 100644
+--- a/event/5300506.json
++++ b/event/5300506.json
+@@ -21,19 +21,19 @@
+                     "icon": "cards/2000001",
+                     "items": [
+                         {
+-                            "text": "我全要了",
++                            "text": "我全要了【铜奢靡仪式】",
+                             "tag": "op1"
+                         },
+                         {
+-                            "text": "我只要最好的",
++                            "text": "我只要最好的【普通仪式 金币-3 权势+1】",
+                             "tag": "op2"
+                         },
+                         {
+-                            "text": "你这个小偷",
++                            "text": "你这个小偷【金币+5 恶名+1 侠名-1】",
+                             "tag": "op3"
+                         },
+                         {
+-                            "text": "不，我看不上",
++                            "text": "不，我看不上【无事发生】",
+                             "tag": "op4"
+                         }
+                     ]
+diff --git a/event/5300507.json b/event/5300507.json
+index d13a8a4..4b03dd3 100644
+--- a/event/5300507.json
++++ b/event/5300507.json
+@@ -21,19 +21,19 @@
+                     "icon": "cards/2000001",
+                     "items": [
+                         {
+-                            "text": "是吉梦",
++                            "text": "是吉梦【幸福感】",
+                             "tag": "op1"
+                         },
+                         {
+-                            "text": "是凶梦",
++                            "text": "是凶梦【激情+1】",
+                             "tag": "op2"
+                         },
+                         {
+-                            "text": "是自省梦",
++                            "text": "是自省梦【灵视+1】",
+                             "tag": "op3"
+                         },
+                         {
+-                            "text": "你睡糊涂了",
++                            "text": "你睡糊涂了【灵视-1 妻子的不满】",
+                             "tag": "op4"
+                         }
+                     ]
+diff --git a/event/5300508.json b/event/5300508.json
+index bf89cad..503e4ef 100644
+--- a/event/5300508.json
++++ b/event/5300508.json
+@@ -21,15 +21,15 @@
+                     "icon": "cards/2000001",
+                     "items": [
+                         {
+-                            "text": "捐一大笔",
++                            "text": "捐一大笔【铜奢靡仪式】",
+                             "tag": "op1"
+                         },
+                         {
+-                            "text": "多少捐点",
++                            "text": "多少捐点【普通仪式 金币-3 虔信+1 铜预兆】",
+                             "tag": "op2"
+                         },
+                         {
+-                            "text": "一分不出",
++                            "text": "一分不出【善名-1】",
+                             "tag": "op3"
+                         }
+                     ]
+diff --git a/event/5300509.json b/event/5300509.json
+index af94965..5eda6b5 100644
+--- a/event/5300509.json
++++ b/event/5300509.json
+@@ -21,15 +21,15 @@
+                     "icon": "cards/2000001",
+                     "items": [
+                         {
+-                            "text": "逮捕他们",
++                            "text": "逮捕他们【权势+1 侠名-1】",
+                             "tag": "op1"
+                         },
+                         {
+-                            "text": "杀人越货",
++                            "text": "杀人越货【金币+2】",
+                             "tag": "op2"
+                         },
+                         {
+-                            "text": "友善接纳",
++                            "text": "友善接纳【侠名+1】",
+                             "tag": "op3"
+                         }
+                     ]
+diff --git a/event/5300510.json b/event/5300510.json
+index d421887..f8c7f3f 100644
+--- a/event/5300510.json
++++ b/event/5300510.json
+@@ -21,15 +21,15 @@
+                     "icon": "cards/2000001",
+                     "items": [
+                         {
+-                            "text": "收下神像",
++                            "text": "收下神像【灵视+1 恶名+1】",
+                             "tag": "op1"
+                         },
+                         {
+-                            "text": "婉言谢绝",
++                            "text": "婉言谢绝【银秘氛】",
+                             "tag": "op2"
+                         },
+                         {
+-                            "text": "大声斥责",
++                            "text": "大声斥责【善名+1 恶名-1】",
+                             "tag": "op3"
+                         }
+                     ]
+diff --git a/event/5300511.json b/event/5300511.json
+index 114abb3..a61f352 100644
+--- a/event/5300511.json
++++ b/event/5300511.json
+@@ -21,19 +21,19 @@
+                     "icon": "cards/2000001",
+                     "items": [
+                         {
+-                            "text": "装作无事发生",
++                            "text": "装作无事发生【金币+3】",
+                             "tag": "op1"
+                         },
+                         {
+-                            "text": "一起痛斥罪行",
++                            "text": "一起痛斥罪行【侠名+1 权势-1】",
+                             "tag": "op2"
+                         },
+                         {
+-                            "text": "与他划清界限",
++                            "text": "与他划清界限【权势+1 侠名-1】",
+                             "tag": "op3"
+                         },
+                         {
+-                            "text": "向苏丹报告",
++                            "text": "向苏丹报告【关入监狱】",
+                             "tag": "op4"
+                         }
+                     ]
+diff --git a/event/5300512.json b/event/5300512.json
+index c07e60f..fed7125 100644
+--- a/event/5300512.json
++++ b/event/5300512.json
+@@ -21,15 +21,15 @@
+                     "icon": "cards/2000001",
+                     "items": [
+                         {
+-                            "text": "大力投资",
++                            "text": "大力投资【仪式 投资20金币 耗时7回合 大成功后金币+40 随机商店道具+1】",
+                             "tag": "op1"
+                         },
+                         {
+-                            "text": "坚定拒绝",
++                            "text": "坚定拒绝【权势-1 金币+2】",
+                             "tag": "op2"
+                         },
+                         {
+-                            "text": "提出质疑",
++                            "text": "提出质疑【侠名+1】",
+                             "tag": "op3"
+                         }
+                     ]
+diff --git a/event/5300513.json b/event/5300513.json
+index 0e2b10a..a0ea9ad 100644
+--- a/event/5300513.json
++++ b/event/5300513.json
+@@ -21,15 +21,15 @@
+                     "icon": "cards/2000001",
+                     "items": [
+                         {
+-                            "text": "顺水推舟",
++                            "text": "顺水推舟【灵视+1】",
+                             "tag": "op1"
+                         },
+                         {
+-                            "text": "坚持自我",
++                            "text": "坚持自我【青铜秘氛】",
+                             "tag": "op2"
+                         },
+                         {
+-                            "text": "道破来由",
++                            "text": "道破来由【善名+1 恶名-1】",
+                             "tag": "op3"
+                         }
+                     ]
+diff --git a/event/5300514.json b/event/5300514.json
+index 026a71f..2c52da1 100644
+--- a/event/5300514.json
++++ b/event/5300514.json
+@@ -21,19 +21,19 @@
+                     "icon": "cards/2000001",
+                     "items": [
+                         {
+-                            "text": "这是神秘符文",
++                            "text": "这是神秘符文【灵视+1】",
+                             "tag": "op1"
+                         },
+                         {
+-                            "text": "这是小偷记号",
++                            "text": "这是小偷记号【善名+1 侠名-1】",
+                             "tag": "op2"
+                         },
+                         {
+-                            "text": "张贴广告要收税",
++                            "text": "张贴广告要收税【权势+1 金币+1】",
+                             "tag": "op3"
+                         },
+                         {
+-                            "text": "别来烦我",
++                            "text": "别来烦我【恶名+1 善名-1】",
+                             "tag": "op4"
+                         }
+                     ]
+diff --git a/event/5300515.json b/event/5300515.json
+index 37c6602..fa543cc 100644
+--- a/event/5300515.json
++++ b/event/5300515.json
+@@ -21,15 +21,15 @@
+                     "icon": "cards/2000001",
+                     "items": [
+                         {
+-                            "text": "揭穿他",
++                            "text": "揭穿他【善名+1 侠名+1】",
+                             "tag": "op1"
+                         },
+                         {
+-                            "text": "黑吃黑",
++                            "text": "黑吃黑【侠名+1 金币+1】",
+                             "tag": "op2"
+                         },
+                         {
+-                            "text": "利用他",
++                            "text": "利用他【权势+1 金币+3】",
+                             "tag": "op3"
+                         }
+                     ]
+diff --git a/event/5300516.json b/event/5300516.json
+index 9a8cdd1..0be31d0 100644
+--- a/event/5300516.json
++++ b/event/5300516.json
+@@ -21,19 +21,19 @@
+                     "icon": "cards/2000001",
+                     "items": [
+                         {
+-                            "text": "取消宴会",
++                            "text": "取消宴会【权势-1 智慧+1书事件】",
+                             "tag": "op1"
+                         },
+                         {
+-                            "text": "请他搬家",
++                            "text": "请他搬家【侠名+1】",
+                             "tag": "op2"
+                         },
+                         {
+-                            "text": "置之不理",
++                            "text": "置之不理【权势+1】",
+                             "tag": "op3"
+                         },
+                         {
+-                            "text": "将他刺聋",
++                            "text": "将他刺聋【恶名+1 善名-1】",
+                             "tag": "op4"
+                         }
+                     ]
+diff --git a/event/5300518.json b/event/5300518.json
+index 1c70fa9..0424a1c 100644
+--- a/event/5300518.json
++++ b/event/5300518.json
+@@ -21,15 +21,15 @@
+                     "icon": "cards/2000001",
+                     "items": [
+                         {
+-                            "text": "是跟随您最久的女人",
++                            "text": "是跟随您最久的女人【铜洞察】",
+                             "tag": "op1"
+                         },
+                         {
+-                            "text": "是最新到手的女人",
++                            "text": "是最新到手的女人【金币+3】",
+                             "tag": "op2"
+                         },
+                         {
+-                            "text": "是您的下一个女人",
++                            "text": "是您的下一个女人【权势+1】",
+                             "tag": "op3"
+                         }
+                     ]
+diff --git a/event/5300519.json b/event/5300519.json
+index 6e7699c..2724239 100644
+--- a/event/5300519.json
++++ b/event/5300519.json
+@@ -21,15 +21,15 @@
+                     "icon": "cards/2000001",
+                     "items": [
+                         {
+-                            "text": "要求他们原价支付",
++                            "text": "要求他们原价支付【权势+1】",
+                             "tag": "op1"
+                         },
+                         {
+-                            "text": "给他们优惠价格",
++                            "text": "给他们优惠价格【善名+1 权势-1】",
+                             "tag": "op2"
+                         },
+                         {
+-                            "text": "认真斡旋",
++                            "text": "认真斡旋【银内幕】",
+                             "tag": "op3"
+                         }
+                     ]
+diff --git a/event/5300520.json b/event/5300520.json
+index d1af8ac..e83aba8 100644
+--- a/event/5300520.json
++++ b/event/5300520.json
+@@ -21,15 +21,15 @@
+                     "icon": "cards/2000001",
+                     "items": [
+                         {
+-                            "text": "这是欺骗",
++                            "text": "这是欺骗【侠名+1】",
+                             "tag": "op1"
+                         },
+                         {
+-                            "text": "这是吉兆",
++                            "text": "这是吉兆【权势+1】",
+                             "tag": "op2"
+                         },
+                         {
+-                            "text": "这是凶兆",
++                            "text": "这是凶兆【灵视+1】",
+                             "tag": "op3"
+                         }
+                     ]
+diff --git a/event/5300521.json b/event/5300521.json
+index b0e81a5..c0094e3 100644
+--- a/event/5300521.json
++++ b/event/5300521.json
+@@ -21,15 +21,15 @@
+                     "icon": "cards/2000001",
+                     "items": [
+                         {
+-                            "text": "支持她的主张",
++                            "text": "支持她的主张【随机银商店道具+1】",
+                             "tag": "op1"
+                         },
+                         {
+-                            "text": "反对她的主张",
++                            "text": "反对她的主张【金币+3】",
+                             "tag": "op2"
+                         },
+                         {
+-                            "text": "不如你们结婚吧",
++                            "text": "不如你们结婚吧【权势+1】",
+                             "tag": "op3"
+                         }
+                     ]
+diff --git a/event/5300522.json b/event/5300522.json
+index 9e8be25..2939b86 100644
+--- a/event/5300522.json
++++ b/event/5300522.json
+@@ -21,15 +21,15 @@
+                     "icon": "cards/2000001",
+                     "items": [
+                         {
+-                            "text": "你竟然敢向苏丹索要报酬？",
++                            "text": "你竟然敢向苏丹索要报酬？【权势+1 善良-1】",
+                             "tag": "op1"
+                         },
+                         {
+-                            "text": "这份天赋值得上等重的黄金",
++                            "text": "这份天赋值得上等重的黄金【金奢靡仪式】",
+                             "tag": "op2"
+                         },
+                         {
+-                            "text": "我看不出这鸟对苏丹有什么用",
++                            "text": "我看不出这鸟对苏丹有什么用【权势-1】",
+                             "tag": "op3"
+                         }
+                     ]
+diff --git a/event/5300523.json b/event/5300523.json
+index 834a939..702eadf 100644
+--- a/event/5300523.json
++++ b/event/5300523.json
+@@ -21,15 +21,15 @@
+                     "icon": "cards/2000001",
+                     "items": [
+                         {
+-                            "text": "这是对苏丹的颂扬",
++                            "text": "这是对苏丹的颂扬【金币+3】",
+                             "tag": "op1"
+                         },
+                         {
+-                            "text": "这是对苏丹的诋毁",
++                            "text": "这是对苏丹的诋毁【善名-1 权势+1】",
+                             "tag": "op2"
+                         },
+                         {
+-                            "text": "这是妇人的玩乐而已",
++                            "text": "这是妇人的玩乐而已【善名+1】",
+                             "tag": "op3"
+                         }
+                     ]
+diff --git a/event/5300524.json b/event/5300524.json
+index e281964..90cce1c 100644
+--- a/event/5300524.json
++++ b/event/5300524.json
+@@ -21,15 +21,15 @@
+                     "icon": "cards/2000001",
+                     "items": [
+                         {
+-                            "text": "应尊重河的意愿",
++                            "text": "应尊重河的意愿【权势+1】",
+                             "tag": "op1"
+                         },
+                         {
+-                            "text": "没有河的人民太可怜了",
++                            "text": "没有河的人民太可怜了【善名+1 权势-1】",
+                             "tag": "op2"
+                         },
+                         {
+-                            "text": "把一切交给刀刃吧",
++                            "text": "把一切交给刀刃吧【铜战术】",
+                             "tag": "op3"
+                         }
+                     ]
+diff --git a/event/5300525.json b/event/5300525.json
+index b36c586..9b234c9 100644
+--- a/event/5300525.json
++++ b/event/5300525.json
+@@ -21,15 +21,15 @@
+                     "icon": "cards/2000001",
+                     "items": [
+                         {
+-                            "text": "是吉兆",
++                            "text": "是吉兆【权势+1】",
+                             "tag": "op1"
+                         },
+                         {
+-                            "text": "是凶兆",
++                            "text": "是凶兆【金币+3】",
+                             "tag": "op2"
+                         },
+                         {
+-                            "text": "您太为国操劳……",
++                            "text": "您太为国操劳……【灵视+1】",
+                             "tag": "op3"
+                         }
+                     ]
+diff --git a/event/5300526.json b/event/5300526.json
+index 0aade4a..68e1a4b 100644
+--- a/event/5300526.json
++++ b/event/5300526.json
+@@ -21,19 +21,19 @@
+                     "icon": "cards/2000001",
+                     "items": [
+                         {
+-                            "text": "开掘新井",
++                            "text": "开掘新井【银内幕】",
+                             "tag": "op1"
+                         },
+                         {
+-                            "text": "城外供水",
++                            "text": "城外供水【金币+3】",
+                             "tag": "op2"
+                         },
+                         {
+-                            "text": "忍耐一下",
++                            "text": "忍耐一下【恶名+1】",
+                             "tag": "op3"
+                         },
+                         {
+-                            "text": "调查甜水井",
++                            "text": "调查甜水井【侠名+1 权势-1】",
+                             "tag": "op4"
+                         }
+                     ]
+diff --git a/event/5300547.json b/event/5300547.json
+index a9218e9..20734f3 100644
+--- a/event/5300547.json
++++ b/event/5300547.json
+@@ -24,11 +24,11 @@
+                     "icon": ["cards/2000771"],
+                     "items": [
+                         {
+-                            "text": "就……就交给你了，注意点形象",
++                            "text": "就……就交给你了，注意点形象【芮尔体魄+2】",
+                             "tag": "op1"
+                         },
+                         {
+-                            "text": "放了吧，不值得", 
++                            "text": "放了吧，不值得【5金币事件】", 
+                             "tag": "op2"
+                         }
+                     ]
+diff --git a/event/5300602.json b/event/5300602.json
+index 873d229..69c7476 100644
+--- a/event/5300602.json
++++ b/event/5300602.json
+@@ -21,19 +21,19 @@
+                     "icon": "cards/2000001",
+                     "items": [
+                         {
+-                            "text": "隔空对骂",
++                            "text": "隔空对骂【权势-1】",
+                             "tag": "op1"
+                         },
+                         {
+-                            "text": "与之决斗",
++                            "text": "与之决斗【权势+1 善名-1】",
+                             "tag": "op2"
+                         },
+                         {
+-                            "text": "大加赞赏",
++                            "text": "大加赞赏【伟大的史诗】",
+                             "tag": "op3"
+                         },
+                         {
+-                            "text": "求助苏丹",
++                            "text": "求助苏丹【铜征服仪式】",
+                             "tag": "op4"
+                         }
+                     ]
+diff --git a/event/5300603.json b/event/5300603.json
+index e9ede49..3b8a722 100644
+--- a/event/5300603.json
++++ b/event/5300603.json
+@@ -21,19 +21,19 @@
+                     "icon": "cards/2000001",
+                     "items": [
+                         {
+-                            "text": "我来担保",
++                            "text": "我来担保【善名+1】",
+                             "tag": "op1"
+                         },
+                         {
+-                            "text": "讹诈旅人",
++                            "text": "讹诈旅人【权势-1 金币+5】",
+                             "tag": "op2"
+                         },
+                         {
+-                            "text": "贿赂士兵",
++                            "text": "贿赂士兵【侠名+1】",
+                             "tag": "op3"
+                         },
+                         {
+-                            "text": "指认间谍",
++                            "text": "指认间谍【权势+1 善名-1】",
+                             "tag": "op4"
+                         }
+                     ]
+diff --git a/event/5300604.json b/event/5300604.json
+index 5cccdd3..7f9c503 100644
+--- a/event/5300604.json
++++ b/event/5300604.json
+@@ -21,15 +21,15 @@
+                     "icon": "cards/2000001",
+                     "items": [
+                         {
+-                            "text": "加入挑战！",
++                            "text": "加入挑战！【灵视+1】",
+                             "tag": "op1"
+                         },
+                         {
+-                            "text": "将他赶走",
++                            "text": "将他赶走【铜秘氛】",
+                             "tag": "op2"
+                         },
+                         {
+-                            "text": "介绍给苏丹",
++                            "text": "介绍给苏丹【权势-1】",
+                             "tag": "op3"
+                         }
+                     ]
+@@ -43,7 +43,7 @@
+                     }
+                 },
+                 "case:op2": {
+-                    "card":2000420, //青铜秘氛
++                    "card":2000420, //铜秘氛青
+                     "prompt":{
+                         "id":"5300604_prompt_2",
+                         "text":"苏丹的游戏已经够让你烦的了，谁要在一场刀已经架在了脖子上的游戏里再去找什么额外的刺激？你将他痛骂了一顿，然而他只是微笑着看着你，那笑容越来越夸张，甚至越来越扭曲，他的五官很快就模糊成一团，然后整个人一眨眼间就被黑暗吞噬，就这么当着你的面彻底地消失了……",
+diff --git a/event/5300605.json b/event/5300605.json
+index ddd3888..187fa7c 100644
+--- a/event/5300605.json
++++ b/event/5300605.json
+@@ -21,19 +21,19 @@
+                     "icon": "cards/2000001",
+                     "items": [
+                         {
+-                            "text": "严厉打击！",
++                            "text": "严厉打击！【侠名-1 恶名-1 】",
+                             "tag": "op1"
+                         },
+                         {
+-                            "text": "微妙暗示",
++                            "text": "微妙暗示【权势+1】",
+                             "tag": "op2"
+                         },
+                         {
+-                            "text": "请示苏丹",
++                            "text": "请示苏丹【金币+5】",
+                             "tag": "op3"
+                         },
+                         {
+-                            "text": "让我品品",
++                            "text": "让我品品【免于恐惧的自由】",
+                             "tag": "op4"
+                         }
+                     ]
+diff --git a/event/5300606.json b/event/5300606.json
+index 125633e..6b63727 100644
+--- a/event/5300606.json
++++ b/event/5300606.json
+@@ -21,19 +21,19 @@
+                     "icon": "cards/2000001",
+                     "items": [
+                         {
+-                            "text": "杀一儆百",
++                            "text": "杀一儆百【权势+1 善名-1】",
+                             "tag": "op1"
+                         },
+                         {
+-                            "text": "祷告驱魔",
++                            "text": "祷告驱魔【善名+1】",
+                             "tag": "op2"
+                         },
+                         {
+-                            "text": "重申纪律",
++                            "text": "重申纪律【权势-1】",
+                             "tag": "op3"
+                         },
+                         {
+-                            "text": "放任自流",
++                            "text": "放任自流【侠名+1】",
+                             "tag": "op4"
+                         }
+                     ]
+diff --git a/event/5300607.json b/event/5300607.json
+index 86426bb..9fc2f56 100644
+--- a/event/5300607.json
++++ b/event/5300607.json
+@@ -21,15 +21,15 @@
+                     "icon": "cards/2000001",
+                     "items": [
+                         {
+-                            "text": "挺身救猫",
++                            "text": "挺身救猫【权势+1 巨大宝石项链】",
+                             "tag": "op1"
+                         },
+                         {
+-                            "text": "趁火打劫",
++                            "text": "趁火打劫【恶名+1 善名-1】",
+                             "tag": "op2"
+                         },
+                         {
+-                            "text": "号召救火",
++                            "text": "号召救火【善名+1 恶名-1】",
+                             "tag": "op3"
+                         }
+                     ]
+diff --git a/event/5300608.json b/event/5300608.json
+index 08caff4..2a4854d 100644
+--- a/event/5300608.json
++++ b/event/5300608.json
+@@ -21,19 +21,19 @@
+                     "icon": "cards/2000001",
+                     "items": [
+                         {
+-                            "text": "你是岩石品级",
++                            "text": "你是岩石品级【侠名+1】",
+                             "tag": "op1"
+                         },
+                         {
+-                            "text": "你是青铜品级",
++                            "text": "你是青铜品级【善名+1 金币+2】",
+                             "tag": "op2"
+                         },
+                         {
+-                            "text": "你是白银品级",
++                            "text": "你是白银品级【权势+1 金币+5】",
+                             "tag": "op3"
+                         },
+                         {
+-                            "text": "你是黄金品级",
++                            "text": "你是黄金品级【恶名+1】",
+                             "tag": "op4"
+                         }
+                     ]
+diff --git a/event/5300609.json b/event/5300609.json
+index 43ae362..3dfe09e 100644
+--- a/event/5300609.json
++++ b/event/5300609.json
+@@ -21,19 +21,19 @@
+                     "icon": "cards/2000001",
+                     "items": [
+                         {
+-                            "text": "原主人",
++                            "text": "原主人【侠名+1】",
+                             "tag": "op1"
+                         },
+                         {
+-                            "text": "邻居",
++                            "text": "邻居【善名+1】",
+                             "tag": "op2"
+                         },
+                         {
+-                            "text": "归我所有",
++                            "text": "归我所有【恶名+1】",
+                             "tag": "op3"
+                         },
+                         {
+-                            "text": "宰羊分食",
++                            "text": "宰羊分食【权势+1】",
+                             "tag": "op4"
+                         }
+                     ]
+diff --git a/event/5300610.json b/event/5300610.json
+index f4c1c7c..683d806 100644
+--- a/event/5300610.json
++++ b/event/5300610.json
+@@ -21,19 +21,19 @@
+                     "icon": "cards/2000001",
+                     "items": [
+                         {
+-                            "text": "押男奴获胜",
++                            "text": "押男奴获胜【恶名+1 善名-1】",
+                             "tag": "op1"
+                         },
+                         {
+-                            "text": "押女奴获胜",
++                            "text": "押女奴获胜【恶名+1 侠名-1 金币+2】",
+                             "tag": "op2"
+                         },
+                         {
+-                            "text": "停止不人道的行为！",
++                            "text": "停止不人道的行为！【善名+1 权势-1】",
+                             "tag": "op3"
+                         },
+                         {
+-                            "text": "强迫贵族加入游戏",
++                            "text": "强迫贵族加入游戏【侠名+1 权势-1】",
+                             "tag": "op4"
+                         }
+                     ]
+diff --git a/event/5300611.json b/event/5300611.json
+index f94eb08..bd02199 100644
+--- a/event/5300611.json
++++ b/event/5300611.json
+@@ -20,19 +20,19 @@
+                     "icon": "common/position_shangye_1",
+                     "items": [
+                         {
+-                            "text": "责难商人",
++                            "text": "责难商人【侠名+1】",
+                             "tag": "op1"
+                         },
+                         {
+-                            "text": "怪罪穷人",
++                            "text": "怪罪穷人【金币+5】",
+                             "tag": "op2"
+                         },
+                         {
+-                            "text": "我可以接济你",
++                            "text": "我可以接济你【仪式 善名+1或恶名+1 10金币】",
+                             "tag": "op3"
+                         },
+                         {
+-                            "text": "我可以接济你的女儿",
++                            "text": "我可以接济你的女儿【恶名+1 权势+1】",
+                             "tag": "op4"
+                         }
+                     ]
+diff --git a/event/5300612.json b/event/5300612.json
+index 7498b02..430ee9d 100644
+--- a/event/5300612.json
++++ b/event/5300612.json
+@@ -20,19 +20,19 @@
+                     "icon": "common/position_shangye_2",
+                     "items": [
+                         {
+-                            "text": "这是敲诈",
++                            "text": "这是敲诈【灵视+1】",
+                             "tag": "op1"
+                         },
+                         {
+-                            "text": "这是合理的索赔",
++                            "text": "这是合理的索赔【权势+1 侠名-1】",
+                             "tag": "op2"
+                         },
+                         {
+-                            "text": "让我看看这石头",
++                            "text": "让我看看这石头【血的渴求仪式】",
+                             "tag": "op3"
+                         },
+                         {
+-                            "text": "你竟敢公然敬拜异神",
++                            "text": "你竟敢公然敬拜异神【被俘的异教徒】",
+                             "tag": "op4"
+                         }
+                     ]
+diff --git a/event/5300613.json b/event/5300613.json
+index 10b46ed..c54ba06 100644
+--- a/event/5300613.json
++++ b/event/5300613.json
+@@ -20,15 +20,15 @@
+                     "icon": "common/introduction",
+                     "items": [
+                         {
+-                            "text": "你唯有献上二子以平息神的怒火",
++                            "text": "你唯有献上二子以平息神的怒火【恶名+1 权势+1】",
+                             "tag": "op1"
+                         },
+                         {
+-                            "text": "血腥的祭献应当禁绝",
++                            "text": "血腥的祭献应当禁绝【理性】",
+                             "tag": "op2"
+                         },
+                         {
+-                            "text": "我可以帮你与神沟通",
++                            "text": "我可以帮你与神沟通【与神沟通仪式】",
+                             "tag": "op3"
+                         }
+                     ]
+diff --git a/event/5300614.json b/event/5300614.json
+index 8ff7d54..06f40c1 100644
+--- a/event/5300614.json
++++ b/event/5300614.json
+@@ -20,15 +20,15 @@
+                     "icon": "common/position_guizu_2",
+                     "items": [
+                         {
+-                            "text": "那拜托了",
++                            "text": "那拜托了【让我剖开你胸膛仪式】",
+                             "tag": "op1"
+                         },
+                         {
+-                            "text": "滚开，你骗错人了",
++                            "text": "滚开，你骗错人了【灵视+1】",
+                             "tag": "op2"
+                         },
+                         {
+-                            "text": "你会为你的胡言乱语付出代价",
++                            "text": "你会为你的胡言乱语付出代价【被魔鬼蛊惑之人仪式】",
+                             "tag": "op3"
+                         }
+                     ]
+diff --git a/event/5300615.json b/event/5300615.json
+index 8bc00fe..24efcb6 100644
+--- a/event/5300615.json
++++ b/event/5300615.json
+@@ -20,15 +20,15 @@
+                     "icon": "common/position_yewai_1",
+                     "items": [
+                         {
+-                            "text": "搜寻亡骸",
++                            "text": "搜寻亡骸【仪式 守护兽手镯】",
+                             "tag": "op1"
+                         },
+                         {
+-                            "text": "祈灵告慰",
++                            "text": "祈灵告慰【仪式 善名+1 金币+5 放入正教思潮虔信+1】",
+                             "tag": "op2"
+                         },
+                         {
+-                            "text": "你们要为自己的愚蠢和疏忽付出代价",
++                            "text": "你们要为自己的愚蠢和疏忽付出代价【权势+1 侠名+1】",
+                             "tag": "op3"
+                         }
+                     ]
+diff --git a/event/5320011.json b/event/5320011.json
+index 2fcfc97..1124776 100644
+--- a/event/5320011.json
++++ b/event/5320011.json
+@@ -21,11 +21,11 @@
+                     "icon":"cards/2000063",
+                     "items": [
+                         {
+-                            "text": "未必会有回报",
++                            "text": "未必会有回报【银秘密 命运的羁绊】",
+                             "tag": "op1"
+                         },
+                         {
+-                            "text": "一定会有回报的",
++                            "text": "一定会有回报的【铜智慧宝珠】",
+                             "tag": "op2"
+                         }
+                     ]
+diff --git a/event/5320021.json b/event/5320021.json
+index 6742f79..b93d593 100644
+--- a/event/5320021.json
++++ b/event/5320021.json
+@@ -21,15 +21,15 @@
+                     "icon":"cards/2000123",
+                     "items": [
+                         {
+-                            "text": "写书人偏狭",
++                            "text": "写书人偏狭【侠名+1】",
+                             "tag": "op1"
+                         },
+                         {
+-                            "text": "未记于纸页上",
++                            "text": "未记于纸页上【铜洞察】",
+                             "tag": "op2"
+                         },
+                         {
+-                            "text": "不值得记录",
++                            "text": "不值得记录【权势+1】",
+                             "tag": "op3"
+                         }
+                     ]
+diff --git a/event/5320022.json b/event/5320022.json
+index f9fd79d..f6f2428 100644
+--- a/event/5320022.json
++++ b/event/5320022.json
+@@ -21,15 +21,15 @@
+                     "icon":"cards/2000123",
+                     "items": [
+                         {
+-                            "text": "应该留下",
++                            "text": "应该留下【善名+1 影响故事线】",
+                             "tag": "op1"
+                         },
+                         {
+-                            "text": "不该留下",
++                            "text": "不该留下【侠名+1 影响故事线】",
+                             "tag": "op2"
+                         },
+                         {
+-                            "text": "别浪费仆人的时间了",
++                            "text": "别浪费仆人的时间了【权势+1】",
+                             "tag": "op3"
+                         }
+                     ]
+diff --git a/event/5320025.json b/event/5320025.json
+index 0f9f986..e9d7f84 100644
+--- a/event/5320025.json
++++ b/event/5320025.json
+@@ -21,11 +21,11 @@
+                     "icon":"",
+                     "items": [
+                         {
+-                            "text": "对，她是该挨鞭子",
++                            "text": "对，她是该挨鞭子【权势+1】",
+                             "tag": "op1"
+                         },
+                         {
+-                            "text": "我看该道歉的是你",
++                            "text": "我看该道歉的是你【谗言 侠名+1 星灵咒文残卷】",
+                             "tag": "op2"
+                         }
+                     ]
+diff --git a/event/5320216.json b/event/5320216.json
+index 2935126..2fb4538 100644
+--- a/event/5320216.json
++++ b/event/5320216.json
+@@ -21,19 +21,19 @@
+                     "icon":["common/position_pingming_2","",""],
+                     "items": [
+                         {
+-                            "text": "惩罚他们",
++                            "text": "惩罚他们【善名-1 侠名+1】",
+                             "tag": "op1"
+                         },
+                         {
+-                            "text": "安慰他们",
++                            "text": "安慰他们【灵视+1】",
+                             "tag": "op2"
+                         },
+                         {
+-                            "text": "帮助他们",
++                            "text": "帮助他们【善名+1 侠名-1】",
+                             "tag": "op3"
+                         },
+                         {
+-                            "text": "奖励他们",
++                            "text": "奖励他们【善名-1 恶名+1】",
+                             "tag": "op4"
+                         }
+                     ]
+diff --git a/event/5321102.json b/event/5321102.json
+index cd316da..72e0499 100644
+--- a/event/5321102.json
++++ b/event/5321102.json
+@@ -19,15 +19,15 @@
+                 "text":"你找到了陷害你的大臣，而他面如死灰，强打着精神向你承诺，只要你愿意揭过这件事，他愿意做任何事。",
+                 "items": [
+                     {
+-                        "text": "我要你公开向我道歉",
++                        "text": "我要你公开向我道歉【侠名+2】",
+                         "tag": "op1"
+                     },
+                     {
+-                        "text": "我需要你的支持",
++                        "text": "我需要你的支持【权势+1 反对-1 支持+2】",
+                         "tag": "op2"
+                     },
+                     {
+-                        "text": "我要你赔钱",
++                        "text": "我要你赔钱【金币+12】",
+                         "tag": "op3"
+                     }
+                 ]
+diff --git a/event/5321103.json b/event/5321103.json
+index 1dd464e..e07f0a4 100644
+--- a/event/5321103.json
++++ b/event/5321103.json
+@@ -20,11 +20,11 @@
+                 "icon":"cards/2000889",
+                 "items": [
+                     {
+-                        "text": "我可以帮助你们",
++                        "text": "我可以帮助你们【善良+1 流浪儿】",
+                         "tag": "op1"
+                     },
+                     {
+-                        "text": "我无能为力",
++                        "text": "我无能为力【无事发生】",
+                         "tag": "op2"
+                     }
+                 ]
+diff --git a/event/5321108.json b/event/5321108.json
+index ca2403b..4675189 100644
+--- a/event/5321108.json
++++ b/event/5321108.json
+@@ -18,11 +18,11 @@
+                 "icon":"cards/2000014",
+                 "items": [
+                     {
+-                        "text": "支持追随你的食客",
++                        "text": "支持追随你的食客【权势-1 侠名+1】",
+                         "tag": "op1"
+                     },
+                     {
+-                        "text": "支持花了钱的客人",
++                        "text": "支持花了钱的客人【权势+1 侠名-1 金币+5】",
+                         "tag": "op2"
+                     }
+                 ]
+diff --git a/event/5399999.json b/event/5399999.json
+new file mode 100644
+index 0000000..42e5b81
+--- /dev/null
++++ b/event/5399999.json
+@@ -0,0 +1,32 @@
++ {
++        "id": 5399999,
++        "text": "未来视MOD自动功能", //策划看的备注      
++        "is_replay": 1, //是否可以重复触发
++        "auto_start_init": [1],
++        "start_trigger": false, // 是否启动就立即开始校验条件
++        "on":{   //时机
++            "round_begin_ba": 1 //每回合开始时
++        },
++        "condition":{  //条件
++            "counter.7000060>=":2,
++            "counter.7000115<":1, //限制同一时间被激活的次数
++            "counter.7000116<":1 //限制同一时间被激活的次数
++        },
++        "settlement": [    //效果
++        {
++            "condition":
++            {                  
++                "counter.7000060=":2,
++                "counter.7000115<":1, //限制同一时间被激活的次数
++                "counter.7000116<":1, //限制同一时间被激活的次数
++            },
++            "action":
++            {
++                "loot": 6000501, 
++                "loot": 6000502, 
++                "counter+7000116":1,//限制同一时间被激活的次数
++                "counter+7000115":1, //限制同一时间被激活的次数
++            }
++        }
++        ]
++    } 
+\ No newline at end of file
+diff --git a/rite/5000001.json b/rite/5000001.json
+index 5bbe097..6bf7069 100644
+--- a/rite/5000001.json
++++ b/rite/5000001.json
+@@ -25,7 +25,8 @@
+         "tips_text":[
+             "每回合自动进行，检定数值越高，金币收益越大。",
+             "可以通过游戏界面左下角的【俺寻思】消耗奢靡卡进行装修，增加收益。",
+-            "如果获得带有【<color=#FF0000>地点</color>】标签的卡牌时，可以尝试放入。"
++            "如果获得带有【<color=#FF0000>地点</color>】标签的卡牌时，可以尝试放入。",
++            "浴场、书店、家业、权游、淘书能加快随机事件触发"
+         ],
+         "open_conditions": [
+         ],
+@@ -1194,7 +1195,7 @@
+                     "is_key":0,
+                     "is_empty":1,
+                     "is_enemy":0,
+-                    "text":"利用奢靡卡升级自己的房舍，可以获得额外效果"
++                    "text":"利用奢靡卡升级自己的房舍，可以获得额外效果\n临时帐篷：金币+1。10次后，金币+1 临时帐篷回手牌 获得空置的房间\n奇观：3回合额外5金币\n华丽的居所：3回合额外3金币\n扩建的居所：3回合额外3金币\n全面整修的居所：5回合额外2金币\n稍加整修的居所：3回合额外1金币"
+                 },
+             "s4":
+                 {
+@@ -1218,7 +1219,7 @@
+                     "is_key":0,
+                     "is_empty":1,
+                     "is_enemy":0,
+-                    "text":"可以尝试置入道具或地点，也许会有些用处"
++                    "text":"可以尝试置入道具或地点，也许会有些用处\n被找到的绿洲:金币+1\n繁荣的城市：金币+1\n中国：无意义重复剧情\n空置的房间：开房屋出租事件\n险峻小径：金币+2 使用7次会触发事件没收此卡牌，获得苏丹的猜忌 \n丰产的祝福：金币+15\n苏丹的猜忌：移除猜忌 妻子的不满 善名-1 侠名-1 灵视+1 停业7天\n昂贵的香料：金骰子+1\n逐渐启智的仆人：金币+1"
+                 }
+         }
+     } 
+\ No newline at end of file
+diff --git a/rite/5000003.json b/rite/5000003.json
+index 0deba1e..e3ba21e 100644
+--- a/rite/5000003.json
++++ b/rite/5000003.json
+@@ -614,7 +614,7 @@
+                     "is_key":0,
+                     "is_empty":0,
+                     "is_enemy":0,
+-                    "text":"纵欲的对象，需要是符合纵欲卡品质的人，与自己妻子之外的对象同房会被认为是不道德的，而如果对方对你没有感情，就更糟糕了。"
++                    "text":"纵欲的对象，需要是符合纵欲卡品质的人，与自己妻子之外的对象同房会被认为是不道德的，而如果对方对你没有感情，就更糟糕了。\n很多角色有小段特殊剧情，但这里只列出给加成的部分角色\n小安：灵视+1\n拜玲耶：灵视+2 初级密教思潮 妻子不满\n老女奴：侠名+1 老女奴离开\n猫：恶名+1\n玛希尔：需要有生命权杖 主角魅力+2 工匠魅力+1 权势+1 侠名+1 妻子不满\n法图娜：需要拥有激情，开启寡妇故事线\n法拉杰：命运羁绊 妻子不满\n铁头：铁头故事线"
+                 },
+             "s4":            
+                 {
+diff --git a/rite/5000009.json b/rite/5000009.json
+index bf075cd..9ad2ef2 100644
+--- a/rite/5000009.json
++++ b/rite/5000009.json
+@@ -20,7 +20,8 @@
+         },
+         "tips_text":[
+             "大部分消除妻子不满的方式都是一次性的",
+-            "只有使用双头龙时才能消除纵欲苏丹卡"
++            "只有使用双头龙时才能消除纵欲苏丹卡",
++            "消除不满时妻子没有激情，会给妻子激情+1"
+         ],
+         "open_conditions": [
+             {
+@@ -373,7 +374,7 @@
+                     "is_key":0,
+                     "is_empty":1,
+                     "is_enemy":0,
+-                    "text":"放上可以讨妻子欢心的东西吧"
++                    "text":"放上可以讨妻子欢心的东西吧\n梅姬的画像：消除不满\n幸福感：消除不满\n苏丹的猜忌：消除不满 消除猜忌 妻子禁用7天 主角受伤 妻子战斗+1\n装备生命的权杖：消除不满 妻子魅力+1。重复使用 消除不满\n双头龙：消除不满 妻子魅力+1 妻子升品 移除纵欲的痕迹\n饰品：\n雨之子·下卷：消除不满\n奈布哈尼（非NTR剧情）:常规情况，消除不满 妻子魅力+1。他是密教徒，消除不满\n贾丽拉：消除不满 妻子战力+1\n宽恕的情诗：消除不满 妻子魅力+1"
+                 },
+             "s3":
+                 {
+@@ -412,7 +413,7 @@
+                         "is_key":0,
+                         "is_empty":1,
+                         "is_enemy":0,
+-                        "text":"也许能折断一张纵欲苏丹卡"
++                        "text":"也许能折断一张纵欲苏丹卡\n只能配合双头龙"
+                     }
+         }
+     } 
+\ No newline at end of file
+diff --git a/rite/5000064.json b/rite/5000064.json
+index c64e1b6..bef6946 100644
+--- a/rite/5000064.json
++++ b/rite/5000064.json
+@@ -21,7 +21,8 @@
+             
+         },
+         "tips_text":[
+-            "打碎提灯肯定会让它失去魔力，请谨慎选择。"
++            "打碎提灯肯定会让它失去魔力，请谨慎选择。",
++            "随机获得一个妖精，装备会损毁"
+         ],
+         "open_conditions": [
+         ],
+diff --git a/rite/5000100.json b/rite/5000100.json
+index 31ea516..40e888d 100644
+--- a/rite/5000100.json
++++ b/rite/5000100.json
+@@ -23,7 +23,13 @@
+         "tips_text":[
+             "开始后将检定热娜的智慧和灵感，根据最终检定结果产出不同品质的珠宝。",
+             "如果置入特殊的珠宝制作材料则可以跳过检定。",
+-            "不论结果如何，结束后热娜的灵感都会归零。"
++            "不论结果如何，结束后热娜的灵感都会归零。",
++            ">=9点成功：随机金原创系列饰品",
++            ">=6点成功：随机银原创系列饰品",
++            ">=3点成功：随机铜原创系列饰品",
++            ">=1点成功：随机石原创系列饰品",
++            "<=1点成功：没有奖励"
++
+         ],
+         "open_conditions": [
+         ],
+@@ -272,7 +278,7 @@
+                 "is_key":0,
+                 "is_empty":1,
+                 "is_enemy":0,
+-                "text":"特殊的制作的材料"
++                "text":"特殊的制作的材料\n精美的蓝纱：湛蓝丝巾\n帝国之花残卷：白银吊坠\n残忍的勋章：狼头围巾"
+             }
+         }
+     }
+\ No newline at end of file
+diff --git a/rite/5000101.json b/rite/5000101.json
+index 42fe635..4fc5f5a 100644
+--- a/rite/5000101.json
++++ b/rite/5000101.json
+@@ -612,7 +612,7 @@
+             "is_key": 0,
+             "is_empty": 0,
+             "is_enemy": 0,
+-            "text": "任意盟友或自己"
++            "text": "任意盟友或自己\n梅姬：妆扮+1 魅力+1 额外饰品槽 幸福感\n蒙面战士：妆扮+1 隐匿+4\n流浪剑客：妆扮+1 额外武器槽\n哈比卜：妆扮+1 生存+2 体魄+2\n热娜：妆扮+1 支持+3 社交+2\n伊曼：妆扮+1 魔力+2 魅力+2\n哲巴尔：妆扮+1 体魄+2 生存+2\n娜依拉：妆扮+1 社交+4\n盖斯：妆扮+1 魅力+3 社交+3\n哲瓦德：妆扮+1 隐匿+3 魅力+3\n阿迪莱：妆扮+1 额外武器槽 魅力+1\n法图娜：妆扮+1 隐匿+4 魅力+2\n扎奇伊：妆扮+1 隐匿+3 智慧+2\n奈布哈尼：妆扮+1 额外饰品槽 社交+2\n法里斯：妆扮+1 生存+4\n朱娜：妆扮+1 魅力+3 社交+3 隐匿+3\n贾丽拉：妆扮+1 魅力+3 社交+3\n夏玛：妆扮+1 魅力+3 战斗+3\n阿里木：妆扮+1 贵族+1 魅力+2 隐匿+2\n古利斯：妆扮+1 魅力+2 战斗+2\n鲁梅拉：妆扮+1 额外饰品槽 魅力+2\n拉伊德：妆扮+1 额外武器槽 生存+2\n杰莫尔/哈马尔：妆扮+1 战斗+4\n玛希尔：妆扮+1 重投+1 智慧+2\n法拉杰：妆扮+1 魅力+3 生存+3\n哈桑：妆扮+1 重投+1 生存+2\n贝姬夫人：妆扮+1 额外饰品槽 额外服装槽\n铁头：妆扮+1 体魄+2 魅力+2 生存+2\n小圆：妆扮+1 生存+4\n快脚：妆扮+1 体魄+2 魅力+2 生存+2\n舞姬：妆扮+1 社交+3 隐匿+3 魅力+3\n主角(普通)：全属性+1 重投+1\n主角(双胞胎)：全属性+2 重投+1\n密教徒补妆：魔力+1 体魄+1 灵视+1（马尔基娜和补妆对象都为密教徒）\n其他人：妆扮+1 社交+2 魅力+2"
+         },
+         "s3": {
+             "condition": {
+@@ -627,7 +627,7 @@
+             "is_key": 0,
+             "is_empty": 1,
+             "is_enemy": 0,
+-            "text": "特殊道具"
++            "text": "特殊道具\n苏丹的猜忌：消除猜忌 主角强制装备病容"
+         },
+         "s4": {
+             "condition": {
+diff --git a/rite/5000102.json b/rite/5000102.json
+index 9722ef1..3241f2b 100644
+--- a/rite/5000102.json
++++ b/rite/5000102.json
+@@ -20,7 +20,9 @@
+         },
+         "tips_text":[
+             "相似的宴会只能折断一次奢靡卡，除非你能够提升舞姬的品级",
+-            "开启白银品级的宴会需要5点权势，黄金品级的则需10点"
++            "开启白银品级的宴会需要5点权势，黄金品级的则需10点",
++            "随机获得：3张与当前宴会品级相同的情报卡",
++            "固定获得：恶名-1 权势+1"
+         ],
+         "open_conditions": [
+             {
+diff --git a/rite/5000103.json b/rite/5000103.json
+index e912183..57ce9f0 100644
+--- a/rite/5000103.json
++++ b/rite/5000103.json
+@@ -19,7 +19,10 @@
+         "tag_tips_up":{
+         },
+         "tips_text":[
+-            "你提供的装备的魅力之和不能小于5点"
++            "你提供的装备的魅力之和不能小于5点",
++            "装备被销毁,阿图娜尔升银",
++            "魅力+1 体质+1 社交+1",
++            "每次升品质可以重新对其使用纵欲卡"
+         ],
+         "open_conditions": [
+             {
+diff --git a/rite/5000104.json b/rite/5000104.json
+index 5fb6f86..da4448d 100644
+--- a/rite/5000104.json
++++ b/rite/5000104.json
+@@ -1,7 +1,7 @@
+  {
+         "id": 5000104,
+         "name": "阿图娜尔的请求",
+-        "text": "阿图娜尔渴望变得更具影响力，这显然对你也有好处。",       
++        "text": "阿图娜尔渴望变得更具影响力，这显然对你也有好处。",   
+         "tips": "",
+         "mapping_id":8001213, 
+         "once_new":1,
+@@ -19,6 +19,10 @@
+         "tag_tips_up":{
+         },
+         "tips_text":[
++            "你提供的装备的魅力之和不能小于10点",
++            "装备被销毁,阿图娜尔升金",
++            "魅力+2 体质+1 社交+2",
++            "每次升品质可以重新对其使用纵欲卡"
+         ],
+         "open_conditions": [
+             {
+diff --git a/rite/5000105.json b/rite/5000105.json
+index 82d966e..42d76e6 100644
+--- a/rite/5000105.json
++++ b/rite/5000105.json
+@@ -23,7 +23,11 @@
+         "tips_text":[
+             "开始后将检定魅力和灵感，根据最终检定结果产出不同品质的诗歌。",
+             "如果置入特殊的物品则可以跳过检定。",
+-            "不论结果如何，结束后诗人的灵感都会归零。"
++            "不论结果如何，结束后诗人的灵感都会归零。",
++            "10点成功：金诗",
++            "7点成功：银诗",
++            "4点成功：铜诗",
++            "1点成功：石诗"
+         ],
+         "open_conditions": [
+         ],
+diff --git a/rite/5000106.json b/rite/5000106.json
+index ce7a6b6..ce3c593 100644
+--- a/rite/5000106.json
++++ b/rite/5000106.json
+@@ -23,7 +23,11 @@
+         "tips_text":[
+             "开始后将检定智慧和灵感，根据最终检定结果产出不同品质的诗歌。",
+             "如果置入特殊的物品则可以跳过检定。",
+-            "不论结果如何，结束后诗人的灵感都会归零。"
++            "不论结果如何，结束后诗人的灵感都会归零。",
++            "10点成功：金诗",
++            "7点成功：银诗",
++            "4点成功：铜诗",
++            "1点成功：石诗"
+         ],
+         "open_conditions": [
+         ],
+diff --git a/rite/5000107.json b/rite/5000107.json
+index 8265adf..a2f6928 100644
+--- a/rite/5000107.json
++++ b/rite/5000107.json
+@@ -23,7 +23,11 @@
+         "tips_text":[
+             "开始后将检定隐匿和灵感，根据最终检定结果产出不同品质的诗歌。",
+             "如果置入特殊的物品则可以跳过检定。",
+-            "不论结果如何，结束后诗人的灵感都会归零。"
++            "不论结果如何，结束后诗人的灵感都会归零。",
++            "10点成功：金诗",
++            "7点成功：银诗",
++            "4点成功：铜诗",
++            "1点成功：石诗"
+         ],
+         "open_conditions": [
+         ],
+diff --git a/rite/5000108.json b/rite/5000108.json
+index 60055ed..bd0aa21 100644
+--- a/rite/5000108.json
++++ b/rite/5000108.json
+@@ -23,7 +23,11 @@
+         "tips_text":[
+             "开始后将检定魔力和灵感，根据最终检定结果产出不同品质的诗歌。",
+             "如果置入特殊的物品则可以跳过检定。",
+-            "不论结果如何，结束后诗人的灵感都会归零。"
++            "不论结果如何，结束后诗人的灵感都会归零。",
++            "10点成功：金诗",
++            "7点成功：银诗",
++            "4点成功：铜诗",
++            "1点成功：石诗"
+         ],
+         "open_conditions": [
+         ],
+diff --git a/rite/5000129.json b/rite/5000129.json
+index 0cb5398..71a186c 100644
+--- a/rite/5000129.json
++++ b/rite/5000129.json
+@@ -1,7 +1,7 @@
+  {
+         "id": 5000129,
+         "name": "做好准备",
+-        "text": "为自己或者追随者穿上装备吧！",       
++        "text": "为自己或者追随者穿上装备吧！\n【铜机遇】",       
+         "tips": "",
+         "mapping_id":8001002,
+         "once_new":0,
+diff --git a/rite/5000501.json b/rite/5000501.json
+index 48bd7cd..322c88d 100644
+--- a/rite/5000501.json
++++ b/rite/5000501.json
+@@ -673,7 +673,7 @@
+                     "is_key":0,
+                     "is_empty":1,
+                     "is_enemy":0,
+-                    "text":"青铜及以下品级的征服卡或者切合追随者品级的杀戮卡和纵欲卡",                   
++                    "text":"青铜及以下品级的征服卡或者切合追随者品级的杀戮卡和纵欲卡\n纵欲卡：灵视+1 追随者激情-1 上阵角色获得诅咒+1 妻子不满 邪术的痕迹\n纵欲卡追随者为拜铃耶：灵视+2 银预兆 污渍：信徒 拜铃耶魔力+2 妻子不满\n杀戮卡：体魄+1 灵视+2 恶名+1 追随者死亡 邪术的痕迹\n杀戮卡追随者为拜铃耶：体魄+1 灵视+2 恶名+1 污渍：天使\n征服卡 魔力魅力鉴定<=3点成功：主角获得诅咒 无论成功失败都能消卡\n征服卡追随者为拜铃耶：拜铃耶魔力+1 银洞察 空置的宅邸\n不放卡追随者为拜铃耶：拜铃耶魔力+1 银洞察\n不放卡 魔力魅力鉴定<=3点成功：主角获得诅咒",                   
+                     "pops":[
+                         {
+                             "condition":{
+diff --git a/rite/5000513.json b/rite/5000513.json
+index 9a078f8..0812fbf 100644
+--- a/rite/5000513.json
++++ b/rite/5000513.json
+@@ -23,7 +23,8 @@
+             "type":"normal_result"
+         },
+         "tips_text":[
+-            "可以反复尝试"
++            "可以反复尝试",
++            "社交智慧>=3点成功：拜铃耶剧情仪式"
+         ],
+         "open_conditions": [
+         ],
+diff --git a/rite/5000514.json b/rite/5000514.json
+index 5bb384c..981afcf 100644
+--- a/rite/5000514.json
++++ b/rite/5000514.json
+@@ -20,7 +20,11 @@
+         },
+         "tips_text":[
+             "根据你自身的需要使用对应的苏丹卡",
+-            "不需要苏丹卡，你也可以认识她"
++            "不需要苏丹卡，你也可以认识她",
++            "杀戮线：主角魔力+5 黑暗知识+1 窥视黑暗 污渍：天使",
++            "纵欲线：灵视+1 黑暗知识+1 窥视黑暗 拜铃耶入队 拜铃耶魔力+1 妻子的不满 污渍：信徒",
++            "普通线：黑暗知识+1 窥视黑暗 拜铃耶入队",
++
+         ],
+         "open_conditions": [
+         ],
+diff --git a/rite/5000600.json b/rite/5000600.json
+index f96a677..18cd6f3 100644
+--- a/rite/5000600.json
++++ b/rite/5000600.json
+@@ -39,7 +39,9 @@
+             "type":"normal_result"
+         },
+         "tips_text":[
+-            "帮助他人，有可能会带来更多的机会"
++            "帮助他人，有可能会带来更多的机会",
++            "战斗体魄>=3点成功：金币+5",
++            "仪式过期或失败：法图娜死亡"
+         ],
+         "open_conditions": [  
+         ],
+diff --git a/rite/5000601.json b/rite/5000601.json
+index ea53f18..95d1b82 100644
+--- a/rite/5000601.json
++++ b/rite/5000601.json
+@@ -23,7 +23,10 @@
+             "type":"normal_result"
+         },
+         "tips_text":[
+-            "使用征服卡可以让你出师有名"
++            "使用征服卡可以让你出师有名",
++            "战斗体魄>=3点成功：金币+5 主角魅力+1 法图娜支持+1",
++            "普通线额外奖励：权势-1 侠名+1 空置的宅邸",
++            "征服线额外奖励：权势+2 空置的宅邸"
+         ],
+         "open_conditions": [  
+         ],
+diff --git a/rite/5000602.json b/rite/5000602.json
+index ea1eb85..cd9c5a3 100644
+--- a/rite/5000602.json
++++ b/rite/5000602.json
+@@ -30,6 +30,9 @@
+         "tag_tips_up":{
+         },
+         "tips_text":[
++            "接待：迷药+1 触发剧情",
++            "不接待：触发再次来访",
++            "扎奇伊来接待：小剧情 触发再次来访"
+         ],
+         "open_conditions": [  
+         ],
+diff --git a/rite/5000603.json b/rite/5000603.json
+index 337829a..002ecc2 100644
+--- a/rite/5000603.json
++++ b/rite/5000603.json
+@@ -35,6 +35,8 @@
+         "tag_tips_up":{
+         },
+         "tips_text":[
++            "仪式过期：法图娜和扎齐伊离开 会遭到刺杀",
++            "杀死法图娜：扎齐伊离开 会遭到刺杀"
+         ],
+         "open_conditions": [ 
+         ],
+diff --git a/rite/5000605.json b/rite/5000605.json
+index bc85010..b3603c1 100644
+--- a/rite/5000605.json
++++ b/rite/5000605.json
+@@ -35,7 +35,14 @@
+             "type":"fight_result"
+         },
+         "tips_text":[
+-            "暴力介入贵族之间的财产纷争会引来不满，但如果使用杀戮卡的话……"
++            "暴力介入贵族之间的财产纷争会引来不满，但如果使用杀戮卡的话……",
++            "普通线 战斗体魄-（拉巴哈战斗0+体魄2）>=3点成功：罪证",
++            "普通线 战斗体魄-（拉巴哈战斗0+体魄2）>=2点成功：罪证 受伤",
++            "杀戮线 战斗体魄-（拉巴哈战斗0+体魄2）>=3点成功：",
++            "杀戮线 战斗体魄-（拉巴哈战斗0+体魄2）>=2点成功：罪证 受伤",
++            "失败：受伤 会遭到刺杀",
++            "放迷药 战斗体魄-（拉巴哈战斗0+体魄2）>=2点成功：金币+5 法图娜支持+1",
++            "没放迷药 战斗体魄-（拉巴哈战斗0+体魄2）>=2点成功：法图娜激情+1",
+         ],
+         "open_conditions": [  
+         ],
+diff --git a/rite/5000611.json b/rite/5000611.json
+index bc2dd00..416434b 100644
+--- a/rite/5000611.json
++++ b/rite/5000611.json
+@@ -22,7 +22,10 @@
+             "type":"normal_result"
+         },
+         "tips_text":[
+-            "扎齐伊和指导的人体魄越高，训练的效果越好。"
++            "扎齐伊和指导的人体魄越高，训练的效果越好。",
++            "上阵角色体魄检定>=5点：扎齐伊体魄+3",
++            "上阵角色体魄检定>=3点：扎齐伊体魄+2",
++            "上阵角色体魄检定<3点：扎齐伊体魄+1"
+         ],
+         "open_conditions": [  
+         ],
+diff --git a/rite/5000612.json b/rite/5000612.json
+index be82a6a..4421a9f 100644
+--- a/rite/5000612.json
++++ b/rite/5000612.json
+@@ -22,7 +22,11 @@
+             "type":"normal_result"
+         },
+         "tips_text":[
+-            "扎齐伊和指导的人隐匿越高，训练的效果越好。"
++            "扎齐伊和指导的人隐匿越高，训练的效果越好。",
++            "上阵角色隐匿检定>=5点：扎齐伊隐匿+3",
++            "上阵角色隐匿检定>=3点：扎齐伊隐匿+2",
++            "上阵角色隐匿检定<3点：扎齐伊隐匿+1",
++            "扎齐伊被带坏+2"
+         ],
+         "open_conditions": [  
+         ],
+diff --git a/rite/5000613.json b/rite/5000613.json
+index 45468cf..9fb5eab 100644
+--- a/rite/5000613.json
++++ b/rite/5000613.json
+@@ -23,7 +23,11 @@
+             "type":"normal_result"
+         },
+         "tips_text":[
+-            "扎齐伊和指导的人体魄和生存越高，训练的效果越好。"
++            "扎齐伊和指导的人体魄和生存越高，训练的效果越好。",
++            "上阵角色体魄生存检定>=5点：扎齐伊体魄+3 生存+2",
++            "上阵角色体魄生存检定>=3点：扎齐伊体魄+2 生存+1",
++            "上阵角色体魄生存检定<3点：扎齐伊体魄+1 受伤",
++            "扎齐伊被带坏+1"
+         ],
+         "open_conditions": [  
+         ],
+diff --git a/rite/5000615.json b/rite/5000615.json
+index c923636..e0f4699 100644
+--- a/rite/5000615.json
++++ b/rite/5000615.json
+@@ -22,7 +22,10 @@
+             "type":"normal_result"
+         },
+         "tips_text":[
+-            "扎齐伊和指导的人社交越高，训练的效果越好。"
++            "扎齐伊和指导的人社交越高，训练的效果越好。",
++            "上阵角色社交检定>=5点：扎齐伊社交+3",
++            "上阵角色社交检定>=3点：扎齐伊社交+2",
++            "上阵角色社交检定<3点：扎齐伊社交+1"
+         ],
+         "open_conditions": [  
+         ],
+diff --git a/rite/5000616.json b/rite/5000616.json
+index d7baf6b..e07d352 100644
+--- a/rite/5000616.json
++++ b/rite/5000616.json
+@@ -22,7 +22,12 @@
+             "type":"normal_result"
+         },
+         "tips_text":[
+-            "扎齐伊和指导的人魅力越高，训练的效果越好。"
++            "扎齐伊和指导的人魅力越高，训练的效果越好。",
++            "上阵角色魅力检定>=5点：扎齐伊魅力+3 随机石情报",
++            "上阵角色魅力检定>=3点：扎齐伊魅力+2 随机石情报",
++            "上阵角色魅力检定<3点：扎齐伊魅力+1 随机石情报",
++            "主角亲自来魅力检定>=5点：扎齐伊魅力+3 激情+1 随机石情报",
++            "扎齐伊被带坏+1"
+         ],
+         "open_conditions": [  
+         ],
+diff --git a/rite/5000617.json b/rite/5000617.json
+index c087476..1daabac 100644
+--- a/rite/5000617.json
++++ b/rite/5000617.json
+@@ -23,7 +23,11 @@
+             "type":"normal_result"
+         },
+         "tips_text":[
+-            "扎齐伊和指导的人社交和魅力越高，训练的效果越好。"
++            "扎齐伊和指导的人社交和魅力越高，训练的效果越好。",
++            "上阵角色社交魅力检定>=5点：扎齐伊社交+2 魅力+3",
++            "上阵角色社交魅力检定>=3点：扎齐伊社交+2 魅力+2",
++            "上阵角色社交魅力检定<3点：扎齐伊社交+1 魅力+1",
++            "扎齐伊被带坏+3"
+         ],
+         "open_conditions": [  
+         ],
+diff --git a/rite/5000619.json b/rite/5000619.json
+index 4ee6d72..d34a36e 100644
+--- a/rite/5000619.json
++++ b/rite/5000619.json
+@@ -19,6 +19,7 @@
+         "tag_tips_up":{
+         },
+         "tips_text":[
++            "扎齐伊：智慧+2 魅力+2"
+         ],
+         "open_conditions": [  
+         ],
+diff --git a/rite/5000620.json b/rite/5000620.json
+index 4988225..2938369 100644
+--- a/rite/5000620.json
++++ b/rite/5000620.json
+@@ -19,6 +19,8 @@
+         "tag_tips_up":{
+         },
+         "tips_text":[
++            "扎齐伊：智慧+3",
++            "扎齐伊被带坏+1"
+         ],
+         "open_conditions": [  
+         ],
+diff --git a/rite/5000621.json b/rite/5000621.json
+index b4111b1..01feaab 100644
+--- a/rite/5000621.json
++++ b/rite/5000621.json
+@@ -19,6 +19,8 @@
+         "tag_tips_up":{
+         },
+         "tips_text":[
++            "扎齐伊：智慧+2 体魄+2",
++            "扎齐伊被带坏+3"
+         ],
+         "open_conditions": [  
+         ],
+diff --git a/rite/5000622.json b/rite/5000622.json
+index edf45ff..e37928b 100644
+--- a/rite/5000622.json
++++ b/rite/5000622.json
+@@ -19,7 +19,11 @@
+         "tag_tips_up":{
+         },
+         "tips_text":[
+-            "根据你前面对扎齐伊的训练，寡妇会有不同的反应"
++            "根据你前面对扎齐伊的训练，寡妇会有不同的反应",
++            "被带坏>=6：反对+3 恶名+1 激情-1",
++            "被带坏>=3：金币+5",
++            "被带坏>=3且扎齐伊受伤：金币+5 反对+1 激情-1",
++            "被带坏<3：5金币 寡妇的友谊仪式"
+         ],
+         "open_conditions": [  
+         ],
+diff --git a/rite/5000630.json b/rite/5000630.json
+index ea1912c..5d30b34 100644
+--- a/rite/5000630.json
++++ b/rite/5000630.json
+@@ -27,7 +27,10 @@
+         "tips_text":[
+             "需要尽快处理，否则白犀牛可能就跑了。",
+             "需要准备充分再去处理，如果失败了白犀牛会跑掉。",
+-            "通过隐匿检定，可以不直接与白犀牛对抗。"
++            "通过隐匿检定，可以不直接与白犀牛对抗。",
++            "隐匿检测获得2点成功下：战斗体魄检测只需1点成功",
++            "隐匿检测不成功：要在己方数值-（犀牛战斗4+体魄7），投出3点成功",
++            "战斗体魄检测不通过：会再检测一轮，此时无论成功失败都会受伤，失败后犀牛逃走"
+         ],
+         "open_conditions": [  
+         ],
+diff --git a/rite/5000705.json b/rite/5000705.json
+index 2ce04e8..a6e9d4e 100644
+--- a/rite/5000705.json
++++ b/rite/5000705.json
+@@ -32,7 +32,11 @@
+             "突破入口的陷阱需要隐匿和生存",
+             "击败袭来的怪物需要体魄和战斗",
+             "和女妖下棋需要智慧",
+-            "与妖精女王交涉需要魅力和社交"
++            "与妖精女王交涉需要魅力和社交",
++            "角色1隐匿生存>=1点成功：角色1隐匿+1 生存+1 失败：角色1死亡",
++            "角色2体魄战斗+哲巴尔体魄战斗>=1点成功：角色2战斗+1 失败：角色2死亡",
++            "角色3智慧>=1点成功：角色3智慧+1 失败：角色装备疯狂",
++            "角色4魅力社交>=3点成功：角色4 魅力+1 社交+1 妖精提灯 失败：妖精提灯"
+         ],
+         "open_conditions": [
+                
+diff --git a/rite/5000713.json b/rite/5000713.json
+index cb788e2..7a6d402 100644
+--- a/rite/5000713.json
++++ b/rite/5000713.json
+@@ -385,7 +385,7 @@
+             "is_key":0,
+             "is_empty":1,
+             "is_enemy":0,
+-            "text":"得找一个魅力足够高的女性去找他……或者一瓶烈酒"
++            "text":"得找一个魅力足够高的女性去找他……或者一瓶烈酒\n娜依拉：已获放浪之欢+1 铜洞察\n魅力>=5女随从：奈布哈尼归队\n没派人：闲逛7天后回归"
+         },
+         "s3":
+         {
+@@ -398,7 +398,7 @@
+             "is_key":0,
+             "is_empty":1,
+             "is_enemy":0,
+-            "text":"苏丹卡能为他带来一些新的刺激吗？"
++            "text":"苏丹卡能为他带来一些新的刺激吗？\n纵欲卡：开启银趴仪式\n不是金色的征服卡：开启对应品质征服仪式\n奢靡卡：开启奢靡仪式\n杀戮卡：放入魅力5女性，奈布哈尼死亡。放入酒或没放女性，开启决裂仪式。"
+         }
+     }
+ } 
+\ No newline at end of file
+diff --git a/rite/5000720.json b/rite/5000720.json
+index 9704705..0d498ca 100644
+--- a/rite/5000720.json
++++ b/rite/5000720.json
+@@ -38,7 +38,9 @@
+         "tag_tips_up":{
+         },
+         "tips_text":[
+-            "如果不去的话，恐怕日后宫廷中会遭到宰相的攻讦。"
++            "如果不去的话，恐怕日后宫廷中会遭到宰相的攻讦。",
++            "去的话：石内幕",
++            "没去的话：权势-1 宰相反对+1"
+         ],
+         "open_conditions": [ 
+         ],
+diff --git a/rite/5000723.json b/rite/5000723.json
+index 106ab65..1db2f7a 100644
+--- a/rite/5000723.json
++++ b/rite/5000723.json
+@@ -38,7 +38,9 @@
+         "tag_tips_up":{
+         },
+         "tips_text":[
+-            "如果不去的话，恐怕日后宫廷中会遭到宰相的攻讦。"
++            "如果不去的话，恐怕日后宫廷中会遭到宰相的攻讦。",
++            "去的话：铜机遇",
++            "没去的话：权势-1 宰相反对+1"
+         ],
+         "open_conditions": [ 
+         ],
+diff --git a/rite/5000728.json b/rite/5000728.json
+index 3fe92cb..87c64e7 100644
+--- a/rite/5000728.json
++++ b/rite/5000728.json
+@@ -19,7 +19,9 @@
+         "tag_tips_up":{
+         },
+         "tips_text":[
+-            "如果不去的话，恐怕日后宫廷中会遭到宰相的攻讦。"
++            "如果不去的话，恐怕日后宫廷中会遭到宰相的攻讦。",
++            "去的话：推动剧情",
++            "没去的话：权势-1 宰相反对+1"
+         ],
+         "open_conditions": [ 
+         ],
+diff --git a/rite/5000731.json b/rite/5000731.json
+index be74d38..4f4bc36 100644
+--- a/rite/5000731.json
++++ b/rite/5000731.json
+@@ -43,7 +43,10 @@
+         "tips_text":[
+             "智慧提供基础，金币带来成功。",
+             "如果你付出双倍资金，可以折断一张奢靡卡。",
+-            "发明有风险，投资需谨慎。"
++            "发明有风险，投资需谨慎。",
++            "智慧+金币>=5点成功：望远镜",
++            "智慧+金币<=5点成功：眼镜",
++            "无论成功与否都会开启项目投资2"
+         ],
+         "open_conditions": [ 
+         ],
+diff --git a/rite/5000732.json b/rite/5000732.json
+index 3e35620..5817f91 100644
+--- a/rite/5000732.json
++++ b/rite/5000732.json
+@@ -42,7 +42,13 @@
+         "tips_text":[
+             "智慧提供基础，金币带来成功。",
+             "如果你付出双倍资金，可以折断一张奢靡卡。",
+-            "发明有风险，投资需谨慎。"
++            "发明有风险，投资需谨慎。",
++            "杀戮线 智慧+金币>=5点成功：生命之水+3 异端的头颅 玛希尔死亡",
++            "杀戮线 智慧+金币<=5点成功：真的很烈的酒+3 异端的头颅 玛希尔死亡",
++            "智慧+金币>=5点成功：生命之水+3",
++            "智慧+金币<=5点成功：真的很烈的酒+3",
++            "非杀戮线 无论成功与否都会开启女工匠来访",
++            "放不放奢靡卡，奖励一样"
+         ],
+         "open_conditions": [ 
+         ],
+diff --git a/rite/5000734.json b/rite/5000734.json
+index c8dbdfb..e86135e 100644
+--- a/rite/5000734.json
++++ b/rite/5000734.json
+@@ -24,7 +24,13 @@
+         "tips_text":[
+             "智慧提供基础，乙太带来成功。",
+ 			"由于你们建立了长期合作关系，苏丹不再允许你借机消耗奢靡卡。",
+-            "发明有风险，投资需谨慎。"
++            "发明有风险，投资需谨慎。",
++            "恶名>=10：研究后触发再利用",
++            "侠名>=13：研究后男人真正想要的",
++            "侠名>=13：男人真正想要的仪式",
++            "主角是正教教主：乙太研发后归还乙太",
++            "主角不是正教教主：乙太研发后若无乙太，开启偷窃乙太仪式",
++            "第3次用乙太进行研发且建立了密教基地：武器附魔图纸"
+         ],
+         "open_conditions": [ 
+         ],
+@@ -266,7 +272,7 @@
+                     "is_key":0,
+                     "is_empty":1,
+                     "is_enemy":0,
+-                    "text":"某些道具在研发中或许有用"
++                    "text":"某些道具在研发中或许有用\n圣主像：销毁圣主像 3份乙太"
+                 },
+             "s5":
+                 {
+@@ -280,7 +286,7 @@
+                     "is_key":0,
+                     "is_empty":1,
+                     "is_enemy":0,
+-                    "text":"大多数研究都需要乙太支持"
++                    "text":"大多数研究都需要乙太支持\n无以太无论检定与否随机出：生命之水，手摇式电锯剑，超臭香水，不稳定的火箭筒，错乱学习机，手摇式长明灯\n有以太检定>=5点成功随机出：生命之水，大炸弹，火焰喷射器，机关马，热气球，螺旋钻地机\n有以太检定<5点成功：和无以太情况奖励一样"
+                 }
+         }
+     } 
+\ No newline at end of file
+diff --git a/rite/5000754.json b/rite/5000754.json
+index f6c3465..f341acd 100644
+--- a/rite/5000754.json
++++ b/rite/5000754.json
+@@ -3,7 +3,6 @@
+         "name": "将军夜猎",
+         "text": "渴望着一些刺激的将军找到了绝佳的狩猎场所。现在，交出你的征服卡，然后等着他尽兴之后，把野兽的头颅带回给你。",       
+         "tips": "",
+-        "mapping_id":8001272,
+         "once_new":0,
+         "round_number": 1,
+         "waiting_round":3,
+@@ -40,7 +39,10 @@
+         },
+         "tips_text":[
+             "你可以不参与这个挑战，哲巴尔只需要你提供征服苏丹卡",
+-            "若是能在夜猎中获得4点成功，就能胜过哲巴尔。"
++            "若是能在夜猎中获得4点成功，就能胜过哲巴尔。",
++            "主角战斗体魄-哲巴尔战斗体魄>=4点成功：巨狼头颅 熟悉的战斗方式",
++            "主角战斗体魄-哲巴尔战斗体魄<4点成功：熟悉的战斗方式",
++            "不放主角：只消除卡"
+         ],
+         "open_conditions": [
+         ],
+diff --git a/rite/5000812.json b/rite/5000812.json
+index bf35f05..2f747cc 100644
+--- a/rite/5000812.json
++++ b/rite/5000812.json
+@@ -23,7 +23,10 @@
+     },
+     "tips_text":[
+         "如果地盘上出了什么事，芮尔会带走她所有的小弟，训练也会中止……当然经费是不会退的，这可是匪帮",
+-        "追随者无法接受同种训练多次"
++        "追随者无法接受同种训练多次",
++        "放入新月：触发剧情 返还训练费",
++        "角色无法放入已经训练过的项目",
++        "不给钱无事发生"
+     ],
+     "open_conditions": [
+         {
+@@ -334,7 +337,7 @@
+             "is_key":0,
+             "is_empty":1,
+             "is_enemy":0,
+-            "text":"选择上面这支匪帮进行训练"
++            "text":"选择上面这支匪帮进行训练\n生存+1 烂泥训练+1"
+         },
+         "s8":
+         {
+@@ -358,7 +361,7 @@
+             "is_key":0,
+             "is_empty":1,
+             "is_enemy":0,
+-            "text":"选择上面这支匪帮进行训练"
++            "text":"选择上面这支匪帮进行训练\n体魄+1 豺狼训练+1"
+         },
+         "s9":
+         {
+@@ -382,7 +385,7 @@
+             "is_key":0,
+             "is_empty":1,
+             "is_enemy":0,
+-            "text":"选择上面这支匪帮进行训练"
++            "text":"选择上面这支匪帮进行训练\n魅力+1 枪姬训练+1"
+         },
+         "s10":
+         {
+@@ -406,7 +409,7 @@
+             "is_key":0,
+             "is_empty":1,
+             "is_enemy":0,
+-            "text":"选择上面这支匪帮进行训练"
++            "text":"选择上面这支匪帮进行训练\n坐骑槽+1 刀风训练+1"
+         },
+         "s11":
+         {
+@@ -430,7 +433,7 @@
+             "is_key":0,
+             "is_empty":1,
+             "is_enemy":0,
+-            "text":"选择上面这支匪帮进行训练"
++            "text":"选择上面这支匪帮进行训练\n战斗+1 猎魂训练+1"
+         },
+         "s12":
+         {
+@@ -454,7 +457,7 @@
+             "is_key":0,
+             "is_empty":1,
+             "is_enemy":0,
+-            "text":"选择上面这支匪帮进行训练"
++            "text":"选择上面这支匪帮进行训练\n隐匿+1 碎纸训练+1"
+         },
+         "s13":
+         {
+diff --git a/rite/5001001.json b/rite/5001001.json
+index 4a11598..4b6f578 100644
+--- a/rite/5001001.json
++++ b/rite/5001001.json
+@@ -29,6 +29,9 @@
+ 			"谗言积累到三个会产生苏丹的残酷任务",
+ 			"访问宫廷可以得到一些情报",
+             "当苏丹厌倦后，朝会会暂时停止，获得休息的时机",
++            "猫可以上朝，获得金币",
++			"猫的装备者可以上朝，视为贵族，没有金币",
++            "浴场、书店、家业、权游、淘书能加快随机事件触发"
+ 
+         ],
+         "open_conditions": [
+@@ -1652,7 +1655,7 @@
+                 "is_key":0,
+                 "is_empty":1,
+                 "is_enemy":0,
+-                "text":"你可以亲自、或派遣身为【贵族】的追随者前往。",
++                "text":"你可以亲自、或派遣身为【贵族】的追随者前往。\n猫：没有情报 金币+1",
+                 "pops":[
+                     {
+                         "condition":{
+@@ -1775,7 +1778,7 @@
+                 "is_key":0,
+                 "is_empty":1,
+                 "is_enemy":0,
+-                "text":"在苏丹的面前使用苏丹卡也许是一个疯狂的主意……"
++                "text":"在苏丹的面前使用苏丹卡也许是一个疯狂的主意……\n纵欲：开启对应品级王妃故事线，纵欲卡品级必须等于妃子品级\n杀戮：开启对应品级的大臣决斗仪式，杀戮卡品级必须等于大臣品级\n征服：放入触发死亡结局"
+             },
+             "s7":
+             {
+@@ -1795,7 +1798,7 @@
+                 "is_key":0,
+                 "is_empty":1,
+                 "is_enemy":0,
+-                "text":"你可以向伟大的王献上你的一切，以换取他未必如你所料的恩宠。你可以向他祈求一切，只是你未必付得起代价。"
++                "text":"你可以向伟大的王献上你的一切，以换取他未必如你所料的恩宠。你可以向他祈求一切，只是你未必付得起代价。\n萨达尔尼的秘密：单独放或和杀戮卡一起放，剧情会有所不同\n赛里曼的头颅：消除银以下的杀戮卡\n法官的罪证：铜杀戮仪式\n金币或情报：权势<5时权势+1\n阿图娜尔：妹妹故事线 权势+3\n黄金鸟:权势+5\n龙眼宝石：清除谗言 消任意苏丹卡仪式 权势+3\n苏丹的猜忌：一般情况，消除猜忌 随机戏弄 权势-5。莎姬故事线已完成 消除猜忌 权势+1\n罪证：消除罪证 权势-5 随机戏弄\n拳斗士的证明：哲巴尔故事线\n龙鳞：权势-3 侠名+3 善名+1\n爵位的下落：哲瓦德是大敌销毁，其他情况检验社交，3点成功，多次失败销毁\n丰产的祝福：权势+2\n暗无天日：谗言-1\n无光之夜：谗言-1\n火焰大王：金币+1\n索拉薇儿：死亡剧情\n大魅魔：消除苏丹的猜忌仪式 金币+10\n小魅魔：金币+3\n精美的蓝纱：裁缝剧情 谗言-1 权势+1\n新婚夫妇的祈求：触发剧情\n宰相的罪证:宰相活，奈费勒剧情 谗言+2 权势-3。宰相死，权势+1 善名+1\n哀叹之剑：流浪剑客剧情 消除猜忌仪式 谗言-3 权势+1 金币+30\n誓言之证：流浪剑客剧情 谗言-3 权势+1 金币+30 恶名+2\n纯金的器皿：流浪剑客剧情中断 谗言-3 权势+1 金币+10\n肉欲：单独或和纵欲一起使用，可消除纵欲 恶名+1 灵视+1\n红色君主：谗言-3 权势+1 恶名+1 灵视+1 金币+10\n不举的传言：谗言-3 权势+1\n助兴的道具：莎姬剧情达到特殊节点，上交双头龙、情诗、不举的传言，开后续\n邪教思潮：谗言+1"
+             }
+         }
+     }
+\ No newline at end of file
+diff --git a/rite/5001010.json b/rite/5001010.json
+index e58ad0d..706f21b 100644
+--- a/rite/5001010.json
++++ b/rite/5001010.json
+@@ -18,7 +18,8 @@
+         "tag_tips_up":{
+         },
+         "tips_text":[
+-            "给钱就行，概不赊欠。"
++            "给钱就行，概不赊欠。",
++            "获得廉洁的伪证"
+         ],
+         "open_conditions": [
+         ],
+diff --git a/rite/5001501.json b/rite/5001501.json
+index b4ebf98..6a0e0de 100644
+--- a/rite/5001501.json
++++ b/rite/5001501.json
+@@ -24,7 +24,9 @@
+         },
+         "tips_text":[
+             "检定越成功，获得的情报越稀有。",
+-            "优秀的检定可以额外生成新的仪式。"
++            "优秀的检定可以额外生成新的仪式。",
++            "3点成功获得最好的奖励 随机银情报",
++            "浴场、书店、家业、权游、淘书能加快随机事件触发"
+         ],
+         "open_conditions": [
+             {
+@@ -261,7 +263,7 @@
+                     "is_key":0,
+                     "is_empty":0,
+                     "is_enemy":0,
+-                    "text":"你可以亲自，或派遣任意贵族追随者前往浴场" 
++                    "text":"你可以亲自，或派遣任意贵族追随者前往浴场\n梅姬：需阿迪莱是追随者，触发消除不满事件\n梅姬：需侠名>10，触发消除不满事件" 
+                 },
+             "s2":
+                 {
+@@ -296,7 +298,7 @@
+                     "is_key":0,
+                     "is_empty":1,
+                     "is_enemy":0,
+-                    "text":"某些道具在闲聊和刺探时能派得上用场"
++                    "text":"某些道具在闲聊和刺探时能派得上用场\n小鳄鱼：银杀戮仪式\n苏丹的猜忌:魅力-3 消除苏丹的猜忌"
+                 }
+         }
+     } 
+\ No newline at end of file
+diff --git a/rite/5001503.json b/rite/5001503.json
+index 02527a8..834816f 100644
+--- a/rite/5001503.json
++++ b/rite/5001503.json
+@@ -151,7 +151,7 @@
+                     "is_key":0,
+                     "is_empty":1,
+                     "is_enemy":0,
+-                    "text":"纵欲或者杀戮"
++                    "text":"纵欲或者杀戮\n纵欲卡：支持+1 激情+1\n杀戮卡：恶名+1 妻子死亡"
+                 },
+             "s4":
+                 {
+diff --git a/rite/5002003.json b/rite/5002003.json
+index 1d2c229..b89a37b 100644
+--- a/rite/5002003.json
++++ b/rite/5002003.json
+@@ -26,7 +26,8 @@
+             "即使是妓女，杀死她们也会引发人们的不满",
+             "小心，在妓女身上花费太多精力与金钱可能会让妻子伤心",
+             "每次出现的妓女是随机的",
+-            "点燃激情之后，她们也许会向你敞开心扉"
++            "点燃激情之后，她们也许会向你敞开心扉",
++            "双方体魄魅力加起来>=2点：激情+1"
+         ],
+         "open_conditions": [
+             {
+@@ -279,7 +280,7 @@
+                     "is_key":0,
+                     "is_empty":1,
+                     "is_enemy":0,
+-                    "text":"你可以借此折断一张不高于岩石品级的苏丹卡，纵欲、杀戮、奢靡……又或者，只单纯地寻求欢乐",                   
++                    "text":"你可以借此折断一张不高于岩石品级的苏丹卡，纵欲、杀戮、奢靡……又或者，只单纯地寻求欢乐\n对应品质杀戮卡：对应妓女死亡 恶名+1 开启挑战仪式\n对应品质奢靡卡：妻子的不满\n对应品质纵欲卡：妻子的不满",                   
+                     "pops":[
+                         {
+                             "condition":{
+@@ -327,7 +328,7 @@
+                     "is_key":0,
+                     "is_empty":1,
+                     "is_enemy":0,
+-                    "text":"有些道具能让你表现得更好……"
++                    "text":"有些道具能让你表现得更好……\n苏丹的猜忌：消除猜忌 不举的传闻"
+                 }
+         }
+     } 
+\ No newline at end of file
+diff --git a/rite/5002004.json b/rite/5002004.json
+index 272a805..4047f8b 100644
+--- a/rite/5002004.json
++++ b/rite/5002004.json
+@@ -26,7 +26,8 @@
+             "即使是妓女，杀死她们也会引发人们的不满",
+             "小心，在妓女身上花费太多精力与金钱可能会让妻子伤心",
+             "每次出现的妓女是随机的",
+-            "点燃激情之后，她们也许会向你敞开心扉"
++            "点燃激情之后，她们也许会向你敞开心扉",
++            "双方体魄魅力加起来>=2点：激情+1"
+         ],
+         "open_conditions": [
+             {
+@@ -276,7 +277,7 @@
+                     "is_key":0,
+                     "is_empty":1,
+                     "is_enemy":0,
+-                    "text":"你可以借此折断一张不高于青铜品级的苏丹卡，纵欲、杀戮、奢靡……又或者，只单纯地寻求欢乐",                   
++                    "text":"你可以借此折断一张不高于青铜品级的苏丹卡，纵欲、杀戮、奢靡……又或者，只单纯地寻求欢乐\n对应品质杀戮卡：对应妓女死亡 恶名+1 开启挑战仪式\n对应品质奢靡卡：妻子的不满\n对应品质纵欲卡：妻子的不满",                   
+                     "pops":[
+                         {
+                             "condition":{
+@@ -323,7 +324,7 @@
+                     "is_key":0,
+                     "is_empty":1,
+                     "is_enemy":0,
+-                    "text":"有些道具能让你表现得更好……"
++                    "text":"有些道具能让你表现得更好……\n苏丹的猜忌：消除猜忌 不举的传闻"
+                 }
+         }
+     } 
+\ No newline at end of file
+diff --git a/rite/5002005.json b/rite/5002005.json
+index 841217f..d093313 100644
+--- a/rite/5002005.json
++++ b/rite/5002005.json
+@@ -26,7 +26,8 @@
+             "即使是妓女，杀死她们也会引发人们的不满",
+             "小心，在妓女身上花费太多精力与金钱可能会让妻子伤心",
+             "每次出现的妓女是随机的",
+-            "点燃激情之后，她们也许会向你敞开心扉"
++            "点燃激情之后，她们也许会向你敞开心扉",
++            "双方体魄魅力加起来>=2点：激情+1"
+         ],
+         "open_conditions": [
+             {
+@@ -279,7 +280,7 @@
+                     "is_key":0,
+                     "is_empty":1,
+                     "is_enemy":0,
+-                    "text":"你可以借此折断一张不高于白银品级的苏丹卡，纵欲、杀戮、奢靡……又或者，只单纯地寻求欢乐",                   
++                    "text":"你可以借此折断一张不高于白银品级的苏丹卡，纵欲、杀戮、奢靡……又或者，只单纯地寻求欢乐\n对应品质杀戮卡：对应妓女死亡 恶名+1 开启挑战仪式\n对应品质奢靡卡：妻子的不满\n对应品质纵欲卡：妻子的不满",                   
+                     "pops":[
+                         {
+                             "condition":{
+@@ -326,7 +327,7 @@
+                     "is_key":0,
+                     "is_empty":1,
+                     "is_enemy":0,
+-                    "text":"有些道具能让你表现得更好……"
++                    "text":"有些道具能让你表现得更好……\n苏丹的猜忌：消除猜忌 不举的传闻"
+                 }
+         }
+     } 
+\ No newline at end of file
+diff --git a/rite/5002006.json b/rite/5002006.json
+index d862d8b..e9d0c61 100644
+--- a/rite/5002006.json
++++ b/rite/5002006.json
+@@ -25,7 +25,11 @@
+         "tips_text":[
+             "不花钱也可以逛书店，但买不到书",
+ 			"花一金币，随机得到一本书",
+-            "大部分书籍都可以在【俺寻思】中阅读，为角色增加属性"
++            "大部分书籍都可以在【俺寻思】中阅读，为角色增加属性",
++            "2点成功：获得随机石情报",
++            "双方都是贵族:1点成功：支持度+1",
++            "奈费勒：达成特定剧情后，书店碰到会给随机银情报",
++            "浴场、书店、家业、权游、淘书能加快随机事件触发"
+         ],
+         "open_conditions": [
+         ],
+@@ -426,7 +430,7 @@
+                     "is_key":0,
+                     "is_empty":1,
+                     "is_enemy":0,
+-                    "text":"有些道具或许能在沟通中派上用场"
++                    "text":"有些道具或许能在沟通中派上用场\n苏丹的猜忌：消除猜忌，开启焚书事件"
+                 },
+             "s5":
+                 {
+diff --git a/rite/5002007.json b/rite/5002007.json
+index 2acf134..77efab1 100644
+--- a/rite/5002007.json
++++ b/rite/5002007.json
+@@ -160,7 +160,7 @@
+                     "is_key":0,
+                     "is_empty":1,
+                     "is_enemy":0,
+-                    "text":"纵欲卡，品级不要高于约会人"
++                    "text":"纵欲卡，品级不要高于约会人\n纵欲卡：激情+1"
+                 },
+             "s4":
+                 {
+diff --git a/rite/5002035.json b/rite/5002035.json
+index c514f28..c1a87b7 100644
+--- a/rite/5002035.json
++++ b/rite/5002035.json
+@@ -26,7 +26,8 @@
+             "即使是妓女，杀死她们也会引发人们的不满",
+             "小心，在妓女身上花费太多精力与金钱可能会让妻子伤心",
+             "每次出现的妓女是随机的",
+-            "点燃激情之后，她们也许会向你敞开心扉"
++            "点燃激情之后，她们也许会向你敞开心扉",
++            "双方体魄魅力加起来>=2点：激情+1"
+         ],
+         "open_conditions": [
+             {
+@@ -270,7 +271,7 @@
+                     "is_key":0,
+                     "is_empty":1,
+                     "is_enemy":0,
+-                    "text":"你可以借此折断一张不高于索拉薇儿品级的苏丹卡，纵欲、杀戮、奢靡……又或者，只单纯地寻求欢乐",                   
++                    "text":"你可以借此折断一张不高于索拉薇儿品级的苏丹卡，纵欲、杀戮、奢靡……又或者，只单纯地寻求欢乐\n对应品质杀戮卡：对应妓女死亡 恶名+1 开启挑战仪式\n对应品质奢靡卡：妻子的不满\n对应品质纵欲卡：不会有妻子的不满",                   
+                     "pops":[
+                         {
+                             "condition":{
+@@ -300,7 +301,7 @@
+                     "is_key":0,
+                     "is_empty":1,
+                     "is_enemy":0,
+-                    "text":"有些道具能让你表现得更好……"
++                    "text":"有些道具能让你表现得更好……\n苏丹的猜忌：消除猜忌 不举的传闻"
+                 }
+         }
+     } 
+\ No newline at end of file
+diff --git a/rite/5002036.json b/rite/5002036.json
+index a28310d..1021dc9 100644
+--- a/rite/5002036.json
++++ b/rite/5002036.json
+@@ -32,6 +32,8 @@
+             "type":"normal_result"
+         },
+         "tips_text":[
++            "需要4点成功",
++			"浴场、书店、家业、权游、淘书能加快随机事件触发"
+         ],
+         "open_conditions": [
+         ],
+diff --git a/rite/5002037.json b/rite/5002037.json
+index 42d2282..8f50845 100644
+--- a/rite/5002037.json
++++ b/rite/5002037.json
+@@ -1,7 +1,7 @@
+  {
+         "id": 5002037,
+         "name": "淘书",
+-        "text": "书店老板找到你，希望你能陪他去一趟上城区，他想去拜访几位贵族，试图从他们手里收一些值得读的书。之所以找你帮忙，一方面是因为他认为你真的喜欢读书，另一方面则因为他实在不擅长应付这些贵族。如果您本人不能来，至少也请派位懂得怎么跟贵族聊天的人来。”",       
++        "text": "书店老板找到你，希望你能陪他去一趟上城区，他想去拜访几位贵族，试图从他们手里收一些值得读的书。之所以找你帮忙，一方面是因为他认为你真的喜欢读书，另一方面则因为他实在不擅长应付这些贵族。如果您本人不能来，至少也请派位懂得怎么跟贵族聊天的人来。",       
+         "tips": "",
+         "once_new":0,
+         "round_number": 1,
+@@ -32,6 +32,8 @@
+             "type":"normal_result"
+         },
+         "tips_text":[
++            "需要4点成功",
++			"浴场、书店、家业、权游、淘书能加快随机事件触发"
+         ],
+         "open_conditions": [
+         ],
+diff --git a/rite/5002038.json b/rite/5002038.json
+index e8305dd..3114a48 100644
+--- a/rite/5002038.json
++++ b/rite/5002038.json
+@@ -32,6 +32,8 @@
+             "type":"normal_result"
+         },
+         "tips_text":[
++            "需要4点成功",
++			"浴场、书店、家业、权游、淘书能加快随机事件触发"
+         ],
+         "open_conditions": [
+         ],
+diff --git a/rite/5002501.json b/rite/5002501.json
+index e18ddf2..f0ea54e 100644
+--- a/rite/5002501.json
++++ b/rite/5002501.json
+@@ -35,7 +35,9 @@
+             "type":"fight_result"
+         },
+         "tips_text":[
+-            "你可以让自己人亲自动手，也可以使用一些商业手段"
++            "你可以让自己人亲自动手，也可以使用一些商业手段",
++            "普通线 己方数值-（狗体魄1+战斗2）>=2点成功：上阵角色战斗+1 善名+1",
++            "普通线 己方数值-（狗体魄1+战斗2）>=1点成功：上阵角色战斗+1 受伤"
+         ],
+         "open_conditions": [
+             {
+@@ -360,7 +362,7 @@
+                     "is_key":0,
+                     "is_empty":1,
+                     "is_enemy":0,
+-                    "text":"你可以借此折断一张不高于青铜品级的征服卡或者奢靡卡",                   
++                    "text":"你可以借此折断一张不高于青铜品级的征服卡或者奢靡卡\n【奢靡线：无检测直接胜利】\n【征服线：体魄+战斗-（狗体魄1+战斗2）>=1点成功：诱饵角色生存+1 受伤】",                   
+                     "pops":[
+                         {
+                             "condition":{
+diff --git a/rite/5002502.json b/rite/5002502.json
+index 6941e38..63efc11 100644
+--- a/rite/5002502.json
++++ b/rite/5002502.json
+@@ -23,7 +23,11 @@
+             "type":"fight_result"
+         },
+         "tips_text":[
+-            "击败恶徒后，他们大多都会被关进苏丹的监狱"
++            "击败恶徒后，他们大多都会被关进苏丹的监狱",
++            "普通或征服线 乙方数值-（拉伊德社交2+拉伊德战斗3）>=2：恶名+1 上阵角色社交+1 金币+5 拉伊德入狱",
++            "普通或征服线 失败：上阵角色受伤",
++            "奢靡线 乙方社交检定>=3：善名+1 拉伊德入狱",
++            "奢靡线 失败：权势-1"
+         ],
+         "open_conditions": [
+             {
+diff --git a/rite/5002503.json b/rite/5002503.json
+index 98700c5..9b0086f 100644
+--- a/rite/5002503.json
++++ b/rite/5002503.json
+@@ -37,7 +37,9 @@
+             "type":"fight_result"
+         },
+         "tips_text":[
+-            "击败恶徒后，他们大多都会被关进苏丹的监狱"
++            "击败恶徒后，他们大多都会被关进苏丹的监狱",
++            "己方数值-（敌方战斗9+敌方体魄8）>=2点成功：善名+1 上阵角色战斗+1 兄弟俩入狱",
++            "失败：上阵角色死亡"
+         ],
+         "open_conditions": [
+         ],
+diff --git a/rite/5002504.json b/rite/5002504.json
+index b951423..7bd34e4 100644
+--- a/rite/5002504.json
++++ b/rite/5002504.json
+@@ -36,7 +36,8 @@
+             "type":"normal_result"
+         },
+         "tips_text":[
+-            "即便失败，数回合后可以再次尝试。"     
++            "即便失败，数回合后可以再次尝试。",
++            "智慧生存检测>=2点成功：获得骏马，参与者生存+1"   
+         ],
+         "open_conditions": [
+         ],
+diff --git a/rite/5002505.json b/rite/5002505.json
+index c007d67..b3c2c4c 100644
+--- a/rite/5002505.json
++++ b/rite/5002505.json
+@@ -42,7 +42,12 @@
+             "type":"fight_result"
+         },
+         "tips_text":[
+-            "如果放任不管，受害的无辜者会增加，你和你的追随者也总有一天会遭受其害"            
++            "如果放任不管，受害的无辜者会增加，你和你的追随者也总有一天会遭受其害",
++            "奢靡线：无需战斗 开启喂养凶狮仪式" ,   
++            "战斗线己方数值-山狮战斗6>=2点成功:善名+1 全部角色战斗+1" ,  
++            "战斗线己方数值-山狮战斗6>=1点成功:侠名+1 全部角色体魄+1 受伤" , 
++            "战斗线失败:全部角色受伤",
++            "特殊说明：失败或无视后会触发商人遗物仪式。4次吃人后还没解决，会触发山狮肆虐事件"
+         ],
+         "open_conditions": [
+         ],
+diff --git a/rite/5002506.json b/rite/5002506.json
+index cd657f9..3ece273 100644
+--- a/rite/5002506.json
++++ b/rite/5002506.json
+@@ -23,7 +23,8 @@
+             "type":"normal_result"
+         },
+         "tips_text":[
+-            "只要山狮还存在，被袭击的无辜者会一直出现吧？"
++            "只要山狮还存在，被袭击的无辜者会一直出现吧？",
++            "智慧+隐匿>=1点成功：随机1-4金币"
+         ],
+         "open_conditions": [
+         ],
+diff --git a/rite/5002507.json b/rite/5002507.json
+index b10fff0..f920377 100644
+--- a/rite/5002507.json
++++ b/rite/5002507.json
+@@ -21,7 +21,8 @@
+         },
+         "tips_text":[
+             "这是一桩不幸的事故，你无法阻止",
+-            "杀死山狮可以终止这样的事情发生"
++            "杀死山狮可以终止这样的事情发生",
++            "随机死一个非主角的追随者"
+         ],
+         "open_conditions": [
+         ],
+diff --git a/rite/5002508.json b/rite/5002508.json
+index f94922d..4b2787b 100644
+--- a/rite/5002508.json
++++ b/rite/5002508.json
+@@ -24,7 +24,9 @@
+             "type":"normal_result"
+         },
+         "tips_text":[
+-            "如果失败，会被狼群伏击的哦。"            
++            "如果失败，会被狼群伏击的哦。",
++            "1点成功：触发狼王后续，上阵角色生存+1",
++            "失败：上阵角色生存+1，受伤"    
+         ],
+         "open_conditions": [
+         ],
+diff --git a/rite/5002509.json b/rite/5002509.json
+index 1ec9bb1..0e0ce60 100644
+--- a/rite/5002509.json
++++ b/rite/5002509.json
+@@ -24,7 +24,9 @@
+             "type":"normal_result"
+         },
+         "tips_text":[
+-            "该和狼王与狼群进行一场恶战了。"            
++            "该和狼王与狼群进行一场恶战了。",
++            "己方数值-（狼战斗4点）投骰后>=3：上阵角色战斗+1",
++            "己方数值-（狼战斗4点）投骰后>=1：上阵角色体魄+1，受伤"
+         ],
+         "open_conditions": [
+         ],
+diff --git a/rite/5002510.json b/rite/5002510.json
+index 82e28d6..2d6dc06 100644
+--- a/rite/5002510.json
++++ b/rite/5002510.json
+@@ -25,7 +25,9 @@
+         },
+         "tips_text":[
+             "运气好的话，说不定可以活捉到鳄鱼。"  ,
+-            "下水道十分狭窄，只能够容纳一人顺利进出。"          
++            "下水道十分狭窄，只能够容纳一人顺利进出。",
++            "己方数值-（鳄鱼战斗4点）投骰后>=3点成功：获得小鳄鱼 生存+1",
++            "己方数值-（鳄鱼战斗4点）投骰后>=1点成功：战斗+1 受伤"    
+         ],
+         "open_conditions": [
+         ],
+diff --git a/rite/5002511.json b/rite/5002511.json
+index e1fef3b..a76c073 100644
+--- a/rite/5002511.json
++++ b/rite/5002511.json
+@@ -26,7 +26,9 @@
+         },
+         "tips_text":[
+             "你需要有足够的生存知识和强健的体魄，才能猎得毒蛇。" ,
+-            "足够的智慧和知识，说不定能为你带来意外之喜。"
++            "足够的智慧和知识，说不定能为你带来意外之喜。",
++            "体魄+生存>=1点成功：上阵角色生存+1 毒蛇毒液 金币+5",
++            "智慧+生存>=2点成功：疗伤草药"
+         ],
+         "open_conditions": [
+         ],
+diff --git a/rite/5002512.json b/rite/5002512.json
+index 409838e..2511d6a 100644
+--- a/rite/5002512.json
++++ b/rite/5002512.json
+@@ -38,7 +38,8 @@
+         },
+         "tips_text":[
+             "依靠坐骑的体魄和骑手的生存进行检定。" ,
+-            "胜利了赢得双倍赌注，失败则血本无归。"
++            "胜利了赢得双倍赌注，失败则血本无归。",
++            "需要1点成功"
+         ],
+         "open_conditions": [
+         ],
+diff --git a/rite/5002513.json b/rite/5002513.json
+index 5f94f58..4e2f17b 100644
+--- a/rite/5002513.json
++++ b/rite/5002513.json
+@@ -38,7 +38,8 @@
+     },
+     "tips_text":[
+         "依靠坐骑的体魄和骑手的生存进行检定。" ,
+-        "胜利了赢得双倍赌注，失败则血本无归。"
++        "胜利了赢得双倍赌注，失败则血本无归。",
++        "需要2点成功"
+     ],
+     "open_conditions": [
+     ],
+diff --git a/rite/5002514.json b/rite/5002514.json
+index 6ce2478..edc6008 100644
+--- a/rite/5002514.json
++++ b/rite/5002514.json
+@@ -38,7 +38,8 @@
+     },
+     "tips_text":[
+         "依靠坐骑的体魄和骑手的生存进行检定。" ,
+-        "胜利了赢得双倍赌注，失败则血本无归。"
++        "胜利了赢得双倍赌注，失败则血本无归。",
++        "需要3点成功"
+     ],
+     "open_conditions": [
+     ],
+diff --git a/rite/5002515.json b/rite/5002515.json
+index d7a98f6..f46ff4d 100644
+--- a/rite/5002515.json
++++ b/rite/5002515.json
+@@ -38,7 +38,8 @@
+     },
+     "tips_text":[
+         "依靠坐骑的体魄和骑手的生存进行检定。" ,
+-        "胜利了赢得双倍赌注，失败则血本无归。"
++        "胜利了赢得双倍赌注，失败则血本无归。",
++        "需要4点成功"
+     ],
+     "open_conditions": [
+     ],
+diff --git a/rite/5002516.json b/rite/5002516.json
+index 54fc618..d2b73ca 100644
+--- a/rite/5002516.json
++++ b/rite/5002516.json
+@@ -21,7 +21,10 @@
+ 
+         },
+         "tips_text":[
+-            "每天都要进行喂养……请谨记"            
++            "每天都要进行喂养……请谨记" ,
++            "喂养小于10次：继续喂养",
++            "喂养大于10次：开启山狮最后索求仪式", 
++            "不喂养超过4次：刷出凶狮肆虐"           
+         ],
+         "open_conditions": [
+         ],
+diff --git a/rite/5002517.json b/rite/5002517.json
+index 7e85dd5..0a2233d 100644
+--- a/rite/5002517.json
++++ b/rite/5002517.json
+@@ -43,7 +43,12 @@
+         },
+         "tips_text":[
+             "放置祭品的话，就不需要和它战斗，能满足山狮的食欲，获得它的奖赏。",
+-            "和它战斗的话，就要做好准备,它现在比之前更加强大。"           
++            "和它战斗的话，就要做好准备,它现在比之前更加强大。",
++            "等待仪式过期：纯剧情 故事线结束",
++            "献祭线：祭品死亡 获得山狮",
++            "战斗线：己方数值-山狮战斗6+体魄5>=2点成功：善名+1 上阵角色战斗+1", 
++            "战斗线：己方数值-山狮战斗6+体魄5>=1点成功：善名+1 上阵角色体魄+1 受伤", 
++            "战斗线：己方数值-山狮战斗6+体魄5<1点成功：善名+1 上阵角色受伤" 
+         ],
+         "open_conditions": [
+         ],
+diff --git a/rite/5003001.json b/rite/5003001.json
+index 5cf3803..97337ff 100644
+--- a/rite/5003001.json
++++ b/rite/5003001.json
+@@ -26,7 +26,13 @@
+         "tips_text":[
+             "你可以在此避免妻子的不满爆发，但只要不满存在，这样的事件就会重复发生",
+             "妻子的不满数量越多，后续事件就越严重",
+-			"妻子的不满会带来检定的减值，请注意"
++			"妻子的不满会带来检定的减值，请注意",
++            "你的数值-妻子的不满>1点成功：无事发生",
++            "密教徒奈布哈尼抖过机灵：浴血玫瑰仪式",
++            "检定失败，不满=1：妻子不满后续事件",
++            "检定失败，不满=2：妻子严重不满后续事件",
++            "检定失败，不满>=3：妻子超级严重不满后续事件"
++            
+         ],
+         "open_conditions": [
+         ],
+diff --git a/rite/5003020.json b/rite/5003020.json
+index ea71848..adc1f11 100644
+--- a/rite/5003020.json
++++ b/rite/5003020.json
+@@ -35,7 +35,10 @@
+         "tips_text":[
+             "成功数越多，收获越大。",
+             "失败并不会带来负面效果",
+-            "到期后会重新刷新。"
++            "到期后会重新刷新。",
++            ">=5点成功：随机获得1-4金币和额外1金币",
++            ">=3点成功：随机获得1-4金币",
++            ">=1点成功：获得1金币"
+         ],
+         "open_conditions": [
+         ],
+diff --git a/rite/5003021.json b/rite/5003021.json
+index dc052d9..c2ea507 100644
+--- a/rite/5003021.json
++++ b/rite/5003021.json
+@@ -34,7 +34,10 @@
+         },
+         "tips_text":[
+             "成功数越多，收获越大。",
+-            "失败并不会带来负面效果"
++            "失败并不会带来负面效果",
++            ">=5点成功：随机银情报",
++            ">=3点成功：随机铜情报",
++            ">=1点成功：随机石情报"
+         ],
+         "open_conditions": [
+         ],
+diff --git a/rite/5003022.json b/rite/5003022.json
+index c8c24ca..e8e8df9 100644
+--- a/rite/5003022.json
++++ b/rite/5003022.json
+@@ -34,7 +34,11 @@
+         },
+         "tips_text":[
+             "成功数越多，收获越大。",
+-            "失败并不会带来负面效果"
++            "失败并不会带来负面效果",
++            ">=5点成功：获得4金币",
++            ">=3点成功：获得3金币",
++            ">=1点成功：获得2金币",
++            "0点成功：获得1金币"
+         ],
+         "open_conditions": [
+         ],
+diff --git a/rite/5003023.json b/rite/5003023.json
+index 64d342c..090df6d 100644
+--- a/rite/5003023.json
++++ b/rite/5003023.json
+@@ -34,7 +34,10 @@
+         },
+         "tips_text":[
+             "成功数越多，收获越大。",
+-            "失败并不会带来负面效果"
++            "失败并不会带来负面效果",
++            ">=5点成功：随机无魔力银情报和1金币",
++            ">=3点成功：随机无魔力铜情报和1金币",
++            ">=1点成功：随机无魔力石情报和1金币"
+         ],
+         "open_conditions": [
+         ],
+diff --git a/rite/5003024.json b/rite/5003024.json
+index 732244b..fb31e7c 100644
+--- a/rite/5003024.json
++++ b/rite/5003024.json
+@@ -34,7 +34,11 @@
+         },
+         "tips_text":[
+             "成功数越多，收获越大。",
+-            "失败可能会受伤。"
++            "失败可能会受伤。",
++            ">=5点成功：权势+1 金币+3",
++            ">=3点成功：金币+2",
++            ">=1点成功：金币+1",
++            "0点成功：受伤"
+         ],
+         "open_conditions": [
+         ],
+diff --git a/rite/5003025.json b/rite/5003025.json
+index 716a079..cd9d286 100644
+--- a/rite/5003025.json
++++ b/rite/5003025.json
+@@ -34,7 +34,11 @@
+         },
+         "tips_text":[
+             "成功数越多，收获越大。",
+-            "失败可能会受伤。"
++            "失败可能会受伤。",
++            ">=5点成功：金币+3",
++            ">=3点成功：金币+2",
++            ">=1点成功：金币+1",
++            "0点成功：受伤"
+         ],
+         "open_conditions": [
+         ],
+diff --git a/rite/5003026.json b/rite/5003026.json
+index 44949e4..fe3f01f 100644
+--- a/rite/5003026.json
++++ b/rite/5003026.json
+@@ -34,7 +34,10 @@
+         },
+         "tips_text":[
+             "成功数越多，收获越大。",
+-            "失败并不会带来负面效果"
++            "失败并不会带来负面效果",
++            ">=5点成功：权势+1 金币+5",
++            ">=3点成功：金币+3",
++            ">=1点成功：金币+1"
+         ],
+         "open_conditions": [
+         ],
+diff --git a/rite/5006557.json b/rite/5006557.json
+index 2d0160b..7b32e90 100644
+--- a/rite/5006557.json
++++ b/rite/5006557.json
+@@ -378,7 +378,7 @@
+                     "is_key":0,
+                     "is_empty":0, // 不能为空
+                     "is_enemy":0, 
+-                    "text":"放入卡牌",                   
++                    "text":"放入卡牌\n妻子的不满：消除\n罪证：消除\n装备：复制装备\n金币：金币+10\n情报卡：和放入情报相同名字的金品质情报\n拥有黑暗知识的角色：魔力+2\n主角：社交+1 体魄+1\n男贵族：社交+1 体魄+1\n女贵族：魅力+1 体魄+1\n男平民：战斗+1 隐匿+1\n女平民：战斗+1 生存+1\n正教思潮任意品质：虔信+1 灵视+1\n其他：金币+10",                   
+                     "pops":[
+                         {
+                             "condition":{
+diff --git a/rite/5006560.json b/rite/5006560.json
+index db1abdf..898706f 100644
+--- a/rite/5006560.json
++++ b/rite/5006560.json
+@@ -19,7 +19,9 @@
+         },
+         "tips_text":[
+             "修建岩石品级的舍馆需要消耗10金币",
+-            "你可以借此消解一张岩石奢靡卡"
++            "你可以借此消解一张岩石奢靡卡",
++            "必定获得：谗言+1",
++            "奢靡卡额外效果：权势+1"
+         ],
+         "open_conditions": [
+         ],
+diff --git a/rite/5006561.json b/rite/5006561.json
+index 560af72..d0906bb 100644
+--- a/rite/5006561.json
++++ b/rite/5006561.json
+@@ -22,7 +22,8 @@
+             "追随者可以被舍馆的食客强化",
+             "食客们是一次性的，在事件后就会离开",
+             "每7日舍馆会换一批人",
+-            "侠名大于等于5时，可以消耗5金币升级舍馆。"
++            "侠名大于等于5时，可以消耗5金币升级舍馆。",
++            "派遣法尔达克会触发额外剧情"
+         ],
+         "open_conditions": [
+         ],
+diff --git a/rite/5006562.json b/rite/5006562.json
+index 12d242f..b2d7fad 100644
+--- a/rite/5006562.json
++++ b/rite/5006562.json
+@@ -23,7 +23,8 @@
+             "派遣自己的追随者去招募",
+             "食客们是一次性的，在事件后就会离开",
+             "每7日舍馆会换一批人",
+-            "侠名大于等于5时，可以消耗5金币升级舍馆。"
++            "侠名大于等于5时，可以消耗5金币升级舍馆。",
++            "派遣法尔达克会触发额外剧情"
+         ],
+         "open_conditions": [
+         ],
+diff --git a/rite/5006563.json b/rite/5006563.json
+index 874bcf0..70dade0 100644
+--- a/rite/5006563.json
++++ b/rite/5006563.json
+@@ -22,7 +22,8 @@
+             "派遣自己的追随者去招募",
+             "食客们是一次性的，在事件后就会离开",
+             "每7日舍馆会换一批人",
+-            "侠名大于等于10时，可以消耗10金币升级舍馆。"
++            "侠名大于等于10时，可以消耗10金币升级舍馆。",
++            "派遣法尔达克会触发额外剧情"
+         ],
+         "open_conditions": [
+             {
+diff --git a/rite/5006564.json b/rite/5006564.json
+index 93be977..6a57f9a 100644
+--- a/rite/5006564.json
++++ b/rite/5006564.json
+@@ -22,7 +22,8 @@
+             "派遣自己的追随者去招募",
+             "食客们是一次性的，在事件后就会离开",
+             "每7日舍馆会换一批人",
+-            "侠名大于等于10时，可以消耗10金币升级舍馆。"
++            "侠名大于等于10时，可以消耗10金币升级舍馆。",
++            "派遣法尔达克会触发额外剧情"
+         ],
+         "open_conditions": [
+             {
+diff --git a/rite/5006565.json b/rite/5006565.json
+index 150e664..daee37e 100644
+--- a/rite/5006565.json
++++ b/rite/5006565.json
+@@ -22,7 +22,8 @@
+             "派遣自己的追随者去招募",
+             "食客们是一次性的，在事件后就会离开",
+             "每7日舍馆会换一批人",
+-            "侠名大于等于20时，可以消耗15金币升级舍馆。"
++            "侠名大于等于20时，可以消耗15金币升级舍馆。",
++            "派遣法尔达克会触发额外剧情"
+         ],
+         "open_conditions": [
+             {
+diff --git a/rite/5006566.json b/rite/5006566.json
+index c2caedc..ab594bc 100644
+--- a/rite/5006566.json
++++ b/rite/5006566.json
+@@ -22,7 +22,8 @@
+             "派遣自己的追随者去招募",
+             "食客们是一次性的，在事件后就会离开",
+             "每7日舍馆会换一批人",
+-            "侠名大于等于15时，可以消耗15金币升级舍馆。"
++            "侠名大于等于15时，可以消耗15金币升级舍馆。",
++            "派遣法尔达克会触发额外剧情"
+         ],
+         "open_conditions": [
+             {
+diff --git a/rite/5006567.json b/rite/5006567.json
+index 506b704..e663e4c 100644
+--- a/rite/5006567.json
++++ b/rite/5006567.json
+@@ -22,7 +22,8 @@
+         "tips_text":[
+             "派遣自己的追随者去招募",
+             "食客们是一次性的，在事件后就会离开",
+-            "每7日舍馆会换一批人"
++            "每7日舍馆会换一批人",
++            "派遣法尔达克会触发额外剧情"
+         ],
+         "open_conditions": [
+             {
+diff --git a/rite/5006568.json b/rite/5006568.json
+index 6ccb053..fb1f99b 100644
+--- a/rite/5006568.json
++++ b/rite/5006568.json
+@@ -22,7 +22,8 @@
+         "tips_text":[
+             "派遣自己的追随者去招募",
+             "食客们是一次性的，在事件后就会离开",
+-            "每7日舍馆会换一批人"
++            "每7日舍馆会换一批人",
++            "派遣法尔达克会触发额外剧情"
+         ],
+         "open_conditions": [
+             {
+diff --git a/rite/5006616.json b/rite/5006616.json
+index 171cdda..f1843c5 100644
+--- a/rite/5006616.json
++++ b/rite/5006616.json
+@@ -44,7 +44,8 @@
+         },        
+         "tips_text":[
+             
+-            "你可以借机折断苏丹卡，但，你真要怎么做么？"
++            "你可以借机折断苏丹卡，但，你真要怎么做么？",
++            "普通线：虔信+1 善名+1 触发铁头线"
+         ],
+         "open_conditions": [
+         ],
+@@ -137,7 +138,7 @@
+                     "is_key":0,
+                     "is_empty":1,
+                     "is_enemy":0,
+-                    "text":"你可以在这里折断岩石品质的杀戮或纵欲卡，但你真要这么做吗？"  
++                    "text":"你可以在这里折断岩石品质的杀戮或纵欲卡，但你真要这么做吗？\n【杀戮：善名归0 恶名+3 救济日事件不再触发 铁头线中断】\n【纵欲：妻子不满 善名归0 恶名+3 救济日事件不再触发 铁头线中断】"  
+                 },
+                 "s3":
+                 {
+diff --git a/rite/5006617.json b/rite/5006617.json
+index f5d13fc..cdeab65 100644
+--- a/rite/5006617.json
++++ b/rite/5006617.json
+@@ -38,7 +38,11 @@
+             "type":"normal_result"
+         },        
+         "tips_text":[
+-            "这是让小圆和铁头成长的机会"
++            "这是让小圆和铁头成长的机会",
++            "小圆魅力+1 虔信+1",
++            "智慧+战斗>=2点成功：小圆智慧+1 铁头战斗+1 善名+1",
++            "智慧+战斗<=2点成功：小圆社交+1 铁头战斗+1 侠名+1"
++            
+         ],
+         "open_conditions": [
+         ],
+diff --git a/rite/5006677.json b/rite/5006677.json
+index 0bd0fbf..f1abba5 100644
+--- a/rite/5006677.json
++++ b/rite/5006677.json
+@@ -484,7 +484,7 @@
+                 "is_key":0,
+                 "is_empty":0,
+                 "is_enemy":0,
+-                "text":"收容和教育",                   
++                "text":"收容和教育\n新世界：恶名+1（后果未知，需要反馈）\n完美世界：恶名+1（后果未知，需要反馈）\n苏丹的猜忌：消除猜忌，后续和苏丹对决有特殊剧情\n孤儿：总共能获得4个，分别从奈费勒、阿里木、哈比卜、密教徒的事件获取\n新月：能被放苗圃和孩子们玩，新月的体魄+1 魅力+1",                   
+                 "pops":[
+                     {
+                         "condition":{
+@@ -550,7 +550,7 @@
+                 "is_key":0,
+                 "is_empty":1,
+                 "is_enemy":0,
+-                "text":"你教育他们什么是爱"
++                "text":"你教育他们什么是爱\n梅姬：慈爱\n法里斯：对等\n:贾丽拉\n：自我"
+             },
+             "s4":
+             {
+@@ -563,7 +563,7 @@
+                 "is_key":0,
+                 "is_empty":1,
+                 "is_enemy":0,
+-                "text":"你告诉他们什么是真正的智慧"
++                "text":"你告诉他们什么是真正的智慧\n夏玛：体验\n哲瓦德：得利\n哈比卜：调和"
+             },
+             "s5":
+             {
+@@ -576,7 +576,7 @@
+                 "is_key":0,
+                 "is_empty":1,
+                 "is_enemy":0,
+-                "text":"你指引他们何为信仰"
++                "text":"你指引他们何为信仰\n阿迪莱：理想\n法拉杰：领袖\n知识"
+             },
+             "s6":
+             {
+@@ -589,7 +589,7 @@
+                 "is_key":0,
+                 "is_empty":1,
+                 "is_enemy":0,
+-                "text":"你引导他们该依靠怎样的力量"
++                "text":"你引导他们该依靠怎样的力量\n索布哈尼：浪漫\n娜依拉：欲望"
+             },
+             "s7":
+             {
+@@ -602,7 +602,7 @@
+                 "is_key":0,
+                 "is_empty":1,
+                 "is_enemy":0,
+-                "text":"你带领他们寻求怎样的快乐"
++                "text":"你带领他们寻求怎样的快乐\n玛希尔：创造\n阿里木：自由\n哲巴尔：胜利"
+             },
+             "s8":
+             {
+diff --git a/rite/5008001.json b/rite/5008001.json
+index f486e35..7a9c228 100644
+--- a/rite/5008001.json
++++ b/rite/5008001.json
+@@ -39,7 +39,11 @@
+     },
+     "tips_text":[
+         "需要靠自己的魅力与社交安抚妻子。",
+-        "检定不通过将会产生妻子的不满。"
++        "检定不通过将会产生妻子的不满。",
++        "魅力+社交>=4点成功：妻子的幸福感",
++        "魅力+社交>=2点成功：无事发生",
++        "魅力+社交<2点成功：妻子的不满",
++        "仪式过期：妻子的不满"
+     ],
+     "open_conditions": [
+     ],
+diff --git a/rite/5008002.json b/rite/5008002.json
+index 44a4ec4..78ef3bb 100644
+--- a/rite/5008002.json
++++ b/rite/5008002.json
+@@ -40,9 +40,11 @@
+     },
+     "tips_text":[
+         "需要靠自己的魅力与社交安抚妻子。",
+-        "检定不通过将会产生妻子的不满。"
+-        
+-
++        "检定不通过将会产生妻子的不满。",
++        "魅力+社交>=4点成功：妻子的幸福感",
++        "魅力+社交>=2点成功：随机石情报",
++        "魅力+社交<2点成功：妻子的不满 战斗+1",
++        "仪式过期：妻子的不满 战斗+1"
+     ],
+     "open_conditions": [
+     ],
+diff --git a/rite/5008005.json b/rite/5008005.json
+index 6b9dc0f..2199fa1 100644
+--- a/rite/5008005.json
++++ b/rite/5008005.json
+@@ -247,7 +247,7 @@
+                 "is_key":0,
+                 "is_empty":0,
+                 "is_enemy":0,
+-                "text":"需要由你的妻子主持茶会。"
++                "text":"需要由你的妻子主持茶会。\n放了妻子：金骰子+1"
+             },
+ 
+         "s2":
+@@ -268,7 +268,7 @@
+                 "is_key":0,
+                 "is_empty":1,
+                 "is_enemy":0,
+-                "text":"要使用苏丹卡的话，你必须亲自参加。"
++                "text":"要使用苏丹卡的话，你必须亲自参加。\n放了法图娜：随机迷氛或密教徒"
+             },
+             "s3":
+             {
+@@ -295,7 +295,7 @@
+                             "s3.奢靡":1
+                         },
+                         "action":{
+-                            "pop.5008005_s1_01.self":"需要放入正确数量的金币才能折断奢靡卡"
++                            "pop.5008005_s1_01.self":"需要放入正确数量的金币才能折断奢靡卡\n石奢靡：随机银情报 权势+1\n铜奢靡：随机银情报 权势+2\n金奢靡：随机银情报 权势+3\n铜或石纵欲卡：妻子的不满 随机银情报 妻子不再举办茶会\n银纵欲卡：妻子激情+1 侠名+1 随机银情报 妻子不再举办茶会"
+                         }
+                     }
+                 ] 
+diff --git a/rite/5008006.json b/rite/5008006.json
+index 4e79f76..a038829 100644
+--- a/rite/5008006.json
++++ b/rite/5008006.json
+@@ -19,7 +19,8 @@
+     "tag_tips_up":{},
+     "tips_text":[
+         "法拉杰渴望得到你的肯定",
+-        "你可以选择夸赞他的不同优点"
++        "你可以选择夸赞他的不同优点",
++        "此事件可以妻子主角一起去"
+     ],
+     "open_conditions": [
+         {
+@@ -188,7 +189,7 @@
+                 "is_key":0,
+                 "is_empty":1,
+                 "is_enemy":0,
+-                "text":"赞美其勇武"
++                "text":"赞美其勇武\n战斗+1"
+             },
+          "s3":
+             {
+@@ -204,7 +205,7 @@
+                 "is_key":0,
+                 "is_empty":1,
+                 "is_enemy":0,
+-                "text":"赞美其机警"
++                "text":"赞美其机警\n隐匿+1"
+             },          
+          "s4":
+             {
+@@ -220,7 +221,7 @@
+                 "is_key":0,
+                 "is_empty":1,
+                 "is_enemy":0,
+-                "text":"赞美其风度"
++                "text":"赞美其风度\n社交+1"
+             }          
+     }
+ }
+\ No newline at end of file
+diff --git a/rite/5008007.json b/rite/5008007.json
+index 5b1634b..9463101 100644
+--- a/rite/5008007.json
++++ b/rite/5008007.json
+@@ -19,7 +19,8 @@
+     "tag_tips_up":{},
+     "tips_text":[
+         "法拉杰渴望得到你的肯定",
+-        "你可以选择夸赞他的不同优点"
++        "你可以选择夸赞他的不同优点",
++        "此事件可以妻子主角一起去"
+     ],
+     "open_conditions": [
+         {
+@@ -189,7 +190,7 @@
+                 "is_key":0,
+                 "is_empty":1,
+                 "is_enemy":0,
+-                "text":"赞美其博文强学"
++                "text":"赞美其博文强学\n智慧+2 激情+1"
+             },
+          "s3":
+             {
+@@ -205,7 +206,7 @@
+                 "is_key":0,
+                 "is_empty":1,
+                 "is_enemy":0,
+-                "text":"赞美其仪表堂堂"
++                "text":"赞美其仪表堂堂\n魅力+2 激情+1"
+             },          
+          "s4":
+             {
+@@ -221,7 +222,7 @@
+                 "is_key":0,
+                 "is_empty":1,
+                 "is_enemy":0,
+-                "text":"赞美其有力臂膀"
++                "text":"赞美其有力臂膀\n体魄+2 激情+1"
+             }          
+     }
+ }
+\ No newline at end of file
+diff --git a/rite/5008008.json b/rite/5008008.json
+index c8a2c65..9603d00 100644
+--- a/rite/5008008.json
++++ b/rite/5008008.json
+@@ -34,7 +34,11 @@
+     "tag_tips_up":{},
+     "tips_text":[
+         "苏丹卡的等级不能高于法拉杰。",
+-        "如果妻子不太愿意，最好不要强迫她。"
++        "如果妻子不太愿意，最好不要强迫她。",
++        "普通线 你和妻子一起鼓励过2次：法拉杰获得命运的羁绊",
++        "普通线 只有你自己鼓励过：妻子的不满",
++        "纵欲线 你和妻子一起鼓励过2次：法拉杰获得命运的羁绊",
++        "纵欲线 只有你自己鼓励过：主角死亡"
+     ],
+     "open_conditions": [],
+     "random_text":{
+diff --git a/rite/5008065.json b/rite/5008065.json
+index f3dc663..bc5611b 100644
+--- a/rite/5008065.json
++++ b/rite/5008065.json
+@@ -19,7 +19,7 @@
+     "tag_tips_up":{
+     },
+     "tips_text":[
+-
++        "法尔达克社交+1"
+     ],
+     "open_conditions": [
+     
+-- 
+2.49.0.windows.1
+
