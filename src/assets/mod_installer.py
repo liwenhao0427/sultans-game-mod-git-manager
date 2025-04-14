@@ -359,7 +359,9 @@ def main():
         if install_mods():
             print("\n[完成] MOD安装成功")
         else:
-            print("\n[警告] MOD安装过程中出现问题，已执行还原操作")
+            print("\n[警告] MOD安装过程中出现问题，执行还原操作")
+            if game_path:
+                prepare_git_environment(game_path)
     
     except Exception as e:
         print(f"\n[错误] 发生异常: {e}")

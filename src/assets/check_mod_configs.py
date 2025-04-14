@@ -26,7 +26,7 @@ def generate_default_config(mod_dir, mod_name, patch_file=None):
         "tag": ["自动导入"],
         "source": {
             "name": "自动生成",
-            "url": "https://github.com/liwenhao0427/sultans-game-mod-manager"
+            "url": "https://github.com/liwenhao0427/sultans-game-mod-git-manager"
         },
         "files": []
     }

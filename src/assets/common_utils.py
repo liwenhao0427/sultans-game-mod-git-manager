@@ -3,6 +3,9 @@ import sys
 import json
 import subprocess
 import shutil
+import urllib.request
+import tempfile
+import webbrowser
 from pathlib import Path
 from datetime import datetime
 
@@ -90,8 +93,89 @@ def get_config_dir(game_path):
     """获取游戏配置目录"""
     return os.path.join(game_path, "Sultan's Game_Data", "StreamingAssets", "config")
 
+def check_git_installed():
+    """检查Git是否已安装"""
+    try:
+        result = subprocess.run(
+            ['git', '--version'], 
+            stdout=subprocess.PIPE, 
+            stderr=subprocess.PIPE,
+            text=True,
+            encoding='utf-8'
+        )
+        return result.returncode == 0
+    except FileNotFoundError:
+        return False
+
+def download_and_install_git():
+    """下载并安装Git"""
+    print("[信息] 正在准备下载Git安装程序...")
+    git_url = "https://registry.npmmirror.com/-/binary/git-for-windows/v2.49.0.windows.1/Git-2.49.0-64-bit.exe"
+    
+    # 询问用户是否下载
+    user_choice = input("Git未安装，是否下载并安装Git？(y/n): ").strip().lower()
+    if user_choice != 'y':
+        print("[信息] 用户取消下载Git，程序无法继续")
+        return False
+    
+    # 创建临时文件
+    temp_file = os.path.join(tempfile.gettempdir(), "Git-2.49.0-64-bit.exe")
+    
+    try:
+        print(f"[下载] 正在从 {git_url} 下载Git安装程序...")
+        print("[下载] 这可能需要几分钟时间，请耐心等待...")
+        
+        # 下载文件，显示进度
+        def report_progress(block_num, block_size, total_size):
+            downloaded = block_num * block_size
+            percent = min(100, int(downloaded * 100 / total_size))
+            if percent % 10 == 0:  # 每10%显示一次进度
+                print(f"[下载] 已完成: {percent}%")
+        
+        urllib.request.urlretrieve(git_url, temp_file, reporthook=report_progress)
+        
+        print("[下载] Git安装程序下载完成")
+        
+        # 询问用户是否安装
+        install_choice = input("是否立即安装Git？(y/n): ").strip().lower()
+        if install_choice == 'y':
+            print("[安装] 正在启动Git安装程序...")
+            # 启动安装程序
+            os.startfile(temp_file)
+            print("[安装] 请完成Git安装后再继续")
+            input("安装完成后按Enter键继续...")
+            
+            # 再次检查Git是否安装成功
+            if check_git_installed():
+                print("[成功] Git已成功安装")
+                return True
+            else:
+                print("[警告] Git安装可能未完成，请手动完成安装后再运行程序")
+                return False
+        else:
+            print(f"[信息] Git安装程序已下载到: {temp_file}")
+            print("[信息] 请手动安装Git后再运行程序")
+            return False
+            
+    except Exception as e:
+        print(f"[错误] 下载或安装Git时出错: {e}")
+        print("[信息] 请手动下载并安装Git: https://registry.npmmirror.com/-/binary/git-for-windows/v2.49.0.windows.1/Git-2.49.0-64-bit.exe")
+        
+        # 询问是否在浏览器中打开下载链接
+        open_browser = input("是否在浏览器中打开下载链接？(y/n): ").strip().lower()
+        if open_browser == 'y':
+            webbrowser.open(git_url)
+            
+        return False
+
 def run_git_command(command, cwd=None, check=True):
     """运行Git命令并返回结果"""
+    # 先检查Git是否已安装
+    if not check_git_installed():
+        if not download_and_install_git():
+            print("[错误] Git未安装，无法执行Git命令")
+            return "", "Git未安装", 1
+    
     try:
         result = subprocess.run(
             command, 
@@ -109,9 +193,83 @@ def run_git_command(command, cwd=None, check=True):
         print(f"错误输出: {e.stderr}")
         return "", e.stderr, e.returncode
 
+def restore_old_version_mods(game_path, bak_dir, config_dir):
+    """还原旧版本MOD管理器的备份文件"""
+    # 统计计数器
+    restored_count = 0
+    
+    # 遍历备份目录中的所有文件
+    for root, _, files in os.walk(bak_dir):
+        for file in files:
+            if file.endswith('.bak'):
+                bak_file = os.path.join(root, file)
+                
+                # 计算原始文件路径
+                rel_path = os.path.relpath(bak_file, bak_dir)
+                rel_path = rel_path[:-4]  # 移除.bak后缀
+                
+                # 修复：检查rel_path是否包含重复路径
+                if rel_path.startswith("Sultan's Game_Data/StreamingAssets/config/") or \
+                   rel_path.startswith("Sultan's Game_Data\\StreamingAssets\\config\\"):
+                    parts = rel_path.split('config/', 1) if '/' in rel_path else rel_path.split('config\\', 1)
+                    if len(parts) > 1:
+                        rel_path = parts[1]
+                
+                target_file = os.path.join(config_dir, rel_path)
+                
+                # 检查备份文件大小
+                if os.path.getsize(bak_file) <= 1:
+                    # 这是空备份文件，表示原始文件不存在或是ADD模式的备份，删除目标文件
+                    if os.path.exists(target_file):
+                        os.remove(target_file)
+                        print(f"  - 删除文件: {target_file}")
+                        restored_count += 1
+                else:
+                    # 这是其他模式的备份，恢复文件
+                    target_dir = os.path.dirname(target_file)
+                    if not os.path.exists(target_dir):
+                        os.makedirs(target_dir)
+                    
+                    shutil.copy2(bak_file, target_file)
+                    print(f"  - 恢复文件: {target_file}")
+                    restored_count += 1
+                
+                # 删除备份文件
+                os.remove(bak_file)
+    
+    # 删除空目录
+    for root, dirs, files in os.walk(bak_dir, topdown=False):
+        for dir_name in dirs:
+            dir_path = os.path.join(root, dir_name)
+            if not os.listdir(dir_path):
+                os.rmdir(dir_path)
+    
+    # 尝试删除bak目录（如果为空）
+    try:
+        if os.path.exists(bak_dir) and not os.listdir(bak_dir):
+            os.rmdir(bak_dir)
+            print("[兼容] 已删除空的bak目录")
+    except:
+        pass
+    
+    print("=" * 38)
+    print("旧版本MOD还原完成")
+    print(f"  还原: {restored_count} 个文件")
+    print("=" * 38)
+    
+    return True
+    
 def init_git_repo(config_dir):
     """初始化Git仓库"""
     print("[Git] 正在初始化Git仓库...")
+    
+    # 检查是否存在旧版本的bak目录，如果存在则先还原
+    game_path = os.path.dirname(os.path.dirname(os.path.dirname(config_dir)))
+    bak_dir = os.path.join(game_path, "Sultan's Game_Data", "StreamingAssets", "bak")
+    
+    if os.path.exists(bak_dir) and os.listdir(bak_dir):
+        print("[兼容] 检测到旧版本MOD管理器的备份文件，正在还原...")
+        restore_old_version_mods(game_path, bak_dir, config_dir)
     
     # 检查是否已经是Git仓库
     stdout, stderr, code = run_git_command(['git', 'status'], cwd=config_dir, check=False)
@@ -438,3 +596,6 @@ def prepare_git_environment(game_path):
         return False
     
     return True
+
+if __name__ == "__main__":
+    download_and_install_git()

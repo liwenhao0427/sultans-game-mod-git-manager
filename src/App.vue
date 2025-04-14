@@ -36,9 +36,10 @@
         <ol>
           <h3>程序操作额外说明：</h3>
           <li>程序默认会从C:\Program Files (x86)\Steam\steamapps\common\Sultan's Game寻找游戏，如果找不到游戏路径，需要手动输入</li>
-          <li>程序会在当前目录下生成缓存文件game_path_config.json缓存游戏路径和游戏更新时间，下次默认使用缓存操作</li>
-          <li>每次运行程序，都会先使用备份还原游戏文件，再进行mod安装操作，游戏备份目录在config同级bak目录下</li>
-          <li>游戏更新后，点击运行mod会清除之前的备份文件</li>
+          <li>程序会在当前目录下生成缓存文件game_path_config.json缓存游戏路径，下次默认使用缓存操作</li>
+          <li>程序使用Git版本控制系统管理MOD，首次运行时会初始化Git仓库并自动检测旧版本备份文件进行还原</li>
+          <li>每次运行程序，都会先重置到游戏原始版本，再按顺序应用选中的MOD补丁</li>
+          <li>游戏更新后，程序会自动检测并更新Git仓库中的游戏文件</li>
         </ol>
       </div>
       <div class="guide-content">
@@ -56,16 +57,6 @@
               ref="workflowImage"
               :src="require('@/assets/install.png')"
               :preview-src-list="[require('@/assets/install.png')]"
-            />
-        </ol>
-      </div>
-      <div class="guide-content">
-        <ol>
-          <h3>MOD加载器工作流程：</h3>
-            <el-image
-              ref="workflowImage"
-              :src="require('@/assets/check.png')"
-              :preview-src-list="[require('@/assets/check.png')]"
             />
         </ol>
       </div>
@@ -114,6 +105,39 @@
           <el-button type="primary" @click="exportSelected">
             确认导出
           </el-button>
+        </span>
+      </template>
+    </el-dialog>
+
+    <!-- 添加Git安装提示对话框 -->
+    <el-dialog
+      v-model="gitInstallDialogVisible"
+      title="安装Git提示"
+      width="500px"
+    >
+      <div class="git-install-content">
+        <p>MOD管理器需要Git环境才能正常工作。如果您尚未安装Git，请先下载安装：</p>
+        <el-link type="primary" href="https://registry.npmmirror.com/-/binary/git-for-windows/v2.49.0.windows.1/Git-2.49.0-64-bit.exe" target="_blank">
+          下载Git安装包 (Git-2.49.0-64-bit.exe)
+        </el-link>
+        <br/>
+        <p>另外，如果已经安装了Git，也推荐下载tortoisegit来便捷的查看Mod的安装情况（非必须）：</p>
+        <el-link type="primary" href="https://download.tortoisegit.org/tgit/2.17.0.0/TortoiseGit-2.17.0.2-64bit.msi" target="_blank">
+          下载tortoisegit安装包 (TortoiseGit-2.17.0.2-64bit.msi)
+        </el-link>
+        <br/>
+        <p>如果您希望安装中文语言包，可以下载tortoisegit汉化包：</p>
+        <el-link type="primary" href="https://download.tortoisegit.org/tgit/2.17.0.0/TortoiseGit-LanguagePack-2.17.0.0-64bit-zh_CN.msi" target="_blank">
+          下载tortoisegit汉化包 (TortoiseGit-LanguagePack-2.17.0.0-64bit-zh_CN.msi)
+        </el-link>
+        <div class="git-install-checkbox">
+          <el-checkbox v-model="gitInstallOptions.dontShowAgain">我已安装，下次不再提示</el-checkbox>
+        </div>
+      </div>
+      <template #footer>
+        <span class="dialog-footer">
+          <el-button @click="closeGitInstallDialog">关闭</el-button>
+          <el-button type="primary" @click="continueExport">继续导出</el-button>
         </span>
       </template>
     </el-dialog>
@@ -333,6 +357,12 @@ export default {
         includeTextLoader: false, // 默认不包含文本加载器
         fileName: 'mods.zip'
       },
+      // 添加Git安装提示相关数据
+      gitInstallDialogVisible: false,
+      gitInstallOptions: {
+        dontShowAgain: false
+      },
+      isExportInProgress: false,
       // 模式描述映射
       modeDescriptions: {
         'REPLACE': '完全替换',
@@ -549,6 +579,60 @@ export default {
       this.exportDialogVisible = true;
     },
     
+    // 修改导出方法，先检查是否需要显示Git安装提示
+    exportSelected() {
+      this.exportDialogVisible = false;
+      this.isExportInProgress = true;
+      
+      // 检查cookie，判断是否需要显示Git安装提示
+      const gitInstalled = this.getCookie('gitInstalled');
+      if (gitInstalled !== 'true') {
+        this.gitInstallDialogVisible = true;
+      } else {
+        this.performExport();
+      }
+    },
+    
+    // 关闭Git安装提示对话框
+    closeGitInstallDialog() {
+      this.gitInstallDialogVisible = false;
+      this.isExportInProgress = false;
+    },
+    
+    // 继续导出
+    continueExport() {
+      // 如果用户选择不再提示，设置cookie
+      if (this.gitInstallOptions.dontShowAgain) {
+        this.setCookie('gitInstalled', 'true', 365); // 设置365天有效期
+      }
+      
+      this.gitInstallDialogVisible = false;
+      this.performExport();
+    },
+    
+    // 设置cookie
+    setCookie(name, value, days) {
+      let expires = '';
+      if (days) {
+        const date = new Date();
+        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+        expires = '; expires=' + date.toUTCString();
+      }
+      document.cookie = name + '=' + (value || '') + expires + '; path=/';
+    },
+    
+    // 获取cookie
+    getCookie(name) {
+      const nameEQ = name + '=';
+      const ca = document.cookie.split(';');
+      for (let i = 0; i < ca.length; i++) {
+        let c = ca[i];
+        while (c.charAt(0) === ' ') c = c.substring(1, c.length);
+        if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
+      }
+      return null;
+    },
+    
     async viewFileDetails(modName, fileSource) {
       try {
         // 获取当前MOD的source信息
@@ -748,7 +832,7 @@ export default {
       return conflicts;
     },
     // 修改导出方法，使用补丁文件而不是files
-    async exportSelected() {
+    async performExport() {
       // 检查MOD之间的文件冲突 - 由于使用补丁文件，不再需要检查文件冲突
       // 移除冲突检查代码
       
@@ -1351,4 +1435,20 @@ export default {
   font-size: 12px;
 }
 
+/* Git安装提示对话框样式 */
+.git-install-content {
+  padding: 15px;
+  background-color: #f8f8f8;
+  border-radius: 4px;
+  margin-bottom: 15px;
+}
+
+.git-install-content p {
+  margin-top: 0;
+  margin-bottom: 15px;
+}
+
+.git-install-checkbox {
+  margin-top: 20px;
+}
 </style>
