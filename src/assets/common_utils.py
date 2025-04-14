@@ -184,6 +184,42 @@ def reset_to_game_version(config_dir, game_path):
     else:
         print(f"[Git] 未找到游戏版本标签 {tag_name}，检测到游戏版本更新")
         
+        # 获取当前未提交的更改
+        stdout, stderr, code = run_git_command(
+            ['git', 'status', '--porcelain'], 
+            cwd=config_dir, 
+            check=False
+        )
+        
+        # 解析未提交的更改
+        pending_changes = {}
+        if stdout.strip():
+            for line in stdout.strip().split('\n'):
+                if line.strip():
+                    status = line[:2].strip()
+                    file_path = line[3:].strip()
+                    pending_changes[file_path] = status
+        
+        print(f"[Git] 找到 {len(pending_changes)} 个未提交的更改")
+        
+        # 创建临时目录用于存储未提交的更改
+        temp_dir = os.path.join(os.path.dirname(config_dir), "temp_mod_changes")
+        if os.path.exists(temp_dir):
+            shutil.rmtree(temp_dir)
+        os.makedirs(temp_dir)
+        
+        # 备份未提交的更改
+        for file_path, status in pending_changes.items():
+            # 只备份新增(A)、修改(M)和未跟踪(??)的文件
+            if status in ['A', 'M', '??', ' M', 'AM']:
+                src_path = os.path.join(config_dir, file_path)
+                if os.path.exists(src_path) and os.path.isfile(src_path):
+                    dst_dir = os.path.dirname(os.path.join(temp_dir, file_path))
+                    if not os.path.exists(dst_dir):
+                        os.makedirs(dst_dir)
+                    shutil.copy2(src_path, os.path.join(temp_dir, file_path))
+                    print(f"[Git] 备份未提交的文件: {file_path}")
+        
         # 获取上次游戏版本更新的提交
         stdout, stderr, code = run_git_command(
             ['git', 'log', '--grep=游戏版本更新|初始游戏版本', '--extended-regexp', '--format=%H', '-n', '1'], 
@@ -192,130 +228,60 @@ def reset_to_game_version(config_dir, game_path):
         )
         last_update_commit = stdout.strip()
         
-        # 如果找到了上次游戏版本更新的提交，删除之前添加的文件
-        mod_added_files = []
-        if last_update_commit:
-            print(f"[Git] 找到上次游戏版本更新提交: {last_update_commit[:8]}")
-            # 获取从上次更新到现在添加的文件列表
-            stdout, stderr, code = run_git_command(
-                ['git', 'diff', '--name-only', '--diff-filter=A', last_update_commit], 
-                cwd=config_dir, 
-                check=False
-            )
-            mod_added_files = stdout.strip().split('\n') if stdout.strip() else []
-            print(f"[Git] 找到 {len(mod_added_files)} 个MOD添加的文件")
+        # 获取当前分支
+        current_branch_stdout, _, _ = run_git_command(['git', 'branch', '--show-current'], cwd=config_dir, check=False)
+        current_branch = current_branch_stdout.strip()
         
-        # 创建临时目录用于存储当前游戏文件
-        temp_dir = os.path.join(os.path.dirname(config_dir), "temp_game_files")
-        if os.path.exists(temp_dir):
-            shutil.rmtree(temp_dir)
-        os.makedirs(temp_dir)
+        # 获取所有分支
+        all_branches_stdout, _, _ = run_git_command(['git', 'branch'], cwd=config_dir, check=False)
+        all_branches = [b.strip().replace('* ', '') for b in all_branches_stdout.split('\n') if b.strip()]
         
-        # 复制当前游戏配置文件到临时目录，但排除MOD添加的文件
-        for item in os.listdir(config_dir):
-            if item != '.git':  # 排除.git目录
-                src_path = os.path.join(config_dir, item)
-                rel_path = item
-                
-                # 检查是否是MOD添加的文件
-                if rel_path in mod_added_files:
-                    print(f"[Git] 排除MOD添加的文件: {rel_path}")
-                    continue
-                
-                # 如果是目录，需要递归检查
-                if os.path.isdir(src_path):
-                    for root, dirs, files in os.walk(src_path):
-                        for file in files:
-                            file_path = os.path.join(root, file)
-                            rel_file_path = os.path.relpath(file_path, config_dir).replace('\\', '/')
-                            if rel_file_path in mod_added_files:
-                                print(f"[Git] 排除MOD添加的文件: {rel_file_path}")
-                                # 不复制这个文件
-                                continue
-                    
-                    # 复制目录（不包含MOD添加的文件）
-                    dst_path = os.path.join(temp_dir, item)
-                    if not os.path.exists(dst_path):
-                        os.makedirs(dst_path)
-                    
-                    for root, dirs, files in os.walk(src_path):
-                        for dir_name in dirs:
-                            dir_path = os.path.join(root, dir_name)
-                            rel_dir_path = os.path.relpath(dir_path, src_path)
-                            dst_dir_path = os.path.join(dst_path, rel_dir_path)
-                            if not os.path.exists(dst_dir_path):
-                                os.makedirs(dst_dir_path)
-                        
-                        for file in files:
-                            file_path = os.path.join(root, file)
-                            rel_file_path = os.path.relpath(file_path, config_dir).replace('\\', '/')
-                            if rel_file_path not in mod_added_files:
-                                rel_path_in_dir = os.path.relpath(file_path, src_path)
-                                dst_file_path = os.path.join(dst_path, rel_path_in_dir)
-                                dst_dir = os.path.dirname(dst_file_path)
-                                if not os.path.exists(dst_dir):
-                                    os.makedirs(dst_dir)
-                                shutil.copy2(file_path, dst_file_path)
-                else:
-                    # 复制文件
-                    dst_path = os.path.join(temp_dir, item)
-                    shutil.copy2(src_path, dst_path)
-    
-    # 获取当前分支
-    current_branch_stdout, _, _ = run_git_command(['git', 'branch', '--show-current'], cwd=config_dir, check=False)
-    current_branch = current_branch_stdout.strip()
-    
-    # 获取所有分支
-    all_branches_stdout, _, _ = run_git_command(['git', 'branch'], cwd=config_dir, check=False)
-    all_branches = [b.strip().replace('* ', '') for b in all_branches_stdout.split('\n') if b.strip()]
-    
-    # 确定主分支
-    main_branch = None
-    for branch_name in ['master', 'main']:
-        if branch_name in all_branches:
-            main_branch = branch_name
-            break
-    
-    # 如果没有找到master或main分支，但有其他分支，使用第一个非当前分支
-    if main_branch is None and all_branches:
-        for branch in all_branches:
-            if branch != current_branch and branch != f"* {current_branch}":
-                main_branch = branch
+        # 确定主分支
+        main_branch = None
+        for branch_name in ['master', 'main']:
+            if branch_name in all_branches:
+                main_branch = branch_name
                 break
-    
-    # 如果仍然没有找到主分支，但有当前分支，使用当前分支
-    if main_branch is None and current_branch:
-        main_branch = current_branch
-        print(f"[Git] 使用当前分支作为主分支: {main_branch}")
-    
-    # 如果没有任何分支，创建一个master分支
-    if main_branch is None:
-        print("[Git] 没有找到任何分支，创建master分支")
-        stdout, stderr, code = run_git_command(['git', 'checkout', '-b', 'master'], cwd=config_dir, check=False)
-        if code != 0:
-            print(f"[错误] 无法创建master分支: {stderr}")
-            return False
-        main_branch = 'master'
-    
-    # 切换到主分支
-    if current_branch != main_branch:
-        print(f"[Git] 切换到主分支: {main_branch}")
-        # 强制切换分支，丢弃所有未提交的更改
-        stdout, stderr, code = run_git_command(['git', 'checkout', '-f', main_branch], cwd=config_dir, check=False)
-        if code != 0:
-            print(f"[错误] 无法切换到主分支 {main_branch}: {stderr}")
-            return False
-    
-    # 删除所有其他分支
-    stdout, stderr, code = run_git_command(['git', 'branch'], cwd=config_dir)
-    branches = [b.strip() for b in stdout.split('\n') if b.strip() and not b.strip().startswith('*')]
-    
-    for branch in branches:
-        if branch != main_branch:
-            run_git_command(['git', 'branch', '-D', branch], cwd=config_dir, check=False)
-    
-    # 如果游戏版本已更新，处理文件更新
-    if is_version_updated and 'temp_dir' in locals() and os.path.exists(temp_dir):
+        
+        # 如果没有找到master或main分支，但有其他分支，使用第一个非当前分支
+        if main_branch is None and all_branches:
+            for branch in all_branches:
+                if branch != current_branch and branch != f"* {current_branch}":
+                    main_branch = branch
+                    break
+        
+        # 如果仍然没有找到主分支，但有当前分支，使用当前分支
+        if main_branch is None and current_branch:
+            main_branch = current_branch
+            print(f"[Git] 使用当前分支作为主分支: {main_branch}")
+        
+        # 如果没有任何分支，创建一个master分支
+        if main_branch is None:
+            print("[Git] 没有找到任何分支，创建master分支")
+            stdout, stderr, code = run_git_command(['git', 'checkout', '-b', 'master'], cwd=config_dir, check=False)
+            if code != 0:
+                print(f"[错误] 无法创建master分支: {stderr}")
+                return False
+            main_branch = 'master'
+        
+        # 切换到主分支
+        if current_branch != main_branch:
+            print(f"[Git] 切换到主分支: {main_branch}")
+            # 强制切换分支，丢弃所有未提交的更改
+            stdout, stderr, code = run_git_command(['git', 'checkout', '-f', main_branch], cwd=config_dir, check=False)
+            if code != 0:
+                print(f"[错误] 无法切换到主分支 {main_branch}: {stderr}")
+                return False
+        
+        # 删除所有其他分支
+        stdout, stderr, code = run_git_command(['git', 'branch'], cwd=config_dir)
+        branches = [b.strip() for b in stdout.split('\n') if b.strip() and not b.strip().startswith('*')]
+        
+        for branch in branches:
+            if branch != main_branch:
+                run_git_command(['git', 'branch', '-D', branch], cwd=config_dir, check=False)
+        
+        # 处理游戏版本更新
         # 清空仓库中的所有文件（除了.git目录）
         for item in os.listdir(config_dir):
             if item != '.git':
@@ -325,17 +291,16 @@ def reset_to_game_version(config_dir, game_path):
                 else:
                     os.remove(item_path)
         
-        # 将临时目录中的文件复制回仓库
-        for item in os.listdir(temp_dir):
-            src_path = os.path.join(temp_dir, item)
-            dst_path = os.path.join(config_dir, item)
-            if os.path.isdir(src_path):
-                shutil.copytree(src_path, dst_path)
-            else:
-                shutil.copy2(src_path, dst_path)
-        
-        # 删除临时目录
-        shutil.rmtree(temp_dir)
+        # 从游戏目录复制最新的配置文件
+        game_config_dir = get_config_dir(game_path)
+        for item in os.listdir(game_config_dir):
+            if item != '.git':
+                src_path = os.path.join(game_config_dir, item)
+                dst_path = os.path.join(config_dir, item)
+                if os.path.isdir(src_path):
+                    shutil.copytree(src_path, dst_path)
+                else:
+                    shutil.copy2(src_path, dst_path)
         
         # 添加所有文件并提交（包括删除的文件）
         run_git_command(['git', 'add', '--all'], cwd=config_dir)
@@ -353,6 +318,22 @@ def reset_to_game_version(config_dir, game_path):
         if code != 0:
             print(f"[错误] 无法创建标签: {stderr}")
             return False
+        
+        # 恢复之前备份的未提交更改
+        if os.path.exists(temp_dir):
+            for root, dirs, files in os.walk(temp_dir):
+                for file in files:
+                    file_path = os.path.join(root, file)
+                    rel_path = os.path.relpath(file_path, temp_dir)
+                    dst_path = os.path.join(config_dir, rel_path)
+                    dst_dir = os.path.dirname(dst_path)
+                    if not os.path.exists(dst_dir):
+                        os.makedirs(dst_dir)
+                    shutil.copy2(file_path, dst_path)
+                    print(f"[Git] 恢复未提交的文件: {rel_path}")
+            
+            # 删除临时目录
+            shutil.rmtree(temp_dir)
     
     # 硬重置到标签
     stdout, stderr, code = run_git_command(['git', 'reset', '--hard', tag_name], cwd=config_dir)
@@ -362,7 +343,7 @@ def reset_to_game_version(config_dir, game_path):
     
     print(f"[Git] 已重置到游戏版本 {tag_name}")
     return True
-
+    
 def prepare_git_environment(game_path):
     """准备Git环境"""
     config_dir = get_config_dir(game_path)

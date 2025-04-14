@@ -1,4 +1,4 @@
-<template>
+ <template>
   <div class="mod-manager-container">   
     <div class="header">
       <h1>苏丹的游戏 MOD 管理器</h1>
@@ -51,14 +51,22 @@
       </div>
       <div class="guide-content">
         <ol>
-          <h3>MOD管理器工作流程：</h3>
-          <li>
+          <h3>MOD安装器工作流程：</h3>
             <el-image
               ref="workflowImage"
-              :src="require('@/assets/uml.png')"
-              :preview-src-list="[require('@/assets/uml.png')]"
+              :src="require('@/assets/install.png')"
+              :preview-src-list="[require('@/assets/install.png')]"
             />
-          </li>
+        </ol>
+      </div>
+      <div class="guide-content">
+        <ol>
+          <h3>MOD加载器工作流程：</h3>
+            <el-image
+              ref="workflowImage"
+              :src="require('@/assets/check.png')"
+              :preview-src-list="[require('@/assets/check.png')]"
+            />
         </ol>
       </div>
       <template #footer>
@@ -136,6 +144,8 @@
             >
               {{ scope.row.name }}
               <i v-if="scope.row.remark" class="el-icon-info remark-icon"></i>
+              <!-- 添加 updateTo 标记 -->
+              <el-tag v-if="scope.row.updateTo" type="danger" size="mini" class="update-to-tag">不支持最新游戏版本</el-tag>
             </div>
           </template>
         </el-table-column>
@@ -158,10 +168,19 @@
         </el-table-column>
         <el-table-column prop="gameVersion" label="游戏版本" width="120" sortable column-key="gameVersion" :filters="getColumnFilters('gameVersion')" :filter-method="filterHandler">
           <template v-slot="scope">
-            <el-tag type="success" size="small">{{ scope.row.gameVersion }}</el-tag>
+            <!-- 添加 updateTo 信息 -->
+            <div v-if="scope.row.updateTo" class="update-to-info">
+              <el-tooltip effect="dark" placement="top">
+                <template #content>
+                  <span>此MOD适用于游戏版本 {{ formatUpdateToDate(scope.row.updateTo) }} 及之前的版本，最新版本游戏可能无法兼容</span>
+                </template>
+                <el-tag type="danger" size="small">{{ formatUpdateToDate(scope.row.updateTo) }}</el-tag>
+              </el-tooltip>
+            </div>
+            <el-tag v-else type="success" size="small">{{ scope.row.gameVersion }}</el-tag>
           </template>
         </el-table-column>
-        
+                
         <!-- 添加来源列 -->
         <el-table-column label="来源" width="150">
           <template v-slot="scope">
@@ -924,8 +943,27 @@ export default {
         value: value
       }));
     },
-     // 修改筛选处理方法
-     filterHandler(value, row, column) {
+    formatUpdateToDate(updateTo) {
+      if (!updateTo) return '';
+      
+      // 如果是字符串，尝试格式化
+      if (typeof updateTo === 'string') {
+        // 移除所有非数字字符
+        const numericDate = updateTo.replace(/\D/g, '');
+        
+        // 确保至少有8位数字（YYYYMMDD）
+        if (numericDate.length >= 8) {
+          const year = numericDate.substring(0, 4);
+          const month = numericDate.substring(4, 6);
+          const day = numericDate.substring(6, 8);
+          return `${year}.${month}.${day}`;
+        }
+      }
+      
+      return updateTo;
+    },
+     // 修改筛选方法，添加对 updateTo 的处理
+    filterHandler(value, row, column) {
       const property = column.property || column.columnKey;
       
       // 更新筛选状态
@@ -1299,6 +1337,20 @@ export default {
   display: flex;
   align-items: center;
   gap: 4px;
+}
+
+/* 添加 updateTo 相关样式 */
+.update-to-tag {
+  margin-left: 8px;
+  font-size: 10px;
+  padding: 0 4px;
+  height: 18px;
+  line-height: 16px;
+}
+
+.update-to-info {
+  margin-top: 4px;
+  font-size: 12px;
 }
 
 </style>
