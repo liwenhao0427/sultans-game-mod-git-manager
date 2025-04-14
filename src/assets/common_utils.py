@@ -117,6 +117,55 @@ def init_git_repo(config_dir):
     stdout, stderr, code = run_git_command(['git', 'status'], cwd=config_dir, check=False)
     if code == 0:
         print("[Git] 已存在Git仓库")
+        
+        # 检查是否存在游戏版本标签
+        tag_stdout, tag_stderr, tag_code = run_git_command(
+            ['git', 'tag', '-l', 'game_version_*'], 
+            cwd=config_dir, 
+            check=False
+        )
+        
+        # 检查是否存在游戏版本更新或初始化提交
+        log_stdout, log_stderr, log_code = run_git_command(
+            ['git', 'log', '--grep=游戏版本更新|初始游戏版本', '--extended-regexp', '--format=%H', '-n', '1'], 
+            cwd=config_dir, 
+            check=False
+        )
+        
+        # 如果没有游戏版本标签或相关提交，则创建一个初始化提交
+        if not tag_stdout.strip() or not log_stdout.strip():
+            print("[Git] 已存在仓库但未找到游戏版本标签或初始化提交，将创建初始化提交...")
+            
+            # 配置用户信息（确保存在）
+            run_git_command(['git', 'config', 'user.name', 'Sultan Mod Manager'], cwd=config_dir)
+            run_git_command(['git', 'config', 'user.email', 'mod@example.com'], cwd=config_dir)
+            
+            # 创建一个空提交作为初始化
+            empty_commit_stdout, empty_commit_stderr, empty_commit_code = run_git_command(
+                ['git', 'commit', '--allow-empty', '-m', f'初始游戏版本 {datetime.now().strftime("%Y-%m-%d %H:%M:%S")}'],
+                cwd=config_dir,
+                check=False
+            )
+            
+            if empty_commit_code != 0:
+                print(f"[警告] 无法创建初始化提交: {empty_commit_stderr}")
+            else:
+                # 创建主分支标签
+                game_exe_path = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(config_dir))), "Sultan's Game.exe")
+                if os.path.exists(game_exe_path):
+                    mod_time = os.path.getmtime(game_exe_path)
+                    mod_time_str = datetime.fromtimestamp(mod_time).strftime("%Y%m%d%H%M%S")
+                    tag_name = f"game_version_{mod_time_str}"
+                    
+                    stdout, stderr, code = run_git_command(
+                        ['git', 'tag', tag_name],
+                        cwd=config_dir
+                    )
+                    if code != 0:
+                        print(f"[警告] 无法创建标签: {stderr}")
+                    else:
+                        print(f"[Git] 已在现有仓库上创建游戏版本标签: {tag_name}")
+        
         return True
     
     # 初始化仓库
@@ -360,6 +409,16 @@ def reset_to_game_version(config_dir, game_path):
         print(f"[错误] 无法重置到标签 {tag_name}: {stderr}")
         return False
     
+
+     # 清除所有未进行版本控制的文件
+    print("[Git] 清除所有未进行版本控制的文件...")
+    stdout, stderr, code = run_git_command(['git', 'clean', '-fdx'], cwd=config_dir, check=False)
+    if code != 0:
+        print(f"[警告] 清除未版本控制文件时出现问题: {stderr}")
+    else:
+        print("[Git] 已清除所有未版本控制的文件")
+
+        
     print(f"[Git] 已重置到游戏版本 {tag_name}")
     return True
 
