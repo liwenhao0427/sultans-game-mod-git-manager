@@ -15,12 +15,30 @@ from common_utils import (
 # 导入MOD配置检查工具
 from check_mod_configs import check_mod_configs
 
+# 添加彩色输出支持
+class Colors:
+    """终端颜色代码"""
+    RESET = "\033[0m"
+    RED = "\033[91m"
+    GREEN = "\033[92m"
+    YELLOW = "\033[93m"
+    BLUE = "\033[94m"
+    MAGENTA = "\033[95m"
+    CYAN = "\033[96m"
+    WHITE = "\033[97m"
+    BOLD = "\033[1m"
+    UNDERLINE = "\033[4m"
+
+def colored_print(message, color=Colors.RESET, end="\n"):
+    """打印彩色文本"""
+    print(f"{color}{message}{Colors.RESET}", end=end)
+
 def apply_patch(patch_file, config_dir, mod_name, mod_config):
     """应用补丁文件"""
-    print(f"[应用] MOD: {mod_name}")
+    colored_print(f"[应用] MOD: {mod_name}", Colors.CYAN)
     
     if not os.path.exists(patch_file):
-        print(f"[错误] 补丁文件不存在: {patch_file}")
+        colored_print(f"[错误] 补丁文件不存在: {patch_file}", Colors.RED)
         return False
     
     # 尝试修复补丁文件编码
@@ -44,7 +62,7 @@ def apply_patch(patch_file, config_dir, mod_name, mod_config):
                 with open(temp_patch_file, 'wb') as f:
                     f.write(patch_content)
                 patch_file = temp_patch_file
-                print(f"[信息] 已修复补丁文件编码")
+                colored_print(f"[信息] 已修复补丁文件编码", Colors.BLUE)
             except UnicodeDecodeError:
                 # 如果GBK也失败，尝试latin-1（这个编码可以解码任何字节序列）
                 patch_text = patch_content.decode('latin-1')
@@ -53,9 +71,9 @@ def apply_patch(patch_file, config_dir, mod_name, mod_config):
                 with open(temp_patch_file, 'wb') as f:
                     f.write(patch_content)
                 patch_file = temp_patch_file
-                print(f"[信息] 已使用通用编码修复补丁文件")
+                colored_print(f"[信息] 已使用通用编码修复补丁文件", Colors.BLUE)
     except Exception as e:
-        print(f"[警告] 修复补丁文件编码时出错: {e}")
+        colored_print(f"[警告] 修复补丁文件编码时出错: {e}", Colors.YELLOW)
     
     # 准备提交信息
     author = mod_config.get("author", "未知作者")
@@ -71,16 +89,16 @@ def apply_patch(patch_file, config_dir, mod_name, mod_config):
         commit_msg += f"\n版本: {version}"
     
     # 首先尝试使用git am命令应用补丁
-    print(f"[尝试] 使用git am应用补丁...")
+    colored_print(f"[尝试] 使用git am应用补丁...", Colors.CYAN)
     stdout, stderr, code = run_git_command(['git', 'am', '--reject', '--ignore-whitespace', '--keep-cr', patch_file], cwd=config_dir, check=False)
     if code == 0:
-        print(f"[成功] 使用git am应用补丁成功")
+        colored_print(f"[成功] 使用git am应用补丁成功", Colors.GREEN)
         # 修改最后一次提交的信息
         run_git_command(['git', 'commit', '--amend', '-m', commit_msg], cwd=config_dir, check=False)
         return True
     
     # git am失败，中止补丁应用
-    print(f"[警告] git am应用补丁失败: {mod_name}")
+    colored_print(f"[警告] git am应用补丁失败: {mod_name}", Colors.YELLOW)
     run_git_command(['git', 'am', '--abort'], cwd=config_dir, check=False)
     
     # 检查是否有.rej文件（冲突文件）
@@ -95,15 +113,15 @@ def apply_patch(patch_file, config_dir, mod_name, mod_config):
                 rel_path = os.path.relpath(original_file, config_dir)
                 conflict_files.append((rel_path, reject_path))
                 
-                print(f"[警告] 发现冲突文件: {rel_path}")
+                colored_print(f"[警告] 发现冲突文件: {rel_path}", Colors.YELLOW)
     
     if has_reject_files:
-        print(f"[错误] 补丁应用存在冲突，无法自动解决")
+        colored_print(f"[错误] 补丁应用存在冲突，无法自动解决", Colors.RED)
         
         # 分析冲突文件，查找可能导致冲突的MOD
         conflict_analysis = {}  # 用于存储分析结果
         for rel_path, reject_path in conflict_files:
-            print(f"\n[分析] 分析冲突文件: {rel_path}")
+            colored_print(f"\n[分析] 分析冲突文件: {rel_path}", Colors.MAGENTA)
             
             # 查找修改过该文件的提交
             stdout, stderr, code = run_git_command(
@@ -125,14 +143,14 @@ def apply_patch(patch_file, config_dir, mod_name, mod_config):
                                 conflict_mods.append(conflict_mod_name)
                 
                 if conflict_mods:
-                    print(f"[提示] 以下MOD可能与当前MOD({mod_name})在文件 {rel_path} 上存在冲突:")
+                    colored_print(f"[提示] 以下MOD可能与当前MOD({mod_name})在文件 {rel_path} 上存在冲突:", Colors.YELLOW)
                     for i, conflict_mod in enumerate(conflict_mods, 1):
-                        print(f"  {i}. {conflict_mod}")
-                    print("[建议] 请检查这些MOD的兼容性，或调整它们的安装顺序")
+                        colored_print(f"  {i}. {conflict_mod}", Colors.YELLOW)
+                    colored_print("[建议] 请检查这些MOD的兼容性，或调整它们的安装顺序", Colors.YELLOW)
                 else:
-                    print(f"[信息] 未找到修改过文件 {rel_path} 的MOD记录")
+                    colored_print(f"[信息] 未找到修改过文件 {rel_path} 的MOD记录", Colors.BLUE)
             else:
-                print(f"[信息] 无法获取文件 {rel_path} 的修改历史")
+                colored_print(f"[信息] 无法获取文件 {rel_path} 的修改历史", Colors.BLUE)
             
             # 保存分析结果
             conflict_analysis[rel_path] = {
@@ -162,7 +180,7 @@ def apply_patch(patch_file, config_dir, mod_name, mod_config):
                     f.write("未找到可能冲突的MOD\n")
                 f.write("\n" + "-" * 40 + "\n\n")
         
-        print(f"\n[信息] 冲突分析已保存到: {analysis_file}")
+        colored_print(f"\n[信息] 冲突分析已保存到: {analysis_file}", Colors.BLUE)
         
         # 复制冲突文件到冲突文件夹
         for rel_path, info in conflict_analysis.items():
@@ -181,14 +199,14 @@ def apply_patch(patch_file, config_dir, mod_name, mod_config):
             if os.path.exists(original_file):
                 target_orig = os.path.join(conflict_dir, rel_path)
                 shutil.copy2(original_file, target_orig)
-            
-            print(f"[信息] 已将冲突文件保存到: {os.path.join(conflict_dir, rel_path + '.rej')}")
         
         # 清理工作目录
         run_git_command(['git', 'reset', '--hard'], cwd=config_dir)
         # 确保移除所有未跟踪的文件，特别是.rej文件
         run_git_command(['git', 'clean', '-fd'], cwd=config_dir, check=False)
         return False
+
+# ... 其余代码保持不变 ...
 
 def install_mods():
     """安装MOD主函数"""
@@ -199,7 +217,7 @@ def install_mods():
         # 获取游戏路径
         game_path = get_game_path()
         if not game_path:
-            print("无法确定游戏路径，安装中止")
+            colored_print("无法确定游戏路径，安装中止", Colors.RED)
             return False
         
         # 获取配置目录
@@ -209,24 +227,24 @@ def install_mods():
         # 这里可以添加一个简单的检查，确保Git环境已经准备好
         stdout, stderr, code = run_git_command(['git', 'status'], cwd=config_dir, check=False)
         if code != 0:
-            print("Git环境未准备好，安装中止")
+            colored_print("Git环境未准备好，安装中止", Colors.RED)
             return False
         
         # 获取游戏版本日期
         game_exe_path = os.path.join(game_path, "Sultan's Game.exe")
         if not os.path.exists(game_exe_path):
-            print("[错误] 找不到游戏可执行文件")
+            colored_print("[错误] 找不到游戏可执行文件", Colors.RED)
             return False
         
         game_mod_time = os.path.getmtime(game_exe_path)
         game_version_date = datetime.fromtimestamp(game_mod_time).strftime("%Y%m%d")
-        print(f"[信息] 当前游戏版本日期: {game_version_date}")
+        colored_print(f"[信息] 当前游戏版本日期: {game_version_date}", Colors.BLUE)
         
         # 创建MOD分支
         mod_branch = "mods_applied"
         stdout, stderr, code = run_git_command(['git', 'checkout', 'master'], cwd=config_dir)
         if code != 0:
-            print(f"[错误] 无法切换到主分支: {stderr}")
+            colored_print(f"[错误] 无法切换到主分支: {stderr}", Colors.RED)
             return False
         
         # 检查是否已存在MOD分支，如果存在则删除
@@ -237,13 +255,13 @@ def install_mods():
         # 创建新的MOD分支
         stdout, stderr, code = run_git_command(['git', 'checkout', '-b', mod_branch], cwd=config_dir)
         if code != 0:
-            print(f"[错误] 无法创建MOD分支: {stderr}")
+            colored_print(f"[错误] 无法创建MOD分支: {stderr}", Colors.RED)
             return False
         
         # 获取Mods目录
         mods_dir = os.path.join(app_path, "Mods")
         if not os.path.exists(mods_dir):
-            print("[错误] Mods目录不存在")
+            colored_print("[错误] Mods目录不存在", Colors.RED)
             return False
         
         # 遍历Mods目录
@@ -262,7 +280,7 @@ def install_mods():
             # 查找modConfig.json文件
             mod_config_file = os.path.join(mod_dir, "modConfig.json")
             if not os.path.exists(mod_config_file):
-                print(f"[跳过] {mod_name} 没有modConfig.json文件")
+                colored_print(f"[跳过] {mod_name} 没有modConfig.json文件", Colors.YELLOW)
                 continue
             
             # 读取配置文件
@@ -270,14 +288,14 @@ def install_mods():
                 with open(mod_config_file, 'r', encoding='utf-8') as f:
                     mod_config = json.load(f)
             except Exception as e:
-                print(f"[错误] 无法读取配置文件 {mod_config_file}: {e}")
+                colored_print(f"[错误] 无法读取配置文件 {mod_config_file}: {e}", Colors.RED)
                 # 发生错误，执行还原操作
                 prepare_git_environment(game_path)
                 return False
             
             # 检查是否有补丁文件
             if "patchFile" not in mod_config:
-                print(f"[跳过] {mod_name} 没有补丁文件")
+                colored_print(f"[跳过] {mod_name} 没有补丁文件", Colors.YELLOW)
                 continue
             
             # 检查updateTo属性
@@ -292,7 +310,7 @@ def install_mods():
                         update_to_date = update_to_date[:8]  # 只取前8位
                         # 比较日期
                         if update_to_date < game_version_date:
-                            print(f"[跳过] {mod_name} 的补丁版本({update_to_date})低于当前游戏版本({game_version_date})")
+                            colored_print(f"[跳过] {mod_name} 的补丁版本({update_to_date})低于当前游戏版本({game_version_date})", Colors.YELLOW)
                             skipped_count += 1
                             continue
             
@@ -324,15 +342,15 @@ def install_mods():
             patch_file = os.path.join(mod_dir, mod_config["patchFile"])
             
             # 应用补丁
-            print(f"\n[应用] MOD ({i+1}/{len(mod_list)}): {mod_name}")
+            colored_print(f"\n[应用] MOD ({i+1}/{len(mod_list)}): {mod_name}", Colors.CYAN + Colors.BOLD)
             
             # 在当前MOD分支上尝试应用补丁
             if apply_patch(patch_file, config_dir, mod_name, mod_config):
                 success_count += 1
-                print(f"[成功] MOD {mod_name} 应用成功")
+                colored_print(f"[成功] MOD {mod_name} 应用成功", Colors.GREEN)
             else:
                 failed_count += 1
-                print(f"[失败] MOD {mod_name} 应用失败，尝试在新分支上安装")
+                colored_print(f"[失败] MOD {mod_name} 应用失败，尝试在新分支上安装", Colors.RED)
                 
                 # 舍弃所有未提交的更改
                 run_git_command(['git', 'reset', '--hard'], cwd=config_dir, check=False)
@@ -340,7 +358,7 @@ def install_mods():
                 # 从主分支切出新分支尝试安装失败的MOD
                 stdout, stderr, code = run_git_command(['git', 'checkout', 'master'], cwd=config_dir)
                 if code != 0:
-                    print(f"[错误] 无法切换到主分支: {stderr}")
+                    colored_print(f"[错误] 无法切换到主分支: {stderr}", Colors.RED)
                     # 尝试切回原MOD分支
                     run_git_command(['git', 'checkout', current_branch], cwd=config_dir, check=False)
                     continue
@@ -357,28 +375,28 @@ def install_mods():
                 # 创建新分支
                 stdout, stderr, code = run_git_command(['git', 'checkout', '-b', failed_branch], cwd=config_dir)
                 if code != 0:
-                    print(f"[错误] 无法创建失败MOD分支 {failed_branch}: {stderr}")
+                    colored_print(f"[错误] 无法创建失败MOD分支 {failed_branch}: {stderr}", Colors.RED)
                     # 尝试切回原MOD分支
                     run_git_command(['git', 'checkout', current_branch], cwd=config_dir, check=False)
                     continue
                 
                 # 在新分支上尝试应用补丁
-                print(f"[尝试] 在新分支 {failed_branch} 上安装MOD: {mod_name}")
+                colored_print(f"[尝试] 在新分支 {failed_branch} 上安装MOD: {mod_name}", Colors.CYAN)
                 if apply_patch(patch_file, config_dir, mod_name, mod_config):
-                    print(f"[信息] MOD {mod_name} 在独立分支上安装成功")
-                    print(f"[信息] 您可以稍后手动解决冲突并合并此分支")
+                    colored_print(f"[信息] MOD {mod_name} 在独立分支上安装成功", Colors.GREEN)
+                    colored_print(f"[信息] 您可以稍后手动解决冲突并合并此分支", Colors.BLUE)
                     failed_branches.append(failed_branch)
                 else:
-                    print(f"[信息] MOD {mod_name} 在独立分支上也安装失败")
+                    colored_print(f"[信息] MOD {mod_name} 在独立分支上也安装失败", Colors.RED)
                 
                 # 确保工作目录干净，移除所有未跟踪的文件
-                print(f"[清理] 移除所有未跟踪的文件...")
+                colored_print(f"[清理] 移除所有未跟踪的文件...", Colors.BLUE)
                 run_git_command(['git', 'clean', '-fd'], cwd=config_dir, check=False)
                 
                 # 切回原MOD分支继续安装其他MOD
                 stdout, stderr, code = run_git_command(['git', 'checkout', current_branch], cwd=config_dir)
                 if code != 0:
-                    print(f"[错误] 无法切回MOD分支 {current_branch}: {stderr}")
+                    colored_print(f"[错误] 无法切回MOD分支 {current_branch}: {stderr}", Colors.RED)
                     # 再次尝试清理并切换
                     run_git_command(['git', 'reset', '--hard'], cwd=config_dir, check=False)
                     run_git_command(['git', 'clean', '-fd'], cwd=config_dir, check=False)
@@ -386,7 +404,7 @@ def install_mods():
                     stdout, stderr, code = run_git_command(['git', 'checkout', current_branch], cwd=config_dir)
                     if code != 0:
                         # 这是一个严重错误，但我们尝试恢复
-                        print(f"[错误] 再次尝试切回失败，尝试从主分支重新创建MOD分支")
+                        colored_print(f"[错误] 再次尝试切回失败，尝试从主分支重新创建MOD分支", Colors.RED)
                         stdout, stderr, code = run_git_command(['git', 'checkout', 'master'], cwd=config_dir)
                         if code == 0:
                             # 重新创建MOD分支
@@ -402,14 +420,14 @@ def install_mods():
             # 确保我们在主MOD分支上
             stdout, stderr, code = run_git_command(['git', 'checkout', mod_branch], cwd=config_dir)
             if code != 0:
-                print(f"[错误] 无法切换到主MOD分支: {stderr}")
+                colored_print(f"[错误] 无法切换到主MOD分支: {stderr}", Colors.RED)
                 return False
             
-            print(f"\n[完成] 共处理 {total_count} 个MOD，成功 {success_count} 个，失败 {failed_count} 个，跳过 {skipped_count} 个")
+            colored_print(f"\n[完成] 共处理 {total_count} 个MOD，成功 {success_count} 个，失败 {failed_count} 个，跳过 {skipped_count} 个", Colors.GREEN + Colors.BOLD)
             
             # 显示失败MOD的分支信息
             if failed_count > 0:
-                print("\n[信息] 以下MOD在独立分支上安装，您可以稍后手动解决冲突:")
+                colored_print("\n[信息] 以下MOD在独立分支上安装，您可以稍后手动解决冲突:", Colors.YELLOW)
                 
                 # 获取当前存在的分支列表
                 stdout, stderr, code = run_git_command(['git', 'branch'], cwd=config_dir)
@@ -424,25 +442,25 @@ def install_mods():
                     if branch in existing_branches:
                         existing_failed_branches.append(branch)
                     else:
-                        print(f"[警告] 分支 {branch} 已不存在，可能在处理过程中被删除")
+                        colored_print(f"[警告] 分支 {branch} 已不存在，可能在处理过程中被删除", Colors.YELLOW)
                 
                 # 如果没有找到任何失败分支，再次尝试从所有分支中查找
                 if not existing_failed_branches:
                     existing_failed_branches = [b for b in existing_branches if b.startswith('failed_mod_')]
                     if existing_failed_branches:
-                        print("[信息] 从现有分支中找到以下失败MOD分支:")
+                        colored_print("[信息] 从现有分支中找到以下失败MOD分支:", Colors.BLUE)
                 
                 # 显示失败分支
                 if existing_failed_branches:
                     for i, branch in enumerate(existing_failed_branches, 1):
-                        print(f"  {i}. {branch}")
+                        colored_print(f"  {i}. {branch}", Colors.MAGENTA)
                     
-                    print("\n[提示] 您可以使用以下命令查看和合并这些分支:")
-                    print("  git checkout <分支名>  # 切换到分支")
-                    print("  git checkout mods_applied  # 切回MOD主分支")
-                    print("  git merge <分支名>  # 合并分支")
+                    colored_print("\n[提示] 您可以使用以下命令查看和合并这些分支:", Colors.CYAN)
+                    colored_print("  git checkout <分支名>  # 切换到分支", Colors.CYAN)
+                    colored_print("  git checkout mods_applied  # 切回MOD主分支", Colors.CYAN)
+                    colored_print("  git merge <分支名>  # 合并分支", Colors.CYAN)
 
-                    print("[检查] 验证失败MOD分支是否存在...")
+                    colored_print("[检查] 验证失败MOD分支是否存在...", Colors.BLUE)
                     stdout, stderr, code = run_git_command(['git', 'branch'], cwd=config_dir)
                     if code == 0:
                         existing_branches = stdout.strip().split('\n')
@@ -450,26 +468,25 @@ def install_mods():
                         
                         for branch in failed_branches:
                             if branch not in existing_branches:
-                                print(f"[警告] 失败MOD分支 {branch} 不存在，尝试恢复...")
-                                # 这里可以添加恢复分支的逻辑，如果需要的话
+                                colored_print(f"[警告] 失败MOD分支 {branch} 不存在，尝试恢复...", Colors.YELLOW)
                 else:
-                    print("[警告] 未找到任何失败MOD的分支，可能在处理过程中被删除")
+                    colored_print("[警告] 未找到任何失败MOD的分支，可能在处理过程中被删除", Colors.YELLOW)
             
             return True
         else:
-            print("\n[警告] 没有成功安装任何MOD")
+            colored_print("\n[警告] 没有成功安装任何MOD", Colors.YELLOW)
             prepare_git_environment(game_path)
             return False
             
     except Exception as e:
-        print(f"[错误] 安装过程中发生异常: {e}")
+        colored_print(f"[错误] 安装过程中发生异常: {e}", Colors.RED)
         # 发生任何异常，执行还原操作
         try:
             game_path = get_game_path()
             if game_path:
                 prepare_git_environment(game_path)
         except:
-            print("[错误] 还原操作失败")
+            colored_print("[错误] 还原操作失败", Colors.RED)
         return False
 
 def main():
@@ -480,32 +497,32 @@ def main():
         # 获取游戏路径
         game_path = get_game_path()
         if not game_path:
-            print("无法确定游戏路径，安装中止")
+            colored_print("无法确定游戏路径，安装中止", Colors.RED)
             input("按任意键继续...")
             return
         
         # 先检查并准备MOD配置
-        print("[准备阶段] 检查MOD配置和补丁文件...")
+        colored_print("[准备阶段] 检查MOD配置和补丁文件...", Colors.CYAN)
         check_mod_configs()
         
         # 安装MOD
-        print("\n[安装阶段] 开始处理MOD文件...\n")
+        colored_print("\n[安装阶段] 开始处理MOD文件...\n", Colors.CYAN)
         if install_mods():
-            print("\n[完成] MOD安装成功")
+            colored_print("\n[完成] MOD安装成功", Colors.GREEN + Colors.BOLD)
         else:
-            print("\n[警告] MOD安装过程中出现问题，执行还原操作")
+            colored_print("\n[警告] MOD安装过程中出现问题，执行还原操作", Colors.YELLOW)
             if game_path:
                 prepare_git_environment(game_path)
     
     except Exception as e:
-        print(f"\n[错误] 发生异常: {e}")
-        print("[警告] 执行还原操作")
+        colored_print(f"\n[错误] 发生异常: {e}", Colors.RED)
+        colored_print("[警告] 执行还原操作", Colors.YELLOW)
         try:
             game_path = get_game_path()
             if game_path:
                 prepare_git_environment(game_path)
         except:
-            print("[错误] 还原操作失败")
+            colored_print("[错误] 还原操作失败", Colors.RED)
     
     input("按任意键继续...")
 
