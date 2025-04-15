@@ -285,11 +285,10 @@
       </template>
     </el-dialog>
     
-    <!-- 修改为补丁文件详情对话框 -->
     <el-dialog
       title="补丁文件详情"
       v-model="patchDetailsVisible"
-      width="80%"
+      width="60%"
       class="patch-details-dialog"
       destroy-on-close
     >
@@ -300,20 +299,51 @@
           <a :href="currentModSource.url" target="_blank" class="source-link">{{ currentModSource.name || currentModSource.url }}</a>
         </div>
       </div>
-      <div class="patch-content-container" ref="patchContentContainer" @scroll="handlePatchContentScroll">
-        <div v-if="patchContentLoading" class="patch-loading">
-          <el-loading :visible="true" text="加载补丁内容中..."></el-loading>
-        </div>
-        <pre v-else>{{ displayedPatchContent }}</pre>
-        <div v-if="hasMorePatchContent" class="load-more-indicator">
-          <el-button type="text" @click="loadMorePatchContent">加载更多内容</el-button>
-        </div>
+      <div v-if="patchContentLoading" class="patch-loading">
+        <el-loading :visible="true" text="加载补丁内容中..."></el-loading>
+      </div>
+      <div v-else class="patch-files-list">
+        <el-table :data="patchFiles" style="width: 100%">
+          <el-table-column prop="newName" label="文件路径" min-width="200">
+            <template #default="scope">
+              <el-tag 
+                size="small" 
+                :type="scope.row.isDeleted ? 'danger' : (scope.row.isNew ? 'success' : 'info')"
+              >
+                {{ scope.row.isDeleted ? '删除' : (scope.row.isNew ? '新增' : '修改') }}
+              </el-tag>
+              {{ scope.row.newName || scope.row.oldName }}
+            </template>
+          </el-table-column>
+          <el-table-column fixed="right" label="操作" width="120">
+            <template #default="scope">
+              <el-button type="text" @click="viewPatchFileDetails(scope.row)">
+                查看差异
+              </el-button>
+            </template>
+          </el-table-column>
+        </el-table>
       </div>
       <template #footer>
         <el-button @click="patchDetailsVisible = false">关闭</el-button>
       </template>
     </el-dialog>
     
+    <!-- 添加文件差异对话框 -->
+    <el-dialog
+      :title="selectedPatchFile?.newName || selectedPatchFile?.oldName"
+      v-model="patchFileDialogVisible"
+      width="90%"
+      class="patch-file-dialog"
+      append-to-body
+      destroy-on-close
+    >
+      <div v-html="parsedPatchContent" class="diff2html-wrapper"></div>
+      <template #footer>
+        <el-button @click="patchFileDialogVisible = false">关闭</el-button>
+      </template>
+    </el-dialog>
+
     <div class="footer">
       <p>苏丹的游戏 MOD 管理器 &copy; 2025 by <a href="https://github.com/liwenhao0427/sultans-game-mod-git-manager" target="_blank">liwenhao0427</a></p>
     </div>
@@ -322,6 +352,8 @@
 
 <script>
 import JSZip from "jszip";
+import * as Diff2Html from 'diff2html';
+import 'diff2html/bundles/css/diff2html.min.css';
 import { saveAs } from "file-saver";
 // Remove the unused import
 // import { Search } from '@element-plus/icons-vue';
@@ -334,6 +366,10 @@ export default {
   },
   data() {
     return {
+      patchFiles: [], // 存储补丁中的文件列表
+      selectedPatchFile: null, // 当前选中的补丁文件
+      patchFileDialogVisible: false, // 控制文件差异对话框的显示
+      currentVersion: '1.0.0', // 当前版本号
       guideDialogVisible: false, // 控制操作指引对话框的显示
       remarkDetailsVisible: false,
       currentRemark: '',
@@ -440,6 +476,10 @@ export default {
   },
   mounted() {
     this.loadMods();
+    // 将版本检查放在 setTimeout 中异步执行
+    setTimeout(() => {
+      this.checkVersion();
+    }, 2000); // 延迟2秒执行，避免影响初始加载
     
     // Use setTimeout to ensure DOM is fully rendered
     setTimeout(() => {
@@ -453,29 +493,74 @@ export default {
     }, 500);
   },
   methods: {
-    // 新增查看补丁文件方法
+    async checkVersion() {
+      try {
+        // 从远程获取版本信息
+        const response = await fetch('https://raw.githubusercontent.com/liwenhao0427/sultans-game-mod-git-manager/main/version.json?t=' + new Date().getTime());
+        const data = await response.json();
+        
+        if (data.version !== this.currentVersion) {
+          this.$confirm('发现新版本，是否刷新页面获取最新内容？', '版本更新提示', {
+            confirmButtonText: '立即刷新',
+            cancelButtonText: '稍后刷新',
+            type: 'warning'
+          }).then(() => {
+            // 强制刷新页面，清除缓存
+            window.location.reload(true);
+          }).catch(() => {
+            this.$message({
+              type: 'info',
+              message: '您可以稍后手动刷新页面获取更新'
+            });
+          });
+        }
+      } catch (error) {
+        console.error('检查版本更新失败:', error);
+      }
+    },
     async viewPatchFile(mod) {
       this.currentModName = mod.name;
       this.currentModSource = mod.source || null;
       this.patchContentLoading = true;
       this.patchDetailsVisible = true;
-      this.fullPatchContent = '';
-      this.displayedPatchContent = '';
-      this.currentPatchContentPosition = 0;
       
       try {
-        // 加载补丁文件内容
         const patchContent = await this.getPatchFileContent(mod);
-        this.fullPatchContent = patchContent;
-        
-        // 初始加载部分内容
-        this.loadInitialPatchContent();
+        // 解析补丁内容，获取文件列表
+        const diffJson = Diff2Html.parse(patchContent);
+        this.patchFiles = diffJson.map(file => ({
+          oldName: file.oldName,
+          newName: file.newName,
+          isDeleted: file.isDeleted,
+          isNew: file.isNew,
+          blocks: file.blocks
+        }));
       } catch (error) {
         console.error('加载补丁文件失败:', error);
-        this.displayedPatchContent = '加载补丁文件失败: ' + error.message;
+        this.$message.error('加载补丁文件失败: ' + error.message);
       } finally {
         this.patchContentLoading = false;
       }
+    },
+
+    // 添加查看具体文件差异的方法
+    viewPatchFileDetails(file) {
+      this.selectedPatchFile = file;
+      this.patchFileDialogVisible = true;
+      // 生成选中文件的HTML
+      const diffHtml = Diff2Html.html([{
+        oldName: file.oldName,
+        newName: file.newName,
+        isDeleted: file.isDeleted,
+        isNew: file.isNew,
+        blocks: file.blocks
+      }], {
+        drawFileList: false,
+        matching: 'lines',
+        outputFormat: 'side-by-side',
+        renderNothingWhenEmpty: false,
+      });
+      this.parsedPatchContent = diffHtml;
     },
     
     // 加载初始补丁内容
@@ -1465,5 +1550,54 @@ export default {
 
 .git-install-checkbox {
   margin-top: 20px;
+}
+
+/* 补丁文件详情样式 */
+.patch-details-dialog .el-dialog__body {
+  padding: 0 20px;
+}
+
+.patch-content-container {
+  max-height: 70vh;
+  overflow: auto;
+}
+
+/* diff2html 自定义样式 */
+:deep(.d2h-file-header) {
+  background-color: #f8f9fa;
+  padding: 10px;
+  border-bottom: 1px solid #e1e4e8;
+}
+
+:deep(.d2h-file-list) {
+  margin-bottom: 20px;
+}
+
+:deep(.d2h-file-name) {
+  color: #24292e;
+  font-weight: bold;
+}
+
+:deep(.d2h-code-line) {
+  padding: 4px 10px;
+}
+
+:deep(.d2h-code-side-line) {
+  padding: 4px 10px;
+}
+
+
+.patch-files-list {
+  max-height: 60vh;
+  overflow-y: auto;
+}
+
+.patch-file-dialog .el-dialog__body {
+  padding: 10px 20px;
+}
+
+.diff2html-wrapper {
+  max-height: 70vh;
+  overflow: auto;
 }
 </style>
