@@ -296,33 +296,52 @@
         <h3>{{ currentModName }}</h3>
         <div v-if="currentModSource" class="mod-source-info">
           <span>来源: </span>
-          <a :href="currentModSource.url" target="_blank" class="source-link">{{ currentModSource.name || currentModSource.url }}</a>
+          <a :href="currentModSource.url" target="_blank" class="source-link">
+            {{ currentModSource.name || currentModSource.url }}
+          </a>
         </div>
       </div>
       <div v-if="patchContentLoading" class="patch-loading">
         <el-loading :visible="true" text="加载补丁内容中..."></el-loading>
       </div>
-      <div v-else class="patch-files-list">
-        <el-table :data="patchFiles" style="width: 100%">
-          <el-table-column prop="newName" label="文件路径" min-width="200">
-            <template #default="scope">
+      <div v-else class="patch-files-container">
+        <el-input
+          v-model="patchFileSearchQuery"
+          placeholder="搜索文件..."
+          prefix-icon="el-icon-search"
+          clearable
+          @clear="handlePatchFileSearchClear"
+          class="patch-search-input"
+        />
+        <el-tree
+          :data="patchFileTree"
+          :props="{ label: 'name' }"
+          :filter-node-method="filterPatchNode"
+          ref="patchFileTree"
+          node-key="path"
+          default-expand-all
+        >
+          <template #default="{ node, data }">
+            <span class="patch-tree-node">
               <el-tag 
                 size="small" 
-                :type="scope.row.isDeleted ? 'danger' : (scope.row.isNew ? 'success' : 'info')"
+                :type="data.type === 'delete' ? 'danger' : (data.type === 'add' ? 'success' : 'info')"
+                v-if="!data.isDirectory"
               >
-                {{ scope.row.isDeleted ? '删除' : (scope.row.isNew ? '新增' : '修改') }}
+                {{ data.type === 'delete' ? '删除' : (data.type === 'add' ? '新增' : '修改') }}
               </el-tag>
-              {{ scope.row.newName || scope.row.oldName }}
-            </template>
-          </el-table-column>
-          <el-table-column fixed="right" label="操作" width="120">
-            <template #default="scope">
-              <el-button type="text" @click="viewPatchFileDetails(scope.row)">
+              <span :class="{'is-directory': data.isDirectory}">{{ node.label }}</span>
+              <el-button 
+                v-if="!data.isDirectory"
+                type="text" 
+                size="small" 
+                @click="viewPatchFileDetails(data.fileData)"
+              >
                 查看差异
               </el-button>
-            </template>
-          </el-table-column>
-        </el-table>
+            </span>
+          </template>
+        </el-tree>
       </div>
       <template #footer>
         <el-button @click="patchDetailsVisible = false">关闭</el-button>
@@ -366,6 +385,8 @@ export default {
   },
   data() {
     return {
+      patchFileSearchQuery: '', // 补丁文件搜索关键字
+      patchFileTree: [], // 补丁文件树形结构
       patchFiles: [], // 存储补丁中的文件列表
       selectedPatchFile: null, // 当前选中的补丁文件
       patchFileDialogVisible: false, // 控制文件差异对话框的显示
@@ -492,6 +513,11 @@ export default {
       }
     }, 500);
   },
+  watch: {
+    patchFileSearchQuery(val) {
+      this.$refs.patchFileTree?.filter(val);
+    }
+  },
   methods: {
     async checkVersion() {
       try {
@@ -518,29 +544,92 @@ export default {
         console.error('检查版本更新失败:', error);
       }
     },
+    // 构建文件树结构
+    buildPatchFileTree(files) {
+      const tree = [];
+      const dirs = new Map();
+
+      files.forEach(file => {
+        const path = (file.newName || file.oldName);
+        const parts = path.split('/');
+        let currentLevel = tree;
+        let currentPath = '';
+
+        parts.forEach((part, index) => {
+          currentPath = currentPath ? `${currentPath}/${part}` : part;
+          
+          if (index === parts.length - 1) {
+            // 这是文件
+            currentLevel.push({
+              name: part,
+              path: currentPath,
+              isDirectory: false,
+              type: file.isDeleted ? 'delete' : (file.isNew ? 'add' : 'modify'),
+              fileData: file
+            });
+          } else {
+            // 这是目录
+            if (!dirs.has(currentPath)) {
+              const dirNode = {
+                name: part,
+                path: currentPath,
+                isDirectory: true,
+                children: []
+              };
+              currentLevel.push(dirNode);
+              dirs.set(currentPath, dirNode);
+            }
+            currentLevel = dirs.get(currentPath).children;
+          }
+        });
+      });
+
+      return this.sortPatchFileTree(tree);
+    },
+
+    // 排序文件树（目录在前，文件在后）
+    sortPatchFileTree(tree) {
+      return tree.sort((a, b) => {
+        if (a.isDirectory && !b.isDirectory) return -1;
+        if (!a.isDirectory && b.isDirectory) return 1;
+        return a.name.localeCompare(b.name);
+      }).map(node => {
+        if (node.isDirectory) {
+          node.children = this.sortPatchFileTree(node.children);
+        }
+        return node;
+      });
+    },
+
+    // 修改查看补丁文件方法
     async viewPatchFile(mod) {
       this.currentModName = mod.name;
       this.currentModSource = mod.source || null;
       this.patchContentLoading = true;
       this.patchDetailsVisible = true;
+      this.patchFileSearchQuery = '';
       
       try {
         const patchContent = await this.getPatchFileContent(mod);
-        // 解析补丁内容，获取文件列表
         const diffJson = Diff2Html.parse(patchContent);
-        this.patchFiles = diffJson.map(file => ({
-          oldName: file.oldName,
-          newName: file.newName,
-          isDeleted: file.isDeleted,
-          isNew: file.isNew,
-          blocks: file.blocks
-        }));
+        this.patchFileTree = this.buildPatchFileTree(diffJson);
       } catch (error) {
         console.error('加载补丁文件失败:', error);
         this.$message.error('加载补丁文件失败: ' + error.message);
       } finally {
         this.patchContentLoading = false;
       }
+    },
+
+    // 文件搜索过滤方法
+    filterPatchNode(value, data) {
+      if (!value) return true;
+      return data.name.toLowerCase().includes(value.toLowerCase());
+    },
+
+    // 处理搜索框清空
+    handlePatchFileSearchClear() {
+      this.patchFileSearchQuery = '';
     },
 
     // 添加查看具体文件差异的方法
@@ -1599,5 +1688,29 @@ export default {
 .diff2html-wrapper {
   max-height: 70vh;
   overflow: auto;
+}
+
+.patch-files-container {
+  max-height: 60vh;
+  overflow: auto;
+}
+
+.patch-search-input {
+  margin-bottom: 15px;
+}
+
+.patch-tree-node {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.is-directory {
+  font-weight: bold;
+  color: #606266;
+}
+
+.el-tree-node__content {
+  height: 32px;
 }
 </style>
