@@ -94,6 +94,7 @@
         <el-form-item label="导出内容">
           <el-checkbox v-model="exportOptions.includeMods" disabled>MOD文件</el-checkbox>
           <el-checkbox v-model="exportOptions.includeManager">MOD管理器(exe)</el-checkbox>
+          <el-checkbox v-model="exportOptions.includeHelper">游戏帮助程序(exe)</el-checkbox>
         </el-form-item>
         <el-form-item label="文件名">
           <el-input v-model="exportOptions.fileName" placeholder="导出文件名"></el-input>
@@ -353,6 +354,7 @@ export default {
       exportOptions: {
         includeMods: true, // 默认必须包含MOD文件
         includeManager: true, // 默认包含管理器
+        includeHelper: false, // 添加帮助程序选项
         includeScript: false, // 默认不包含脚本
         includeTextLoader: false, // 默认不包含文本加载器
         fileName: 'mods.zip'
@@ -855,6 +857,19 @@ export default {
         } catch (error) {
           console.error('主程序加载出错:', error);
           this.$message.warning('无法加载主程序文件，但Mod文件将正常导出');
+        }
+      }
+      
+      // 添加帮助程序
+      if (this.exportOptions.includeHelper) {
+        try {
+          const helperPath = require('!!file-loader?esModule=false!@/assets/苏丹的游戏帮助程序.exe');
+          const helperResponse = await fetch(helperPath);
+          const helperBlob = await helperResponse.blob();
+          zip.file('苏丹的游戏帮助程序.exe', helperBlob);
+        } catch (error) {
+          console.error('帮助程序加载出错:', error);
+          this.$message.warning('无法加载帮助程序文件，但其他文件将正常导出');
         }
       }
       

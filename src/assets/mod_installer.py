@@ -9,29 +9,13 @@ from datetime import datetime
 # 导入公共工具
 from common_utils import (
     print_header, ensure_directory, get_application_path, get_game_path,
-    get_config_dir, prepare_git_environment, run_git_command
+    get_config_dir, prepare_git_environment, run_git_command,
+    Colors, colored_print, generate_safe_branch_name
 )
 
 # 导入MOD配置检查工具
 from check_mod_configs import check_mod_configs
 
-# 添加彩色输出支持
-class Colors:
-    """终端颜色代码"""
-    RESET = "\033[0m"
-    RED = "\033[91m"
-    GREEN = "\033[92m"
-    YELLOW = "\033[93m"
-    BLUE = "\033[94m"
-    MAGENTA = "\033[95m"
-    CYAN = "\033[96m"
-    WHITE = "\033[97m"
-    BOLD = "\033[1m"
-    UNDERLINE = "\033[4m"
-
-def colored_print(message, color=Colors.RESET, end="\n"):
-    """打印彩色文本"""
-    print(f"{color}{message}{Colors.RESET}", end=end)
 
 def apply_patch(patch_file, config_dir, mod_name, mod_config):
     """应用补丁文件"""
@@ -90,12 +74,20 @@ def apply_patch(patch_file, config_dir, mod_name, mod_config):
     
     # 首先尝试使用git am命令应用补丁
     colored_print(f"[尝试] 使用git am应用补丁...", Colors.CYAN)
-    stdout, stderr, code = run_git_command(['git', 'am', '--reject', '--ignore-whitespace', '--keep-cr', patch_file], cwd=config_dir, check=False)
-    if code == 0:
-        colored_print(f"[成功] 使用git am应用补丁成功", Colors.GREEN)
-        # 修改最后一次提交的信息
-        run_git_command(['git', 'commit', '--amend', '-m', commit_msg], cwd=config_dir, check=False)
-        return True
+    
+    # 修改：添加错误处理，确保即使命令输出包含非UTF-8字符也能正常处理
+    try:
+        stdout, stderr, code = run_git_command(['git', 'am', '--reject', '--ignore-whitespace', '--keep-cr', patch_file], cwd=config_dir, check=False)
+        if code == 0:
+            colored_print(f"[成功] 使用git am应用补丁成功", Colors.GREEN)
+            # 修改最后一次提交的信息
+            run_git_command(['git', 'commit', '--amend', '-m', commit_msg], cwd=config_dir, check=False)
+            return True
+    except Exception as e:
+        colored_print(f"[警告] 执行git am命令时出错: {e}", Colors.YELLOW)
+        # 尝试中止可能处于中间状态的补丁应用
+        run_git_command(['git', 'am', '--abort'], cwd=config_dir, check=False)
+        code = 1  # 设置错误代码，表示失败
     
     # git am失败，中止补丁应用
     colored_print(f"[警告] git am应用补丁失败: {mod_name}", Colors.YELLOW)
@@ -206,8 +198,6 @@ def apply_patch(patch_file, config_dir, mod_name, mod_config):
         run_git_command(['git', 'clean', '-fd'], cwd=config_dir, check=False)
         return False
 
-# ... 其余代码保持不变 ...
-
 def install_mods():
     """安装MOD主函数"""
     try:
@@ -240,16 +230,37 @@ def install_mods():
         game_version_date = datetime.fromtimestamp(game_mod_time).strftime("%Y%m%d")
         colored_print(f"[信息] 当前游戏版本日期: {game_version_date}", Colors.BLUE)
         
-        # 创建MOD分支
-        mod_branch = "mods_applied"
+        # 切换到master分支
         stdout, stderr, code = run_git_command(['git', 'checkout', 'master'], cwd=config_dir)
         if code != 0:
             colored_print(f"[错误] 无法切换到主分支: {stderr}", Colors.RED)
             return False
         
-        # 检查是否已存在MOD分支，如果存在则删除
+        # 获取所有分支
         stdout, stderr, code = run_git_command(['git', 'branch'], cwd=config_dir)
-        if mod_branch in stdout:
+        if code != 0:
+            colored_print(f"[错误] 无法获取分支列表: {stderr}", Colors.RED)
+            return False
+        
+        all_branches = stdout.strip().split('\n')
+        existing_branches = [b.strip().replace('* ', '') for b in all_branches if b.strip()]
+        
+        # 删除所有failed_mod分支
+        colored_print("[清理] 删除所有失败MOD分支...", Colors.BLUE)
+        failed_branches_count = 0
+        for branch in existing_branches:
+            if branch.startswith('failed_mod_'):
+                run_git_command(['git', 'branch', '-D', branch], cwd=config_dir, check=False)
+                failed_branches_count += 1
+        
+        if failed_branches_count > 0:
+            colored_print(f"[信息] 已删除 {failed_branches_count} 个失败MOD分支", Colors.BLUE)
+        
+        # 创建MOD分支
+        mod_branch = "mods_applied"
+        
+        # 检查是否已存在MOD分支，如果存在则删除
+        if mod_branch in existing_branches:
             run_git_command(['git', 'branch', '-D', mod_branch], cwd=config_dir, check=False)
         
         # 创建新的MOD分支
@@ -272,6 +283,7 @@ def install_mods():
         
         # 按照优先级排序MOD
         mod_list = []
+        
         for mod_name in os.listdir(mods_dir):
             mod_dir = os.path.join(mods_dir, mod_name)
             if not os.path.isdir(mod_dir):
@@ -330,6 +342,21 @@ def install_mods():
         # 应用所有MOD补丁
         current_branch = mod_branch
         failed_branches = []  # 用于记录失败MOD的分支
+        failed_mod_sources = {}  # 用于记录失败MOD分支的来源，是否从mod分支签出
+        
+        # 重新获取所有分支（可能在前面的操作中有变化）
+        stdout, stderr, code = run_git_command(['git', 'branch'], cwd=config_dir)
+        if code == 0:
+            all_branches = stdout.strip().split('\n')
+            existing_branches = [b.strip().replace('* ', '') for b in all_branches if b.strip()]
+        
+        # 创建MOD名称到分支名称的映射
+        mod_branch_map = {}
+        for branch in existing_branches:
+            # 查找所有以mod_开头的分支
+            if branch.startswith('mod_'):
+                # 尝试从分支名中提取MOD名称
+                mod_branch_map[branch] = branch[4:]  # 移除'mod_'前缀
         
         for i, mod_info in enumerate(mod_list):
             mod_name = mod_info["name"]
@@ -343,6 +370,17 @@ def install_mods():
             
             # 应用补丁
             colored_print(f"\n[应用] MOD ({i+1}/{len(mod_list)}): {mod_name}", Colors.CYAN + Colors.BOLD)
+            
+            # 确保我们在主MOD分支上开始安装
+            stdout, stderr, code = run_git_command(['git', 'checkout', current_branch], cwd=config_dir, check=False)
+            if code != 0:
+                colored_print(f"[警告] 无法切换到主MOD分支 {current_branch}，尝试恢复...", Colors.YELLOW)
+                # 尝试切换到master分支并重新创建MOD分支
+                run_git_command(['git', 'checkout', 'master'], cwd=config_dir, check=False)
+                if mod_branch in run_git_command(['git', 'branch'], cwd=config_dir)[0]:
+                    run_git_command(['git', 'branch', '-D', mod_branch], cwd=config_dir, check=False)
+                run_git_command(['git', 'checkout', '-b', mod_branch], cwd=config_dir, check=False)
+                current_branch = mod_branch
             
             # 在当前MOD分支上尝试应用补丁
             if apply_patch(patch_file, config_dir, mod_name, mod_config):
@@ -364,13 +402,60 @@ def install_mods():
                     continue
                 
                 # 创建失败MOD的专用分支，确保分支名称有效
-                safe_mod_name = ''.join(c if c.isalnum() or c in '_-' else '_' for c in mod_name)
-                failed_branch = f"failed_mod_{safe_mod_name}_{i}"
+                safe_mod_name = generate_safe_branch_name(mod_name)
+                failed_branch = f"failed_mod_{safe_mod_name}"
                 
-                # 检查分支是否已存在，如果存在则删除
-                stdout, stderr, code = run_git_command(['git', 'branch'], cwd=config_dir)
-                if failed_branch in stdout:
-                    run_git_command(['git', 'branch', '-D', failed_branch], cwd=config_dir, check=False)
+                # 查找是否有对应的mod分支
+                mod_branch_found = None
+                for branch, branch_mod_name in mod_branch_map.items():
+                    if safe_mod_name == branch_mod_name or safe_mod_name in branch_mod_name or branch_mod_name in safe_mod_name:
+                        mod_branch_found = branch
+                        break
+                
+                # 记录失败MOD的来源
+                from_mod_branch = False
+                
+                if mod_branch_found:
+                    colored_print(f"[信息] 找到对应的MOD分支: {mod_branch_found}", Colors.BLUE)
+                    # 从mod分支签出作为新的failed_mod分支
+                    stdout, stderr, code = run_git_command(['git', 'checkout', mod_branch_found], cwd=config_dir)
+                    if code == 0:
+                        # 创建新的失败分支
+                        stdout, stderr, code = run_git_command(['git', 'checkout', '-b', failed_branch], cwd=config_dir)
+                        if code == 0:
+                            colored_print(f"[信息] 从MOD分支 {mod_branch_found} 创建失败分支 {failed_branch}", Colors.BLUE)
+                            from_mod_branch = True
+                            
+                            # 检查该分支是否已经应用了该MOD
+                            stdout, stderr, code = run_git_command(['git', 'log', '--grep', f"应用MOD: {mod_name}"], cwd=config_dir, check=False)
+                            if stdout and "应用MOD:" in stdout:
+                                colored_print(f"[信息] 分支已经应用了MOD {mod_name}，尝试从master合并代码", Colors.BLUE)
+                                
+                                # 从master合并代码
+                                stdout, stderr, code = run_git_command(['git', 'merge', 'master', '--no-commit'], cwd=config_dir, check=False)
+                                if code == 0:
+                                    colored_print(f"[信息] 成功从master合并代码到 {failed_branch}", Colors.GREEN)
+                                    failed_branches.append(failed_branch)
+                                    failed_mod_sources[failed_branch] = from_mod_branch
+                                    continue
+                                else:
+                                    colored_print(f"[警告] 从master合并代码失败: {stderr}", Colors.YELLOW)
+                                    # 中止合并
+                                    run_git_command(['git', 'merge', '--abort'], cwd=config_dir, check=False)
+                        else:
+                            colored_print(f"[错误] 无法创建失败分支 {failed_branch}: {stderr}", Colors.RED)
+                            # 切回master
+                            run_git_command(['git', 'checkout', 'master'], cwd=config_dir, check=False)
+                    else:
+                        colored_print(f"[错误] 无法切换到MOD分支 {mod_branch_found}: {stderr}", Colors.RED)
+                
+                # 如果没有找到对应的mod分支或者上述操作失败，则从master创建新分支
+                stdout, stderr, code = run_git_command(['git', 'checkout', 'master'], cwd=config_dir)
+                if code != 0:
+                    colored_print(f"[错误] 无法切换到主分支: {stderr}", Colors.RED)
+                    # 尝试切回原MOD分支
+                    run_git_command(['git', 'checkout', current_branch], cwd=config_dir, check=False)
+                    continue
                 
                 # 创建新分支
                 stdout, stderr, code = run_git_command(['git', 'checkout', '-b', failed_branch], cwd=config_dir)
@@ -386,6 +471,7 @@ def install_mods():
                     colored_print(f"[信息] MOD {mod_name} 在独立分支上安装成功", Colors.GREEN)
                     colored_print(f"[信息] 您可以稍后手动解决冲突并合并此分支", Colors.BLUE)
                     failed_branches.append(failed_branch)
+                    failed_mod_sources[failed_branch] = from_mod_branch
                 else:
                     colored_print(f"[信息] MOD {mod_name} 在独立分支上也安装失败", Colors.RED)
                 
@@ -455,6 +541,35 @@ def install_mods():
                     for i, branch in enumerate(existing_failed_branches, 1):
                         colored_print(f"  {i}. {branch}", Colors.MAGENTA)
                     
+                    # 为不是从mod分支签出的failed_mod分支创建对应的mod分支
+                    colored_print("\n[处理] 为失败MOD创建对应的mod分支...", Colors.BLUE)
+                    for branch in existing_failed_branches:
+                        # 检查是否是从mod分支签出的
+                        if branch in failed_mod_sources and not failed_mod_sources[branch]:
+                            # 提取MOD名称
+                            mod_name = branch.replace('failed_mod_', '', 1)
+                            mod_branch_name = f"mod_{mod_name}"
+                            
+                            # 检查mod分支是否已存在
+                            if mod_branch_name in existing_branches:
+                                colored_print(f"[跳过] MOD分支 {mod_branch_name} 已存在", Colors.BLUE)
+                                continue
+                            
+                            # 切换到失败分支
+                            stdout, stderr, code = run_git_command(['git', 'checkout', branch], cwd=config_dir)
+                            if code == 0:
+                                # 创建mod分支
+                                stdout, stderr, code = run_git_command(['git', 'checkout', '-b', mod_branch_name], cwd=config_dir)
+                                if code == 0:
+                                    colored_print(f"[成功] 从失败分支 {branch} 创建MOD分支 {mod_branch_name}", Colors.GREEN)
+                                else:
+                                    colored_print(f"[错误] 无法创建MOD分支 {mod_branch_name}: {stderr}", Colors.RED)
+                            else:
+                                colored_print(f"[错误] 无法切换到失败分支 {branch}: {stderr}", Colors.RED)
+                    
+                    # 切回主MOD分支
+                    run_git_command(['git', 'checkout', mod_branch], cwd=config_dir, check=False)
+                    
                     colored_print("\n[提示] 您可以使用以下命令查看和合并这些分支:", Colors.CYAN)
                     colored_print("  git checkout <分支名>  # 切换到分支", Colors.CYAN)
                     colored_print("  git checkout mods_applied  # 切回MOD主分支", Colors.CYAN)
@@ -471,6 +586,41 @@ def install_mods():
                                 colored_print(f"[警告] 失败MOD分支 {branch} 不存在，尝试恢复...", Colors.YELLOW)
                 else:
                     colored_print("[警告] 未找到任何失败MOD的分支，可能在处理过程中被删除", Colors.YELLOW)
+            
+            
+            current_date = datetime.now().strftime("%Y%m%d_%H%M%S")
+            history_branch = f"history_{current_date}"
+            
+            # 清理未提交的更改
+            run_git_command(['git', 'reset', '--hard'], cwd=config_dir, check=False)
+            
+            # 创建历史版本分支
+            colored_print(f"\n[历史版本] 正在创建历史版本分支: {history_branch}", Colors.BLUE)
+            stdout, stderr, code = run_git_command(['git', 'checkout', '-b', history_branch], cwd=config_dir)
+            if code == 0:
+                # 添加说明注释
+                commit_msg = f"历史版本 {current_date}\n\n"
+                commit_msg += f"成功安装MOD数量: {success_count}\n"
+                commit_msg += f"跳过MOD数量: {skipped_count}\n"
+                commit_msg += f"失败MOD数量: {failed_count}\n"
+                
+                # 如果有失败的MOD，添加到注释中
+                if failed_count > 0 and existing_failed_branches:
+                    commit_msg += "\n失败MOD分支:\n"
+                    for branch in existing_failed_branches:
+                        commit_msg += f"- {branch}\n"
+                
+                # 创建空提交，添加说明信息
+                stdout, stderr, code = run_git_command(['git', 'commit', '--allow-empty', '-m', commit_msg], cwd=config_dir)
+                if code == 0:
+                    colored_print(f"[成功] 已创建历史版本分支: {history_branch}", Colors.GREEN)
+                else:
+                    colored_print(f"[警告] 创建历史版本提交失败: {stderr}", Colors.YELLOW)
+                
+                # 切回MOD分支
+                run_git_command(['git', 'checkout', mod_branch], cwd=config_dir, check=False)
+            else:
+                colored_print(f"[警告] 创建历史版本分支失败: {stderr}", Colors.YELLOW)
             
             return True
         else:
@@ -493,6 +643,9 @@ def main():
     """主函数"""
     print_header("MOD安装管理工具")
     
+    # 初始化安装状态变量
+    install_success = True
+
     try:
         # 获取游戏路径
         game_path = get_game_path()
@@ -523,6 +676,22 @@ def main():
                 prepare_git_environment(game_path)
         except:
             colored_print("[错误] 还原操作失败", Colors.RED)
+        install_success = False
+    
+    # 询问用户是否要启动Git工具
+    if install_success:
+        colored_print("\n[提示] MOD安装已完成，是否要启动Git操作工具？", Colors.CYAN)
+        choice = input("请输入选择 (y/n): ").strip().lower()
+        if choice == 'y':
+            colored_print("\n[启动] 正在启动Git操作工具...", Colors.BLUE)
+            # 导入git_tools模块
+            try:
+                import git_tools
+                git_tools.main()
+            except ImportError:
+                colored_print("[错误] 无法导入Git工具模块", Colors.RED)
+            except Exception as e:
+                colored_print(f"[错误] 启动Git工具时发生错误: {e}", Colors.RED)
     
     input("按任意键继续...")
 

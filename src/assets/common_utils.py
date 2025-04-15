@@ -168,31 +168,31 @@ def download_and_install_git():
             
         return False
 
-def run_git_command(command, cwd=None, check=True):
-    """运行Git命令并返回结果"""
-    # 先检查Git是否已安装
-    if not check_git_installed():
-        if not download_and_install_git():
-            print("[错误] Git未安装，无法执行Git命令")
-            return "", "Git未安装", 1
-    
+def run_git_command(cmd, cwd=None, check=True):
+    """运行Git命令并返回输出"""
     try:
-        result = subprocess.run(
-            command, 
+        # 使用errors='replace'参数来处理无法解码的字符
+        process = subprocess.Popen(
+            cmd, 
             cwd=cwd, 
-            check=check, 
             stdout=subprocess.PIPE, 
             stderr=subprocess.PIPE,
             text=True,
-            encoding='utf-8'
+            encoding='utf-8',
+            errors='replace'  # 添加此参数，将无法解码的字符替换为替代字符
         )
-        return result.stdout.strip(), result.stderr.strip(), result.returncode
-    except subprocess.CalledProcessError as e:
-        print(f"[错误] Git命令执行失败: {e}")
-        print(f"命令: {' '.join(command)}")
-        print(f"错误输出: {e.stderr}")
-        return "", e.stderr, e.returncode
-
+        
+        stdout, stderr = process.communicate()
+        
+        if check and process.returncode != 0:
+            raise subprocess.CalledProcessError(process.returncode, cmd, output=stdout, stderr=stderr)
+        
+        return stdout, stderr, process.returncode
+    except Exception as e:
+        if check:
+            raise e
+        return "", str(e), 1  # 返回空输出和错误信息
+        
 def restore_old_version_mods(game_path, bak_dir, config_dir):
     """还原旧版本MOD管理器的备份文件"""
     # 统计计数器
@@ -513,13 +513,7 @@ def reset_to_game_version(config_dir, game_path):
             print(f"[错误] 无法切换到主分支 {main_branch}: {stderr}")
             return False
     
-    # 删除所有其他分支
-    stdout, stderr, code = run_git_command(['git', 'branch'], cwd=config_dir)
-    branches = [b.strip() for b in stdout.split('\n') if b.strip() and not b.strip().startswith('*')]
-    
-    for branch in branches:
-        if branch != main_branch:
-            run_git_command(['git', 'branch', '-D', branch], cwd=config_dir, check=False)
+    # 不再删除所有其他分支，保留所有MOD分支
     
     # 如果游戏版本已更新，处理文件更新
     if is_version_updated and 'temp_dir' in locals() and os.path.exists(temp_dir):
@@ -576,7 +570,7 @@ def reset_to_game_version(config_dir, game_path):
     else:
         print("[Git] 已清除所有未版本控制的文件")
 
-        
+
     print(f"[Git] 已重置到游戏版本 {tag_name}")
     return True
 
@@ -596,6 +590,42 @@ def prepare_git_environment(game_path):
         return False
     
     return True
+
+# 添加彩色输出支持
+class Colors:
+    """终端颜色代码"""
+    RESET = "\033[0m"
+    RED = "\033[91m"
+    GREEN = "\033[92m"
+    YELLOW = "\033[93m"
+    BLUE = "\033[94m"
+    MAGENTA = "\033[95m"
+    CYAN = "\033[96m"
+    WHITE = "\033[97m"
+    BOLD = "\033[1m"
+    UNDERLINE = "\033[4m"
+
+def colored_print(message, color=Colors.RESET, end="\n"):
+    """打印彩色文本"""
+    print(f"{color}{message}{Colors.RESET}", end=end)
+
+def generate_safe_branch_name(name):
+    """生成安全的分支名称，移除不允许的字符"""
+    # 移除不允许的字符，只保留字母、数字、下划线和连字符
+    safe_name = ''.join(c if c.isalnum() or c in '_-' else '_' for c in name)
+    
+    # 确保不以连字符或点开头
+    if safe_name.startswith('-') or safe_name.startswith('.'):
+        safe_name = 'mod' + safe_name
+    
+    # 确保不为空
+    if not safe_name:
+        safe_name = 'mod'
+    
+    # 转为小写并限制长度
+    safe_name = safe_name.lower()[:50]
+    
+    return safe_name
 
 if __name__ == "__main__":
     download_and_install_git()
