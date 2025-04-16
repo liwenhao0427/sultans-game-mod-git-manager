@@ -23,5 +23,8 @@ pnpm-debug.log*
 *.sw?
 /src/build/
 /src/assets/build
-/src
 *.pyc
+# 忽略 Mods 目录下所有内容，但保留每个子目录下的 modConfig.json
+/src/assets/Mods/**
+!/src/assets/Mods/**/
+!/src/assets/Mods/*/modConfig.json

@@ -146,7 +146,7 @@
     <el-card class="table-card">
       <el-table
         ref="table"
-        :data="paginatedData"
+        :data="filteredMods"
         style="width: 100%"
         border
         @selection-change="handleSelectionChange"
@@ -155,6 +155,8 @@
         v-loading="loading"
         row-key="name"
         stripe
+        height="calc(100vh - 250px)"
+        class="scrollable-table"
       >
         <el-table-column type="selection" width="55" />
         <el-table-column prop="name" label="MOD名称" min-width="100" sortable>
@@ -253,18 +255,6 @@
         </el-table-column>
       </el-table>
 
-      <div class="pagination-container">
-        <el-pagination
-          @size-change="handleSizeChange"
-          @current-change="handleCurrentChange"
-          :current-page="currentPage"
-          :page-sizes="[5, 10, 20, 50]"
-          :page-size="pageSize"
-          layout="total, sizes, prev, pager, next, jumper"
-          :total="filteredMods.length"
-          background
-        />
-      </div>
     </el-card>
 
     <!-- 添加MOD说明详情对话框 -->
@@ -754,7 +744,6 @@ export default {
         this.remarkDetailsVisible = true;
       }
     },
-    // 处理表格筛选变化
     handleFilterChange(filters) {
       // 更新筛选状态
       Object.keys(filters).forEach(key => {
@@ -768,8 +757,8 @@ export default {
         }
       });
       
-      // 重置到第一页
-      this.currentPage = 1;
+      // 移除重置页码的代码
+      // this.currentPage = 1;
     },
     // 显示导出对话框
     showExportDialog() {
@@ -1199,50 +1188,27 @@ export default {
       
       return tags;
     },
-    handleSizeChange(val) {
-      this.pageSize = val;
-      this.currentPage = 1;
-    },
-    handleCurrentChange(val) {
-      this.currentPage = val;
-    },
     handleSearchClear() {
       this.searchQuery = '';
     },
     resetFilters() {
-      // 先清空搜索和筛选状态
       this.searchQuery = '';
-      this.currentPage = 1;
-      this.columnFilters = {}; // 清空所有筛选状态
+      this.columnFilters = {};
+      // 移除重置页码的代码
+      // this.currentPage = 1;
       
-      // 使用nextTick确保状态更新后再操作DOM
-      this.$nextTick(() => {
-        if (this.$refs.table) {
-          try {
-            // 获取表格实例
-            const table = this.$refs.table;
-            
-            // 清除所有列的筛选
-            const columnKeys = ['author', 'gameVersion', 'tag'];
-            columnKeys.forEach(key => {
-              table.clearFilter(key);
-            });
-            
-            // 强制更新表格数据
-            this.$forceUpdate();
-            
-            // 额外延时确保UI更新
-            setTimeout(() => {
-              // 再次强制更新组件
-              this.$forceUpdate();
-              // 重新布局表格
-              table.doLayout();
-            }, 200);
-          } catch (error) {
-            console.warn('清除表格筛选时出错:', error);
-          }
+      // 重置表格筛选
+      if (this.$refs.table) {
+        // 清除所有列的筛选条件
+        const tableColumns = this.$refs.table.columns;
+        if (tableColumns) {
+          tableColumns.forEach(column => {
+            if (column.filteredValue && column.filteredValue.length > 0) {
+              column.filteredValue = [];
+            }
+          });
         }
-      });
+      }
     },
     // 获取标签类型（循环使用不同颜色）
     getTagType(index) {
@@ -1768,5 +1734,43 @@ export default {
 
 .el-tree-node__content {
   height: 32px;
+}
+
+/* 在样式部分添加以下代码 */
+.scrollable-table {
+  overflow-y: auto;
+  scrollbar-width: thin;
+}
+
+.scrollable-table::-webkit-scrollbar {
+  width: 8px;
+}
+
+.scrollable-table::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.scrollable-table::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+
+.scrollable-table::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* 确保表格卡片有足够的高度 */
+.table-card {
+  height: calc(100vh - 180px);
+  display: flex;
+  flex-direction: column;
+}
+
+/* 确保表格填充卡片空间 */
+.table-card .el-card__body {
+  flex: 1;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
 }
 </style>
