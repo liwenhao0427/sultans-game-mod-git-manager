@@ -1,0 +1,31 @@
+From 7a1344100d2a5320adca633426d846fae082348e Mon Sep 17 00:00:00 2001
+From: Sultan Mod Manager <mod@example.com>
+Date: Wed, 16 Apr 2025 20:23:44 +0800
+Subject: [PATCH] =?UTF-8?q?=E5=BA=94=E7=94=A8MOD:=20=E5=88=86=E6=A0=8F?=
+ =?UTF-8?q?=E6=8E=92=E5=BA=8F=20=E7=89=88=E6=9C=AC:=201.0.0=20=E4=BD=9C?=
+ =?UTF-8?q?=E8=80=85:=20=E6=9C=AA=E7=9F=A5=20=E6=9D=A5=E6=BA=90:=20https:/?=
+ =?UTF-8?q?/github.com/liwenhao0427/sultans-game-mod-git-manager?=
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+---
+ variable.json | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/variable.json b/variable.json
+index bd228ba..e0ecb5d 100644
+--- a/variable.json
++++ b/variable.json
+@@ -73,7 +73,7 @@
+     //  音乐切换时长
+     "music_transition_time": 4,
+     // 测试用，自动归类开关
+-    "auto_classify": false,
++    "auto_classify": true,
+     // 测试用，四个卡牌栏位自动归类整理的tag
+     "auto_classify_bag_tags":
+     [
+-- 
+2.45.1.windows.1
+
