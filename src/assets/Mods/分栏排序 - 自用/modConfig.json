@@ -1,0 +1,18 @@
+{
+  "name": "分栏排序",
+  "author": "天道雷炎",
+  "version": "1.0.0",
+  "gameVersion": "2025.04.11",
+  "updateDate": "2025.04.16",
+  "recommend": 5,
+  "tag": [
+    "自动导入"
+  ],
+  "source": {
+    "name": "B站",
+    "url": "https://www.bilibili.com/video/BV13kdtY5Ee9/"
+  },
+  "files": [],
+  "remark": "每回合开始时自动排序，第一行角色+金币；第二栏装备+读物；第三栏消耗品+苏丹卡+军队；第四栏其他卡。强烈建议开启，很方便！",
+  "patchFile": "patches\\0001-MOD.patch"
+}
