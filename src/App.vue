@@ -548,7 +548,7 @@ export default {
         const remoteData = await response.json();
         
         // Get local version - ensure it exists
-        const localVersion = JSON.parse(localVersionInfo)?.version || '0.0.0';
+        const localVersion = localVersionInfo?.version || '0.0.0';
         const remoteVersion = remoteData?.version || '0.0.0';
         
         // Compare versions
@@ -1056,7 +1056,7 @@ export default {
           // 尝试从备用源下载
           try {
             this.$message.warning('正在从备用源下载主程序文件...');
-            const backupUrl = "https://gitee.com/notnow/sultans-game-mod-git-manager/raw/main/src/assets/%E8%8B%8F%E4%B8%B9%E7%9A%84%E6%B8%B8%E6%88%8Fmod%E7%AE%A1%E7%90%86%E5%99%A8.exe";
+            const backupUrl = "https://github.com/liwenhao0427/sultans-game-mod-git-manager/raw/refs/heads/main/src/assets/%E8%8B%8F%E4%B8%B9%E7%9A%84%E6%B8%B8%E6%88%8Fmod%E7%AE%A1%E7%90%86%E5%99%A8.exe";
             const backupResponse = await fetch(backupUrl);
             
             if (backupResponse.ok) {
@@ -1085,7 +1085,7 @@ export default {
           // 尝试从备用源下载
           try {
             this.$message.warning('正在从备用源下载主程序文件...');
-            const backupUrl = "https://gitee.com/notnow/sultans-game-mod-git-manager/raw/main/src/assets/%E8%8B%8F%E4%B8%B9%E7%9A%84%E6%B8%B8%E6%88%8F%E5%B8%AE%E5%8A%A9%E7%A8%8B%E5%BA%8F.exe";
+            const backupUrl = "https://github.com/liwenhao0427/sultans-game-mod-git-manager/raw/refs/heads/main/src/assets/%E8%8B%8F%E4%B8%B9%E7%9A%84%E6%B8%B8%E6%88%8F%E5%B8%AE%E5%8A%A9%E7%A8%8B%E5%BA%8F.exe";
             const backupResponse = await fetch(backupUrl);
             
             if (backupResponse.ok) {
