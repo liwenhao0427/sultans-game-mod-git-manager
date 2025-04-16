@@ -232,6 +232,22 @@ def create_backup_branch(config_dir):
     
     return backup_branch
 
+def run_game(game_path):
+    """运行游戏"""
+    game_exe = os.path.join(game_path, "Sultan's Game.exe")
+    if os.path.exists(game_exe):
+        colored_print(f"[启动] 正在启动游戏: {game_exe}", Colors.BLUE)
+        try:
+            # 使用subprocess启动游戏，不等待游戏结束
+            subprocess.Popen(game_exe, cwd=game_path)
+            return True
+        except Exception as e:
+            colored_print(f"[错误] 启动游戏失败: {e}", Colors.RED)
+            return False
+    else:
+        colored_print(f"[错误] 游戏可执行文件不存在: {game_exe}", Colors.RED)
+        return False
+
 def main():
     """主函数"""
     print_header("Git操作快捷工具")
@@ -262,7 +278,7 @@ def main():
         print("1. 切换到纯净的游戏分支 (master)")
         print("2. 切换到MOD安装分支 (mods_applied)")
         print("3. 查看并切换到历史版本")
-        print("4. 查看并尝试合并失败的MOD")
+        print("4. 启动游戏")  
         print("5. 创建当前状态的备份分支")
         print("6. 打开游戏目录")
         print("7. 打开游戏配置目录")
@@ -270,6 +286,7 @@ def main():
         print("9. 打开游戏存档目录")
         print("10. 查看当前分支状态")
         print("11. 重置游戏到纯净状态")
+        print("12. 查看并尝试合并失败的MOD")
         print("0. 退出")
         print("=" * 50)
         
@@ -307,7 +324,7 @@ def main():
             except ValueError:
                 colored_print("[错误] 请输入有效的数字", Colors.RED)
         
-        elif choice == '4':
+        elif choice == '12':
             # 查看并尝试合并失败的MOD
             failed_branches = list_failed_mod_branches(config_dir)
             if not failed_branches:
@@ -388,6 +405,10 @@ def main():
                     colored_print("[成功] 已重置游戏到纯净状态", Colors.GREEN)
                 else:
                     colored_print("[错误] 重置游戏失败", Colors.RED)
+        
+        elif choice == '4':
+            # 启动游戏
+            run_game(game_path)
         
         elif choice == '0':
             # 退出

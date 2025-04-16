@@ -692,8 +692,6 @@ def main():
                 colored_print("[错误] 无法导入Git工具模块", Colors.RED)
             except Exception as e:
                 colored_print(f"[错误] 启动Git工具时发生错误: {e}", Colors.RED)
-    
-    input("按任意键继续...")
 
 if __name__ == "__main__":
     main()

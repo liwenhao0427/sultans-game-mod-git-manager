@@ -370,6 +370,9 @@
 </template>
 
 <script>
+
+// 导入本地版本信息
+import localVersionInfo from '@/assets/version.json';
 import JSZip from "jszip";
 import * as Diff2Html from 'diff2html';
 import 'diff2html/bundles/css/diff2html.min.css';
@@ -519,29 +522,49 @@ export default {
     }
   },
   methods: {
+    // 版本号比较函数
+    compareVersions (v1, v2) {
+      // Handle undefined or null values
+      if (!v1) return -1; // If v1 is undefined/null, consider it older
+      if (!v2) return 1;  // If v2 is undefined/null, consider it older
+      
+      const parts1 = v1.split('.').map(Number);
+      const parts2 = v2.split('.').map(Number);
+      
+      for (let i = 0; i < Math.max(parts1.length, parts2.length); i++) {
+        const part1 = parts1[i] || 0;
+        const part2 = parts2[i] || 0;
+        
+        if (part1 > part2) return 1;
+        if (part1 < part2) return -1;
+      }
+      
+      return 0; // Versions are the same
+    }, 
     async checkVersion() {
       try {
-        // 从远程获取版本信息
-        const response = await fetch('https://raw.githubusercontent.com/liwenhao0427/sultans-game-mod-git-manager/main/version.json?t=' + new Date().getTime());
-        const data = await response.json();
+        // Get remote version info
+        const response = await fetch('https://gitee.com/notnow/sultans-game-mod-git-manager/raw/main/src/assets/version.json?t=' + new Date().getTime());
+        const remoteData = await response.json();
         
-        if (data.version !== this.currentVersion) {
-          this.$confirm('发现新版本，是否刷新页面获取最新内容？', '版本更新提示', {
-            confirmButtonText: '立即刷新',
-            cancelButtonText: '稍后刷新',
-            type: 'warning'
-          }).then(() => {
-            // 强制刷新页面，清除缓存
+        // Get local version - ensure it exists
+        const localVersion = JSON.parse(localVersionInfo)?.version || '0.0.0';
+        const remoteVersion = remoteData?.version || '0.0.0';
+        
+        // Compare versions
+        const isNewer = this.compareVersions(remoteVersion, localVersion) > 0;
+        
+        if (isNewer) {
+          if (window.confirm(`发现新版本 ${remoteVersion}, 当前版本 ${localVersion}. 是否刷新页面更新到最新版本?`)) {
             window.location.reload(true);
-          }).catch(() => {
-            this.$message({
-              type: 'info',
-              message: '您可以稍后手动刷新页面获取更新'
-            });
-          });
+          } else {
+            console.log('User chose to update later');
+          }
+        } else {
+          console.log('Already on the latest version');
         }
       } catch (error) {
-        console.error('检查版本更新失败:', error);
+        console.error('Failed to check for updates:', error);
       }
     },
     // 构建文件树结构
@@ -1030,7 +1053,23 @@ export default {
           zip.file('苏丹的游戏mod管理器.exe', mainAppBlob);
         } catch (error) {
           console.error('主程序加载出错:', error);
-          this.$message.warning('无法加载主程序文件，但Mod文件将正常导出');
+          // 尝试从备用源下载
+          try {
+            this.$message.warning('正在从备用源下载主程序文件...');
+            const backupUrl = "https://gitee.com/notnow/sultans-game-mod-git-manager/raw/main/src/assets/%E8%8B%8F%E4%B8%B9%E7%9A%84%E6%B8%B8%E6%88%8Fmod%E7%AE%A1%E7%90%86%E5%99%A8.exe";
+            const backupResponse = await fetch(backupUrl);
+            
+            if (backupResponse.ok) {
+              const backupBlob = await backupResponse.blob();
+              zip.file('苏丹的游戏mod管理器.exe', backupBlob);
+              this.$message.success('已从备用源下载主程序文件');
+            } else {
+              throw new Error(`备用源响应错误: ${backupResponse.status}`);
+            }
+          } catch (backupError) {
+            console.error('备用源下载失败:', backupError);
+            this.$message.error('无法加载主程序文件，但Mod文件将正常导出');
+          }
         }
       }
       
@@ -1043,22 +1082,39 @@ export default {
           zip.file('苏丹的游戏帮助程序.exe', helperBlob);
         } catch (error) {
           console.error('帮助程序加载出错:', error);
+          // 尝试从备用源下载
+          try {
+            this.$message.warning('正在从备用源下载主程序文件...');
+            const backupUrl = "https://gitee.com/notnow/sultans-game-mod-git-manager/raw/main/src/assets/%E8%8B%8F%E4%B8%B9%E7%9A%84%E6%B8%B8%E6%88%8F%E5%B8%AE%E5%8A%A9%E7%A8%8B%E5%BA%8F.exe";
+            const backupResponse = await fetch(backupUrl);
+            
+            if (backupResponse.ok) {
+              const backupBlob = await backupResponse.blob();
+              zip.file('苏丹的游戏mod管理器.exe', backupBlob);
+              this.$message.success('已从备用源下载主程序文件');
+            } else {
+              throw new Error(`备用源响应错误: ${backupResponse.status}`);
+            }
+          } catch (backupError) {
+            console.error('备用源下载失败:', backupError);
+            this.$message.error('无法加载主程序文件，但Mod文件将正常导出');
+          }
           this.$message.warning('无法加载帮助程序文件，但其他文件将正常导出');
         }
       }
       
-      // 根据选项添加文本加载器
-      if (this.exportOptions.includeTextLoader) {
-        try {
-          const textLoaderPath = require('!!file-loader?esModule=false!@/assets/加载本地Mods配置.exe');
-          const textLoaderResponse = await fetch(textLoaderPath);
-          const textLoaderBlob = await textLoaderResponse.blob();
-          zip.file('加载本地Mods配置.exe', textLoaderBlob);
-        } catch (error) {
-          console.error('文本加载器加载出错:', error);
-          this.$message.warning('无法加载本地加载器文件，但其他文件将正常导出');
-        }
-      }
+      // // 根据选项添加文本加载器
+      // if (this.exportOptions.includeTextLoader) {
+      //   try {
+      //     const textLoaderPath = require('!!file-loader?esModule=false!@/assets/加载本地Mods配置.exe');
+      //     const textLoaderResponse = await fetch(textLoaderPath);
+      //     const textLoaderBlob = await textLoaderResponse.blob();
+      //     zip.file('加载本地Mods配置.exe', textLoaderBlob);
+      //   } catch (error) {
+      //     console.error('文本加载器加载出错:', error);
+      //     this.$message.warning('无法加载本地加载器文件，但其他文件将正常导出');
+      //   }
+      // }
       
       // 根据选项添加安装脚本
       if (this.exportOptions.includeScript) {
@@ -1100,7 +1156,7 @@ export default {
             // 添加到zip
             patchesFolder.file(patchFileName, patchContent);
             
-            this.$message.success(`已添加补丁文件: ${mod.name}/${patchFileName}`);
+            // this.$message.success(`已添加补丁文件: ${mod.name}/${patchFileName}`);
           } catch (error) {
             console.error(`无法加载补丁文件: ${mod.name}/${mod.patchFile}`, error);
             this.$message.error(`无法加载补丁文件: ${mod.patchFile}`);
