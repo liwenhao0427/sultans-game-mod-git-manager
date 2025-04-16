@@ -544,7 +544,7 @@ export default {
     async checkVersion() {
       try {
         // Get remote version info
-        const response = await fetch('https://gitee.com/notnow/sultans-game-mod-git-manager/raw/main/src/assets/version.json?t=' + new Date().getTime());
+        const response = await fetch('https://raw.githubusercontent.com/liwenhao0427/sultans-game-mod-git-manager/refs/heads/main/src/assets/version.json?t=' + new Date().getTime());
         const remoteData = await response.json();
         
         // Get local version - ensure it exists
