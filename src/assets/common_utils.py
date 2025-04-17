@@ -6,6 +6,8 @@ import shutil
 import urllib.request
 import tempfile
 import webbrowser
+import tkinter as tk
+from tkinter import messagebox
 from pathlib import Path
 from datetime import datetime
 
@@ -133,14 +135,30 @@ def check_git_installed():
     except FileNotFoundError:
         return False
 
+def show_confirm_dialog(title, message):
+    """显示确认对话框，返回用户选择（True表示确认，False表示取消）"""
+    # 创建一个隐藏的根窗口
+    root = tk.Tk()
+    root.withdraw()  # 隐藏主窗口
+    
+    # 将窗口放在屏幕前面
+    root.attributes('-topmost', True)
+    
+    # 显示确认对话框
+    result = messagebox.askyesno(title, message)
+    
+    # 销毁根窗口
+    root.destroy()
+    
+    return result
+
 def download_and_install_git():
     """下载并安装Git"""
     print("[信息] 正在准备下载Git安装程序...")
     git_url = "https://registry.npmmirror.com/-/binary/git-for-windows/v2.49.0.windows.1/Git-2.49.0-64-bit.exe"
     
-    # 询问用户是否下载
-    user_choice = input("Git未安装，是否下载并安装Git？(y/n): ").strip().lower()
-    if user_choice != 'y':
+    # 使用弹窗询问用户是否下载
+    if not show_confirm_dialog("下载Git", "Git未安装，是否下载并安装Git？"):
         print("[信息] 用户取消下载Git，程序无法继续")
         sys.exit(0)  # 正常退出程序
         return False
@@ -163,9 +181,8 @@ def download_and_install_git():
         
         print("[下载] Git安装程序下载完成")
         
-        # 询问用户是否安装
-        install_choice = input("是否立即安装Git？(y/n): ").strip().lower()
-        if install_choice == 'y':
+        # 使用弹窗询问用户是否安装
+        if show_confirm_dialog("安装Git", "是否立即安装Git？"):
             print("[安装] 正在启动Git安装程序...")
             # 启动安装程序
             os.startfile(temp_file)
@@ -188,9 +205,8 @@ def download_and_install_git():
         print(f"[错误] 下载或安装Git时出错: {e}")
         print("[信息] 请手动下载并安装Git: https://registry.npmmirror.com/-/binary/git-for-windows/v2.49.0.windows.1/Git-2.49.0-64-bit.exe")
         
-        # 询问是否在浏览器中打开下载链接
-        open_browser = input("是否在浏览器中打开下载链接？(y/n): ").strip().lower()
-        if open_browser == 'y':
+        # 使用弹窗询问是否在浏览器中打开下载链接
+        if show_confirm_dialog("打开浏览器", "是否在浏览器中打开下载链接？"):
             webbrowser.open(git_url)
             
         return False
@@ -303,11 +319,10 @@ def init_git_repo(config_dir):
         print("[重要提示] 初始化仓库需要一个干净的游戏环境，请确保：")
         print("  1. 游戏没有安装任何MOD")
         print("  2. 游戏处于原始状态，没有任何自定义修改")
-        print("  3. 如果之前使用过其他MOD管理器，请先卸载所有MOD")
         print("=" * 60)
         
-        confirm = input("\n请确认游戏环境干净，没有安装其他MOD，请输入y确认 (y/n): ").strip().lower()
-        if confirm != 'y':
+        # 使用弹窗询问用户确认游戏环境干净
+        if not show_confirm_dialog("确认游戏环境", "请确认游戏环境干净，没有安装其他MOD"):
             print("[信息] 用户取消初始化，请在确保游戏环境干净后再试")
             return False
         

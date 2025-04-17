@@ -9,7 +9,7 @@ from pathlib import Path
 from common_utils import (
     get_application_path, get_game_path, get_config_dir, 
     run_git_command, prepare_git_environment, 
-    Colors, colored_print, print_header
+    Colors, colored_print, print_header, show_confirm_dialog
 )
 
 def open_directory(path):
@@ -195,8 +195,7 @@ def try_merge_failed_mod(config_dir, failed_branch):
         colored_print("  git commit -m \"解决冲突并合并分支\"", Colors.CYAN)
         
         # 询问是否中止合并
-        choice = input("是否中止合并操作？(y/n): ")
-        if choice.lower() == 'y':
+        if show_confirm_dialog("中止合并", "是否中止合并操作？"):
             run_git_command(['git', 'merge', '--abort'], cwd=config_dir, check=False)
             colored_print("[信息] 已中止合并操作", Colors.BLUE)
             return False
@@ -259,8 +258,7 @@ def restore_from_gitee_repo(config_dir, game_path):
     colored_print("[提示] 其原理是使用作者的开源仓库配置替代本地配置，因此可能不是最新", Colors.CYAN)
     colored_print("[提示] 如果遇到问题，请使用 14.从备份还原游戏配置选项", Colors.CYAN)
     
-    confirm = input("\n确定要继续吗？(y/n): ")
-    if confirm.lower() != 'y':
+    if not show_confirm_dialog("确认操作", "确定要继续吗？"):
         colored_print("[信息] 操作已取消", Colors.BLUE)
         return False
     
@@ -435,8 +433,8 @@ def restore_from_backup_config(config_dir, game_path):
     # 确认还原
     colored_print(f"[警告] 您将使用 {selected_dir['path']} 替换当前配置", Colors.YELLOW)
     colored_print("[警告] 当前的所有配置将被备份，但可能会丢失最近的更改", Colors.YELLOW)
-    confirm = input("\n确定要继续吗？(y/n): ")
-    if confirm.lower() != 'y':
+    
+    if not show_confirm_dialog("确认还原", "确定要继续吗？"):
         colored_print("[信息] 操作已取消", Colors.BLUE)
         return False
     
@@ -462,8 +460,7 @@ def restore_from_backup_config(config_dir, game_path):
         colored_print(f"[信息] 当前配置已备份到: {backup_dir}", Colors.BLUE)
         
         # 询问是否删除临时目录
-        delete_choice = input("\n是否删除临时目录以节省空间？(y/n): ")
-        if delete_choice.lower() == 'y':
+        if show_confirm_dialog("删除临时目录", "是否删除临时目录以节省空间？"):
             try:
                 shutil.rmtree(old_config_dir)
                 colored_print(f"[清理] 已删除临时目录: {old_config_dir}", Colors.BLUE)
@@ -642,8 +639,7 @@ def main():
         elif choice == '11':
             # 重置游戏到纯净状态
             colored_print("[警告] 此操作将重置游戏到纯净状态，所有MOD更改将丢失", Colors.YELLOW)
-            confirm = input("确定要继续吗？(y/n): ")
-            if confirm.lower() == 'y':
+            if show_confirm_dialog("重置游戏", "确定要继续吗？"):
                 if prepare_git_environment(game_path):
                     colored_print("[成功] 已重置游戏到纯净状态", Colors.GREEN)
                 else:
