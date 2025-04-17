@@ -560,9 +560,10 @@ export default {
         
         if (isNewer) {
           if (window.confirm(`发现新版本 ${remoteVersion}, 当前版本 ${localVersion}. 是否刷新页面更新到最新版本?`)) {
-            // 添加时间戳作为缓存破坏参数
-            const newUrl = "https://liwenhao0427.github.io/sultans-game-mod-git-manager/?t=" + new Date().getTime();
-            window.location.href = newUrl;
+            // // 添加时间戳作为缓存破坏参数
+            // const newUrl = "https://liwenhao0427.github.io/sultans-game-mod-git-manager/?t=" + new Date().getTime();
+            // window.location.href = newUrl;
+            window.location.reload(true);
           } else {
             console.log('User chose to update later');
           }
