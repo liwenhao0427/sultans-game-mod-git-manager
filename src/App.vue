@@ -95,6 +95,7 @@
           <el-checkbox v-model="exportOptions.includeMods" disabled>MOD文件</el-checkbox>
           <el-checkbox v-model="exportOptions.includeManager">MOD管理器(exe)</el-checkbox>
           <el-checkbox v-model="exportOptions.includeHelper">游戏帮助程序(exe)</el-checkbox>
+          <el-checkbox v-model="exportOptions.includeScript">包含安装脚本(python)</el-checkbox>
         </el-form-item>
         <el-form-item label="文件名">
           <el-input v-model="exportOptions.fileName" placeholder="导出文件名"></el-input>
@@ -1106,13 +1107,31 @@ export default {
       // }
       
       // 根据选项添加安装脚本
-      if (this.exportOptions.includeScript) {
-        try {
-          const scriptPath = require('!!raw-loader?esModule=false!@/assets/mod_installer.py');
-          zip.file('mod_installer.py', scriptPath);
-        } catch (error) {
-          console.error('安装脚本加载出错:', error);
-          this.$message.warning('无法加载安装脚本，但其他文件将正常导出');
+      if (this.exportOptions.includeScript) {        
+        // 添加Python脚本依赖文件
+        if (this.exportOptions.includePythonScripts) {
+          try {
+            // mod_installer.py
+            const scriptPath = require('!!raw-loader?esModule=false!@/assets/mod_installer.py');
+            zip.file('mod_installer.py', scriptPath);
+
+            // 加载common_utils.py
+            const commonUtilsPath = require('!!raw-loader?esModule=false!@/assets/common_utils.py');
+            zip.file('common_utils.py', commonUtilsPath);
+            
+            // 加载check_mod_configs.py
+            const checkModConfigsPath = require('!!raw-loader?esModule=false!@/assets/check_mod_configs.py');
+            zip.file('check_mod_configs.py', checkModConfigsPath);
+            
+            // 加载git_tools.py
+            const gitToolsPath = require('!!raw-loader?esModule=false!@/assets/git_tools.py');
+            zip.file('git_tools.py', gitToolsPath);
+            
+            this.$message.success('已添加Python脚本依赖文件');
+          } catch (error) {
+            console.error('Python脚本依赖文件加载出错:', error);
+            this.$message.warning('无法加载Python脚本依赖文件，但其他文件将正常导出');
+          }
         }
       }
   

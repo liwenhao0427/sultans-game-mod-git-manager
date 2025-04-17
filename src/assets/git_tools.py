@@ -248,6 +248,247 @@ def run_game(game_path):
         colored_print(f"[错误] 游戏可执行文件不存在: {game_exe}", Colors.RED)
         return False
 
+def restore_from_gitee_repo(config_dir, game_path):
+    """从Gitee仓库恢复游戏配置"""
+    import shutil
+    from datetime import datetime
+    
+    colored_print("[警告] 此操作将使用Gitee仓库中的配置文件替换您当前的游戏配置", Colors.YELLOW)
+    colored_print("[警告] 您当前的所有MOD和自定义配置将被备份，但不会应用到新配置", Colors.YELLOW)
+    colored_print("[提示] 该选项可用于修复之前初始化有问题的配置，类似Steam验证游戏完整性", Colors.CYAN)
+    colored_print("[提示] 其原理是使用作者的开源仓库配置替代本地配置，因此可能不是最新", Colors.CYAN)
+    colored_print("[提示] 如果遇到问题，请使用 14.从备份还原游戏配置选项", Colors.CYAN)
+    
+    confirm = input("\n确定要继续吗？(y/n): ")
+    if confirm.lower() != 'y':
+        colored_print("[信息] 操作已取消", Colors.BLUE)
+        return False
+    
+    # 在配置目录的父目录中创建工作目录，而不是使用系统临时目录
+    backup_time = datetime.now().strftime("%Y%m%d_%H%M%S")
+    parent_dir = os.path.dirname(config_dir)
+    work_dir = os.path.join(parent_dir, f"gitee_work_{backup_time}")
+    
+    colored_print(f"[信息] 创建工作目录: {work_dir}", Colors.BLUE)
+    os.makedirs(work_dir, exist_ok=True)
+    
+    try:
+        # 备份当前配置
+        backup_dir = os.path.join(parent_dir, f"config_backup_{backup_time}")
+        
+        colored_print(f"[备份] 正在备份当前配置到: {backup_dir}", Colors.BLUE)
+        shutil.copytree(config_dir, backup_dir)
+        colored_print("[备份] 备份完成", Colors.GREEN)
+        
+        # 克隆Gitee仓库
+        colored_print("[下载] 正在从Gitee克隆仓库...", Colors.BLUE)
+        gitee_url = "https://gitee.com/notnow/sultans-game-config.git"
+        
+        result = subprocess.run(
+            ['git', 'clone', gitee_url, work_dir],
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            text=True,
+            encoding='utf-8',
+            errors='replace'
+        )
+        
+        if result.returncode != 0:
+            colored_print(f"[错误] 克隆仓库失败: {result.stderr}", Colors.RED)
+            return False
+        
+        colored_print("[下载] 仓库克隆成功", Colors.GREEN)
+        
+        # 重命名当前配置目录
+        old_config_dir = os.path.join(parent_dir, f"config_old_{backup_time}")
+        colored_print(f"[信息] 重命名当前配置目录: {config_dir} -> {old_config_dir}", Colors.BLUE)
+        os.rename(config_dir, old_config_dir)
+        
+        # 复制仓库内容到配置目录
+        repo_config_dir = os.path.join(work_dir, "config")
+        if not os.path.exists(repo_config_dir):
+            repo_config_dir = work_dir  # 如果仓库根目录就是配置目录
+        
+        colored_print(f"[信息] 复制仓库配置到游戏目录: {repo_config_dir} -> {config_dir}", Colors.BLUE)
+        shutil.copytree(repo_config_dir, config_dir)
+        
+        colored_print("[成功] 游戏配置已替换为Gitee仓库中的配置", Colors.GREEN)
+        colored_print(f"[信息] 原配置已备份到: {backup_dir}", Colors.BLUE)
+        colored_print(f"[信息] 原配置目录已重命名为: {old_config_dir}", Colors.BLUE)
+        
+        # 初始化新的Git仓库
+        colored_print("[Git] 正在初始化新的Git仓库...", Colors.BLUE)
+        from common_utils import init_git_repo
+        if init_git_repo(config_dir):
+            colored_print("[Git] 新的Git仓库初始化成功", Colors.GREEN)
+            return True
+        else:
+            colored_print("[警告] 新的Git仓库初始化失败，但配置文件已替换", Colors.YELLOW)
+            return False
+            
+    except Exception as e:
+        colored_print(f"[错误] 恢复过程中出错: {e}", Colors.RED)
+        return False
+    finally:
+        # 清理工作目录
+        try:
+            # 先尝试删除.git目录，这通常是导致权限问题的原因
+            git_dir = os.path.join(work_dir, ".git")
+            if os.path.exists(git_dir):
+                for root, dirs, files in os.walk(git_dir, topdown=False):
+                    for name in files:
+                        try:
+                            os.chmod(os.path.join(root, name), 0o777)  # 修改文件权限
+                            os.remove(os.path.join(root, name))
+                        except:
+                            pass
+                    for name in dirs:
+                        try:
+                            os.chmod(os.path.join(root, name), 0o777)  # 修改目录权限
+                            os.rmdir(os.path.join(root, name))
+                        except:
+                            pass
+            
+            # 然后尝试删除整个工作目录
+            shutil.rmtree(work_dir, ignore_errors=True)
+            colored_print("[清理] 工作目录已删除", Colors.BLUE)
+        except Exception as e:
+            colored_print(f"[警告] 无法完全删除工作目录: {e}", Colors.YELLOW)
+            colored_print(f"[提示] 您可以稍后手动删除此目录: {work_dir}", Colors.CYAN)
+
+            
+def restore_from_backup_config(config_dir, game_path):
+    """从备份恢复游戏配置"""
+    import os
+    import shutil
+    from datetime import datetime
+    
+    # 查找备份目录
+    parent_dir = os.path.dirname(config_dir)
+    backup_dirs = []
+    old_dirs = []
+    
+    for item in os.listdir(parent_dir):
+        full_path = os.path.join(parent_dir, item)
+        if os.path.isdir(full_path):
+            if item.startswith("config_backup_"):
+                backup_time = item.replace("config_backup_", "")
+                backup_dirs.append({"path": full_path, "time": backup_time, "type": "backup"})
+            elif item.startswith("config_old_"):
+                old_time = item.replace("config_old_", "")
+                old_dirs.append({"path": full_path, "time": old_time, "type": "old"})
+    
+    # 合并并按时间排序
+    all_dirs = backup_dirs + old_dirs
+    all_dirs.sort(key=lambda x: x["time"], reverse=True)
+    
+    if not all_dirs:
+        colored_print("[错误] 未找到任何备份或旧配置目录", Colors.RED)
+        return False
+    
+    # 显示可用的备份
+    colored_print("\n可用的备份配置:", Colors.BLUE)
+    colored_print("=" * 80, Colors.CYAN)
+    colored_print("  序号  |     类型     |     创建时间     |     备份路径", Colors.CYAN)
+    colored_print("=" * 80, Colors.CYAN)
+    
+    for i, dir_info in enumerate(all_dirs, 1):
+        try:
+            time_str = datetime.strptime(dir_info["time"], "%Y%m%d_%H%M%S").strftime("%Y-%m-%d %H:%M:%S")
+        except:
+            time_str = dir_info["time"]
+        
+        # 根据类型提供更详细的描述
+        if dir_info["type"] == "backup":
+            type_desc = "自动备份"
+            if "before_restore" in dir_info["path"]:
+                type_desc = "还原前备份"
+        else:
+            type_desc = "旧配置(替换前)"
+        
+        # 格式化显示，对齐列
+        colored_print(f"  {i:2d}    | {type_desc:12s} | {time_str:16s} | {dir_info['path']}", 
+                     Colors.CYAN if i % 2 == 0 else Colors.BLUE)
+    
+    colored_print("=" * 80, Colors.CYAN)
+    colored_print("[说明] 自动备份: 系统自动创建的备份", Colors.GREEN)
+    colored_print("[说明] 还原前备份: 在执行还原操作前创建的备份", Colors.GREEN)
+    colored_print("[说明] 旧配置(替换前): 在替换配置前，原始配置的备份", Colors.GREEN)
+    
+    # 用户选择
+    choice = input("\n请选择要还原的备份编号 (0取消): ")
+    if choice == "0" or not choice.strip():
+        colored_print("[信息] 操作已取消", Colors.BLUE)
+        return False
+    
+    try:
+        index = int(choice) - 1
+        if 0 <= index < len(all_dirs):
+            selected_dir = all_dirs[index]
+        else:
+            colored_print("[错误] 无效的选项", Colors.RED)
+            return False
+    except ValueError:
+        colored_print("[错误] 请输入有效的数字", Colors.RED)
+        return False
+    
+    # 确认还原
+    colored_print(f"[警告] 您将使用 {selected_dir['path']} 替换当前配置", Colors.YELLOW)
+    colored_print("[警告] 当前的所有配置将被备份，但可能会丢失最近的更改", Colors.YELLOW)
+    confirm = input("\n确定要继续吗？(y/n): ")
+    if confirm.lower() != 'y':
+        colored_print("[信息] 操作已取消", Colors.BLUE)
+        return False
+    
+    try:
+        # 备份当前配置
+        backup_time = datetime.now().strftime("%Y%m%d_%H%M%S")
+        backup_dir = os.path.join(parent_dir, f"config_backup_before_restore_{backup_time}")
+        
+        colored_print(f"[备份] 正在备份当前配置到: {backup_dir}", Colors.BLUE)
+        shutil.copytree(config_dir, backup_dir)
+        colored_print("[备份] 备份完成", Colors.GREEN)
+        
+        # 重命名当前配置目录
+        old_config_dir = os.path.join(parent_dir, f"config_to_remove_{backup_time}")
+        colored_print(f"[信息] 重命名当前配置目录: {config_dir} -> {old_config_dir}", Colors.BLUE)
+        os.rename(config_dir, old_config_dir)
+        
+        # 复制备份内容到配置目录
+        colored_print(f"[信息] 复制备份配置到游戏目录: {selected_dir['path']} -> {config_dir}", Colors.BLUE)
+        shutil.copytree(selected_dir['path'], config_dir)
+        
+        colored_print("[成功] 游戏配置已从备份还原", Colors.GREEN)
+        colored_print(f"[信息] 当前配置已备份到: {backup_dir}", Colors.BLUE)
+        
+        # 询问是否删除临时目录
+        delete_choice = input("\n是否删除临时目录以节省空间？(y/n): ")
+        if delete_choice.lower() == 'y':
+            try:
+                shutil.rmtree(old_config_dir)
+                colored_print(f"[清理] 已删除临时目录: {old_config_dir}", Colors.BLUE)
+            except Exception as e:
+                colored_print(f"[警告] 无法删除临时目录: {e}", Colors.YELLOW)
+        
+        # 初始化Git仓库
+        colored_print("[Git] 正在检查Git仓库状态...", Colors.BLUE)
+        stdout, stderr, code = run_git_command(['git', 'status'], cwd=config_dir, check=False)
+        if code != 0:
+            colored_print("[Git] 需要初始化Git仓库...", Colors.YELLOW)
+            from common_utils import init_git_repo
+            if init_git_repo(config_dir):
+                colored_print("[Git] Git仓库初始化成功", Colors.GREEN)
+            else:
+                colored_print("[警告] Git仓库初始化失败，但配置文件已还原", Colors.YELLOW)
+        else:
+            colored_print("[Git] Git仓库状态正常", Colors.GREEN)
+        
+        return True
+            
+    except Exception as e:
+        colored_print(f"[错误] 还原过程中出错: {e}", Colors.RED)
+        return False
+
 def main():
     """主函数"""
     print_header("Git操作快捷工具")
@@ -287,6 +528,8 @@ def main():
         print("10. 查看当前分支状态")
         print("11. 重置游戏到纯净状态")
         print("12. 查看并尝试合并失败的MOD")
+        print("13. 使用Gitee仓库配置替换游戏配置")
+        print("14. 从备份还原游戏配置")
         print("0. 退出")
         print("=" * 50)
         
@@ -409,7 +652,15 @@ def main():
         elif choice == '4':
             # 启动游戏
             run_game(game_path)
-        
+
+        elif choice == '13':
+            # 使用Gitee仓库配置替换游戏配置
+            restore_from_gitee_repo(config_dir, game_path)
+
+        elif choice == '14':
+            # 从备份还原游戏配置
+            restore_from_backup_config(config_dir, game_path)
+
         elif choice == '0':
             # 退出
             break

@@ -680,18 +680,15 @@ def main():
     
     # 询问用户是否要启动Git工具
     if install_success:
-        colored_print("\n[提示] MOD安装已完成，是否要启动Git操作工具？", Colors.CYAN)
-        choice = input("请输入选择 (y/n): ").strip().lower()
-        if choice == 'y':
-            colored_print("\n[启动] 正在启动Git操作工具...", Colors.BLUE)
-            # 导入git_tools模块
-            try:
-                import git_tools
-                git_tools.main()
-            except ImportError:
-                colored_print("[错误] 无法导入Git工具模块", Colors.RED)
-            except Exception as e:
-                colored_print(f"[错误] 启动Git工具时发生错误: {e}", Colors.RED)
+        colored_print("\n[启动] 正在启动Git操作工具...", Colors.BLUE)
+        # 导入git_tools模块
+        try:
+            import git_tools
+            git_tools.main()
+        except ImportError:
+            colored_print("[错误] 无法导入Git工具模块", Colors.RED)
+        except Exception as e:
+            colored_print(f"[错误] 启动Git工具时发生错误: {e}", Colors.RED)
 
 if __name__ == "__main__":
     main()
