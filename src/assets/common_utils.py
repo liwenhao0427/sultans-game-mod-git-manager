@@ -142,6 +142,7 @@ def download_and_install_git():
     user_choice = input("Git未安装，是否下载并安装Git？(y/n): ").strip().lower()
     if user_choice != 'y':
         print("[信息] 用户取消下载Git，程序无法继续")
+        sys.exit(0)  # 正常退出程序
         return False
     
     # 创建临时文件
@@ -287,6 +288,9 @@ def restore_old_version_mods(game_path, bak_dir, config_dir):
     
 def init_git_repo(config_dir):
     """初始化Git仓库"""
+    if(not check_git_installed()):
+        print("[Git] Git未安装，正在尝试下载并安装Git...")
+        download_and_install_git()
     print("[Git] 正在初始化Git仓库...")
     
     # 检查是否已经是Git仓库
@@ -302,7 +306,7 @@ def init_git_repo(config_dir):
         print("  3. 如果之前使用过其他MOD管理器，请先卸载所有MOD")
         print("=" * 60)
         
-        confirm = input("\n请确认游戏环境干净，没有安装其他MOD (y/n): ").strip().lower()
+        confirm = input("\n请确认游戏环境干净，没有安装其他MOD，请输入y确认 (y/n): ").strip().lower()
         if confirm != 'y':
             print("[信息] 用户取消初始化，请在确保游戏环境干净后再试")
             return False
