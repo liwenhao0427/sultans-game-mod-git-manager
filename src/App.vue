@@ -5,7 +5,8 @@
           <!-- 添加操作指引 -->
       <div class="operation-guide">
         <p>快速开始：勾选需要的MOD并点击“导出选中”按钮。</p>
-        <el-button type="text" @click="showGuideDialog">查看详细操作指引</el-button>
+        <el-button type="text" @click="showGuideDialog">操作指引</el-button>
+        <el-button type="text" @click="showFaqDialog">常见问题解答</el-button>
       </div>
       <div class="search-bar">
         <el-input
@@ -18,6 +19,7 @@
         />
       </div>
     </div>
+    <FaqDialog v-model:visible="faqDialogVisible" />
     <!-- 详细操作指引对话框 -->
     <el-dialog
       title="详细操作指引"
@@ -362,6 +364,9 @@
 
 <script>
 
+// 导入FAQ组件
+import FaqDialog from '@/components/FaqDialog.vue';
+
 // 导入本地版本信息
 import localVersionInfo from '@/assets/version.json';
 import JSZip from "jszip";
@@ -374,11 +379,15 @@ import { saveAs } from "file-saver";
 export default {
   name: 'App',
   components: {
+    // 注册FAQ组件
+    FaqDialog
     // Remove the unused component registration
     // Search
   },
   data() {
     return {
+      // 添加FAQ对话框控制变量
+      faqDialogVisible: false,
       patchFileSearchQuery: '', // 补丁文件搜索关键字
       patchFileTree: [], // 补丁文件树形结构
       patchFiles: [], // 存储补丁中的文件列表
@@ -513,6 +522,10 @@ export default {
     }
   },
   methods: {
+    // 添加显示FAQ对话框的方法
+    showFaqDialog() {
+      this.faqDialogVisible = true;
+    },
     // 版本号比较函数
     compareVersions (v1, v2) {
       // Handle undefined or null values
@@ -547,7 +560,9 @@ export default {
         
         if (isNewer) {
           if (window.confirm(`发现新版本 ${remoteVersion}, 当前版本 ${localVersion}. 是否刷新页面更新到最新版本?`)) {
-            window.location.reload(true);
+            // 添加时间戳作为缓存破坏参数
+            const newUrl = "https://liwenhao0427.github.io/sultans-game-mod-git-manager/?t=" + new Date().getTime();
+            window.location.href = newUrl;
           } else {
             console.log('User chose to update later');
           }
@@ -1791,5 +1806,9 @@ export default {
   padding: 10px;
   display: flex;
   flex-direction: column;
+}
+/* 可以添加一些FAQ相关的样式 */
+.operation-guide .el-button {
+  margin-right: 10px;
 }
 </style>

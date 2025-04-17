@@ -29,3 +29,4 @@ pnpm-debug.log*
 !/src/assets/Mods/**/
 !/src/assets/Mods/*/modConfig.json
 /game_path_config.json
+src/assets/game_path_config.json
