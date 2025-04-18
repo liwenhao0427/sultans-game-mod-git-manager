@@ -195,27 +195,36 @@ def download_and_install_git():
 def run_git_command(cmd, cwd=None, check=True):
     """运行Git命令并返回输出"""
     try:
-        # 使用errors='replace'参数来处理无法解码的字符
+        startupinfo = None
+        creationflags = 0
+
+        if os.name == "nt":  # 仅在 Windows 下设置
+            startupinfo = subprocess.STARTUPINFO()
+            startupinfo.dwFlags |= subprocess.STARTF_USESHOWWINDOW
+            creationflags = subprocess.CREATE_NO_WINDOW
+
         process = subprocess.Popen(
-            cmd, 
-            cwd=cwd, 
-            stdout=subprocess.PIPE, 
+            cmd,
+            cwd=cwd,
+            stdout=subprocess.PIPE,
             stderr=subprocess.PIPE,
             text=True,
             encoding='utf-8',
-            errors='replace'  # 添加此参数，将无法解码的字符替换为替代字符
+            errors='replace',
+            startupinfo=startupinfo,
+            creationflags=creationflags
         )
-        
+
         stdout, stderr = process.communicate()
-        
+
         if check and process.returncode != 0:
             raise subprocess.CalledProcessError(process.returncode, cmd, output=stdout, stderr=stderr)
-        
+
         return stdout, stderr, process.returncode
     except Exception as e:
         if check:
             raise e
-        return "", str(e), 1  # 返回空输出和错误信息
+        return "", str(e), 1
         
 def restore_old_version_mods(game_path, bak_dir, config_dir):
     """还原旧版本MOD管理器的备份文件"""
