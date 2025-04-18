@@ -248,11 +248,11 @@ def run_game(game_path):
         return False
 
 def restore_from_gitee_repo(config_dir, game_path):
-    """从Gitee仓库恢复游戏配置"""
+    """从Github仓库恢复游戏配置"""
     import shutil
     from datetime import datetime
     
-    colored_print("[警告] 此操作将使用Gitee仓库中的配置文件替换您当前的游戏配置", Colors.YELLOW)
+    colored_print("[警告] 此操作将使用Github仓库中的配置文件替换您当前的游戏配置", Colors.YELLOW)
     colored_print("[警告] 您当前的所有MOD和自定义配置将被备份，但不会应用到新配置", Colors.YELLOW)
     colored_print("[提示] 该选项可用于修复之前初始化有问题的配置，类似Steam验证游戏完整性", Colors.CYAN)
     colored_print("[提示] 其原理是使用作者的开源仓库配置替代本地配置，因此可能不是最新", Colors.CYAN)
@@ -265,7 +265,7 @@ def restore_from_gitee_repo(config_dir, game_path):
     # 在配置目录的父目录中创建工作目录，而不是使用系统临时目录
     backup_time = datetime.now().strftime("%Y%m%d_%H%M%S")
     parent_dir = os.path.dirname(config_dir)
-    work_dir = os.path.join(parent_dir, f"gitee_work_{backup_time}")
+    work_dir = os.path.join(parent_dir, f"github_work_{backup_time}")
     
     colored_print(f"[信息] 创建工作目录: {work_dir}", Colors.BLUE)
     os.makedirs(work_dir, exist_ok=True)
@@ -280,7 +280,7 @@ def restore_from_gitee_repo(config_dir, game_path):
         
         # 克隆Gitee仓库
         colored_print("[下载] 正在从Gitee克隆仓库...", Colors.BLUE)
-        gitee_url = "https://gitee.com/notnow/sultans-game-config.git"
+        gitee_url = "https://github.com/liwenhao0427/sultans-game-config.git"
         
         result = subprocess.run(
             ['git', 'clone', gitee_url, work_dir],
