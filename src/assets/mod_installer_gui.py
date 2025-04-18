@@ -7,14 +7,6 @@ from tkinter import ttk, scrolledtext, messagebox
 from datetime import datetime
 import queue
 
-# 添加隐藏控制台窗口的代码
-if sys.platform == 'win32':
-    try:
-        import ctypes
-        ctypes.windll.user32.ShowWindow(ctypes.windll.kernel32.GetConsoleWindow(), 0)
-    except:
-        pass
-
 # 导入原有的MOD安装器模块
 from mod_installer import (
     apply_patch, install_mods, get_game_path, get_config_dir,
@@ -39,10 +31,12 @@ class TextRedirector:
     def flush(self):
         pass
         
-    def input(self, prompt=""):
+    def readline(self):
         """处理输入请求，避免打包后的stdin错误"""
-        if prompt:
-            self.write(prompt)
+        return "\n"  # 返回换行符作为默认输入
+        
+    def read(self, size=-1):
+        """处理输入请求，避免打包后的stdin错误"""
         return ""  # 返回空字符串作为默认输入
 
 # 颜色映射，将原来的控制台颜色映射到Tkinter标签

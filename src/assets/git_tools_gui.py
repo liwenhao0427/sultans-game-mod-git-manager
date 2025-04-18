@@ -5,15 +5,6 @@ import tkinter as tk
 from tkinter import ttk, scrolledtext, messagebox
 import queue
 
-# 添加隐藏控制台窗口的代码
-if sys.platform == 'win32':
-    try:
-        import ctypes
-        ctypes.windll.user32.ShowWindow(ctypes.windll.kernel32.GetConsoleWindow(), 0)
-    except:
-        pass
-
-
 # 导入公共工具
 from common_utils import (
     Colors, colored_print, get_application_path
@@ -45,6 +36,14 @@ class TextRedirector:
         """处理输入请求，避免打包后的stdin错误"""
         if prompt:
             self.write(prompt)
+        return ""  # 返回空字符串作为默认输入
+        
+    def readline(self):
+        """处理输入请求，避免打包后的stdin错误"""
+        return "\n"  # 返回换行符作为默认输入
+        
+    def read(self, size=-1):
+        """处理输入请求，避免打包后的stdin错误"""
         return ""  # 返回空字符串作为默认输入
 
 class GitToolsGUI:
@@ -166,7 +165,9 @@ class GitToolsGUI:
         status_bar.pack(fill=tk.X, pady=2)
         
         # 重定向标准输出
-        sys.stdout = TextRedirector(self.log_text, self.msg_queue)
+        redirector = TextRedirector(self.log_text, self.msg_queue)
+        sys.stdout = redirector
+        sys.stdin = redirector  # 确保标准输入也被重定向
         
         # 设置周期性检查消息队列的任务
         self.check_queue()

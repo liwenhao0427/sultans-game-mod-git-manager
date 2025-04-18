@@ -62,7 +62,22 @@ def get_game_build_guid(game_path):
 
 def get_game_path():
     """获取游戏路径"""
-    possible_paths = [
+    # 首先尝试从配置文件获取
+    config_dir = os.path.join(get_application_path(), "config")
+    config_file = os.path.join(config_dir, "config.json")
+    
+    if os.path.exists(config_file):
+        try:
+            with open(config_file, 'r', encoding='utf-8') as f:
+                config = json.load(f)
+                if 'game_path' in config and os.path.exists(config['game_path']):
+                    return config['game_path']
+        except Exception as e:
+            print(f"读取配置文件失败: {e}")
+    
+    # 尝试自动查找游戏路径
+    # 常见的安装位置
+    common_paths = [
         r"C:\Program Files (x86)\Steam\steamapps\common\Sultan's Game",
         r"C:\Program Files\Steam\steamapps\common\Sultan's Game",
         r"D:\Program Files (x86)\Steam\steamapps\common\Sultan's Game",
@@ -76,46 +91,13 @@ def get_game_path():
         r"D:\Game\Steam\steamapps\common\Sultan's Game",
         r"E:\Game\Steam\steamapps\common\Sultan's Game"
     ]
-    now_application_path = get_application_path()
-    if "Sultan's Game" in now_application_path:
-        possible_paths.append(now_application_path)  # 添加应用程序路径
-
-    # 检查缓存的游戏路径
-    config_file = 'game_path_config.json'
-    if os.path.exists(config_file):
-        with open(config_file, 'r', encoding='utf-8') as f:
-            cached_path = json.load(f).get('game_path')
-            if cached_path and os.path.exists(cached_path):
-                print(f"[信息] 使用缓存的游戏路径: {cached_path}")
-                return cached_path
-
-    # 检查可能的路径
-    for path in possible_paths:
-        if os.path.exists(path):
-            print(f"[信息] 找到游戏路径: {path}")
+    
+    for path in common_paths:
+        if os.path.exists(path) and os.path.exists(os.path.join(path, "Sultan's Game.exe")):
             return path
-
-    # 提示用户输入路径
-    while True:
-        user_input = input("未找到游戏路径，请输入游戏根目录（应包含'Sultan's Game'文件夹）: ").strip()
-        if "Sultan's Game" in user_input:
-            game_path = user_input.split("Sultan's Game")[0] + "Sultan's Game"
-            if os.path.exists(game_path):
-                # 缓存路径
-                with open(config_file, 'w', encoding='utf-8') as f:
-                    json.dump({'game_path': game_path}, f, ensure_ascii=False, indent=2)
-                print(f"[信息] 使用用户输入的游戏路径: {game_path}")
-                return game_path
-            else:
-                print("[警告] 输入的路径不存在，请确认后重试。")
-        else:
-            confirm = input("输入的路径可能不是游戏路径，输入 '我确定这就是游戏路径' 以强制使用该路径: ").strip()
-            if confirm == "我确定这就是游戏路径":
-                # 缓存路径
-                with open(config_file, 'w', encoding='utf-8') as f:
-                    json.dump({'game_path': user_input}, f, ensure_ascii=False, indent=2)
-                print(f"[信息] 强制使用用户输入的游戏路径: {user_input}")
-                return user_input
+    
+    # 如果找不到，返回None而不是请求用户输入
+    return None    
 
 def get_config_dir(game_path):
     """获取游戏配置目录"""
