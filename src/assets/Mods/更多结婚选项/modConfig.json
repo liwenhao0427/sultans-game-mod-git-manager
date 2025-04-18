@@ -12,5 +12,6 @@
     "url": "https://www.nexusmods.com/sultansgame/mods/3"
   },
   "files": [],
-  "patchFile": "patches\\0001-MOD.patch"
+  "patchFile": "patches\\0001-MOD.patch",
+  "ignore": false
 }

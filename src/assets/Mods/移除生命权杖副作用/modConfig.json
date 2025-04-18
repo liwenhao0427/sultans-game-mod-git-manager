@@ -13,5 +13,6 @@
   },
   "files": [],
   "remark": "在steam苏丹的游戏，点开小齿轮>属性>浏览本地文件 然后直接把文件夹放进去就可以了\nmod内容：\n\"合金装备·幻痛\"不再增加“疯狂”状态\n \"自然新生\"不使用生命之水也能成功\n\"御前试合\"与装了生命权杖的其他激情角色纵欲不会增加妻子的不满",
-  "patchFile": "patches\\0001-MOD.patch"
+  "patchFile": "patches\\0001-MOD.patch",
+  "ignore": false
 }

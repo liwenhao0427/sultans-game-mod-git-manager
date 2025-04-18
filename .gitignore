@@ -30,3 +30,6 @@ pnpm-debug.log*
 !/src/assets/Mods/*/modConfig.json
 /game_path_config.json
 src/assets/game_path_config.json
+/src/assets/config/config.json
+/src/assets/加载本地Mods配置.spec
+/src/assets/加载本地Mods配置.exe

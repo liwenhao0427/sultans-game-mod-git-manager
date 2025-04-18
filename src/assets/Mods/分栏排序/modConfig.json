@@ -14,5 +14,7 @@
   },
   "files": [],
   "remark": "每回合开始时自动排序，第一行角色+苏丹卡；第二栏消耗品；第三栏装备；第四栏其他卡。强烈建议开启，很方便！",
-  "patchFile": "patches\\0001-MOD.patch"
+  "patchFile": "patches\\0001-MOD.patch",
+  "ignore": false,
+  "priority": 1
 }

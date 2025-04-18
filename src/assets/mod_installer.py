@@ -280,6 +280,7 @@ def install_mods():
         success_count = 0
         skipped_count = 0
         failed_count = 0
+        ignored_count = 0  # 新增：被忽略的MOD计数
         
         # 按照优先级排序MOD
         mod_list = []
@@ -310,6 +311,12 @@ def install_mods():
                 colored_print(f"[跳过] {mod_name} 没有补丁文件", Colors.YELLOW)
                 continue
             
+            # 检查ignore字段 - 新增：如果ignore为true，则跳过该MOD
+            if mod_config.get("ignore", False):
+                colored_print(f"[忽略] {mod_name} 被用户设置为不安装", Colors.YELLOW)
+                ignored_count += 1
+                continue
+            
             # 检查updateTo属性
             if "updateTo" in mod_config:
                 update_to_date = mod_config["updateTo"]
@@ -326,18 +333,30 @@ def install_mods():
                             skipped_count += 1
                             continue
             
-            # 获取优先级
+            # 获取优先级 - 修改：使用priority字段确定安装顺序
             priority = mod_config.get("priority", 100)  # 默认优先级为100
+            
+            # 获取推荐度 - 新增：读取recommend字段
+            recommend = mod_config.get("recommend", 0)
             
             mod_list.append({
                 "name": mod_name,
                 "dir": mod_dir,
                 "config": mod_config,
-                "priority": priority
+                "priority": priority,
+                "recommend": recommend  # 新增：添加推荐度字段
             })
         
         # 按优先级排序（数字越小优先级越高）
         mod_list.sort(key=lambda x: x["priority"])
+        
+        # 显示MOD安装顺序
+        if mod_list:
+            colored_print("\n[信息] MOD安装顺序:", Colors.BLUE)
+            for i, mod_info in enumerate(mod_list, 1):
+                recommend_text = f"(推荐度: {mod_info['recommend']})" if mod_info['recommend'] > 0 else ""
+                colored_print(f"  {i}. {mod_info['name']} (优先级: {mod_info['priority']}) {recommend_text}", 
+                             Colors.BLUE if mod_info['recommend'] <= 0 else Colors.GREEN)
         
         # 应用所有MOD补丁
         current_branch = mod_branch
@@ -509,7 +528,7 @@ def install_mods():
                 colored_print(f"[错误] 无法切换到主MOD分支: {stderr}", Colors.RED)
                 return False
             
-            colored_print(f"\n[完成] 共处理 {total_count} 个MOD，成功 {success_count} 个，失败 {failed_count} 个，跳过 {skipped_count} 个", Colors.GREEN + Colors.BOLD)
+            colored_print(f"\n[完成] 共处理 {total_count} 个MOD，成功 {success_count} 个，失败 {failed_count} 个，跳过 {skipped_count} 个，忽略 {ignored_count} 个", Colors.GREEN + Colors.BOLD)
             
             # 显示失败MOD的分支信息
             if failed_count > 0:
@@ -679,16 +698,16 @@ def main():
         install_success = False
     
     # 询问用户是否要启动Git工具
-    if install_success:
-        colored_print("\n[启动] 正在启动Git操作工具...", Colors.BLUE)
-        # 导入git_tools模块
-        try:
-            import git_tools
-            git_tools.main()
-        except ImportError:
-            colored_print("[错误] 无法导入Git工具模块", Colors.RED)
-        except Exception as e:
-            colored_print(f"[错误] 启动Git工具时发生错误: {e}", Colors.RED)
+    # if install_success:
+    #     colored_print("\n[启动] 正在启动Git操作工具...", Colors.BLUE)
+    #     # 导入git_tools模块
+    #     try:
+    #         import git_tools
+    #         git_tools.main()
+    #     except ImportError:
+    #         colored_print("[错误] 无法导入Git工具模块", Colors.RED)
+    #     except Exception as e:
+    #         colored_print(f"[错误] 启动Git工具时发生错误: {e}", Colors.RED)
 
 if __name__ == "__main__":
     main()

@@ -21,5 +21,8 @@
       "mode": "REPLACE"
     }
   ],
-  "patchFile": "patches\\0001-MOD.patch"
+  "patchFile": "patches\\0001-MOD.patch",
+  "ignore": false,
+  "priority": 100,
+  "recommend": 3
 }

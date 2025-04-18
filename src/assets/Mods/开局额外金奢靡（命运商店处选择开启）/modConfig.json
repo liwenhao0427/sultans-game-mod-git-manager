@@ -13,5 +13,6 @@
   },
   "files": [],
   "patchFile": "patches\\0001-MOD.patch",
-  "remark": "1.将本文档所在文件夹内的所有文件夹（一般包括event或是rite）以及文件（例如card.json）全都置入：Sultan's Game\\Sultan's Game_Data\\StreamingAssets\\config下，“Sultan's Game”为游戏根目录\n2.如果你的steam装在C盘，那么路径一般为C:\\Program Files (x86)\\Steam\\steamapps\\common\\Sultan's Game\\Sultan's Game_Data\\StreamingAssets\\config\n3.也可以从steam库页面——右键苏丹的游戏——属性——已安装文件——浏览 这样的方式寻找到你的根目录"
+  "remark": "1.将本文档所在文件夹内的所有文件夹（一般包括event或是rite）以及文件（例如card.json）全都置入：Sultan's Game\\Sultan's Game_Data\\StreamingAssets\\config下，“Sultan's Game”为游戏根目录\n2.如果你的steam装在C盘，那么路径一般为C:\\Program Files (x86)\\Steam\\steamapps\\common\\Sultan's Game\\Sultan's Game_Data\\StreamingAssets\\config\n3.也可以从steam库页面——右键苏丹的游戏——属性——已安装文件——浏览 这样的方式寻找到你的根目录",
+  "ignore": false
 }

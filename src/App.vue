@@ -97,7 +97,8 @@
           <el-checkbox v-model="exportOptions.includeMods" disabled>MOD文件</el-checkbox>
           <el-checkbox v-model="exportOptions.includeManager">MOD管理器(exe)</el-checkbox>
           <el-checkbox v-model="exportOptions.includeHelper">游戏帮助程序(exe)</el-checkbox>
-          <el-checkbox v-model="exportOptions.includeScript">包含安装脚本(python)</el-checkbox>
+          <el-checkbox v-model="exportOptions.includeBash">老版本命令界面版本(exe)</el-checkbox>
+          <el-checkbox v-model="exportOptions.includeScript">包含安装脚本(python)(Mac试试这个)</el-checkbox>
         </el-form-item>
         <el-form-item label="文件名">
           <el-input v-model="exportOptions.fileName" placeholder="导出文件名"></el-input>
@@ -415,6 +416,7 @@ export default {
         includeMods: true, // 默认必须包含MOD文件
         includeManager: true, // 默认包含管理器
         includeHelper: false, // 添加帮助程序选项
+        includeBash: false, // 添加历史版本命令行界面
         includeScript: false, // 默认不包含脚本
         includeTextLoader: false, // 默认不包含文本加载器
         fileName: 'mods.zip'
@@ -1053,21 +1055,21 @@ export default {
       if (this.exportOptions.includeManager) {
         try {
           // 二进制文件需要使用file-loader，并指定esModule: false
-          const mainAppPath = require('!!file-loader?esModule=false!@/assets/苏丹的游戏mod管理器.exe');
+          const mainAppPath = require('!!file-loader?esModule=false!@/assets/苏丹的游戏mod管理器(图形界面).exe');
           const mainAppResponse = await fetch(mainAppPath);
           const mainAppBlob = await mainAppResponse.blob();
-          zip.file('苏丹的游戏mod管理器.exe', mainAppBlob);
+          zip.file('苏丹的游戏mod管理器(图形界面).exe', mainAppBlob);
         } catch (error) {
           console.error('主程序加载出错:', error);
           // 尝试从备用源下载
           try {
             this.$message.warning('正在从备用源下载主程序文件...');
-            const backupUrl = "https://github.com/liwenhao0427/sultans-game-mod-git-manager/raw/refs/heads/main/src/assets/%E8%8B%8F%E4%B8%B9%E7%9A%84%E6%B8%B8%E6%88%8Fmod%E7%AE%A1%E7%90%86%E5%99%A8.exe";
+            const backupUrl = "https://github.com/liwenhao0427/sultans-game-mod-git-manager/raw/refs/heads/main/src/assets/苏丹的游戏mod管理器(图形界面).exe";
             const backupResponse = await fetch(backupUrl);
             
             if (backupResponse.ok) {
               const backupBlob = await backupResponse.blob();
-              zip.file('苏丹的游戏mod管理器.exe', backupBlob);
+              zip.file('苏丹的游戏mod管理器(图形界面).exe', backupBlob);
               this.$message.success('已从备用源下载主程序文件');
             } else {
               throw new Error(`备用源响应错误: ${backupResponse.status}`);
@@ -1081,6 +1083,63 @@ export default {
       
       // 添加帮助程序
       if (this.exportOptions.includeHelper) {
+        try {
+          const helperPath = require('!!file-loader?esModule=false!@/assets/苏丹的游戏帮助程序(图形界面).exe');
+          const helperResponse = await fetch(helperPath);
+          const helperBlob = await helperResponse.blob();
+          zip.file('苏丹的游戏帮助程序(图形界面).exe', helperBlob);
+        } catch (error) {
+          console.error('帮助程序加载出错:', error);
+          // 尝试从备用源下载
+          try {
+            this.$message.warning('正在从备用源下载主程序文件...');
+            const backupUrl = "https://github.com/liwenhao0427/sultans-game-mod-git-manager/raw/refs/heads/main/src/assets/苏丹的游戏帮助程序(图形界面).exe";
+            const backupResponse = await fetch(backupUrl);
+            
+            if (backupResponse.ok) {
+              const backupBlob = await backupResponse.blob();
+              zip.file('苏丹的游戏帮助程序(图形界面).exe', backupBlob);
+              this.$message.success('已从备用源下载主程序文件');
+            } else {
+              throw new Error(`备用源响应错误: ${backupResponse.status}`);
+            }
+          } catch (backupError) {
+            console.error('备用源下载失败:', backupError);
+            this.$message.error('无法加载主程序文件，但Mod文件将正常导出');
+          }
+          this.$message.warning('无法加载帮助程序文件，但其他文件将正常导出');
+        }
+      }
+
+      // 添加帮助程序
+      if (this.exportOptions.includeBash) {
+        try {
+          const helperPath = require('!!file-loader?esModule=false!@/assets/苏丹的游戏mod管理器.exe');
+          const helperResponse = await fetch(helperPath);
+          const helperBlob = await helperResponse.blob();
+          zip.file('苏丹的游戏mod管理器.exe', helperBlob);
+        } catch (error) {
+          console.error('帮助程序加载出错:', error);
+          // 尝试从备用源下载
+          try {
+            this.$message.warning('正在从备用源下载主程序文件...');
+            const backupUrl = "https://github.com/liwenhao0427/sultans-game-mod-git-manager/raw/refs/heads/main/src/assets/苏丹的游戏mod管理器.exe";
+            const backupResponse = await fetch(backupUrl);
+            
+            if (backupResponse.ok) {
+              const backupBlob = await backupResponse.blob();
+              zip.file('苏丹的游戏mod管理器.exe', backupBlob);
+              this.$message.success('已从备用源下载主程序文件');
+            } else {
+              throw new Error(`备用源响应错误: ${backupResponse.status}`);
+            }
+          } catch (backupError) {
+            console.error('备用源下载失败:', backupError);
+            this.$message.error('无法加载主程序文件，但Mod文件将正常导出');
+          }
+          this.$message.warning('无法加载帮助程序文件，但其他文件将正常导出');
+        }
+
         try {
           const helperPath = require('!!file-loader?esModule=false!@/assets/苏丹的游戏帮助程序.exe');
           const helperResponse = await fetch(helperPath);
@@ -1096,7 +1155,7 @@ export default {
             
             if (backupResponse.ok) {
               const backupBlob = await backupResponse.blob();
-              zip.file('苏丹的游戏mod管理器.exe', backupBlob);
+              zip.file('苏丹的游戏帮助程序.exe', backupBlob);
               this.$message.success('已从备用源下载主程序文件');
             } else {
               throw new Error(`备用源响应错误: ${backupResponse.status}`);
@@ -1142,6 +1201,22 @@ export default {
             // 加载git_tools.py
             const gitToolsPath = require('!!raw-loader?esModule=false!@/assets/git_tools.py');
             zip.file('git_tools.py', gitToolsPath);
+
+            // 加载check_mod_configs.py
+            const mod_installer_gui = require('!!raw-loader?esModule=false!@/assets/mod_installer_gui.py');
+            zip.file('mod_installer_gui.py', mod_installer_gui);
+            
+            // 加载git_tools_gui.py
+            const git_tools_gui = require('!!raw-loader?esModule=false!@/assets/git_tools_gui.py');
+            zip.file('git_tools_gui.py', git_tools_gui);
+
+
+            // 加载git_tools.py
+            const git_tools = require('!!raw-loader?esModule=false!@/assets/git_tools.py');
+            zip.file('git_tools.py', git_tools);
+
+            const batPath = require('!!raw-loader?esModule=false!@/assets/启动Mod管理器.sh');
+            zip.file('启动Mod管理器.sh', batPath);            
             
             this.$message.success('已添加Python脚本依赖文件');
           } catch (error) {

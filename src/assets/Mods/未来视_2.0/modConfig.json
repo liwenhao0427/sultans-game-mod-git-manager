@@ -15,5 +15,7 @@
     "url": "https://tieba.baidu.com/p/9625538813"
   },
   "remark": "MOD功能：\n对事件和仪式做补充说明，奖励，使用条件，点数需求等等\n每回合自动俺寻思金币、情报（不需要的话，请删除 未来视_1.8\\Sultan's Game_Data\\StreamingAssets\\config\\event\\5399999.json文件）\n \n注意：\n很多事件的选择会影响后续事件和剧情，请不要盲目跟着奖励选\n此MOD在更新中，会优先更新比较常见的事件和仪式\n一定程度上会破坏沉浸感，不喜勿喷\n\n使用说明：\n解压并将Sultan's Game_Data文件夹，放入游戏根目录，覆盖所有 \n路径：steamapps\\common\\Sultan's Game \n\nMOD功能：\n对事件和仪式做补充说明，奖励，使用条件等等\n每回合自动俺寻思金币、情报\n\n注意：\n很多事件的选择会影响后续事件和剧情，请不要盲目跟着奖励选\n此MOD在更新中，会优先更新比较常见的事件和仪式\n一定程度上会破坏沉浸感，不喜勿喷\n\n更新日志：\n1.1：新增部分事件，更改网盘分享方式\n1.2：新增6个通用仪式（金币和情报卡的俺寻思仪式），裁缝仪式，阿图娜尔仪式\n1.3：新增浴场和权力的游戏（这个最变态一堆...",
-  "patchFile": "patches\\0001-MOD-_2.0.patch"
+  "patchFile": "patches\\0001-MOD-_2.0.patch",
+  "ignore": false,
+  "priority": 3
 }

@@ -1,5 +1,5 @@
 {
-  "name": "黑街赛狗月牙三局两胜",
+  "name": "勇者愤怒抽刃向更强者（法里斯与法德耶共存）",
   "author": "萧敷艾荣",
   "version": "1.0.0",
   "gameVersion": "2025.04.08",
@@ -12,5 +12,7 @@
     "url": "https://tieba.baidu.com/p/9623361873?fid=28118002&pid=151931371273#151931371273"
   },
   "files": [],
-  "patchFile": "patches\\0001-MOD.patch"
+  "patchFile": "patches\\0001-MOD.patch",
+  "ignore": false,
+  "priority": 100
 }
