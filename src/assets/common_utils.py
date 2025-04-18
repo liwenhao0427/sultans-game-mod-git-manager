@@ -330,9 +330,8 @@ def init_git_repo(config_dir):
                         # 检查标签是否存在
                         stdout, stderr, code = run_git_command(['git', 'tag', '-l', tag_name], cwd=config_dir, check=False)
                         if not stdout.strip():
-                            print(f"[Git] 为当前游戏版本创建标签: {tag_name}")
-                            # 创建标签
-                            run_git_command(['git', 'tag', tag_name], cwd=config_dir, check=False)
+                            # 标签不存在，说明游戏需要更新
+                            print(f"\n[Git] 检测到游戏版本更新: {tag_name}")
                     
                     return True
                 else:

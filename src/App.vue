@@ -1189,45 +1189,43 @@ export default {
       // 根据选项添加安装脚本
       if (this.exportOptions.includeScript) {        
         // 添加Python脚本依赖文件
-        if (this.exportOptions.includePythonScripts) {
-          try {
-            // mod_installer.py
-            const scriptPath = require('!!raw-loader?esModule=false!@/assets/mod_installer.py');
-            zip.file('mod_installer.py', scriptPath);
+        try {
+          // mod_installer.py
+          const scriptPath = require('!!raw-loader?esModule=false!@/assets/mod_installer.py');
+          zip.file('mod_installer.py', scriptPath);
 
-            // 加载common_utils.py
-            const commonUtilsPath = require('!!raw-loader?esModule=false!@/assets/common_utils.py');
-            zip.file('common_utils.py', commonUtilsPath);
-            
-            // 加载check_mod_configs.py
-            const checkModConfigsPath = require('!!raw-loader?esModule=false!@/assets/check_mod_configs.py');
-            zip.file('check_mod_configs.py', checkModConfigsPath);
-            
-            // 加载git_tools.py
-            const gitToolsPath = require('!!raw-loader?esModule=false!@/assets/git_tools.py');
-            zip.file('git_tools.py', gitToolsPath);
+          // 加载common_utils.py
+          const commonUtilsPath = require('!!raw-loader?esModule=false!@/assets/common_utils.py');
+          zip.file('common_utils.py', commonUtilsPath);
+          
+          // 加载check_mod_configs.py
+          const checkModConfigsPath = require('!!raw-loader?esModule=false!@/assets/check_mod_configs.py');
+          zip.file('check_mod_configs.py', checkModConfigsPath);
+          
+          // 加载git_tools.py
+          const gitToolsPath = require('!!raw-loader?esModule=false!@/assets/git_tools.py');
+          zip.file('git_tools.py', gitToolsPath);
 
-            // 加载check_mod_configs.py
-            const mod_installer_gui = require('!!raw-loader?esModule=false!@/assets/mod_installer_gui.py');
-            zip.file('mod_installer_gui.py', mod_installer_gui);
-            
-            // 加载git_tools_gui.py
-            const git_tools_gui = require('!!raw-loader?esModule=false!@/assets/git_tools_gui.py');
-            zip.file('git_tools_gui.py', git_tools_gui);
+          // 加载check_mod_configs.py
+          const mod_installer_gui = require('!!raw-loader?esModule=false!@/assets/mod_installer_gui.py');
+          zip.file('mod_installer_gui.py', mod_installer_gui);
+          
+          // 加载git_tools_gui.py
+          const git_tools_gui = require('!!raw-loader?esModule=false!@/assets/git_tools_gui.py');
+          zip.file('git_tools_gui.py', git_tools_gui);
 
 
-            // 加载git_tools.py
-            const git_tools = require('!!raw-loader?esModule=false!@/assets/git_tools.py');
-            zip.file('git_tools.py', git_tools);
+          // 加载git_tools.py
+          const git_tools = require('!!raw-loader?esModule=false!@/assets/git_tools.py');
+          zip.file('git_tools.py', git_tools);
 
-            const batPath = require('!!raw-loader?esModule=false!@/assets/启动Mod管理器.sh');
-            zip.file('启动Mod管理器.sh', batPath);            
-            
-            this.$message.success('已添加Python脚本依赖文件');
-          } catch (error) {
-            console.error('Python脚本依赖文件加载出错:', error);
-            this.$message.warning('无法加载Python脚本依赖文件，但其他文件将正常导出');
-          }
+          const batPath = require('!!raw-loader?esModule=false!@/assets/启动Mod管理器.sh');
+          zip.file('启动Mod管理器.sh', batPath);            
+          
+          this.$message.success('已添加Python脚本依赖文件');
+        } catch (error) {
+          console.error('Python脚本依赖文件加载出错:', error);
+          this.$message.warning('无法加载Python脚本依赖文件，但其他文件将正常导出');
         }
       }
   
