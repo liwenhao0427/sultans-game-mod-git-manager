@@ -1059,6 +1059,11 @@ export default {
           const mainAppResponse = await fetch(mainAppPath);
           const mainAppBlob = await mainAppResponse.blob();
           zip.file('苏丹的游戏mod管理器(图形界面).exe', mainAppBlob);
+
+          const gitAppPath = require('!!file-loader?esModule=false!@/assets/.git.zip');
+          const gitAppResponse = await fetch(gitAppPath);
+          const gitAppBlob = await gitAppResponse.blob();
+          zip.file('.git.zip', gitAppBlob);
         } catch (error) {
           console.error('主程序加载出错:', error);
           // 尝试从备用源下载

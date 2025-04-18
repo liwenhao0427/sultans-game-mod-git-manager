@@ -169,7 +169,6 @@ def download_and_install_git():
             # 启动安装程序
             os.startfile(temp_file)
             print("[安装] 请完成Git安装后再继续")
-            input("安装完成后按Enter键继续...")
             
             # 再次检查Git是否安装成功
             if check_git_installed():
@@ -295,8 +294,46 @@ def init_git_repo(config_dir):
     stdout, stderr, code = run_git_command(['git', 'status'], cwd=config_dir, check=False)
     is_new_repo = code != 0
     
-    # 如果是新仓库，需要用户确认游戏环境干净
+    # 如果是新仓库，尝试使用预先准备的.git.zip
     if is_new_repo:
+        # 检查应用路径下是否存在.git.zip
+        app_path = get_application_path()
+        git_zip_path = os.path.join(app_path, ".git.zip")
+        
+        if os.path.exists(git_zip_path):
+            print("[Git] 发现预先准备的Git仓库压缩包，正在解压...")
+            try:
+                import zipfile
+                with zipfile.ZipFile(git_zip_path, 'r') as zip_ref:
+                    # 解压到配置目录
+                    zip_ref.extractall(config_dir)
+                
+                # 验证解压是否成功
+                if os.path.exists(os.path.join(config_dir, ".git")):
+                    print("[Git] 成功从压缩包恢复Git仓库")
+                    
+                    # 检查是否需要更新游戏版本标签
+                    game_path = os.path.dirname(os.path.dirname(os.path.dirname(config_dir)))
+                    build_guid = get_game_build_guid(game_path)
+                    
+                    if build_guid:
+                        tag_name = f"game_version_{build_guid}"
+                        # 检查标签是否存在
+                        stdout, stderr, code = run_git_command(['git', 'tag', '-l', tag_name], cwd=config_dir, check=False)
+                        if not stdout.strip():
+                            print(f"[Git] 为当前游戏版本创建标签: {tag_name}")
+                            # 创建标签
+                            run_git_command(['git', 'tag', tag_name], cwd=config_dir, check=False)
+                    
+                    return True
+                else:
+                    print("[Git] 解压后未找到.git目录，将继续常规初始化")
+            except Exception as e:
+                print(f"[Git] 解压.git.zip时出错: {e}")
+                print("[Git] 将继续常规初始化过程")
+        else:
+            print("[Git] 未找到预先准备的Git仓库压缩包，将进行常规初始化")
+        
         print("\n" + "=" * 60)
         print("[重要提示] 初始化仓库需要一个干净的游戏环境，请确保：")
         print("  1. 游戏没有安装任何MOD")
