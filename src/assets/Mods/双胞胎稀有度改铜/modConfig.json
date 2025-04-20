@@ -1,0 +1,16 @@
+{
+  "name": "双胞胎稀有度改铜",
+  "author": "磁石战士",
+  "version": "1.0.0",
+  "gameVersion": "2025.04.18",
+  "updateDate": "2025.04.20",
+  "tag": [
+    "自动导入"
+  ],
+  "source": {
+    "name": "自动生成",
+    "url": "https://github.com/liwenhao0427/sultans-game-mod-git-manager"
+  },
+  "files": [],
+  "patchFile": "patches\\0001-MOD.patch"
+}
