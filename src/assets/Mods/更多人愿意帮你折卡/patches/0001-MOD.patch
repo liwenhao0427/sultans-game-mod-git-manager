@@ -1,393 +1,384 @@
-From d7fd63efea1a9f329a6507ce72f2caea1dd7bf07 Mon Sep 17 00:00:00 2001
-From: Sultan Mod Manager <mod@example.com>
-Date: Mon, 14 Apr 2025 18:20:12 +0800
+From 86497b2d29075be306d89f640679ecc7c747353c Mon Sep 17 00:00:00 2001
+From: liwenhao0427 <liwenhao0427@163.com>
+Date: Sun, 20 Apr 2025 16:02:23 +0800
 Subject: [PATCH] =?UTF-8?q?=E5=BA=94=E7=94=A8MOD:=20=E6=9B=B4=E5=A4=9A?=
  =?UTF-8?q?=E4=BA=BA=E6=84=BF=E6=84=8F=E5=B8=AE=E4=BD=A0=E6=8A=98=E5=8D=A1?=
+ =?UTF-8?q?=20=E7=89=88=E6=9C=AC:=201.0.0=20=E4=BD=9C=E8=80=85:=20?=
+ =?UTF-8?q?=E7=87=95=E7=96=8F=20=E6=9D=A5=E6=BA=90:=20https://www.nexusmod?=
+ =?UTF-8?q?s.com/sultansgame/mods/13=3Ftab=3Ddescription?=
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
 ---
- cards.json                            | 592 ++++++++++++++++++--------
- event/5310000.json                    |  11 +
- event/5310001.json                    |  12 +
- event/5310002.json                    |  16 +
- event/5310003.json                    |  16 +-
- init/1.json                           |  28 +-
- init/可选-正常的回档次数/1.json       | 360 ++++++++++++++++
- init/可选-正常的苏丹卡天数/1.json     | 360 ++++++++++++++++
- init/可选-正常的重置苏丹卡次数/1.json | 360 ++++++++++++++++
- init/可选-正常的骰点/1.json           | 360 ++++++++++++++++
- rite/5000103.json                     |   2 +-
- rite/5000104.json                     |   2 +-
- rite/5000131.json                     |   2 +-
- rite/5000133.json                     |   2 +-
- rite/5000134.json                     |   2 +-
- rite/5000135.json                     |   2 +-
- rite/5000136.json                     |   2 +-
- rite/5000137.json                     |   2 +-
- rite/5000139.json                     |   2 +-
- rite/5000141.json                     |   2 +-
- rite/5000520.json                     |   2 +-
- rite/5000522.json                     |   2 +-
- rite/5000523.json                     |   2 +-
- rite/5000524.json                     |   2 +-
- rite/5000550.json                     |   2 +-
- rite/5000551.json                     |   2 +-
- rite/5000553.json                     |   2 +-
- rite/5000569.json                     |   2 +-
- rite/5000570.json                     |   2 +-
- rite/5000571.json                     |   2 +-
- rite/5000572.json                     |   2 +-
- rite/5000575.json                     |   2 +-
- rite/5000580.json                     |   2 +-
- rite/5000584.json                     |   2 +-
- rite/5000600.json                     |   2 +-
- rite/5000601.json                     |   2 +-
- rite/5000602.json                     |   2 +-
- rite/5000603.json                     |   2 +-
- rite/5000605.json                     |   2 +-
- rite/5000610.json                     |   2 +-
- rite/5000614.json                     |   2 +-
- rite/5000618.json                     |   2 +-
- rite/5000623.json                     |   2 +-
- rite/5000624.json                     |   2 +-
- rite/5000632.json                     |   2 +-
- rite/5000640.json                     |   2 +-
- rite/5000641.json                     |   2 +-
- rite/5000650.json                     |   2 +-
- rite/5000651.json                     |   2 +-
- rite/5000652.json                     |   2 +-
- rite/5000654.json                     |   2 +-
- rite/5000660.json                     |   4 +-
- rite/5000663.json                     |   2 +-
- rite/5000667.json                     |   2 +-
- rite/5000668.json                     |   2 +-
- rite/5000670.json                     |   2 +-
- rite/5000678.json                     |   2 +-
- rite/5000681.json                     |   2 +-
- rite/5000685.json                     |   4 +-
- rite/5000702.json                     |   2 +-
- rite/5000708.json                     |   2 +-
- rite/5000709.json                     |   2 +-
- rite/5000720.json                     |   2 +-
- rite/5000721.json                     |   2 +-
- rite/5000722.json                     |   2 +-
- rite/5000723.json                     |   2 +-
- rite/5000724.json                     |   2 +-
- rite/5000725.json                     |   2 +-
- rite/5000726.json                     |   2 +-
- rite/5000727.json                     |   2 +-
- rite/5000729.json                     |   2 +-
- rite/5000730.json                     |   2 +-
- rite/5000731.json                     |   4 +-
- rite/5000732.json                     |   4 +-
- rite/5000734.json                     |   2 +-
- rite/5000749.json                     |   2 +-
- rite/5000754.json                     |   2 +-
- rite/5000762.json                     |   2 +-
- rite/5000767.json                     |   2 +-
- rite/5000770.json                     |   2 +-
- rite/5000773.json                     |   2 +-
- rite/5000777.json                     |   2 +-
- rite/5000779.json                     |   2 +-
- rite/5000783.json                     |   2 +-
- rite/5000784.json                     |   2 +-
- rite/5000786.json                     |   2 +-
- rite/5000787.json                     |   2 +-
- rite/5000788.json                     |   2 +-
- rite/5000789.json                     |   2 +-
- rite/5000790.json                     |   2 +-
- rite/5000791.json                     |   2 +-
- rite/5000792.json                     |   2 +-
- rite/5000793.json                     |   2 +-
- rite/5000794.json                     |   2 +-
- rite/5000795.json                     |   2 +-
- rite/5000796.json                     |   4 +-
- rite/5000801.json                     |   2 +-
- rite/5000802.json                     |   2 +-
- rite/5000803.json                     |   2 +-
- rite/5000804.json                     |   2 +-
- rite/5000805.json                     |   2 +-
- rite/5000806.json                     |   2 +-
- rite/5000807.json                     |   2 +-
- rite/5000808.json                     |   2 +-
- rite/5000809.json                     |   2 +-
- rite/5000810.json                     |   2 +-
- rite/5000811.json                     |   2 +-
- rite/5000813.json                     |   2 +-
- rite/5000814.json                     |   2 +-
- rite/5000815.json                     |   2 +-
- rite/5000816.json                     |   2 +-
- rite/5000817.json                     |   2 +-
- rite/5000818.json                     |   2 +-
- rite/5000819.json                     |   2 +-
- rite/5000820.json                     |   2 +-
- rite/5000825.json                     |   2 +-
- rite/5000828.json                     |   2 +-
- rite/5000831.json                     |   2 +-
- rite/5000838.json                     |   2 +-
- rite/5000839.json                     |   2 +-
- rite/5000840.json                     |   2 +-
- rite/5000844.json                     |   2 +-
- rite/5000845.json                     |   2 +-
- rite/5000846.json                     |   2 +-
- rite/5000847.json                     |   2 +-
- rite/5000848.json                     |   2 +-
- rite/5001017.json                     |   2 +-
- rite/5001024.json                     |   2 +-
- rite/5001026.json                     |   2 +-
- rite/5001027.json                     |   2 +-
- rite/5001028.json                     |   2 +-
- rite/5001029.json                     |   2 +-
- rite/5001100.json                     |   2 +-
- rite/5001102.json                     |   2 +-
- rite/5002008.json                     |   2 +-
- rite/5002009.json                     |   2 +-
- rite/5002020.json                     |   2 +-
- rite/5002021.json                     |   2 +-
- rite/5002024.json                     |   2 +-
- rite/5002025.json                     |   2 +-
- rite/5002030.json                     |   2 +-
- rite/5002031.json                     |   2 +-
- rite/5002517.json                     |   2 +-
- rite/5003002.json                     |   2 +-
- rite/5004514.json                     |   2 +-
- rite/5004515.json                     |   2 +-
- rite/5004516.json                     |   2 +-
- rite/5004518.json                     |   2 +-
- rite/5004818.json                     |   2 +-
- rite/5004819.json                     |   2 +-
- rite/5004820.json                     |   2 +-
- rite/5004821.json                     |   2 +-
- rite/5004822.json                     |   2 +-
- rite/5004823.json                     |   2 +-
- rite/5004824.json                     |   2 +-
- rite/5004825.json                     |   2 +-
- rite/5004826.json                     |   2 +-
- rite/5004827.json                     |   2 +-
- rite/5004828.json                     |   2 +-
- rite/5004829.json                     |   2 +-
- rite/5004830.json                     |   2 +-
- rite/5004831.json                     |   2 +-
- rite/5004832.json                     |   2 +-
- rite/5004902.json                     |   2 +-
- rite/5006008.json                     |   4 +-
- rite/5006009.json                     |   2 +-
- rite/5006013.json                     |   2 +-
- rite/5006018.json                     |   2 +-
- rite/5006019.json                     |   2 +-
- rite/5006027.json                     |   2 +-
- rite/5006028.json                     |   2 +-
- rite/5006029.json                     |   2 +-
- rite/5006030.json                     |   2 +-
- rite/5006031.json                     |   2 +-
- rite/5006032.json                     |   2 +-
- rite/5006033.json                     |   2 +-
- rite/5006034.json                     |   2 +-
- rite/5006035.json                     |   2 +-
- rite/5006036.json                     |   2 +-
- rite/5006037.json                     |   2 +-
- rite/5006039.json                     |   2 +-
- rite/5006042.json                     |   2 +-
- rite/5006045.json                     |   2 +-
- rite/5006046.json                     |   2 +-
- rite/5006047.json                     |   2 +-
- rite/5006048.json                     |   2 +-
- rite/5006052.json                     |   2 +-
- rite/5006054.json                     |   2 +-
- rite/5006056.json                     |   2 +-
- rite/5006070.json                     |   2 +-
- rite/5006073.json                     |   2 +-
- rite/5006074.json                     |   2 +-
- rite/5006076.json                     |   2 +-
- rite/5006077.json                     |   2 +-
- rite/5006508.json                     |   2 +-
- rite/5006509.json                     |   2 +-
- rite/5006510.json                     |   2 +-
- rite/5006517.json                     |   2 +-
- rite/5006522.json                     |   2 +-
- rite/5006557.json                     |  63 ++-
- rite/5006570.json                     |   2 +-
- rite/5006572.json                     |   2 +-
- rite/5006573.json                     |   2 +-
- rite/5006574.json                     |   2 +-
- rite/5006575.json                     |   2 +-
- rite/5006576.json                     |   2 +-
- rite/5006577.json                     |   2 +-
- rite/5006578.json                     |   2 +-
- rite/5006579.json                     |   2 +-
- rite/5006580.json                     |   2 +-
- rite/5006581.json                     |   2 +-
- rite/5006582.json                     |   2 +-
- rite/5006583.json                     |   2 +-
- rite/5006584.json                     |   2 +-
- rite/5006585.json                     |   2 +-
- rite/5006586.json                     |   2 +-
- rite/5006588.json                     |   2 +-
- rite/5006589.json                     |   2 +-
- rite/5006593.json                     |   2 +-
- rite/5006595.json                     |   2 +-
- rite/5006596.json                     |   2 +-
- rite/5006597.json                     |   2 +-
- rite/5006599.json                     |   2 +-
- rite/5006605.json                     |   2 +-
- rite/5006607.json                     |   2 +-
- rite/5006618.json                     |   2 +-
- rite/5006619.json                     |   2 +-
- rite/5006621.json                     |   2 +-
- rite/5006625.json                     |   2 +-
- rite/5006631.json                     |   2 +-
- rite/5006632.json                     |   2 +-
- rite/5006633.json                     |   2 +-
- rite/5006634.json                     |   2 +-
- rite/5006635.json                     |   2 +-
- rite/5006636.json                     |   2 +-
- rite/5006638.json                     |   2 +-
- rite/5006639.json                     |   2 +-
- rite/5006640.json                     |   2 +-
- rite/5006641.json                     |   2 +-
- rite/5006643.json                     |   2 +-
- rite/5006647.json                     |   2 +-
- rite/5006648.json                     |   2 +-
- rite/5006649.json                     |   2 +-
- rite/5006650.json                     |   2 +-
- rite/5006651.json                     |   2 +-
- rite/5006652.json                     |   2 +-
- rite/5006653.json                     |   2 +-
- rite/5006654.json                     |   2 +-
- rite/5006655.json                     |   2 +-
- rite/5006656.json                     |   2 +-
- rite/5006657.json                     |   2 +-
- rite/5006658.json                     |   2 +-
- rite/5006659.json                     |   2 +-
- rite/5006660.json                     |   2 +-
- rite/5006661.json                     |   2 +-
- rite/5006662.json                     |   2 +-
- rite/5006663.json                     |   2 +-
- rite/5006665.json                     |   2 +-
- rite/5006666.json                     |   2 +-
- rite/5006667.json                     |   2 +-
- rite/5006668.json                     |   2 +-
- rite/5006669.json                     |   2 +-
- rite/5006670.json                     |   2 +-
- rite/5006671.json                     |   2 +-
- rite/5006672.json                     |   2 +-
- rite/5006674.json                     |   2 +-
- rite/5006675.json                     |   2 +-
- rite/5006678.json                     |   2 +-
- rite/5007001.json                     |   2 +-
- rite/5007008.json                     |   2 +-
- rite/5007016.json                     |   2 +-
- rite/5008007.json                     |   2 +-
- rite/5008008.json                     |   2 +-
- rite/5008009.json                     |   2 +-
- rite/5008010.json                     |   2 +-
- rite/5008011.json                     |   2 +-
- rite/5008012.json                     |   2 +-
- rite/5008013.json                     |   2 +-
- rite/5008015.json                     |   2 +-
- rite/5008016.json                     |   2 +-
- rite/5008017.json                     |   2 +-
- rite/5008018.json                     |   2 +-
- rite/5008020.json                     |   2 +-
- rite/5008030.json                     |   2 +-
- rite/5008031.json                     |   2 +-
- rite/5008046.json                     |   2 +-
- rite/5008047.json                     |   2 +-
- rite/5008052.json                     |   4 +-
- rite/5008054.json                     |   2 +-
- rite/5008057.json                     |   2 +-
- rite/5008058.json                     |   2 +-
- rite/5008059.json                     |   2 +-
- rite/5008060.json                     |   2 +-
- rite/5008061.json                     |   2 +-
- rite/5008062.json                     |   2 +-
- rite/5008063.json                     |   2 +-
- rite/5008064.json                     |   2 +-
- rite/5008066.json                     |   2 +-
- rite/5008067.json                     |   2 +-
- rite/5008068.json                     |   2 +-
- rite/5008069.json                     |   2 +-
- rite/5008070.json                     |   2 +-
- rite/5008071.json                     |   2 +-
- rite/5008072.json                     |   2 +-
- rite/5008073.json                     |   2 +-
- rite/5008074.json                     |   2 +-
- rite/5008075.json                     |   2 +-
- rite/5008076.json                     |   2 +-
- rite/5008087.json                     |   2 +-
- rite/5008088.json                     |   2 +-
- rite/5008089.json                     |   2 +-
- rite/5008090.json                     |   2 +-
- rite/5008091.json                     |   2 +-
- rite/5008092.json                     |   2 +-
- rite/5008094.json                     |   2 +-
- rite/5008096.json                     |   2 +-
- rite/5008097.json                     |   2 +-
- rite/5008099.json                     |   2 +-
- rite/5008100.json                     |   2 +-
- rite/5008102.json                     |   2 +-
- rite/5008103.json                     |   2 +-
- rite/5008104.json                     |   2 +-
- rite/5008105.json                     |   2 +-
- rite/5008106.json                     |   2 +-
- rite/5008107.json                     |   2 +-
- rite/5008109.json                     |   2 +-
- rite/5008110.json                     |   2 +-
- rite/5008111.json                     |   2 +-
- rite/5008112.json                     |   2 +-
- rite/5008113.json                     |   2 +-
- rite/5008114.json                     |   4 +-
- rite/5008115.json                     |   2 +-
- rite/5008117.json                     |   2 +-
- rite/5008118.json                     |   2 +-
- rite/5008119.json                     |   2 +-
- rite/5008121.json                     |   2 +-
- rite/5008122.json                     |   2 +-
- rite/5008125.json                     |   2 +-
- rite/5008126.json                     |   2 +-
- rite/5008127.json                     |   2 +-
- rite/5008128.json                     |   2 +-
- rite/5008129.json                     |   2 +-
- rite/5008130.json                     |   2 +-
- rite/5008131.json                     |   2 +-
- rite/5008132.json                     |   2 +-
- rite/5008146.json                     |   2 +-
- rite/5008148.json                     |   2 +-
- rite/5008149.json                     |   2 +-
- rite/5008153.json                     |   2 +-
- rite/5008154.json                     |   2 +-
- rite/5008155.json                     |   2 +-
- rite/5008156.json                     |   2 +-
- rite/5008157.json                     |   2 +-
- rite/5008160.json                     |   2 +-
- rite/5008161.json                     |   2 +-
- rite/5008163.json                     |   2 +-
- rite/5008164.json                     |   2 +-
- rite/5008166.json                     |   2 +-
- rite/5008169.json                     |   2 +-
- rite/5008171.json                     |   2 +-
- rite/5008179.json                     |   2 +-
- rite/5008181.json                     |   2 +-
- rite/5008182.json                     |   2 +-
- rite/5008183.json                     |   2 +-
- rite/5008184.json                     |   2 +-
- rite/5008186.json                     |   2 +-
- rite/5008187.json                     |   2 +-
- rite/5008188.json                     |   2 +-
- rite/5008189.json                     |   2 +-
- rite/5010021.json                     |   2 +-
- rite/5010057.json                     |   2 +-
- rite/5010059.json                     |   2 +-
- 372 files changed, 2342 insertions(+), 574 deletions(-)
- create mode 100644 init/可选-正常的回档次数/1.json
- create mode 100644 init/可选-正常的苏丹卡天数/1.json
- create mode 100644 init/可选-正常的重置苏丹卡次数/1.json
- create mode 100644 init/可选-正常的骰点/1.json
+ cards.json                                    | 592 ++++++++++++------
+ event/5310000.json                            |  11 +
+ event/5310001.json                            |  12 +
+ event/5310002.json                            |  16 +
+ event/5310003.json                            |  16 +-
+ init/1.json                                   |  28 +-
+ .../1.json"                                   | 360 +++++++++++
+ .../1.json"                                   | 360 +++++++++++
+ .../1.json"                                   | 360 +++++++++++
+ .../1.json"                                   | 360 +++++++++++
+ rite/5000103.json                             |   2 +-
+ rite/5000104.json                             |   2 +-
+ rite/5000520.json                             |   2 +-
+ rite/5000522.json                             |   2 +-
+ rite/5000523.json                             |   2 +-
+ rite/5000524.json                             |   2 +-
+ rite/5000550.json                             |   2 +-
+ rite/5000551.json                             |   2 +-
+ rite/5000553.json                             |   2 +-
+ rite/5000569.json                             |   2 +-
+ rite/5000570.json                             |   2 +-
+ rite/5000571.json                             |   2 +-
+ rite/5000572.json                             |   2 +-
+ rite/5000575.json                             |   2 +-
+ rite/5000580.json                             |   2 +-
+ rite/5000584.json                             |   2 +-
+ rite/5000600.json                             |   2 +-
+ rite/5000601.json                             |   2 +-
+ rite/5000602.json                             |   2 +-
+ rite/5000603.json                             |   2 +-
+ rite/5000605.json                             |   2 +-
+ rite/5000610.json                             |   2 +-
+ rite/5000614.json                             |   2 +-
+ rite/5000618.json                             |   2 +-
+ rite/5000623.json                             |   2 +-
+ rite/5000624.json                             |   2 +-
+ rite/5000632.json                             |   2 +-
+ rite/5000640.json                             |   2 +-
+ rite/5000641.json                             |   2 +-
+ rite/5000650.json                             |   2 +-
+ rite/5000651.json                             |   2 +-
+ rite/5000652.json                             |   2 +-
+ rite/5000654.json                             |   2 +-
+ rite/5000660.json                             |   2 +-
+ rite/5000663.json                             |   2 +-
+ rite/5000667.json                             |   2 +-
+ rite/5000668.json                             |   2 +-
+ rite/5000670.json                             |   2 +-
+ rite/5000678.json                             |   2 +-
+ rite/5000681.json                             |   2 +-
+ rite/5000685.json                             |   4 +-
+ rite/5000702.json                             |   4 +-
+ rite/5000708.json                             |   2 +-
+ rite/5000709.json                             |   2 +-
+ rite/5000720.json                             |   2 +-
+ rite/5000721.json                             |   2 +-
+ rite/5000722.json                             |   2 +-
+ rite/5000723.json                             |   2 +-
+ rite/5000724.json                             |   2 +-
+ rite/5000725.json                             |   2 +-
+ rite/5000726.json                             |   2 +-
+ rite/5000727.json                             |   2 +-
+ rite/5000729.json                             |   2 +-
+ rite/5000730.json                             |   2 +-
+ rite/5000731.json                             |   2 +-
+ rite/5000732.json                             |   2 +-
+ rite/5000734.json                             |   4 +-
+ rite/5000749.json                             |   2 +-
+ rite/5000754.json                             |   2 +-
+ rite/5000762.json                             |   2 +-
+ rite/5000767.json                             |   2 +-
+ rite/5000770.json                             |   2 +-
+ rite/5000773.json                             |   2 +-
+ rite/5000777.json                             |   2 +-
+ rite/5000779.json                             |   2 +-
+ rite/5000784.json                             |   2 +-
+ rite/5000786.json                             |   2 +-
+ rite/5000787.json                             |   2 +-
+ rite/5000788.json                             |   2 +-
+ rite/5000790.json                             |   2 +-
+ rite/5000791.json                             |   2 +-
+ rite/5000792.json                             |   2 +-
+ rite/5000793.json                             |   2 +-
+ rite/5000794.json                             |   2 +-
+ rite/5000795.json                             |   2 +-
+ rite/5000796.json                             |   2 +-
+ rite/5000801.json                             |   2 +-
+ rite/5000802.json                             |   2 +-
+ rite/5000803.json                             |   2 +-
+ rite/5000804.json                             |   2 +-
+ rite/5000805.json                             |   2 +-
+ rite/5000806.json                             |   2 +-
+ rite/5000807.json                             |   2 +-
+ rite/5000808.json                             |   2 +-
+ rite/5000809.json                             |   2 +-
+ rite/5000810.json                             |   2 +-
+ rite/5000813.json                             |   2 +-
+ rite/5000814.json                             |   2 +-
+ rite/5000815.json                             |   2 +-
+ rite/5000816.json                             |   2 +-
+ rite/5000817.json                             |   2 +-
+ rite/5000818.json                             |   2 +-
+ rite/5000819.json                             |   2 +-
+ rite/5000820.json                             |   2 +-
+ rite/5000825.json                             |   2 +-
+ rite/5000828.json                             |   2 +-
+ rite/5000831.json                             |   2 +-
+ rite/5000838.json                             |   2 +-
+ rite/5000839.json                             |   2 +-
+ rite/5000840.json                             |   2 +-
+ rite/5000844.json                             |   2 +-
+ rite/5000845.json                             |   2 +-
+ rite/5000846.json                             |   2 +-
+ rite/5000847.json                             |   2 +-
+ rite/5000848.json                             |   2 +-
+ rite/5001017.json                             |   2 +-
+ rite/5001024.json                             |   2 +-
+ rite/5001026.json                             |   2 +-
+ rite/5001027.json                             |   2 +-
+ rite/5001028.json                             |   2 +-
+ rite/5001029.json                             |   2 +-
+ rite/5001100.json                             |   2 +-
+ rite/5001102.json                             |   2 +-
+ rite/5002008.json                             |   2 +-
+ rite/5002009.json                             |   2 +-
+ rite/5002020.json                             |   2 +-
+ rite/5002021.json                             |   2 +-
+ rite/5002024.json                             |   2 +-
+ rite/5002025.json                             |   2 +-
+ rite/5002030.json                             |   2 +-
+ rite/5002031.json                             |   2 +-
+ rite/5002517.json                             |   2 +-
+ rite/5003002.json                             |   2 +-
+ rite/5004514.json                             |   2 +-
+ rite/5004515.json                             |   2 +-
+ rite/5004516.json                             |   2 +-
+ rite/5004518.json                             |   2 +-
+ rite/5004818.json                             |   2 +-
+ rite/5004819.json                             |   2 +-
+ rite/5004820.json                             |   2 +-
+ rite/5004821.json                             |   2 +-
+ rite/5004822.json                             |   2 +-
+ rite/5004823.json                             |   2 +-
+ rite/5004824.json                             |   2 +-
+ rite/5004825.json                             |   2 +-
+ rite/5004826.json                             |   2 +-
+ rite/5004827.json                             |   2 +-
+ rite/5004828.json                             |   2 +-
+ rite/5004829.json                             |   2 +-
+ rite/5004830.json                             |   2 +-
+ rite/5004831.json                             |   2 +-
+ rite/5004832.json                             |   2 +-
+ rite/5004902.json                             |   2 +-
+ rite/5006008.json                             |   4 +-
+ rite/5006009.json                             |   2 +-
+ rite/5006013.json                             |   2 +-
+ rite/5006018.json                             |   2 +-
+ rite/5006019.json                             |   2 +-
+ rite/5006027.json                             |   2 +-
+ rite/5006028.json                             |   2 +-
+ rite/5006029.json                             |   2 +-
+ rite/5006030.json                             |   2 +-
+ rite/5006031.json                             |   2 +-
+ rite/5006032.json                             |   2 +-
+ rite/5006033.json                             |   2 +-
+ rite/5006034.json                             |   2 +-
+ rite/5006035.json                             |   2 +-
+ rite/5006036.json                             |   2 +-
+ rite/5006037.json                             |   2 +-
+ rite/5006039.json                             |   2 +-
+ rite/5006042.json                             |   2 +-
+ rite/5006045.json                             |   2 +-
+ rite/5006046.json                             |   2 +-
+ rite/5006047.json                             |   2 +-
+ rite/5006048.json                             |   2 +-
+ rite/5006052.json                             |   2 +-
+ rite/5006054.json                             |   2 +-
+ rite/5006056.json                             |   2 +-
+ rite/5006070.json                             |   2 +-
+ rite/5006073.json                             |   2 +-
+ rite/5006074.json                             |   2 +-
+ rite/5006076.json                             |   4 +-
+ rite/5006077.json                             |   2 +-
+ rite/5006508.json                             |   2 +-
+ rite/5006509.json                             |   2 +-
+ rite/5006510.json                             |   2 +-
+ rite/5006517.json                             |   2 +-
+ rite/5006522.json                             |   2 +-
+ rite/5006557.json                             |  65 +-
+ rite/5006572.json                             |   2 +-
+ rite/5006573.json                             |   2 +-
+ rite/5006574.json                             |   2 +-
+ rite/5006575.json                             |   2 +-
+ rite/5006576.json                             |   2 +-
+ rite/5006577.json                             |   2 +-
+ rite/5006578.json                             |   2 +-
+ rite/5006579.json                             |   2 +-
+ rite/5006580.json                             |   2 +-
+ rite/5006581.json                             |   2 +-
+ rite/5006582.json                             |   2 +-
+ rite/5006583.json                             |   2 +-
+ rite/5006584.json                             |   2 +-
+ rite/5006585.json                             |   2 +-
+ rite/5006586.json                             |   2 +-
+ rite/5006588.json                             |   2 +-
+ rite/5006589.json                             |   2 +-
+ rite/5006593.json                             |   4 +-
+ rite/5006595.json                             |   2 +-
+ rite/5006596.json                             |   2 +-
+ rite/5006597.json                             |   2 +-
+ rite/5006599.json                             |   2 +-
+ rite/5006605.json                             |   2 +-
+ rite/5006607.json                             |   2 +-
+ rite/5006618.json                             |   2 +-
+ rite/5006619.json                             |   2 +-
+ rite/5006621.json                             |   2 +-
+ rite/5006625.json                             |   2 +-
+ rite/5006631.json                             |   2 +-
+ rite/5006632.json                             |   2 +-
+ rite/5006633.json                             |   2 +-
+ rite/5006634.json                             |   2 +-
+ rite/5006635.json                             |   2 +-
+ rite/5006636.json                             |   2 +-
+ rite/5006638.json                             |   2 +-
+ rite/5006639.json                             |   2 +-
+ rite/5006640.json                             |   2 +-
+ rite/5006641.json                             |   2 +-
+ rite/5006643.json                             |   2 +-
+ rite/5006647.json                             |   2 +-
+ rite/5006648.json                             |   2 +-
+ rite/5006649.json                             |   2 +-
+ rite/5006650.json                             |   2 +-
+ rite/5006651.json                             |   2 +-
+ rite/5006652.json                             |   2 +-
+ rite/5006653.json                             |   2 +-
+ rite/5006654.json                             |   2 +-
+ rite/5006655.json                             |   2 +-
+ rite/5006656.json                             |   2 +-
+ rite/5006657.json                             |   2 +-
+ rite/5006658.json                             |   2 +-
+ rite/5006659.json                             |   2 +-
+ rite/5006660.json                             |   2 +-
+ rite/5006661.json                             |   2 +-
+ rite/5006662.json                             |   2 +-
+ rite/5006663.json                             |   2 +-
+ rite/5006665.json                             |   2 +-
+ rite/5006666.json                             |   2 +-
+ rite/5006667.json                             |   2 +-
+ rite/5006668.json                             |   2 +-
+ rite/5006669.json                             |   2 +-
+ rite/5006670.json                             |   2 +-
+ rite/5006671.json                             |   2 +-
+ rite/5006672.json                             |   2 +-
+ rite/5006674.json                             |   2 +-
+ rite/5006675.json                             |   2 +-
+ rite/5006678.json                             |   2 +-
+ rite/5007001.json                             |   2 +-
+ rite/5007008.json                             |   2 +-
+ rite/5007016.json                             |   2 +-
+ rite/5008007.json                             |   2 +-
+ rite/5008008.json                             |   2 +-
+ rite/5008009.json                             |   2 +-
+ rite/5008010.json                             |   2 +-
+ rite/5008011.json                             |   2 +-
+ rite/5008012.json                             |   2 +-
+ rite/5008013.json                             |   2 +-
+ rite/5008015.json                             |   2 +-
+ rite/5008016.json                             |   2 +-
+ rite/5008017.json                             |   2 +-
+ rite/5008018.json                             |   2 +-
+ rite/5008020.json                             |   2 +-
+ rite/5008030.json                             |   2 +-
+ rite/5008031.json                             |   2 +-
+ rite/5008046.json                             |   2 +-
+ rite/5008047.json                             |   2 +-
+ rite/5008052.json                             |   4 +-
+ rite/5008054.json                             |   2 +-
+ rite/5008057.json                             |   2 +-
+ rite/5008058.json                             |   2 +-
+ rite/5008059.json                             |   2 +-
+ rite/5008060.json                             |   2 +-
+ rite/5008061.json                             |   2 +-
+ rite/5008062.json                             |   2 +-
+ rite/5008063.json                             |   2 +-
+ rite/5008064.json                             |   4 +-
+ rite/5008066.json                             |   2 +-
+ rite/5008067.json                             |   2 +-
+ rite/5008068.json                             |   2 +-
+ rite/5008069.json                             |   2 +-
+ rite/5008070.json                             |   2 +-
+ rite/5008071.json                             |   2 +-
+ rite/5008072.json                             |   2 +-
+ rite/5008073.json                             |   2 +-
+ rite/5008074.json                             |   2 +-
+ rite/5008075.json                             |   2 +-
+ rite/5008076.json                             |   2 +-
+ rite/5008087.json                             |   2 +-
+ rite/5008088.json                             |   2 +-
+ rite/5008089.json                             |   2 +-
+ rite/5008090.json                             |   2 +-
+ rite/5008091.json                             |   2 +-
+ rite/5008092.json                             |   2 +-
+ rite/5008094.json                             |   2 +-
+ rite/5008096.json                             |   2 +-
+ rite/5008097.json                             |   2 +-
+ rite/5008099.json                             |   2 +-
+ rite/5008100.json                             |   2 +-
+ rite/5008102.json                             |   2 +-
+ rite/5008103.json                             |   2 +-
+ rite/5008104.json                             |   2 +-
+ rite/5008105.json                             |   2 +-
+ rite/5008106.json                             |   2 +-
+ rite/5008107.json                             |   2 +-
+ rite/5008109.json                             |   2 +-
+ rite/5008110.json                             |   2 +-
+ rite/5008111.json                             |   2 +-
+ rite/5008112.json                             |   2 +-
+ rite/5008113.json                             |   2 +-
+ rite/5008114.json                             |   4 +-
+ rite/5008115.json                             |   2 +-
+ rite/5008117.json                             |   2 +-
+ rite/5008118.json                             |   2 +-
+ rite/5008119.json                             |   2 +-
+ rite/5008121.json                             |   2 +-
+ rite/5008122.json                             |   2 +-
+ rite/5008125.json                             |   2 +-
+ rite/5008126.json                             |   2 +-
+ rite/5008127.json                             |   2 +-
+ rite/5008128.json                             |   2 +-
+ rite/5008129.json                             |   2 +-
+ rite/5008130.json                             |   2 +-
+ rite/5008131.json                             |   2 +-
+ rite/5008132.json                             |   2 +-
+ rite/5008146.json                             |   2 +-
+ rite/5008148.json                             |   2 +-
+ rite/5008149.json                             |   2 +-
+ rite/5008153.json                             |   2 +-
+ rite/5008154.json                             |   2 +-
+ rite/5008155.json                             |   2 +-
+ rite/5008156.json                             |   2 +-
+ rite/5008157.json                             |   2 +-
+ rite/5008160.json                             |   2 +-
+ rite/5008161.json                             |   2 +-
+ rite/5008163.json                             |   2 +-
+ rite/5008164.json                             |   2 +-
+ rite/5008166.json                             |   2 +-
+ rite/5008169.json                             |   2 +-
+ rite/5008171.json                             |   2 +-
+ rite/5008179.json                             |   2 +-
+ rite/5008181.json                             |   2 +-
+ rite/5008182.json                             |   2 +-
+ rite/5008183.json                             |   2 +-
+ rite/5008184.json                             |   2 +-
+ rite/5008186.json                             |   2 +-
+ rite/5008187.json                             |   2 +-
+ rite/5008188.json                             |   2 +-
+ rite/5008189.json                             |   2 +-
+ rite/5010021.json                             |   2 +-
+ rite/5010057.json                             |   2 +-
+ rite/5010059.json                             |   2 +-
+ 360 files changed, 2332 insertions(+), 564 deletions(-)
+ create mode 100644 "init/\345\217\257\351\200\211-\346\255\243\345\270\270\347\232\204\345\233\236\346\241\243\346\254\241\346\225\260/1.json"
+ create mode 100644 "init/\345\217\257\351\200\211-\346\255\243\345\270\270\347\232\204\350\213\217\344\270\271\345\215\241\345\244\251\346\225\260/1.json"
+ create mode 100644 "init/\345\217\257\351\200\211-\346\255\243\345\270\270\347\232\204\351\207\215\347\275\256\350\213\217\344\270\271\345\215\241\346\254\241\346\225\260/1.json"
+ create mode 100644 "init/\345\217\257\351\200\211-\346\255\243\345\270\270\347\232\204\351\252\260\347\202\271/1.json"
 
 diff --git a/cards.json b/cards.json
-index 1482aeb..4d611e7 100644
+index 0ea852f..7531a82 100644
 --- a/cards.json
 +++ b/cards.json
 @@ -11,14 +11,18 @@
@@ -1514,11 +1505,11 @@ index 3c7c9b6..0865c89 100644
          },
      ],
      //  俺寻思仪式id, 不配置或不存在就不显示
-diff --git a/init/可选-正常的回档次数/1.json b/init/可选-正常的回档次数/1.json
+diff --git "a/init/\345\217\257\351\200\211-\346\255\243\345\270\270\347\232\204\345\233\236\346\241\243\346\254\241\346\225\260/1.json" "b/init/\345\217\257\351\200\211-\346\255\243\345\270\270\347\232\204\345\233\236\346\241\243\346\254\241\346\225\260/1.json"
 new file mode 100644
 index 0000000..2a0f6ad
 --- /dev/null
-+++ b/init/可选-正常的回档次数/1.json
++++ "b/init/\345\217\257\351\200\211-\346\255\243\345\270\270\347\232\204\345\233\236\346\241\243\346\254\241\346\225\260/1.json"
 @@ -0,0 +1,360 @@
 +{
 +    "id": 1,
@@ -1881,11 +1872,11 @@ index 0000000..2a0f6ad
 +    ]
 +}
 \ No newline at end of file
-diff --git a/init/可选-正常的苏丹卡天数/1.json b/init/可选-正常的苏丹卡天数/1.json
+diff --git "a/init/\345\217\257\351\200\211-\346\255\243\345\270\270\347\232\204\350\213\217\344\270\271\345\215\241\345\244\251\346\225\260/1.json" "b/init/\345\217\257\351\200\211-\346\255\243\345\270\270\347\232\204\350\213\217\344\270\271\345\215\241\345\244\251\346\225\260/1.json"
 new file mode 100644
 index 0000000..97ff307
 --- /dev/null
-+++ b/init/可选-正常的苏丹卡天数/1.json
++++ "b/init/\345\217\257\351\200\211-\346\255\243\345\270\270\347\232\204\350\213\217\344\270\271\345\215\241\345\244\251\346\225\260/1.json"
 @@ -0,0 +1,360 @@
 +{
 +    "id": 1,
@@ -2248,11 +2239,11 @@ index 0000000..97ff307
 +    ]
 +}
 \ No newline at end of file
-diff --git a/init/可选-正常的重置苏丹卡次数/1.json b/init/可选-正常的重置苏丹卡次数/1.json
+diff --git "a/init/\345\217\257\351\200\211-\346\255\243\345\270\270\347\232\204\351\207\215\347\275\256\350\213\217\344\270\271\345\215\241\346\254\241\346\225\260/1.json" "b/init/\345\217\257\351\200\211-\346\255\243\345\270\270\347\232\204\351\207\215\347\275\256\350\213\217\344\270\271\345\215\241\346\254\241\346\225\260/1.json"
 new file mode 100644
 index 0000000..3f8251e
 --- /dev/null
-+++ b/init/可选-正常的重置苏丹卡次数/1.json
++++ "b/init/\345\217\257\351\200\211-\346\255\243\345\270\270\347\232\204\351\207\215\347\275\256\350\213\217\344\270\271\345\215\241\346\254\241\346\225\260/1.json"
 @@ -0,0 +1,360 @@
 +{
 +    "id": 1,
@@ -2615,11 +2606,11 @@ index 0000000..3f8251e
 +    ]
 +}
 \ No newline at end of file
-diff --git a/init/可选-正常的骰点/1.json b/init/可选-正常的骰点/1.json
+diff --git "a/init/\345\217\257\351\200\211-\346\255\243\345\270\270\347\232\204\351\252\260\347\202\271/1.json" "b/init/\345\217\257\351\200\211-\346\255\243\345\270\270\347\232\204\351\252\260\347\202\271/1.json"
 new file mode 100644
 index 0000000..0d8ddca
 --- /dev/null
-+++ b/init/可选-正常的骰点/1.json
++++ "b/init/\345\217\257\351\200\211-\346\255\243\345\270\270\347\232\204\351\252\260\347\202\271/1.json"
 @@ -0,0 +1,360 @@
 +{
 +    "id": 1,
@@ -3008,110 +2999,6 @@ index 5fb6f86..03b35c4 100644
          "waiting_round_end_action":[
          ],
          "method_settlement": "",
-diff --git a/rite/5000131.json b/rite/5000131.json
-index 5f44b9b..cdb7cbb 100644
---- a/rite/5000131.json
-+++ b/rite/5000131.json
-@@ -4,7 +4,7 @@
-         "text": "天象仪缓缓转动，在一张轻薄的铜板上，用钢针与滚轮，压刻出复杂的图形——可以称之为真理的痕迹，也可以称之为命运的轨迹。",       
-         "tips": "",
-         "once_new":0,
--        "round_number": 7,
-+        "round_number": 1,
-         "waiting_round":0,
-         "waiting_round_end_action":[
-  
-diff --git a/rite/5000133.json b/rite/5000133.json
-index c623242..4e7d764 100644
---- a/rite/5000133.json
-+++ b/rite/5000133.json
-@@ -4,7 +4,7 @@
-         "text": "一个可以让黄金鸟自由出入的小屋子。",       
-         "tips": "",
-         "once_new":0,
--        "round_number": 7,
-+        "round_number": 1,
-         "waiting_round":0,
-         "waiting_round_end_action":[
-  
-diff --git a/rite/5000134.json b/rite/5000134.json
-index af78b48..3f49108 100644
---- a/rite/5000134.json
-+++ b/rite/5000134.json
-@@ -4,7 +4,7 @@
-         "text": "杀过人的朋友都知道，杀人容易抛尸难。现在，对你来说，这不是一个问题了。",       
-         "tips": "",
-         "once_new":0,
--        "round_number": 7,
-+        "round_number": 1,
-         "waiting_round":0,
-         "waiting_round_end_action":[
-         ],
-diff --git a/rite/5000135.json b/rite/5000135.json
-index 4408225..a2d519a 100644
---- a/rite/5000135.json
-+++ b/rite/5000135.json
-@@ -4,7 +4,7 @@
-         "text": "在地上，它就是一个简陋的篮子与干瘪的布袋子。由此可见，神性存在于烈焰之中，存在于高空之中……",       
-         "tips": "",
-         "once_new":0,
--        "round_number": 7,
-+        "round_number": 1,
-         "waiting_round":0,
-         "waiting_round_end_action":[
-         ],
-diff --git a/rite/5000136.json b/rite/5000136.json
-index 02860d0..b148e19 100644
---- a/rite/5000136.json
-+++ b/rite/5000136.json
-@@ -4,7 +4,7 @@
-         "text": "它只是一个雕像……你总感觉它蠢蠢欲动，仿佛看到了鸟儿的猫一般。",       
-         "tips": "",
-         "once_new":0,
--        "round_number": 7,
-+        "round_number": 1,
-         "waiting_round":0,
-         "waiting_round_end_action":[
-         ],
-diff --git a/rite/5000137.json b/rite/5000137.json
-index 88f3811..272f9c2 100644
---- a/rite/5000137.json
-+++ b/rite/5000137.json
-@@ -4,7 +4,7 @@
-         "text": "在这被铺成迷宫似的挂毯长廊里，行走在其中，总能不经意听到挂毯的另一边影影绰绰的人影和若有若无的交谈声。",       
-         "tips": "",
-         "once_new":0,
--        "round_number": 7,
-+        "round_number": 1,
-         "waiting_round":0,
-         "waiting_round_end_action":[
-         ],
-diff --git a/rite/5000139.json b/rite/5000139.json
-index 80c8727..d218cd0 100644
---- a/rite/5000139.json
-+++ b/rite/5000139.json
-@@ -4,7 +4,7 @@
-         "text": "每次你路过的时候，它都有细微的，难以描述的改变。",       
-         "tips": "",
-         "once_new":0,
--        "round_number": 7,
-+        "round_number": 1,
-         "waiting_round":0,
-         "waiting_round_end_action":[
-         ],
-diff --git a/rite/5000141.json b/rite/5000141.json
-index 9042d9e..6e6f922 100644
---- a/rite/5000141.json
-+++ b/rite/5000141.json
-@@ -4,7 +4,7 @@
-         "text": "这是一个威武雄壮的武士雕塑。生命权杖被加工成了一柄长剑，握在雕塑的手上……剑柄中的乙太仍然活跃，会随着日升月落而流转，发光，令剑刃颤动，低鸣……",       
-         "tips": "",
-         "once_new":0,
--        "round_number": 7,
-+        "round_number": 1,
-         "waiting_round":0,
-         "waiting_round_end_action":[
-         ],
 diff --git a/rite/5000520.json b/rite/5000520.json
 index 687f76e..6f13346 100644
 --- a/rite/5000520.json
@@ -3126,7 +3013,7 @@ index 687f76e..6f13346 100644
              {
                  "condition": {
 diff --git a/rite/5000522.json b/rite/5000522.json
-index f400a50..9661a4c 100644
+index db778c4..f981e68 100644
 --- a/rite/5000522.json
 +++ b/rite/5000522.json
 @@ -6,7 +6,7 @@
@@ -3139,7 +3026,7 @@ index f400a50..9661a4c 100644
              {
                  "condition": {
 diff --git a/rite/5000523.json b/rite/5000523.json
-index 9c80291..d14a4e6 100644
+index 2ccba33..e2349a5 100644
 --- a/rite/5000523.json
 +++ b/rite/5000523.json
 @@ -6,7 +6,7 @@
@@ -3152,7 +3039,7 @@ index 9c80291..d14a4e6 100644
              {
                  "condition": {
 diff --git a/rite/5000524.json b/rite/5000524.json
-index a2041d6..839c6be 100644
+index ba60f9d..a59cd63 100644
 --- a/rite/5000524.json
 +++ b/rite/5000524.json
 @@ -6,7 +6,7 @@
@@ -3217,7 +3104,7 @@ index 2c14df1..996c9a4 100644
              {
                  "condition": {
 diff --git a/rite/5000570.json b/rite/5000570.json
-index 2f6e7e1..abdb4aa 100644
+index 717f3d7..3c4ec71 100644
 --- a/rite/5000570.json
 +++ b/rite/5000570.json
 @@ -6,7 +6,7 @@
@@ -3269,7 +3156,7 @@ index 8fa8668..02b4ffb 100644
          ],
          "method_settlement": "",
 diff --git a/rite/5000580.json b/rite/5000580.json
-index 3ffa4ca..21c1867 100644
+index e1a82e6..b862e88 100644
 --- a/rite/5000580.json
 +++ b/rite/5000580.json
 @@ -6,7 +6,7 @@
@@ -3425,7 +3312,7 @@ index a2997f6..85e7448 100644
              {
                  "condition": {
 diff --git a/rite/5000632.json b/rite/5000632.json
-index b109bc9..9688094 100644
+index 2aa8c1c..e588089 100644
 --- a/rite/5000632.json
 +++ b/rite/5000632.json
 @@ -6,7 +6,7 @@
@@ -3503,7 +3390,7 @@ index d0a00f9..0c5763b 100644
              {
                  "condition": {
 diff --git a/rite/5000654.json b/rite/5000654.json
-index 1183ca1..f1e5055 100644
+index 6def469..5c5c3a4 100644
 --- a/rite/5000654.json
 +++ b/rite/5000654.json
 @@ -6,7 +6,7 @@
@@ -3516,16 +3403,14 @@ index 1183ca1..f1e5055 100644
              {
                  "condition": {
 diff --git a/rite/5000660.json b/rite/5000660.json
-index 9ccfa15..a11a6eb 100644
+index 9ccfa15..f8078d9 100644
 --- a/rite/5000660.json
 +++ b/rite/5000660.json
-@@ -5,8 +5,8 @@
-         "tips": "",
+@@ -6,7 +6,7 @@
          "mapping_id":8001202,  
          "once_new":0,
--        "round_number": 3,
+         "round_number": 3,
 -        "waiting_round":3, 
-+        "round_number": 1,
 +        "waiting_round":0, 
          "waiting_round_end_action":[
              {
@@ -3624,18 +3509,20 @@ index acfd3a9..2d79e16 100644
              {
                  "condition": {
 diff --git a/rite/5000702.json b/rite/5000702.json
-index 456ed71..ad7ba0b 100644
+index 456ed71..0a71a2e 100644
 --- a/rite/5000702.json
 +++ b/rite/5000702.json
-@@ -5,7 +5,7 @@
+@@ -5,8 +5,8 @@
          "tips": "",
          "mapping_id":8001262,   
          "once_new":0,
 -        "round_number": 7, //需要7回合
+-        "waiting_round":2, 
 +        "round_number": 3, //需要7回合
-         "waiting_round":2, 
++        "waiting_round":0, 
          "waiting_round_end_action":[
          ],
+         "method_settlement": "",
 diff --git a/rite/5000708.json b/rite/5000708.json
 index ce199c0..cce72bb 100644
 --- a/rite/5000708.json
@@ -3793,48 +3680,46 @@ index 295c646..42e1320 100644
              {
                  "condition": {
 diff --git a/rite/5000731.json b/rite/5000731.json
-index be74d38..4340cf4 100644
+index 465a180..0fb99d4 100644
 --- a/rite/5000731.json
 +++ b/rite/5000731.json
-@@ -5,8 +5,8 @@
-         "tips": "",
+@@ -6,7 +6,7 @@
          "mapping_id":8001066, 
          "once_new":0,
--        "round_number": 4, 
+         "round_number": 4, 
 -        "waiting_round":4, 
-+        "round_number": 1, 
 +        "waiting_round":0, 
          "waiting_round_end_action":[
              {
                  "condition": {
 diff --git a/rite/5000732.json b/rite/5000732.json
-index 3e35620..434f1a8 100644
+index ce9b99e..67c86fa 100644
 --- a/rite/5000732.json
 +++ b/rite/5000732.json
-@@ -5,8 +5,8 @@
-         "tips": "",
+@@ -6,7 +6,7 @@
          "mapping_id":8001066, 
          "once_new":0,
--        "round_number": 4, 
+         "round_number": 4, 
 -        "waiting_round":4, 
-+        "round_number": 1, 
 +        "waiting_round":0, 
          "waiting_round_end_action":[
              {
                  "condition": {
 diff --git a/rite/5000734.json b/rite/5000734.json
-index c8dbdfb..c8b5ea3 100644
+index c8dbdfb..ba417bc 100644
 --- a/rite/5000734.json
 +++ b/rite/5000734.json
-@@ -5,7 +5,7 @@
+@@ -5,8 +5,8 @@
          "tips": "",
          "mapping_id":8001066, 
          "once_new":0,
 -        "round_number": 7, 
+-        "waiting_round":1, 
 +        "round_number": 3, 
-         "waiting_round":1, 
++        "waiting_round":0, 
          "waiting_round_end_action":[
          ],
+         "method_settlement": "",
 diff --git a/rite/5000749.json b/rite/5000749.json
 index c9e0a14..5c0f85d 100644
 --- a/rite/5000749.json
@@ -3939,21 +3824,8 @@ index 023d80a..75296a6 100644
      "waiting_round_end_action":[
          {
              "condition": {
-diff --git a/rite/5000783.json b/rite/5000783.json
-index 47da873..fb5e4b5 100644
---- a/rite/5000783.json
-+++ b/rite/5000783.json
-@@ -4,7 +4,7 @@
-     "text": "索拉薇儿住在你名下一处不甚秘密的房产内，每日过得惬意潇洒——当然，这建立在你定期给她一笔钱的基础上。",       
-     "tips": "",
-     "once_new":0,
--    "round_number": 5 ,
-+    "round_number": 3 ,
-     "waiting_round":0,
-     "waiting_round_end_action":[
-     ],
 diff --git a/rite/5000784.json b/rite/5000784.json
-index c2291b2..303b2a5 100644
+index c2291b2..303b2a50 100644
 --- a/rite/5000784.json
 +++ b/rite/5000784.json
 @@ -6,7 +6,7 @@
@@ -4004,19 +3876,6 @@ index 2ea025e..026f508 100644
      "waiting_round_end_action":[
          {
              "condition": {
-diff --git a/rite/5000789.json b/rite/5000789.json
-index 6537665..74bd994 100644
---- a/rite/5000789.json
-+++ b/rite/5000789.json
-@@ -5,7 +5,7 @@
-     "tips": "",
-     "mapping_id":8001276,
-     "once_new":0,
--    "round_number": 5, 
-+    "round_number": 3, 
-     "waiting_round":0,
-     "waiting_round_end_action":[
-        
 diff --git a/rite/5000790.json b/rite/5000790.json
 index 0e42c04..37a9245 100644
 --- a/rite/5000790.json
@@ -4096,16 +3955,14 @@ index 513513b..38bac17 100644
          {
              "condition": {
 diff --git a/rite/5000796.json b/rite/5000796.json
-index b92541a..3a4b9d7 100644
+index 2f8223d..5ca06c9 100644
 --- a/rite/5000796.json
 +++ b/rite/5000796.json
-@@ -5,8 +5,8 @@
-     "tips": "",
+@@ -6,7 +6,7 @@
      "mapping_id":8001280, 
      "once_new":0,
--    "round_number": 3, 
+     "round_number": 3, 
 -    "waiting_round":5,
-+    "round_number": 1, 
 +    "waiting_round":0,
      "waiting_round_end_action":[
          {
@@ -4240,19 +4097,6 @@ index 82f1d34..3633b5a 100644
      "waiting_round_end_action":[
          {
              "condition": {
-diff --git a/rite/5000811.json b/rite/5000811.json
-index 41459d9..d66bf09 100644
---- a/rite/5000811.json
-+++ b/rite/5000811.json
-@@ -4,7 +4,7 @@
-     "text": "豺狼帮的老大现在会在你的领地进行一些“活动”，作为交换，他们每周会和你分享一部分收获。",       
-     "tips": "",
-     "once_new":0,
--    "round_number": 7, 
-+    "round_number": 3, 
-     "waiting_round":0,
-     "waiting_round_end_action":[
-     ],
 diff --git a/rite/5000813.json b/rite/5000813.json
 index 2ea3a6b..642d5a8 100644
 --- a/rite/5000813.json
@@ -4358,7 +4202,7 @@ index 0ceb4ef..1814fc1 100644
          {
              "condition": {
 diff --git a/rite/5000825.json b/rite/5000825.json
-index a5ff29f..78ceb89 100644
+index 2723a7d..aa7a174 100644
 --- a/rite/5000825.json
 +++ b/rite/5000825.json
 @@ -6,7 +6,7 @@
@@ -4371,12 +4215,12 @@ index a5ff29f..78ceb89 100644
          //放着不做会被处死。
          {
 diff --git a/rite/5000828.json b/rite/5000828.json
-index b99b2af..2f44376 100644
+index daef92e..1a4a62e 100644
 --- a/rite/5000828.json
 +++ b/rite/5000828.json
-@@ -5,7 +5,7 @@
-     "tips": "",
+@@ -6,7 +6,7 @@
      "once_new":0,
+     "mapping_id":8001294,
      "round_number": 1, 
 -    "waiting_round":7,
 +    "waiting_round":0,
@@ -4384,11 +4228,11 @@ index b99b2af..2f44376 100644
          {
              "condition": {
 diff --git a/rite/5000831.json b/rite/5000831.json
-index 2fa006c..93c9722 100644
+index d19079d..b0e97cb 100644
 --- a/rite/5000831.json
 +++ b/rite/5000831.json
-@@ -5,7 +5,7 @@
-     "tips": "",
+@@ -6,7 +6,7 @@
+     "mapping_id":8001297,
      "once_new":0,
      "round_number": 1, 
 -    "waiting_round":3,
@@ -4397,11 +4241,11 @@ index 2fa006c..93c9722 100644
          {
              "condition": {
 diff --git a/rite/5000838.json b/rite/5000838.json
-index 4af7a92..3fc23e1 100644
+index cc964e4..e3d08c4 100644
 --- a/rite/5000838.json
 +++ b/rite/5000838.json
-@@ -5,7 +5,7 @@
-     "tips": "",
+@@ -6,7 +6,7 @@
+     "mapping_id":8001246, 
      "once_new":0,
      "round_number": 1, 
 -    "waiting_round":3,
@@ -4410,11 +4254,11 @@ index 4af7a92..3fc23e1 100644
          {
              "condition": {
 diff --git a/rite/5000839.json b/rite/5000839.json
-index caa96b8..751b534 100644
+index 1931b98..58cfb78 100644
 --- a/rite/5000839.json
 +++ b/rite/5000839.json
-@@ -5,7 +5,7 @@
-     "tips": "",
+@@ -6,7 +6,7 @@
+     "mapping_id":8001246, 
      "once_new":0,
      "round_number": 0, 
 -    "waiting_round":1,
@@ -4423,11 +4267,11 @@ index caa96b8..751b534 100644
          {
              "condition": {
 diff --git a/rite/5000840.json b/rite/5000840.json
-index 62d1fb1..90c8305 100644
+index 5734424..c94fd82 100644
 --- a/rite/5000840.json
 +++ b/rite/5000840.json
-@@ -5,7 +5,7 @@
-     "tips": "",
+@@ -6,7 +6,7 @@
+     "mapping_id":8001246,
      "once_new":0,
      "round_number": 1, 
 -    "waiting_round":3,
@@ -4436,11 +4280,11 @@ index 62d1fb1..90c8305 100644
          {
              "condition": {
 diff --git a/rite/5000844.json b/rite/5000844.json
-index 1af59db..8acac7a 100644
+index f3e061f..781aa56 100644
 --- a/rite/5000844.json
 +++ b/rite/5000844.json
-@@ -5,7 +5,7 @@
-     "tips": "",
+@@ -6,7 +6,7 @@
+     "mapping_id":8001252,
      "once_new":0,
      "round_number": 1, 
 -    "waiting_round":3,
@@ -4449,11 +4293,11 @@ index 1af59db..8acac7a 100644
          {
              "condition": {
 diff --git a/rite/5000845.json b/rite/5000845.json
-index 1a7c164..0ac8ca9 100644
+index abc6670..d80b0da 100644
 --- a/rite/5000845.json
 +++ b/rite/5000845.json
-@@ -5,7 +5,7 @@
-     "tips": "",
+@@ -6,7 +6,7 @@
+     "mapping_id":8001252,
      "once_new":0,
      "round_number": 1, 
 -    "waiting_round":3,
@@ -4462,11 +4306,11 @@ index 1a7c164..0ac8ca9 100644
          {
              "condition": {
 diff --git a/rite/5000846.json b/rite/5000846.json
-index 892b1b2..64e0c14 100644
+index abfc6d5..d561935 100644
 --- a/rite/5000846.json
 +++ b/rite/5000846.json
-@@ -5,7 +5,7 @@
-     "tips": "",
+@@ -6,7 +6,7 @@
+     "mapping_id":8001252,
      "once_new":0,
      "round_number": 1, 
 -    "waiting_round":3,
@@ -4475,11 +4319,11 @@ index 892b1b2..64e0c14 100644
          {
              "condition": {
 diff --git a/rite/5000847.json b/rite/5000847.json
-index a0b2850..bc48134 100644
+index dba3d91..f63a688 100644
 --- a/rite/5000847.json
 +++ b/rite/5000847.json
-@@ -5,7 +5,7 @@
-     "tips": "",
+@@ -6,7 +6,7 @@
+     "mapping_id":8001183,
      "once_new":0,
      "round_number": 1, 
 -    "waiting_round":3,
@@ -4488,11 +4332,11 @@ index a0b2850..bc48134 100644
          {
              "condition": {
 diff --git a/rite/5000848.json b/rite/5000848.json
-index c019e26..abf7771 100644
+index 4a43d2a..2cd0c70 100644
 --- a/rite/5000848.json
 +++ b/rite/5000848.json
-@@ -5,7 +5,7 @@
-     "tips": "",
+@@ -6,7 +6,7 @@
+     "mapping_id":8001252,
      "once_new":0,
      "round_number": 1, 
 -    "waiting_round":3,
@@ -4501,12 +4345,12 @@ index c019e26..abf7771 100644
          {
              "condition": {
 diff --git a/rite/5001017.json b/rite/5001017.json
-index c5ab714..a53885c 100644
+index 2f5905e..ce809f6 100644
 --- a/rite/5001017.json
 +++ b/rite/5001017.json
-@@ -4,7 +4,7 @@
-         "text": "你献给了苏丹一个礼物，而苏丹正在享受她……你宁愿不去想在宫廷里会发生什么，但只要一闭上眼睛，你就会看到一些残酷的幻象，听到一些不堪入耳的声音……那些都是你曾经为了完成苏丹卡而做过的，和想过的事情。",       
+@@ -5,7 +5,7 @@
          "tips": "",
+         "mapping_id":8001008,
          "once_new":1,
 -        "round_number": 7,
 +        "round_number": 3,
@@ -4514,11 +4358,11 @@ index c5ab714..a53885c 100644
          "waiting_round_end_action":[
          ],
 diff --git a/rite/5001024.json b/rite/5001024.json
-index 49f410e..7e1effa 100644
+index 4b8048b..6a02a47 100644
 --- a/rite/5001024.json
 +++ b/rite/5001024.json
-@@ -5,7 +5,7 @@
-         "tips": "",
+@@ -6,7 +6,7 @@
+         "mapping_id":8001302,
          "once_new":0,
          "round_number": 3,
 -        "waiting_round":5,
@@ -4527,11 +4371,11 @@ index 49f410e..7e1effa 100644
              {
                  "condition": {
 diff --git a/rite/5001026.json b/rite/5001026.json
-index 08605a0..f52e901 100644
+index c807014..f575afd 100644
 --- a/rite/5001026.json
 +++ b/rite/5001026.json
-@@ -5,7 +5,7 @@
-         "tips": "",
+@@ -6,7 +6,7 @@
+         "mapping_id":8001304,
          "once_new":0,
          "round_number": 1,
 -        "waiting_round":3,
@@ -4540,11 +4384,11 @@ index 08605a0..f52e901 100644
              {
                  "condition": {
 diff --git a/rite/5001027.json b/rite/5001027.json
-index 559988b..8f3b051 100644
+index de88117..454a8ae 100644
 --- a/rite/5001027.json
 +++ b/rite/5001027.json
-@@ -5,7 +5,7 @@
-         "tips": "",
+@@ -6,7 +6,7 @@
+         "mapping_id":8001063,
          "once_new":0,
          "round_number": 1,
 -        "waiting_round":5,
@@ -4553,11 +4397,11 @@ index 559988b..8f3b051 100644
              {
                  "condition": {
 diff --git a/rite/5001028.json b/rite/5001028.json
-index c0e90c8..7b688d0 100644
+index 517a76e..104d4ed 100644
 --- a/rite/5001028.json
 +++ b/rite/5001028.json
-@@ -5,7 +5,7 @@
-         "tips": "",
+@@ -6,7 +6,7 @@
+         "mapping_id":8001008,
          "once_new":0,
          "round_number": 1,
 -        "waiting_round":5,
@@ -4579,11 +4423,11 @@ index 8ad8fc0..2ec9ca1 100644
              {
                  "condition": {   //特殊结果1：你没有参加决斗
 diff --git a/rite/5001100.json b/rite/5001100.json
-index 6b07c3b..61be644 100644
+index 9242a2d..bcb72cf 100644
 --- a/rite/5001100.json
 +++ b/rite/5001100.json
-@@ -5,7 +5,7 @@
-         "tips": "",
+@@ -6,7 +6,7 @@
+         "mapping_id":8001305,
          "once_new":0,
          "round_number": 1,
 -        "waiting_round":7,
@@ -4592,11 +4436,11 @@ index 6b07c3b..61be644 100644
              {
                  "condition": {
 diff --git a/rite/5001102.json b/rite/5001102.json
-index ee8f4f2..95d88df 100644
+index 52185d9..457056e 100644
 --- a/rite/5001102.json
 +++ b/rite/5001102.json
-@@ -5,7 +5,7 @@
-         "tips": "",
+@@ -6,7 +6,7 @@
+         "mapping_id":8001305,
          "once_new":0,
          "round_number": 1,
 -        "waiting_round":1,
@@ -4605,11 +4449,11 @@ index ee8f4f2..95d88df 100644
          ],
          "method_settlement": "",
 diff --git a/rite/5002008.json b/rite/5002008.json
-index 2d93898..5de6802 100644
+index 62cd8bd..0bd6da8 100644
 --- a/rite/5002008.json
 +++ b/rite/5002008.json
-@@ -5,7 +5,7 @@
-         "tips": "",
+@@ -6,7 +6,7 @@
+         "mapping_id":8001308,
          "once_new":0,
          "round_number": 0,
 -        "waiting_round":2,
@@ -4618,11 +4462,11 @@ index 2d93898..5de6802 100644
              {
                  "condition": {
 diff --git a/rite/5002009.json b/rite/5002009.json
-index 5af21cd..f7e81c2 100644
+index b82d5fe..1ffce2c 100644
 --- a/rite/5002009.json
 +++ b/rite/5002009.json
-@@ -5,7 +5,7 @@
-         "tips": "",
+@@ -6,7 +6,7 @@
+         "mapping_id":8001309,
          "once_new":0,
          "round_number": 1,
 -        "waiting_round":2,
@@ -4657,11 +4501,11 @@ index fc5656e..9ff18b0 100644
          ],        
          "method_settlement": "",
 diff --git a/rite/5002024.json b/rite/5002024.json
-index 179124f..246a20e 100644
+index 8f50f60..fa1ef1d 100644
 --- a/rite/5002024.json
 +++ b/rite/5002024.json
-@@ -5,7 +5,7 @@
-         "tips": "",
+@@ -6,7 +6,7 @@
+         "mapping_id":8001313,
          "once_new":0,
          "round_number": 1,
 -        "waiting_round":5,
@@ -4683,11 +4527,11 @@ index 3250d4f..e6fd75f 100644
              {
                  "condition": {   //特殊结果1：你没有参加决斗
 diff --git a/rite/5002030.json b/rite/5002030.json
-index 278e4cb..94e0cdb 100644
+index 17d2ddc..1dbc298 100644
 --- a/rite/5002030.json
 +++ b/rite/5002030.json
-@@ -5,7 +5,7 @@
-         "tips": "",
+@@ -6,7 +6,7 @@
+         "mapping_id":8001312,
          "once_new":0,
          "round_number": 1,
 -        "waiting_round":7,
@@ -4696,11 +4540,11 @@ index 278e4cb..94e0cdb 100644
              {
                  "condition": {
 diff --git a/rite/5002031.json b/rite/5002031.json
-index e075228..26ce7f3 100644
+index fb8e00b..c1694fa 100644
 --- a/rite/5002031.json
 +++ b/rite/5002031.json
-@@ -5,7 +5,7 @@
-         "tips": "",
+@@ -6,7 +6,7 @@
+         "mapping_id":8001314,
          "once_new":0,
          "round_number": 3,
 -        "waiting_round":20,
@@ -4852,7 +4696,7 @@ index d1df623..244056e 100644
              {
                  "condition": {
 diff --git a/rite/5004823.json b/rite/5004823.json
-index b741b89..3969f5e 100644
+index 320306c..a009723 100644
 --- a/rite/5004823.json
 +++ b/rite/5004823.json
 @@ -5,7 +5,7 @@
@@ -4891,7 +4735,7 @@ index a058bdd..6dc3ebe 100644
              {
                  "condition": {
 diff --git a/rite/5004826.json b/rite/5004826.json
-index df60a8f..f830e90 100644
+index e33b2a4..745a980 100644
 --- a/rite/5004826.json
 +++ b/rite/5004826.json
 @@ -5,7 +5,7 @@
@@ -4904,7 +4748,7 @@ index df60a8f..f830e90 100644
              {
                  "condition": {
 diff --git a/rite/5004827.json b/rite/5004827.json
-index 636a850..5e61b1c 100644
+index d76e5c1..6187854 100644
 --- a/rite/5004827.json
 +++ b/rite/5004827.json
 @@ -5,7 +5,7 @@
@@ -4917,7 +4761,7 @@ index 636a850..5e61b1c 100644
              {
                  "condition": {
 diff --git a/rite/5004828.json b/rite/5004828.json
-index 0f4e273..a926286 100644
+index 3973c35..f24db29 100644
 --- a/rite/5004828.json
 +++ b/rite/5004828.json
 @@ -5,7 +5,7 @@
@@ -4930,7 +4774,7 @@ index 0f4e273..a926286 100644
              {
                  "condition": {
 diff --git a/rite/5004829.json b/rite/5004829.json
-index c437b85..d0501ec 100644
+index 2ec12ed..cccba4c 100644
 --- a/rite/5004829.json
 +++ b/rite/5004829.json
 @@ -5,7 +5,7 @@
@@ -5361,18 +5205,20 @@ index 59d0123..3c17123 100644
          {
              "condition": {
 diff --git a/rite/5006076.json b/rite/5006076.json
-index eef2772..30a9945 100644
+index eef2772..0dede83 100644
 --- a/rite/5006076.json
 +++ b/rite/5006076.json
-@@ -4,7 +4,7 @@
+@@ -4,8 +4,8 @@
      "text": "一个孩子被沙暴卷走，消失无踪。但你没有放弃搜寻——生要见人，死要见尸",       
      "tips": "",
      "once_new":0,
 -    "round_number": 7,
+-    "waiting_round":3,
 +    "round_number": 3,
-     "waiting_round":3,
++    "waiting_round":0,
      "waiting_round_end_action":[
      ],
+     "method_settlement": "",
 diff --git a/rite/5006077.json b/rite/5006077.json
 index da9bbee..a0f776a 100644
 --- a/rite/5006077.json
@@ -5387,11 +5233,11 @@ index da9bbee..a0f776a 100644
      ],
      "method_settlement": "",
 diff --git a/rite/5006508.json b/rite/5006508.json
-index 3c9b168..faf1495 100644
+index 96380bf..cf706a8 100644
 --- a/rite/5006508.json
 +++ b/rite/5006508.json
-@@ -5,7 +5,7 @@
-         "tips": "",
+@@ -6,7 +6,7 @@
+         "mapping_id":8001213, 
          "once_new":1,
          "round_number": 1,
 -        "waiting_round":3,
@@ -5400,11 +5246,11 @@ index 3c9b168..faf1495 100644
              {
                  "condition": {
 diff --git a/rite/5006509.json b/rite/5006509.json
-index be279de..cd54e92 100644
+index 91f885f..d76ab81 100644
 --- a/rite/5006509.json
 +++ b/rite/5006509.json
-@@ -5,7 +5,7 @@
-         "tips": "",
+@@ -6,7 +6,7 @@
+         "mapping_id":8001252,
          "once_new":1,
          "round_number": 1,
 -        "waiting_round":3,
@@ -5413,11 +5259,11 @@ index be279de..cd54e92 100644
              {
                  "condition": {
 diff --git a/rite/5006510.json b/rite/5006510.json
-index 76e03bb..db6d42f 100644
+index 0d31620..c3c5437 100644
 --- a/rite/5006510.json
 +++ b/rite/5006510.json
-@@ -5,7 +5,7 @@
-         "tips": "",
+@@ -6,7 +6,7 @@
+         "mapping_id":8001159,
          "once_new":1,
          "round_number": 1,
 -        "waiting_round":3,
@@ -5426,11 +5272,11 @@ index 76e03bb..db6d42f 100644
          ],        
          "method_settlement": "",
 diff --git a/rite/5006517.json b/rite/5006517.json
-index 4743a8f..2fd4a30 100644
+index a4620e6..8aebfe3 100644
 --- a/rite/5006517.json
 +++ b/rite/5006517.json
-@@ -5,7 +5,7 @@
-         "tips": "",
+@@ -6,7 +6,7 @@
+         "mapping_id":8001325, 
          "once_new":1,
          "round_number": 3,
 -        "waiting_round":5,
@@ -5452,7 +5298,7 @@ index c711bd6..9611895 100644
              {
                  "condition": {
 diff --git a/rite/5006557.json b/rite/5006557.json
-index 2d0160b..0bc0380 100644
+index e288e45..0bc0380 100644
 --- a/rite/5006557.json
 +++ b/rite/5006557.json
 @@ -5,7 +5,7 @@
@@ -5572,7 +5418,12 @@ index 2d0160b..0bc0380 100644
                  },
                  "action": { 
                      "event_on": 5320073 //激活重复刷
-@@ -353,7 +390,7 @@
+@@ -349,11 +386,11 @@
+                 "condition": {  //其他情况
+                 },
+                 "result_title":"你提了一个很怪的要求",
+-                "result_text": "老妇人思考了一会儿，还是从长袍里拿出了一袋金币，轻轻地放到你手上，还顺便摸了摸你的面颊……\n当你想要追问一些细节的时候，她已经消失在宫殿之间的阴影中，只有手里的纯白麻布钱袋能证明刚刚的一切所见非虚。",
++                "result_text": "老妇人思考了一会儿，还是从长袍里拿出了一袋金币，轻轻的放到你手上，还顺便摸了摸你的面颊……\n当你想要追问一些细节的时候，她已经消失在宫殿之间的阴影中，只有手里的纯白麻布钱袋能证明刚刚的一切所见非虚。",
                  "result": 
                  {    
                      "s1+回收":1,
@@ -5581,19 +5432,6 @@ index 2d0160b..0bc0380 100644
                  },
                  "action": { 
                      "event_on": 5320073 //激活重复刷
-diff --git a/rite/5006570.json b/rite/5006570.json
-index 37f4a06..3af6bbe 100644
---- a/rite/5006570.json
-+++ b/rite/5006570.json
-@@ -4,7 +4,7 @@
-         "text": "你可以将罪证存入其中而不被人发现。",       
-         "tips": "",
-         "once_new":1,
--        "round_number": 7,
-+        "round_number": 3,
-         "waiting_round":0,
-         "waiting_round_end_action":[
-         ],        
 diff --git a/rite/5006572.json b/rite/5006572.json
 index 033fe3b..b5cdcf0 100644
 --- a/rite/5006572.json
@@ -5816,18 +5654,20 @@ index 33b46c9..e9edf8d 100644
          ],        
          "method_settlement": "",
 diff --git a/rite/5006593.json b/rite/5006593.json
-index e46b0c1..59de6a3 100644
+index 61b0406..dc519f2 100644
 --- a/rite/5006593.json
 +++ b/rite/5006593.json
-@@ -4,7 +4,7 @@
+@@ -4,8 +4,8 @@
          "text": "梅姬在扮演一位你无法随意指使的悍妇……",       
          "tips": "",
          "once_new":0,
 -        "round_number": 7,
+-        "waiting_round":1,
 +        "round_number": 3,
-         "waiting_round":1,
++        "waiting_round":0,
          "waiting_round_end_action":[
          ],        
+         "method_settlement": "",
 diff --git a/rite/5006595.json b/rite/5006595.json
 index 9e72f5c..2b7050b 100644
 --- a/rite/5006595.json
@@ -6297,7 +6137,7 @@ index 5b997ab..5bdcb5d 100644
          ],        
          "method_settlement": "",
 diff --git a/rite/5006662.json b/rite/5006662.json
-index d687bee..550923d 100644
+index 42634d7..52cb5f8 100644
 --- a/rite/5006662.json
 +++ b/rite/5006662.json
 @@ -5,7 +5,7 @@
@@ -6700,7 +6540,7 @@ index ce700d2..2c6e948 100644
      ],
      "method_settlement": "",
 diff --git a/rite/5008047.json b/rite/5008047.json
-index 03c6d53..d471e5b 100644
+index a98c1dd..4969208 100644
 --- a/rite/5008047.json
 +++ b/rite/5008047.json
 @@ -6,7 +6,7 @@
@@ -6741,7 +6581,7 @@ index 056c8e8..e99de82 100644
      ],
      "method_settlement": "",
 diff --git a/rite/5008057.json b/rite/5008057.json
-index b859654..6afdb2b 100644
+index 36c7ed8..24afb62 100644
 --- a/rite/5008057.json
 +++ b/rite/5008057.json
 @@ -6,7 +6,7 @@
@@ -6832,18 +6672,20 @@ index 2738ae1..54f2399 100644
          {
              "condition":
 diff --git a/rite/5008064.json b/rite/5008064.json
-index 95de229..e48c464 100644
+index 95de229..49fae45 100644
 --- a/rite/5008064.json
 +++ b/rite/5008064.json
-@@ -5,7 +5,7 @@
+@@ -5,8 +5,8 @@
      "tips": "",
      "mapping_id":8001112, 
      "once_new":0,
 -    "round_number": 7,
+-    "waiting_round":1,
 +    "round_number": 3,
-     "waiting_round":1,
++    "waiting_round":0,
      "waiting_round_end_action":[
      ],
+     "method_settlement": "",
 diff --git a/rite/5008066.json b/rite/5008066.json
 index a418995..c72b497 100644
 --- a/rite/5008066.json
@@ -6923,7 +6765,7 @@ index 83c8333..42544f4 100644
      ],
      "method_settlement": "",
 diff --git a/rite/5008072.json b/rite/5008072.json
-index a273060..0a58800 100644
+index c81f248..9df2402 100644
 --- a/rite/5008072.json
 +++ b/rite/5008072.json
 @@ -6,7 +6,7 @@
@@ -6975,7 +6817,7 @@ index c38202e..e41d098 100644
      ],
      "method_settlement": "",
 diff --git a/rite/5008076.json b/rite/5008076.json
-index a314377..49c24ee 100644
+index 35878ea..3f1c819 100644
 --- a/rite/5008076.json
 +++ b/rite/5008076.json
 @@ -6,7 +6,7 @@
@@ -7170,7 +7012,7 @@ index d97e1c3..02cecbe 100644
          ],        
          "method_settlement": "",
 diff --git a/rite/5008105.json b/rite/5008105.json
-index 94a300e..ef0c126 100644
+index 6f22f83..7c9512a 100644
 --- a/rite/5008105.json
 +++ b/rite/5008105.json
 @@ -6,7 +6,7 @@
@@ -7274,7 +7116,7 @@ index 0a4586b..3d4bccf 100644
              {
                  "condition":
 diff --git a/rite/5008114.json b/rite/5008114.json
-index 0dc320e..32610fa 100644
+index 5c32882..3d2f661 100644
 --- a/rite/5008114.json
 +++ b/rite/5008114.json
 @@ -5,8 +5,8 @@
@@ -7315,7 +7157,7 @@ index b048666..bcf3cfc 100644
              {
                  "condition":
 diff --git a/rite/5008118.json b/rite/5008118.json
-index 3efb9a1..c4fe837 100644
+index ebc476e..6a0f0a2 100644
 --- a/rite/5008118.json
 +++ b/rite/5008118.json
 @@ -6,7 +6,7 @@
@@ -7471,7 +7313,7 @@ index 069f9c8..10761c1 100644
              {
                  "condition": {
 diff --git a/rite/5008146.json b/rite/5008146.json
-index a9b64b4..a15e536 100644
+index afd2ec0..fe32411 100644
 --- a/rite/5008146.json
 +++ b/rite/5008146.json
 @@ -6,7 +6,7 @@
@@ -7484,7 +7326,7 @@ index a9b64b4..a15e536 100644
          ],
          "method_settlement": "",
 diff --git a/rite/5008148.json b/rite/5008148.json
-index afb4873..742a165 100644
+index 5dd65f4..ff3ceda 100644
 --- a/rite/5008148.json
 +++ b/rite/5008148.json
 @@ -6,7 +6,7 @@
@@ -7601,7 +7443,7 @@ index 4f5ea1e..b917892 100644
  
          ],        
 diff --git a/rite/5008163.json b/rite/5008163.json
-index af4cbcb..ed6f62a 100644
+index b84d485..d7e568a 100644
 --- a/rite/5008163.json
 +++ b/rite/5008163.json
 @@ -6,7 +6,7 @@
@@ -7614,7 +7456,7 @@ index af4cbcb..ed6f62a 100644
  
          ],        
 diff --git a/rite/5008164.json b/rite/5008164.json
-index cfd6a4e..e56a3cf 100644
+index 10cd5b4..4cb55c4 100644
 --- a/rite/5008164.json
 +++ b/rite/5008164.json
 @@ -6,7 +6,7 @@
@@ -7744,7 +7586,7 @@ index fd4dab3..10a1ead 100644
          {
              "condition": {
 diff --git a/rite/5008187.json b/rite/5008187.json
-index 80c7d24..7f25e72 100644
+index be937d6..c26c719 100644
 --- a/rite/5008187.json
 +++ b/rite/5008187.json
 @@ -6,7 +6,7 @@
@@ -7796,7 +7638,7 @@ index e218996..dac51b8 100644
              {
                  "condition": {
 diff --git a/rite/5010057.json b/rite/5010057.json
-index 67fc6e7..5152efa 100644
+index 7a46e4c..ad1a049 100644
 --- a/rite/5010057.json
 +++ b/rite/5010057.json
 @@ -5,7 +5,7 @@
@@ -7822,5 +7664,5 @@ index 873f315..891fa65 100644
              {
                  "condition": {
 -- 
-2.49.0.windows.1
+2.45.1.windows.1
 

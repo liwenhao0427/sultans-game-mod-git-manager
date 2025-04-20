@@ -1,11 +1,9 @@
 {
-  "name": "未来视_2.0",
+  "name": "未来视_2.5",
   "author": "XiuLan",
-  "version": "1.0.0",
+  "version": "2.5.0",
   "gameVersion": "2025.04.08",
   "updateDate": "2025.04.10",
-  "updateTo": "2025.04.12",
-  "zipFile": "未来视_2.0.zip",
   "recommend": 5,
   "tag": [
     "舒适性提升",
