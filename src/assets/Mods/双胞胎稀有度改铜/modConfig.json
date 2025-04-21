@@ -12,5 +12,6 @@
     "url": "https://github.com/liwenhao0427/sultans-game-mod-git-manager"
   },
   "files": [],
-  "patchFile": "patches\\0001-MOD.patch"
+  "patchFile": "patches\\0001-MOD.patch",
+  "ignore": false
 }

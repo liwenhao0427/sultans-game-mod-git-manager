@@ -1,7 +1,7 @@
  <template>
   <div class="mod-manager-container">   
     <div class="header">
-      <h1>苏丹的游戏 MOD 管理器</h1>
+      <h1>苏丹的游戏 MOD 管理器 <span class="version-badge">V{{ localVersion }}</span> </h1>
           <!-- 添加操作指引 -->
       <div class="operation-guide">
         <p>快速开始：勾选需要的MOD并点击“导出选中”按钮。</p>
@@ -387,6 +387,7 @@ export default {
   },
   data() {
     return {
+      localVersion: '0.0.0', // 本地版本号
       // 添加FAQ对话框控制变量
       faqDialogVisible: false,
       patchFileSearchQuery: '', // 补丁文件搜索关键字
@@ -503,9 +504,7 @@ export default {
   mounted() {
     this.loadMods();
     // 将版本检查放在 setTimeout 中异步执行
-    setTimeout(() => {
-      this.checkVersion();
-    }, 2000); // 延迟2秒执行，避免影响初始加载
+    this.checkVersion();
     
     // Use setTimeout to ensure DOM is fully rendered
     setTimeout(() => {
@@ -555,6 +554,7 @@ export default {
         
         // Get local version - ensure it exists
         const localVersion = localVersionInfo?.version || '0.0.0';
+        this.localVersion = localVersion;
         const remoteVersion = remoteData?.version || '0.0.0';
         
         // Compare versions
@@ -1889,5 +1889,17 @@ export default {
 /* 可以添加一些FAQ相关的样式 */
 .operation-guide .el-button {
   margin-right: 10px;
+}
+
+
+/* 版本号样式 */
+.version-badge {
+  background-color: #42b983;
+  color: white;
+  padding: 3px 8px;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  margin-left: 10px;
 }
 </style>

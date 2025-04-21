@@ -13,5 +13,6 @@
   },
   "files": [],
   "patchFile": "patches\\0001-MOD.patch",
-  "remark": "——————————————————更新日志————————————————————\n2025.4.12\n移除部分仪式，基本上是一些随机会刷新的仪式，比如野外区域的，可以重复挑战，所以移除。\n根据最新版本筛选了部分更改过的仪式中仪式进行的时间，比如7天缩短成3天。\ninit文件里的1.json文件做了几个可选的版本，具体请看文件夹说明\n—————————————使用说明———————————————\nmod作者：燕疏\n\n本mod会随版本更新。\n\nmod安装：\n路径：SteamLibrary\\steamapps\\common\\Sultan's Game\\Sultan's Game_Data\\StreamingAssets\\config\n复制粘贴文件，选择替换\nmod卸载：\n1.删除config文件夹\n2.steam的管理-属性-已安装文件-验证游戏文件的完整性\nmod更新：\n先进行mod卸载，然后mod安装。\n\n\n*须知*\n1.转载请标明作者。\n2.禁止倒卖，本mod始终免费分享。\n3.可随意修改，但修改后出现bug请自行处理。\n\n内容详情：\n*event文件*\n家族出身增加选项4..."
+  "remark": "——————————————————更新日志————————————————————\n2025.4.12\n移除部分仪式，基本上是一些随机会刷新的仪式，比如野外区域的，可以重复挑战，所以移除。\n根据最新版本筛选了部分更改过的仪式中仪式进行的时间，比如7天缩短成3天。\ninit文件里的1.json文件做了几个可选的版本，具体请看文件夹说明\n—————————————使用说明———————————————\nmod作者：燕疏\n\n本mod会随版本更新。\n\nmod安装：\n路径：SteamLibrary\\steamapps\\common\\Sultan's Game\\Sultan's Game_Data\\StreamingAssets\\config\n复制粘贴文件，选择替换\nmod卸载：\n1.删除config文件夹\n2.steam的管理-属性-已安装文件-验证游戏文件的完整性\nmod更新：\n先进行mod卸载，然后mod安装。\n\n\n*须知*\n1.转载请标明作者。\n2.禁止倒卖，本mod始终免费分享。\n3.可随意修改，但修改后出现bug请自行处理。\n\n内容详情：\n*event文件*\n家族出身增加选项4...",
+  "ignore": false
 }
