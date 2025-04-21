@@ -20,24 +20,48 @@ from common_utils import (
 
 # 创建一个自定义的输出重定向类，用于捕获控制台输出并显示在GUI中
 class TextRedirector:
-    def __init__(self, text_widget, queue, tag=""):
+    """重定向标准输出到文本框"""
+    def __init__(self, text_widget, msg_queue):
         self.text_widget = text_widget
-        self.tag = tag
-        self.queue = queue
-
+        self.msg_queue = msg_queue
+        self.buffer = ""
+        self.tag = ""
+    
     def write(self, string):
-        self.queue.put((string, self.tag))
-
+        # 检查是否包含颜色代码
+        if "\033[" in string:
+            # 提取颜色代码
+            for color in [Colors.RED, Colors.GREEN, Colors.YELLOW, Colors.BLUE, Colors.MAGENTA, Colors.CYAN, Colors.BOLD]:
+                if color in string:
+                    self.tag += color
+                    string = string.replace(color, "")
+            
+            # 移除剩余的颜色代码
+            string = string.replace(Colors.RESET, "")
+            string = string.replace("\033[0m", "")
+        
+        # 累积缓冲区
+        self.buffer += string
+        
+        # 如果遇到换行符，则将缓冲区内容发送到队列
+        if "\n" in self.buffer:
+            lines = self.buffer.split("\n")
+            for i in range(len(lines) - 1):
+                self.msg_queue.put((lines[i] + "\n", self.tag))
+            
+            # 保留最后一行（可能不完整）
+            self.buffer = lines[-1]
+            
+            # 如果最后一行是空的，并且原始字符串以换行符结尾，则清空缓冲区
+            if not self.buffer and string.endswith("\n"):
+                self.tag = ""
+    
     def flush(self):
-        pass
-        
-    def readline(self):
-        """处理输入请求，避免打包后的stdin错误"""
-        return "\n"  # 返回换行符作为默认输入
-        
-    def read(self, size=-1):
-        """处理输入请求，避免打包后的stdin错误"""
-        return ""  # 返回空字符串作为默认输入
+        # 如果缓冲区中还有内容，则发送到队列
+        if self.buffer:
+            self.msg_queue.put((self.buffer, self.tag))
+            self.buffer = ""
+            self.tag = ""
 
 # 颜色映射，将原来的控制台颜色映射到Tkinter标签
 COLOR_TAGS = {
@@ -250,12 +274,13 @@ class ModInstallerGUI:
         self.log_text.tag_configure("magenta", foreground="purple")
         self.log_text.tag_configure("cyan", foreground="teal")
         self.log_text.tag_configure("bold", font=("TkDefaultFont", 10, "bold"))
-        
+
         # 配置组合颜色标签
         for color in [Colors.RED, Colors.GREEN, Colors.YELLOW, Colors.BLUE, Colors.MAGENTA, Colors.CYAN]:
+            tag_name = COLOR_TAGS[color]
             self.log_text.tag_configure(
-                f"{COLOR_TAGS[color]}_bold", 
-                foreground=COLOR_TAGS[color], 
+                f"{tag_name}_bold", 
+                foreground=tag_name.replace("_bold", ""), 
                 font=("TkDefaultFont", 10, "bold")
             )
         
@@ -293,8 +318,16 @@ class ModInstallerGUI:
                         current_tag = tag_name
                         break
                 
+                # 检查是否有粗体标记
+                if Colors.BOLD in tag:
+                    if current_tag:
+                        current_tag = f"{current_tag}_bold"
+                    else:
+                        current_tag = "bold"
+                
                 self.log_text.insert(tk.END, message, current_tag)
                 self.log_text.see(tk.END)
+                self.log_text.update_idletasks()  # 强制更新UI
                 self.msg_queue.task_done()
         except queue.Empty:
             pass
@@ -313,8 +346,23 @@ class ModInstallerGUI:
             self.status_var.set("错误: 未找到游戏路径")
             messagebox.showerror("错误", "无法找到游戏路径，请确保游戏已安装。")
     
-    def load_mods(self):
-        """加载可用的MOD列表"""
+    def _check_mod_configs_thread(self):
+        """在新线程中执行MOD配置检查"""
+        try:
+            self.root.after(0, lambda: self.status_var.set("正在检查MOD配置..."))
+            colored_print("[准备] 正在检查MOD配置...", Colors.CYAN)
+            check_mod_configs()
+            self.root.after(0, lambda: self.status_var.set("MOD配置检查完成"))
+            
+            # 检查完成后刷新MOD列表
+            self.root.after(0, self.load_mods_after_check)
+        except Exception as e:
+            colored_print(f"[错误] 检查MOD配置时出错: {e}", Colors.RED)
+            self.root.after(0, lambda: self.status_var.set("MOD配置检查失败"))
+
+    def load_mods_after_check(self):
+        """在MOD配置检查完成后刷新MOD列表"""
+        # 这个方法与load_mods相同，但不会再次调用check_mod_configs
         try:
             # 清空现有列表
             for item in self.mod_tree.get_children():
@@ -399,6 +447,15 @@ class ModInstallerGUI:
             
             self.status_var.set(f"已加载 {len(self.mods)} 个MOD")
             
+        except Exception as e:
+            self.log_text.insert(tk.END, f"[错误] 加载MOD列表时出错: {e}\n", "red")
+            self.status_var.set("加载MOD列表失败")
+                
+    def load_mods(self):
+        """加载可用的MOD列表"""
+        try:
+            # 在新线程中执行check_mod_configs
+            threading.Thread(target=self._check_mod_configs_thread, daemon=True).start()            
         except Exception as e:
             self.log_text.insert(tk.END, f"[错误] 加载MOD列表时出错: {e}\n", "red")
             self.status_var.set("加载MOD列表失败")
@@ -676,11 +733,7 @@ class ModInstallerGUI:
         """在新线程中执行MOD安装"""
         try:
             self.status_var.set("正在安装MOD...")
-            
-            # 检查并准备MOD配置
-            colored_print("[准备阶段] 检查MOD配置和补丁文件...", Colors.CYAN)
-            check_mod_configs()
-            
+                        
             # 安装MOD
             colored_print("\n[安装阶段] 开始处理MOD文件...\n", Colors.CYAN)
             if install_mods():
