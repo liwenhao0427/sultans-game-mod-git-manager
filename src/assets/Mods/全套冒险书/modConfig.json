@@ -1,0 +1,17 @@
+{
+  "name": "全套冒险书",
+  "author": "Ade",
+  "version": "1.0.0",
+  "gameVersion": "2025.04.18",
+  "updateDate": "2025.04.22",
+  "tag": [
+    "难度降低"
+  ],
+  "source": {
+    "name": "自动生成",
+    "url": "https://www.nexusmods.com/sultansgame/mods/17?tab=description"
+  },
+  "files": [],
+  "patchFile": "patches\\0001-MOD.patch",
+  "recommend": 4
+}

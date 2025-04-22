@@ -1,0 +1,17 @@
+{
+  "name": "奉旨驯犬-Dog training with love",
+  "author": "AvisAstro",
+  "version": "1.0.0",
+  "gameVersion": "2025.04.18",
+  "updateDate": "2025.04.22",
+  "tag": [
+    "剧情", "男同"
+  ],
+  "source": {
+    "name": "AvisAstro",
+    "url": "https://www.nexusmods.com/sultansgame/mods/24?tab=description"
+  },
+  "files": [],
+  "remark": "“阿尔图卿，”苏丹漫不经心地把玩着那枚血红的戒指，“我听说你最近和我的骑兵队长走得很近啊？你们都喜欢狗，是么？想必多一条好狗给他训，他会很开心吧？”法里斯奉旨驯阿尔图。纯爱向，可消猜忌，可折纵欲卡。法里斯获得命运的羁绊。触发条件：善名>5，法里斯去除苏丹的近卫tag。未经允许请勿修改或重新上传本MOD。 于网络平台发布包含本MOD内容的视频、图文等内容时，请注明MOD作者Avis Astro。",
+  "patchFile": "patches\\0001-MOD-Dog-training-with-love.patch"
+}

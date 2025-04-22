@@ -1,0 +1,133 @@
+From 31c708d64567697efc785a6e12583c169f78a20c Mon Sep 17 00:00:00 2001
+From: liwenhao <liwenhao@loctek.com>
+Date: Tue, 22 Apr 2025 15:41:49 +0800
+Subject: [PATCH] =?UTF-8?q?=E5=BA=94=E7=94=A8MOD:=20=E5=8F=AF=E9=80=89?=
+ =?UTF-8?q?=E6=8B=A9=E5=93=88=E6=A1=91=E5=86=99=E4=BB=80=E4=B9=88=E8=AF=97?=
+ =?UTF-8?q?=20=E7=89=88=E6=9C=AC:=201.0.0=20=E4=BD=9C=E8=80=85:=20?=
+ =?UTF-8?q?=E6=9C=AA=E7=9F=A5=20=E6=9D=A5=E6=BA=90:=20https://github.com/l?=
+ =?UTF-8?q?iwenhao0427/sultans-game-mod-git-manager?=
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+---
+ event/5380000.json | 76 ++++++++++++++++++++++++++++++++++++++++++++++
+ rite/5000002.json  | 11 ++-----
+ 2 files changed, 78 insertions(+), 9 deletions(-)
+ create mode 100644 event/5380000.json
+
+diff --git a/event/5380000.json b/event/5380000.json
+new file mode 100644
+index 0000000..14b6393
+--- /dev/null
++++ b/event/5380000.json
+@@ -0,0 +1,76 @@
++{
++    "id": 5380000,
++    "text": "哈桑的困惑",     
++    "is_replay": 0, //是否可以重复触发
++    "auto_start": false,
++    "start_trigger": false, // 是否启动就立即开始校验条件
++    "on":{   //时机
++        "rite_end":5000002  //俺寻思之后触发
++    },
++    "condition":{  //条件
++    },
++    "settlement": [    //效果 
++        {
++            "tips_resource":"", 
++            "tips_text":"",
++            "action":{
++					"option":{
++                    "id":"5380000_option_01",
++                    "text":"廊柱投下的暗影里，你瞥见哈桑正魂不守舍地反复揉搓羊皮纸卷。\n他似乎对自己即将要创作的新诗内容已经有了眉目，指腹来回摩挲羊皮纸上被划烂的某处，却迟迟想不好该如何去写。\n正巧你在这里，他与羊肉炉一同将目光投向你，似在征询你的意见。",
++                    "icon":"cards/2000460",
++                    "items": [
++                        {
++                            "text": "不如写一首爱情诗",
++                            "tag": "op1"
++                        },
++                        {
++                            "text": "不如写一首史诗",
++                            "tag": "op2"
++                        },
++						{
++                            "text": "不如写一首讽刺诗",
++                            "tag": "op3"
++                        },
++						{
++                            "text": "不如写一首预言诗",
++                            "tag": "op4"
++                        }
++                    ]
++                },
++                "case:op1": {
++					"rite":5000105,   //爱情诗
++                    "prompt":{    
++                        "id":"5380000_prompt_01",
++                        "text":"哈桑看起来很高兴。\n临走前，他从羊肉炉口中拯救出你被羊羔嚼湿的衣角，拧干水分后归还你，并许诺写好新诗后会第一个邀请你来看，以作回报。",
++                        "icon":["cards/2000460","cards/2000001",null]
++                    }
++                },
++                "case:op2": { 
++                    "rite":5000106,   //史诗
++                    "prompt":{    
++                        "id":"5380000_prompt_02",
++                        "text":"哈桑看起来很高兴。\n临走前，他从羊肉炉口中拯救出你被羊羔嚼湿的衣角，拧干水分后归还你，并许诺写好新诗后会第一个邀请你来看，以作回报。",
++                        "icon":["cards/2000460","cards/2000001",null]
++                    }
++                },
++                "case:op3": { 
++                    "rite":5000107,   //讽刺诗
++                    "prompt":{    
++                        "id":"5380000_prompt_03",
++                        "text":"哈桑看起来很高兴。\n临走前，他从羊肉炉口中拯救出你被羊羔嚼湿的衣角，拧干水分后归还你，并许诺写好新诗后会第一个邀请你来看，以作回报。",
++                        "icon":["cards/2000460","cards/2000001",null]
++                    }
++                },
++                "case:op4": { 
++                    "rite":5000108,   //预言诗
++                    "prompt":{    
++                        "id":"5380000_prompt_04",
++                        "text":"哈桑看起来很高兴。\n临走前，他从羊肉炉口中拯救出你被羊羔嚼湿的衣角，拧干水分后归还你，并许诺写好新诗后会第一个邀请你来看，以作回报。",
++                        "icon":["cards/2000460","cards/2000001",null]
++                    }
++                }
++            }
++        }
++
++    ]
++}
+\ No newline at end of file
+diff --git a/rite/5000002.json b/rite/5000002.json
+index 8fd7c7a..4650abd 100644
+--- a/rite/5000002.json
++++ b/rite/5000002.json
+@@ -2500,14 +2500,7 @@
+                 "action":
+                 {
+                     "global_counter+7200179":1, //成就
+-                    "loot": 6000058, //随机诗兴大发
+-                    "sleep":0.5,
+-                    "prompt":{
+-                        "id":"5000002_prompt_91",
+-                        "text":"诗人诗兴大发，他急需你的帮助。",
+-                        "icon":"cards/2000001"
+-                    }
+-
++                    "event_on": 5380000 //询问主题
+                 }
+             },
+             // {  //踏入黑夜屏蔽吊
+@@ -5853,7 +5846,7 @@
+                         },
+                         "action":{
+                             "choose":{
+-                                "pop.5000002_02.self":"我想到了一个绝妙的句子，你必须来听一听！"
++                                "pop.5000002_02.self":"这首诗该怎么写才好呢？"
+                             }
+                         }
+                     },
+-- 
+2.49.0.windows.1
+

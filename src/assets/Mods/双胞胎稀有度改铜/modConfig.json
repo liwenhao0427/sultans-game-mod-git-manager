@@ -13,5 +13,6 @@
   },
   "files": [],
   "patchFile": "patches\\0001-MOD.patch",
-  "ignore": false
+  "ignore": false,
+  "recommend": 5
 }

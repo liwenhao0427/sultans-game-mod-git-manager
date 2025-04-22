@@ -1,0 +1,16 @@
+{
+  "name": "陪小狗玩-新月剧情补充MOD",
+  "author": "AvisAstro",
+  "version": "1.0.0",
+  "gameVersion": "2025.04.18",
+  "updateDate": "2025.04.22",
+  "tag": [
+    "剧情"
+  ],
+  "source": {
+    "name": "AvisAstro",
+    "url": "https://www.nexusmods.com/sultansgame/mods/10?tab=files&file_id=57"
+  },
+  "files": [],
+  "patchFile": "patches\\0001-MOD-MOD.patch"
+}

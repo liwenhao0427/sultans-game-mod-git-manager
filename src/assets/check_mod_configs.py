@@ -22,7 +22,7 @@ def generate_default_config(mod_dir, mod_name, patch_file=None):
         "name": mod_name,
         "author": "未知",
         "version": "1.0.0",
-        "gameVersion": "未知",
+        "gameVersion": "2025.04.18",
         "updateDate": current_date,
         "tag": ["自动导入"],
         "source": {
