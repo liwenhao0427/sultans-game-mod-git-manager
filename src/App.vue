@@ -165,7 +165,7 @@
         height="calc(100vh - 250px)"
         class="scrollable-table"
       >
-        <!-- 添加加载进度条 -->
+        <!-- 添加骨架屏 -->
         <template #loading>
           <div v-if="loadingProgress > 0" class="mod-loading-progress">
             <el-progress 
@@ -174,9 +174,19 @@
               :stroke-width="18"
             ></el-progress>
           </div>
-          <div v-else>
-            <i class="el-icon-loading"></i>
-            <p>正在准备加载MOD数据...</p>
+          <div v-else class="skeleton-loading">
+            <div v-for="i in 5" :key="i" class="skeleton-row">
+              <div class="skeleton-cell skeleton-checkbox"></div>
+              <div class="skeleton-cell skeleton-name"></div>
+              <div class="skeleton-cell skeleton-remark"></div>
+              <div class="skeleton-cell skeleton-recommend"></div>
+              <div class="skeleton-cell skeleton-author"></div>
+              <div class="skeleton-cell skeleton-version"></div>
+              <div class="skeleton-cell skeleton-source"></div>
+              <div class="skeleton-cell skeleton-date"></div>
+              <div class="skeleton-cell skeleton-tag"></div>
+              <div class="skeleton-cell skeleton-patch"></div>
+            </div>
           </div>
         </template>
         <el-table-column type="selection" width="55" />
@@ -537,24 +547,32 @@ export default {
     }
   },
   mounted() {
-    setTimeout(()=>{
-      this.loadMods();
-    }, 100)
-    // 将版本检查放在 setTimeout 中异步执行
-    setTimeout(()=>{
-      this.checkVersion();
-    }, 1000)
+    // 延迟加载MOD数据，先让页面渲染完成
+    this.$nextTick(() => {
+      // 使用requestAnimationFrame确保页面已经渲染
+      window.requestAnimationFrame(() => {
+        // 再次使用setTimeout确保基本UI已经完全显示
+        setTimeout(() => {
+          this.loadMods();
+        }, 500);
+      });
+    });
     
-    // Use setTimeout to ensure DOM is fully rendered
+    // 将版本检查放在更长的延迟后执行
+    setTimeout(() => {
+      this.checkVersion();
+    }, 2000);
+    
+    // 延迟表格布局计算
     setTimeout(() => {
       if (this.$refs.table) {
         try {
           this.$refs.table.doLayout();
         } catch (error) {
-          console.warn('Table layout calculation deferred:', error);
+          console.warn('表格布局计算延迟:', error);
         }
       }
-    }, 500);
+    }, 1000);
   },
   watch: {
     patchFileSearchQuery(val) {
@@ -984,23 +1002,28 @@ export default {
       this.loading = true;
       this.loadingProgress = 0;
       
-      try {
-        // 使用require.context获取所有modConfig.json文件
-        const requireMod = require.context('@/assets/Mods', true, /modConfig\.json$/);
-        const modFiles = requireMod.keys();
-        this.loadingTotal = modFiles.length;
-        
-        // 存储所有MOD文件路径
-        this.allModFiles = modFiles;
-        this.mods = [];
-        
-        // 开始分批加载
-        this.loadModsBatch(requireMod);
-      } catch (error) {
-        console.error('加载Mods失败:', error);
-        this.mods = [];
-        this.loading = false;
-      }
+      // 先显示一个空的MOD列表，让用户看到表格结构
+      this.mods = [];
+      
+      // 使用setTimeout延迟加载，确保UI已经渲染
+      setTimeout(() => {
+        try {
+          // 使用require.context获取所有modConfig.json文件
+          const requireMod = require.context('@/assets/Mods', true, /modConfig\.json$/);
+          const modFiles = requireMod.keys();
+          this.loadingTotal = modFiles.length;
+          
+          // 存储所有MOD文件路径
+          this.allModFiles = modFiles;
+          
+          // 开始分批加载
+          this.loadModsBatch(requireMod);
+        } catch (error) {
+          console.error('加载Mods失败:', error);
+          this.mods = [];
+          this.loading = false;
+        }
+      }, 100);
     },
 
     // 添加分批加载方法
@@ -1425,7 +1448,9 @@ export default {
     // 添加截断备注文本的方法
     truncateRemark(remark) {
       if (!remark) return '';
-      return remark.length > 20 ? remark.substring(0, 20) + '...' : remark;
+      // 移除换行符，避免显示问题
+      const plainText = remark.replace(/\n/g, ' ');
+      return plainText.length > 20 ? plainText.substring(0, 20) + '...' : plainText;
     },
     
     formatUpdateToDate(updateTo) {
@@ -2030,4 +2055,83 @@ export default {
   max-width: 500px;
   margin: 20px auto;
 }
+
+/* 骨架屏样式 */
+.skeleton-loading {
+  padding: 20px;
+  width: 100%;
+}
+
+.skeleton-row {
+  display: flex;
+  margin-bottom: 10px;
+  height: 40px;
+}
+
+.skeleton-cell {
+  background: #f2f2f2;
+  margin-right: 10px;
+  border-radius: 4px;
+  animation: skeleton-loading 1.5s infinite;
+}
+
+.skeleton-checkbox {
+  width: 40px;
+}
+
+.skeleton-name {
+  width: 150px;
+}
+
+.skeleton-remark {
+  width: 120px;
+}
+
+.skeleton-recommend {
+  width: 80px;
+}
+
+.skeleton-author {
+  width: 80px;
+}
+
+.skeleton-version {
+  width: 100px;
+}
+
+.skeleton-source {
+  width: 120px;
+}
+
+.skeleton-date {
+  width: 100px;
+}
+
+.skeleton-tag {
+  width: 120px;
+}
+
+.skeleton-patch {
+  width: 100px;
+}
+
+@keyframes skeleton-loading {
+  0% {
+    opacity: 0.7;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 0.7;
+  }
+}
+
+/* 加载进度条样式 */
+.mod-loading-progress {
+  width: 80%;
+  max-width: 500px;
+  margin: 20px auto;
+}
+
 </style>
