@@ -9,3 +9,6 @@ app.use(ElementPlus, {
   locale: zhCn
 })
 app.mount('#app')
+
+// 添加Vue特性标志
+window.__VUE_PROD_HYDRATION_MISMATCH_DETAILS__ = false;

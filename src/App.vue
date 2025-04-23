@@ -356,7 +356,7 @@
               <span :class="{'is-directory': data.isDirectory}">{{ node.label }}</span>
               <el-button 
                 v-if="!data.isDirectory"
-                type="text" 
+                link 
                 size="small" 
                 @click="viewPatchFileDetails(data.fileData)"
               >
