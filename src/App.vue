@@ -177,12 +177,25 @@
             </div>
           </template>
         </el-table-column>
+        <el-table-column label="备注说明" min-width="150">
+          <template v-slot="scope">
+            <div 
+              v-if="scope.row.remark" 
+              class="remark-preview" 
+              @click="showRemarkDetails(scope.row)"
+            >
+              <span class="remark-text">{{ truncateRemark(scope.row.remark) }}</span>
+              <i class="el-icon-view"></i>
+            </div>
+            <span v-else class="no-remark">暂无说明</span>
+          </template>
+        </el-table-column>
         <el-table-column prop="recommend" label="推荐度" width="100" sortable>
           <template v-slot="scope">
             {{ scope.row.recommend || this.defaultRecommend }}
           </template>
         </el-table-column>
-        <el-table-column prop="author" label="作者" min-width="100" sortable column-key="author" :filters="getColumnFilters('author')" :filter-method="filterHandler">
+        <el-table-column prop="author" label="作者" width="100" sortable column-key="author" :filters="getColumnFilters('author')" :filter-method="filterHandler">
           <template v-slot="scope">
             <el-tag size="small">{{ scope.row.author }}</el-tag>
             <!-- 添加source链接 -->
@@ -1351,6 +1364,12 @@ export default {
         value: value
       }));
     },
+    // 添加截断备注文本的方法
+    truncateRemark(remark) {
+      if (!remark) return '';
+      return remark.length > 20 ? remark.substring(0, 20) + '...' : remark;
+    },
+    
     formatUpdateToDate(updateTo) {
       if (!updateTo) return '';
       
@@ -1911,4 +1930,42 @@ export default {
   line-height: 18px;
   font-size: 10px;
 }
+
+/* 备注列样式 */
+.remark-preview {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  padding: 2px 5px;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+}
+
+.remark-preview:hover {
+  background-color: #f5f7fa;
+}
+
+.remark-text {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin-right: 5px;
+}
+
+.no-remark {
+  color: #909399;
+  font-style: italic;
+}
+
+.el-icon-view {
+  color: #409EFF;
+  font-size: 14px;
+}
+
+.remark-preview:hover .el-icon-view {
+  color: #66b1ff;
+}
+
 </style>

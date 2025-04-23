@@ -9,10 +9,10 @@
   ],
   "source": {
     "name": "苏丹的游戏吧",
-    "url": "https://tieba.baidu.com/p/9623361873?fid=28118002&pid=151931371273#151931371273"
+    "url": "https://tieba.baidu.com/p/9623361873"
   },
   "files": [],
   "patchFile": "patches\\0001-MOD.patch",
-  "remark": "1.将本文档所在文件夹内的所有文件夹（一般包括event或是rite）以及文件（例如card.json）全都置入：Sultan's Game\\Sultan's Game_Data\\StreamingAssets\\config下，“Sultan's Game”为游戏根目录\n2.如果你的steam装在C盘，那么路径一般为C:\\Program Files (x86)\\Steam\\steamapps\\common\\Sultan's Game\\Sultan's Game_Data\\StreamingAssets\\config\n3.也可以从steam库页面——右键苏丹的游戏——属性——已安装文件——浏览 这样的方式寻找到你的根目录",
+  "remark": "困难模式变得更困难：困难模式骰子成功率只有20%（貌似不用开新档也可以生效），值得注意的是这个成功率下降对游戏的影响是很高的，例如3点成功的话，以往你只要有9点属性就行，人物裸上可能都没问题，但是现在你需要15点属性才有期望通过，虽然我觉得可以再低，但先打几轮看看",
   "ignore": false
 }

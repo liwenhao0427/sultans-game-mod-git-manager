@@ -9,8 +9,9 @@
   ],
   "source": {
     "name": "苏丹的游戏吧",
-    "url": "https://tieba.baidu.com/p/9633271389"
+    "url": "https://tieba.baidu.com/p/9647148047"
   },
+  "remark": "可以放入任意物品 换取金币书啊情报啊装备啊啥的",
   "files": [
     {
       "source": "event/15123456.json",

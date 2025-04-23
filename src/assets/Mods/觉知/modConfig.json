@@ -9,8 +9,9 @@
   ],
   "source": {
     "name": "苏丹的游戏吧",
-    "url": "https://tieba.baidu.com/p/9633271389"
+    "url": "https://tieba.baidu.com/p/9647148047"
   },
+  "remark": "可以加善名 恶名 权势 侠气 灵视，可以配合不同的属性打不同的结局，5个每个文案都不同，我花了一小时榨干脑子想出来的文本，希望大家能认真看完。此MOD不在整合版里，就懒得整合了",
   "files": [
     {
       "source": "event/15000022.json",

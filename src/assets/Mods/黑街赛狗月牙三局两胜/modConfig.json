@@ -10,7 +10,7 @@
   ],
   "source": {
     "name": "苏丹的游戏吧",
-    "url": "https://tieba.baidu.com/p/9623361873?fid=28118002&pid=151931371273#151931371273"
+    "url": "https://tieba.baidu.com/p/9623361873"
   },
   "files": [
     {
@@ -18,6 +18,8 @@
       "mode": "REPLACE"
     }
   ],
+  "recommend": 2,
+  "remark": "调整“黑街赛狗”事件，如选择月牙，则比赛结果以三局两胜制决定（不然最高难度下近卫很难入队，别问为什么其他狗不行，因为他们菜） PS:官方大幅简化了难度，所以该Mod不再推荐",
   "patchFile": "patches\\0001-MOD.patch",
   "ignore": false
 }

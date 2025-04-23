@@ -12,6 +12,7 @@
     "url": "https://github.com/liwenhao0427/sultans-game-mod-git-manager"
   },
   "files": [],
+  "remark": "主要是方便区分两兄弟",
   "patchFile": "patches\\0001-MOD.patch",
   "ignore": false,
   "recommend": 5

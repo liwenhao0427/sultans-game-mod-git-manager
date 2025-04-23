@@ -9,8 +9,9 @@
   ],
   "source": {
     "name": "苏丹的游戏吧",
-    "url": "https://tieba.baidu.com/p/9633271389"
+    "url": "https://tieba.baidu.com/p/9647148047"
   },
+  "remark": "将3个情报或者思潮无冷却合成更高等级",
   "files": [
     {
       "source": "event/15300008.json",

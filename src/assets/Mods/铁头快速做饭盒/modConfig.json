@@ -1,5 +1,5 @@
 {
-  "name": "肉体展览大清仓",
+  "name": "铁头快速做饭盒",
   "author": "萧敷艾荣",
   "version": "1.0.0",
   "gameVersion": "2025.04.08",
@@ -9,8 +9,9 @@
   ],
   "source": {
     "name": "苏丹的游戏吧",
-    "url": "https://tieba.baidu.com/p/9623361873?fid=28118002&pid=151931371273#151931371273"
+    "url": "https://tieba.baidu.com/p/9623361873"
   },
+  "remark": "铁头为了你大干三天三夜，终于把8天的工作量压缩到了3天（有人要我就改了这个）\n",
   "files": [
     {
       "source": "rite/5006622.json",

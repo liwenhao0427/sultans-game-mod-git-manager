@@ -9,9 +9,10 @@
   ],
   "source": {
     "name": "苏丹的游戏吧",
-    "url": "https://tieba.baidu.com/p/9623361873?fid=28118002&pid=151931371273#151931371273"
+    "url": "https://tieba.baidu.com/p/9623361873"
   },
   "files": [],
+  "remark": "事件法德耶来访中，可以选择勇者愤怒，抽刃向更强者，法德耶与法里斯共存",
   "patchFile": "patches\\0001-MOD.patch",
   "ignore": false,
   "priority": 100

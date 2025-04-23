@@ -15,6 +15,6 @@
   },
   "files": [],
   "patchFile": "patches\\patch1.patch",
-  "remark": "1.打开游戏根目录 \n\n2.*进入下面路径的文件夹中\n\n“你的steam放的盘”\\STEAM\\steamapps\\common\\Sultan's Game\\Sultan's Game_Data\\StreamingAssets\\config\n\n3.*覆盖文件夹所有文件   {除了上述修改不会影响任何游戏性}\n\n\n\n-------------@bilibili苍白纸人儿------------------------\n\n\n\n&&&如果你不想开新档 也可以先覆盖好文件  然后通过修改存档增加手牌的方式去加我做的卡牌\n修改存档方法可以去b站搜  有很多up发  但一定记得改之前做存档备份！！！\n存档位置在：C:\\Users\\你的电脑用户名\\AppData\\LocalLow\\DoubleCross\\SultansGame\\SAVEDATA\n要改存档之前做备份！！",
+  "remark": "随意增删苏丹卡 （金奢靡开局更容易，不会因为消不掉卡死档）\n\n消除负面卡 （妻子的不满，罪证等）\n\n人物卡升金（人物进阶改卡颜色稍微加属性）\n\n我全都要开局 （贵族法拉杰和三个奴隶一起要）\n\n影分身 （能当主角用的装备）\n\n开局驯兽 加驯兽装备栏 （开局多带一个装备）\n\n修改第三天装备任务的奖励（帮助前期完成妹妹进阶任务）\n\n具体看视频吧",
   "ignore": false
 }
