@@ -234,7 +234,7 @@
                 v-for="(tag, index) in getModTags(scope.row)" 
                 :key="index" 
                 size="small" 
-                :type="tag === '纯替换' ? 'danger' : (tag === '压缩包' ? 'warning' : getTagType(index))" 
+                :type="getTagType(index) || 'info'" 
                 effect="plain"
                 class="mod-tag"
               >
@@ -1291,15 +1291,15 @@ export default {
     
     // 修改获取MOD标签方法，不再检查files
     getModTags(mod) {
-      const tags = [...(mod.tag || [])];
+      // 获取MOD的标签列表
+      let tags = [];
       
-      // 如果有补丁文件，添加"补丁"标签
-      if (mod.patchFile) {
-        if (!tags.includes('补丁')) {
-          tags.unshift('补丁');
-        }
+      // 如果有tag属性且是数组，则添加到标签列表
+      if (mod.tag && Array.isArray(mod.tag)) {
+        // 过滤掉空字符串
+        tags = mod.tag.filter(tag => tag && tag.trim() !== '');
       }
-      
+            
       return tags;
     },
     handleSearchClear() {
@@ -1326,8 +1326,10 @@ export default {
     },
     // 获取标签类型（循环使用不同颜色）
     getTagType(index) {
-      const types = ['', 'success', 'info', 'warning', 'danger'];
-      return types[index % types.length];
+      // 根据索引返回不同的标签类型
+      const types = ['primary', 'success', 'info', 'warning'];
+      // 对于普通标签，根据索引循环使用预定义类型
+      return types[index % types.length] || 'info';
     },
     // 获取模式描述
     getModeDescription(mode) {
