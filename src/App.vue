@@ -387,7 +387,7 @@ export default {
   },
   data() {
     return {
-      localVersion: '0.0.0', // 本地版本号
+      localVersion: localVersionInfo?.version || '0.0.0', // 本地版本号
       // 添加FAQ对话框控制变量
       faqDialogVisible: false,
       patchFileSearchQuery: '', // 补丁文件搜索关键字
@@ -504,7 +504,9 @@ export default {
   mounted() {
     this.loadMods();
     // 将版本检查放在 setTimeout 中异步执行
-    this.checkVersion();
+    setTimeout(()=>{
+      this.checkVersion();
+    }, 1000)
     
     // Use setTimeout to ensure DOM is fully rendered
     setTimeout(() => {
@@ -554,7 +556,6 @@ export default {
         
         // Get local version - ensure it exists
         const localVersion = localVersionInfo?.version || '0.0.0';
-        this.localVersion = localVersion;
         const remoteVersion = remoteData?.version || '0.0.0';
         
         // Compare versions
