@@ -173,8 +173,7 @@
             >
               {{ scope.row.name }}
               <i v-if="scope.row.remark" class="el-icon-info remark-icon"></i>
-              <!-- 添加 updateTo 标记 -->
-              <el-tag v-if="scope.row.updateTo" type="danger" size="mini" class="update-to-tag">不支持最新游戏版本</el-tag>
+              <el-tag v-if="scope.row.updateTo" type="danger" size="small" class="update-to-tag">不支持最新游戏版本</el-tag>
             </div>
           </template>
         </el-table-column>
@@ -1904,5 +1903,12 @@ export default {
   font-size: 0.75rem;
   font-weight: 500;
   margin-left: 10px;
+}
+
+.update-to-tag.el-tag--small {
+  padding: 0 4px;
+  height: 20px;
+  line-height: 18px;
+  font-size: 10px;
 }
 </style>
