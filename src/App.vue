@@ -157,11 +157,28 @@
         @filter-change="handleFilterChange"
         :default-sort="{prop: 'recommend', order: 'descending'}"
         v-loading="loading"
+        element-loading-text="正在加载MOD数据..."
+        :element-loading-spinner="loadingProgress > 0 ? undefined : 'el-icon-loading'"
+        element-loading-background="rgba(255, 255, 255, 0.8)"
         row-key="name"
         stripe
         height="calc(100vh - 250px)"
         class="scrollable-table"
       >
+        <!-- 添加加载进度条 -->
+        <template #loading>
+          <div v-if="loadingProgress > 0" class="mod-loading-progress">
+            <el-progress 
+              :percentage="Math.round((loadingProgress / loadingTotal) * 100)" 
+              :format="format => `已加载 ${loadingProgress}/${loadingTotal}`"
+              :stroke-width="18"
+            ></el-progress>
+          </div>
+          <div v-else>
+            <i class="el-icon-loading"></i>
+            <p>正在准备加载MOD数据...</p>
+          </div>
+        </template>
         <el-table-column type="selection" width="55" />
         <el-table-column prop="name" label="MOD名称" min-width="100" sortable>
           <template v-slot="scope">
@@ -421,6 +438,12 @@ export default {
       mods: [], // 存储 Mod 信息
       selectedMods: [], // 存储选中的 Mod
       loading: true,
+      loadingProgress: 0, // 添加加载进度
+      loadingTotal: 0, // 添加总加载数量
+      loadingBatchSize: 5, // 每批加载的MOD数量
+      loadingInterval: 200, // 加载间隔(毫秒)
+      allModFiles: [], // 存储所有MOD文件路径
+      allMods: [], // 存储所有MOD
       searchQuery: '',
       currentPage: 1,
       pageSize: 10,
@@ -514,7 +537,9 @@ export default {
     }
   },
   mounted() {
-    this.loadMods();
+    setTimeout(()=>{
+      this.loadMods();
+    }, 100)
     // 将版本检查放在 setTimeout 中异步执行
     setTimeout(()=>{
       this.checkVersion();
@@ -957,45 +982,78 @@ export default {
   
     loadMods() {
       this.loading = true;
+      this.loadingProgress = 0;
+      
       try {
         // 使用require.context获取所有modConfig.json文件
         const requireMod = require.context('@/assets/Mods', true, /modConfig\.json$/);
         const modFiles = requireMod.keys();
-  
-        this.mods = modFiles.map((filePath) => {
-          try {
-            // 获取文本内容
-            const modConfigText = requireMod(filePath);
-            
-            // 手动解析JSON
-            const modConfig = JSON.parse(modConfigText);
-            const modDir = filePath.split('/')[1];
-            return {
-              ...modConfig,
-              name: modDir,
-              recommend: modConfig.recommend || this.defaultRecommend,
-            };
-          } catch (error) {
-            console.error(`解析modConfig.json失败: ${filePath}`, error);
-            // 返回一个基本的mod对象，避免整个加载过程失败
-            const modDir = filePath.split('/')[1];
-            return {
-              name: modDir,
-              author: '未知',
-              version: '未知',
-              gameVersion: '未知',
-              updateDate: '未知',
-              files: [],
-              tag: ['加载失败'],
-              recommend: this.defaultRecommend,
-            };
-          }
-        });
+        this.loadingTotal = modFiles.length;
+        
+        // 存储所有MOD文件路径
+        this.allModFiles = modFiles;
+        this.mods = [];
+        
+        // 开始分批加载
+        this.loadModsBatch(requireMod);
       } catch (error) {
         console.error('加载Mods失败:', error);
         this.mods = [];
+        this.loading = false;
       }
-      this.loading = false;
+    },
+
+    // 添加分批加载方法
+    loadModsBatch(requireMod) {
+      const startIndex = this.loadingProgress;
+      const endIndex = Math.min(startIndex + this.loadingBatchSize, this.allModFiles.length);
+      
+      // 加载这一批MOD
+      for (let i = startIndex; i < endIndex; i++) {
+        const filePath = this.allModFiles[i];
+        try {
+          // 获取文本内容
+          const modConfigText = requireMod(filePath);
+          
+          // 手动解析JSON
+          const modConfig = JSON.parse(modConfigText);
+          const modDir = filePath.split('/')[1];
+          this.mods.push({
+            ...modConfig,
+            name: modDir,
+            recommend: modConfig.recommend || this.defaultRecommend,
+          });
+        } catch (error) {
+          console.error(`解析modConfig.json失败: ${filePath}`, error);
+          // 返回一个基本的mod对象，避免整个加载过程失败
+          const modDir = filePath.split('/')[1];
+          this.mods.push({
+            name: modDir,
+            author: '未知',
+            version: '未知',
+            gameVersion: '未知',
+            updateDate: '未知',
+            files: [],
+            tag: ['加载失败'],
+            recommend: this.defaultRecommend,
+          });
+        }
+      }
+      
+      // 更新加载进度
+      this.loadingProgress = endIndex;
+      
+      // 检查是否加载完成
+      if (this.loadingProgress < this.allModFiles.length) {
+        // 还有MOD需要加载，设置定时器加载下一批
+        setTimeout(() => {
+          this.loadModsBatch(requireMod);
+        }, this.loadingInterval);
+      } else {
+        // 所有MOD加载完成
+        this.loading = false;
+        console.log(`已加载 ${this.mods.length} 个MOD`);
+      }
     },
     handleSelectionChange(selection) {
       this.selectedMods = selection;
@@ -1967,5 +2025,9 @@ export default {
 .remark-preview:hover .el-icon-view {
   color: #66b1ff;
 }
-
+.mod-loading-progress {
+  width: 80%;
+  max-width: 500px;
+  margin: 20px auto;
+}
 </style>
