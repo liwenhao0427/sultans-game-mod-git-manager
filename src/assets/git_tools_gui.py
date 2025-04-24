@@ -4,6 +4,9 @@ import threading
 import tkinter as tk
 from tkinter import ttk, scrolledtext, messagebox
 import queue
+from datetime import datetime
+import zipfile
+import shutil
 
 # 导入公共工具
 from common_utils import (
@@ -157,7 +160,7 @@ class GitToolsGUI:
         button_frame = ttk.Frame(actions_frame)
         button_frame.pack(fill=tk.BOTH, expand=True)
         
-        # 定义按钮和它们的操作
+                # 定义按钮和它们的操作
         buttons = [
             {"text": "切换到纯净的游戏分支 (master)", "command": self.switch_to_master, "row": 0, "col": 0},
             {"text": "切换到MOD安装分支 (mods_applied)", "command": self.switch_to_mods_applied, "row": 0, "col": 1},
@@ -171,7 +174,7 @@ class GitToolsGUI:
             # {"text": "查看当前分支状态", "command": self.view_branch_status, "row": 4, "col": 1},
             {"text": "重置游戏到纯净状态", "command": self.reset_to_clean, "row": 5, "col": 0},
             {"text": "查看并尝试合并失败的MOD", "command": self.view_failed_mods, "row": 5, "col": 1},
-            {"text": "使用Gitee仓库配置替换游戏配置", "command": self.restore_from_gitee, "row": 6, "col": 0},
+            {"text": "重做仓库", "command": self.rebuild_repository, "row": 6, "col": 0},
             {"text": "从备份还原游戏配置", "command": self.restore_from_backup, "row": 6, "col": 1}
         ]
         
@@ -661,7 +664,7 @@ class GitToolsGUI:
             self.root.after(0, lambda: self.status_var.set("获取分支状态时出错"))
     
     def reset_to_clean(self):
-        """重置游戏到纯净状态"""
+        """重置游戏到初始化仓库时状态"""
         if not self.game_path:
             messagebox.showerror("错误", "未找到游戏路径")
             return
@@ -669,7 +672,7 @@ class GitToolsGUI:
         # 确认重置
         confirm = messagebox.askyesno(
             "确认重置", 
-            "确定要重置游戏到纯净状态吗？这将删除所有已安装的MOD。"
+            "确定要重置游戏到初始化仓库时状态吗？这将删除所有已安装的MOD。"
         )
         
         if not confirm:
@@ -682,12 +685,12 @@ class GitToolsGUI:
         threading.Thread(target=self._reset_to_clean_thread, daemon=True).start()
     
     def _reset_to_clean_thread(self):
-        """在新线程中重置游戏到纯净状态"""
+        """在新线程中重置游戏到初始化仓库时状态"""
         try:
-            self.root.after(0, lambda: self.status_var.set("正在重置游戏到纯净状态..."))
+            self.root.after(0, lambda: self.status_var.set("正在重置游戏到初始化仓库时状态..."))
             
-            colored_print("[重置] 正在重置游戏到纯净状态...", Colors.BLUE)
-            # 直接调用函数准备Git环境，这会重置游戏到纯净状态
+            colored_print("[重置] 正在重置游戏到初始化仓库时状态...", Colors.BLUE)
+            # 直接调用函数准备Git环境，这会重置游戏到初始化仓库时状态
             prepare_git_environment(self.game_path)
             
             colored_print("[成功] 游戏已重置到纯净状态", Colors.GREEN)
@@ -844,16 +847,16 @@ class GitToolsGUI:
             colored_print(f"[错误] 合并分支时出错: {e}", Colors.RED)
             self.root.after(0, lambda: self.status_var.set("合并分支时出错"))
     
-    def restore_from_gitee(self):
-        """使用Gitee仓库配置替换游戏配置"""
+    def rebuild_repository(self):
+        """重做仓库"""
         if not self.game_path:
             messagebox.showerror("错误", "未找到游戏路径")
             return
         
-        # 确认还原
+        # 确认重做
         confirm = messagebox.askyesno(
-            "确认还原", 
-            "确定要使用Gitee仓库配置替换当前游戏配置吗？这将覆盖当前的游戏配置。"
+            "确认重做仓库", 
+            "确定要重做仓库吗？这将备份当前配置目录并重新创建Git仓库。类似于检验游戏完整性，此操作会使游戏恢复到未安装任何Mod的纯净版本。"
         )
         
         if not confirm:
@@ -862,87 +865,313 @@ class GitToolsGUI:
         # 清空日志
         self.log_text.delete(1.0, tk.END)
         
-        # 在新线程中执行还原
-        threading.Thread(target=self._restore_from_gitee_thread, daemon=True).start()
+        # 在新线程中执行重做操作
+        threading.Thread(target=self._rebuild_repository_thread, daemon=True).start()
     
-    def _restore_from_gitee_thread(self):
-        """在新线程中从Gitee仓库还原游戏配置"""
+    def _rebuild_repository_thread(self):
+        """在新线程中执行仓库重做"""
         try:
-            self.root.after(0, lambda: self.status_var.set("正在从Gitee仓库还原游戏配置..."))
+            self.root.after(0, lambda: self.status_var.set("正在重做仓库..."))
             
-            colored_print("[还原] 正在从Gitee仓库还原游戏配置...", Colors.BLUE)
-            # 直接调用git_tools.py中的函数
-            result = restore_from_gitee_repo(self.game_path)
+            game_path = self.game_path
+            if not game_path:
+                colored_print("[错误] 无法确定游戏路径", Colors.RED)
+                self.root.after(0, lambda: self.status_var.set("重做失败: 无法确定游戏路径"))
+                return
             
-            if result:
-                colored_print("[成功] 已从Gitee仓库还原游戏配置", Colors.GREEN)
-                self.root.after(0, lambda: self.status_var.set("已从Gitee仓库还原游戏配置"))
+            config_dir = get_config_dir(game_path)
+            if not os.path.exists(config_dir):
+                colored_print("[错误] 游戏配置目录不存在", Colors.RED)
+                self.root.after(0, lambda: self.status_var.set("重做失败: 游戏配置目录不存在"))
+                return
+            
+            # 创建备份目录名称（使用时间戳）
+            timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+            backup_dir = f"{config_dir}_backup_{timestamp}"
+            
+            colored_print(f"[备份] 正在备份配置目录到: {backup_dir}", Colors.CYAN)
+            
+            # 重命名当前配置目录为备份
+            try:
+                os.rename(config_dir, backup_dir)
+                colored_print(f"[备份] 配置目录已备份", Colors.GREEN)
+            except Exception as e:
+                colored_print(f"[错误] 备份配置目录失败: {e}", Colors.RED)
+                self.root.after(0, lambda: self.status_var.set("重做失败: 无法备份配置目录"))
+                return
+            
+            # 创建新的配置目录
+            os.makedirs(config_dir, exist_ok=True)
+            
+            # 尝试使用本地.git.zip文件
+            git_zip_path = os.path.join(get_application_path(),  ".git.zip")
+            
+            if os.path.exists(git_zip_path):
+                colored_print(f"[重做] 使用本地.git.zip文件重建仓库", Colors.BLUE)
+                try:
+                    with zipfile.ZipFile(git_zip_path, 'r') as zip_ref:
+                        zip_ref.extractall(config_dir)
+                    colored_print("[重做] 成功从.git.zip解压Git仓库", Colors.GREEN)
+                    
+                    # 检查解压是否成功
+                    if not os.path.exists(os.path.join(config_dir, ".git")):
+                        raise Exception(".git目录未成功解压")
+                    
+                    # 重置工作区
+                    stdout, stderr, code = run_git_command(['git', 'reset', '--hard'], cwd=config_dir)
+                    if code != 0:
+                        raise Exception(f"重置工作区失败: {stderr}")
+                    
+                    colored_print("[完成] 仓库重建成功", Colors.GREEN)
+                    self.root.after(0, lambda: self.status_var.set("仓库重建成功"))
+                    self.root.after(0, lambda: messagebox.showinfo("重建完成", "游戏配置仓库已成功重建。"))
+                    
+                    # 刷新分支信息
+                    self.refresh_branch_info()
+                    return
+                except Exception as e:
+                    colored_print(f"[错误] 从.git.zip解压失败: {e}", Colors.RED)
+                    colored_print("[重做] 尝试从GitHub克隆仓库", Colors.YELLOW)
+            else:
+                colored_print("[信息] 未找到本地.git.zip文件，尝试从GitHub克隆仓库", Colors.YELLOW)
+            
+            # 如果本地.git.zip不存在或解压失败，尝试从GitHub克隆
+            try:
+                colored_print("[克隆] 正在从GitHub克隆仓库...", Colors.BLUE)
+                colored_print("[克隆] 这可能需要一些时间，请耐心等待...", Colors.BLUE)
+                
+                # 删除可能存在的空目录
+                if os.path.exists(config_dir):
+                    shutil.rmtree(config_dir)
+                
+                # 克隆仓库
+                cmd = ['git', 'clone', 'https://github.com/liwenhao0427/sultans-game-config.git', config_dir]
+                stdout, stderr, code = run_git_command(cmd, cwd=os.path.dirname(config_dir))
+                
+                if code != 0:
+                    raise Exception(f"克隆失败: {stderr}")
+                
+                colored_print("[完成] 仓库克隆成功", Colors.GREEN)
+                self.root.after(0, lambda: self.status_var.set("仓库重建成功"))
+                self.root.after(0, lambda: messagebox.showinfo("重建完成", "游戏配置仓库已成功从GitHub克隆。"))
                 
                 # 刷新分支信息
                 self.refresh_branch_info()
+            except Exception as e:
+                colored_print(f"[错误] 克隆仓库失败: {e}", Colors.RED)
+                colored_print("[恢复] 尝试恢复备份...", Colors.YELLOW)
                 
-                # 显示成功消息
-                self.root.after(0, lambda: messagebox.showinfo("还原成功", "已从Gitee仓库还原游戏配置"))
-            else:
-                colored_print("[错误] 从Gitee仓库还原游戏配置失败", Colors.RED)
-                self.root.after(0, lambda: self.status_var.set("从Gitee仓库还原游戏配置失败"))
-                
-                # 显示失败消息
-                self.root.after(0, lambda: messagebox.showwarning("还原失败", "从Gitee仓库还原游戏配置失败"))
-        
+                # 尝试恢复备份
+                try:
+                    if os.path.exists(config_dir):
+                        shutil.rmtree(config_dir)
+                    os.rename(backup_dir, config_dir)
+                    colored_print("[恢复] 已恢复原配置目录", Colors.GREEN)
+                    self.root.after(0, lambda: self.status_var.set("重做失败，已恢复备份"))
+                    self.root.after(0, lambda: messagebox.showerror("重建失败", f"仓库重建失败: {e}\n已恢复原配置目录。"))
+                except Exception as restore_err:
+                    colored_print(f"[严重错误] 恢复备份失败: {restore_err}", Colors.RED + Colors.BOLD)
+                    self.root.after(0, lambda: self.status_var.set("重做失败，恢复备份也失败"))
+                    self.root.after(0, lambda: messagebox.showerror("严重错误", 
+                                                                  f"仓库重建失败，且无法恢复备份。\n"
+                                                                  f"原备份目录位于: {backup_dir}\n"
+                                                                  f"请手动恢复。"))
         except Exception as e:
-            colored_print(f"[错误] 还原游戏配置时出错: {e}", Colors.RED)
-            self.root.after(0, lambda: self.status_var.set("还原游戏配置时出错"))
+            colored_print(f"[错误] 重做过程中发生异常: {e}", Colors.RED)
+            self.root.after(0, lambda: self.status_var.set("重做过程中发生错误"))
+            self.root.after(0, lambda: messagebox.showerror("错误", f"重做过程中发生异常: {e}"))
     
     def restore_from_backup(self):
         """从备份还原游戏配置"""
-        if not self.game_path:
-            messagebox.showerror("错误", "未找到游戏路径")
-            return
-        
-        # 确认还原
-        confirm = messagebox.askyesno(
-            "确认还原", 
-            "确定要从备份还原游戏配置吗？这将覆盖当前的游戏配置。"
-        )
-        
-        if not confirm:
+        if not self.config_dir:
+            messagebox.showerror("错误", "未找到游戏配置目录")
             return
         
         # 清空日志
         self.log_text.delete(1.0, tk.END)
         
-        # 在新线程中执行还原
-        threading.Thread(target=self._restore_from_backup_thread, daemon=True).start()
-    
-    def _restore_from_backup_thread(self):
-        """在新线程中从备份还原游戏配置"""
+        # 在新线程中获取备份列表
+        threading.Thread(target=self._get_backup_list_thread, daemon=True).start()
+
+    def _get_backup_list_thread(self):
+        """在新线程中获取备份列表"""
         try:
-            self.root.after(0, lambda: self.status_var.set("正在从备份还原游戏配置..."))
+            self.root.after(0, lambda: self.status_var.set("正在查找备份..."))
             
-            colored_print("[还原] 正在从备份还原游戏配置...", Colors.BLUE)
-            # 直接调用git_tools.py中的函数
-            result = restore_from_backup_config(self.game_path)
+            colored_print("[查询] 正在查找备份目录...", Colors.BLUE)
             
-            if result:
-                colored_print("[成功] 已从备份还原游戏配置", Colors.GREEN)
-                self.root.after(0, lambda: self.status_var.set("已从备份还原游戏配置"))
+            # 获取配置目录的父目录
+            parent_dir = os.path.dirname(self.config_dir)
+            
+            # 查找所有备份目录（格式为：config_backup_YYYYMMDD_HHMMSS）
+            backup_dirs = []
+            for item in os.listdir(parent_dir):
+                item_path = os.path.join(parent_dir, item)
+                if os.path.isdir(item_path) and item.startswith(os.path.basename(self.config_dir) + "_backup_"):
+                    # 提取时间戳
+                    try:
+                        timestamp = item.split("_backup_")[1]
+                        # 格式化时间显示
+                        formatted_time = f"{timestamp[:4]}-{timestamp[4:6]}-{timestamp[6:8]} {timestamp[9:11]}:{timestamp[11:13]}:{timestamp[13:15]}"
+                        backup_dirs.append({"path": item_path, "name": item, "time": formatted_time})
+                    except:
+                        # 如果解析失败，使用原始名称
+                        backup_dirs.append({"path": item_path, "name": item, "time": "未知时间"})
+            
+            # 按时间倒序排序（最新的在前面）
+            backup_dirs.sort(key=lambda x: x["name"], reverse=True)
+            
+            if not backup_dirs:
+                colored_print("[信息] 没有找到备份目录", Colors.YELLOW)
+                self.root.after(0, lambda: self.status_var.set("没有找到备份目录"))
+                self.root.after(0, lambda: messagebox.showinfo("提示", "没有找到可用的备份目录"))
+                return
+            
+            # 在主线程中显示备份选择对话框
+            self.root.after(0, lambda: self._show_backup_dialog(backup_dirs))
+            
+        except Exception as e:
+            colored_print(f"[错误] 获取备份列表时出错: {e}", Colors.RED)
+            self.root.after(0, lambda: self.status_var.set("获取备份列表时出错"))
+            self.root.after(0, lambda: messagebox.showerror("错误", f"获取备份列表时出错: {e}"))
+
+    def _show_backup_dialog(self, backup_dirs):
+        """显示备份选择对话框"""
+        dialog = tk.Toplevel(self.root)
+        dialog.title("选择备份")
+        dialog.geometry("600x400")
+        dialog.transient(self.root)
+        dialog.grab_set()
+        
+        # 创建说明标签
+        ttk.Label(dialog, text="选择要还原的备份:", font=("Arial", 10, "bold")).pack(pady=10)
+        
+        # 创建备份列表框架
+        frame = ttk.Frame(dialog, padding="10")
+        frame.pack(fill=tk.BOTH, expand=True)
+        
+        # 创建备份列表
+        columns = ("name", "time")
+        tree = ttk.Treeview(frame, columns=columns, show="headings")
+        
+        tree.heading("name", text="备份名称")
+        tree.heading("time", text="创建时间")
+        
+        tree.column("name", width=300)
+        tree.column("time", width=200)
+        
+        # 添加滚动条
+        scrollbar = ttk.Scrollbar(frame, orient=tk.VERTICAL, command=tree.yview)
+        tree.configure(yscrollcommand=scrollbar.set)
+        
+        tree.pack(side=tk.LEFT, fill=tk.BOTH, expand=True)
+        scrollbar.pack(side=tk.RIGHT, fill=tk.Y)
+        
+        # 填充数据
+        for backup in backup_dirs:
+            tree.insert("", tk.END, values=(backup["name"], backup["time"]), tags=(backup["path"],))
+        
+        # 创建按钮框架
+        btn_frame = ttk.Frame(dialog, padding="10")
+        btn_frame.pack(fill=tk.X)
+        
+        # 创建按钮
+        restore_btn = ttk.Button(
+            btn_frame, 
+            text="从选中备份还原", 
+            command=lambda: self._restore_from_selected_backup(tree, dialog)
+        )
+        restore_btn.pack(side=tk.LEFT, padx=5)
+        
+        cancel_btn = ttk.Button(
+            btn_frame, 
+            text="取消", 
+            command=dialog.destroy
+        )
+        cancel_btn.pack(side=tk.RIGHT, padx=5)
+
+    def _restore_from_selected_backup(self, tree, dialog):
+        """从选中的备份还原"""
+        selected_items = tree.selection()
+        if not selected_items:
+            messagebox.showinfo("提示", "请先选择一个备份")
+            return
+        
+        # 获取选中的备份路径
+        backup_path = tree.item(selected_items[0], "tags")[0]
+        
+        # 关闭对话框
+        dialog.destroy()
+        
+        # 确认还原
+        confirm = messagebox.askyesno(
+            "确认还原", 
+            f"确定要从以下备份还原游戏配置吗？\n{os.path.basename(backup_path)}\n\n此操作将覆盖当前的游戏配置。"
+        )
+        
+        if not confirm:
+            return
+        
+        # 在新线程中执行还原操作
+        threading.Thread(target=self._restore_backup_thread, args=(backup_path,), daemon=True).start()
+
+    def _restore_backup_thread(self, backup_path):
+        """在新线程中执行备份还原"""
+        try:
+            self.root.after(0, lambda: self.status_var.set("正在还原备份..."))
+            
+            colored_print(f"[还原] 正在从备份还原: {os.path.basename(backup_path)}", Colors.BLUE)
+            
+            # 备份当前配置目录
+            timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+            current_backup = f"{self.config_dir}_before_restore_{timestamp}"
+            
+            colored_print(f"[备份] 正在备份当前配置到: {os.path.basename(current_backup)}", Colors.CYAN)
+            
+            try:
+                # 重命名当前配置目录
+                os.rename(self.config_dir, current_backup)
+                colored_print("[备份] 当前配置已备份", Colors.GREEN)
+            except Exception as e:
+                colored_print(f"[错误] 备份当前配置失败: {e}", Colors.RED)
+                self.root.after(0, lambda: self.status_var.set("还原失败: 无法备份当前配置"))
+                self.root.after(0, lambda: messagebox.showerror("错误", f"备份当前配置失败: {e}"))
+                return
+            
+            # 复制备份目录到配置目录
+            try:
+                # 复制备份目录到配置目录
+                shutil.copytree(backup_path, self.config_dir)
+                colored_print("[还原] 备份已成功还原", Colors.GREEN)
+                self.root.after(0, lambda: self.status_var.set("备份已成功还原"))
+                self.root.after(0, lambda: messagebox.showinfo("成功", "游戏配置已从备份成功还原"))
                 
                 # 刷新分支信息
                 self.refresh_branch_info()
+            except Exception as e:
+                colored_print(f"[错误] 还原备份失败: {e}", Colors.RED)
+                colored_print("[恢复] 尝试恢复原配置...", Colors.YELLOW)
                 
-                # 显示成功消息
-                self.root.after(0, lambda: messagebox.showinfo("还原成功", "已从备份还原游戏配置"))
-            else:
-                colored_print("[错误] 从备份还原游戏配置失败", Colors.RED)
-                self.root.after(0, lambda: self.status_var.set("从备份还原游戏配置失败"))
-                
-                # 显示失败消息
-                self.root.after(0, lambda: messagebox.showwarning("还原失败", "从备份还原游戏配置失败"))
+                # 尝试恢复原配置
+                try:
+                    if os.path.exists(self.config_dir):
+                        shutil.rmtree(self.config_dir)
+                    os.rename(current_backup, self.config_dir)
+                    colored_print("[恢复] 已恢复原配置", Colors.GREEN)
+                    self.root.after(0, lambda: self.status_var.set("还原失败，已恢复原配置"))
+                    self.root.after(0, lambda: messagebox.showerror("还原失败", f"还原备份失败: {e}\n已恢复原配置。"))
+                except Exception as restore_err:
+                    colored_print(f"[严重错误] 恢复原配置失败: {restore_err}", Colors.RED + Colors.BOLD)
+                    self.root.after(0, lambda: self.status_var.set("还原失败，恢复原配置也失败"))
+                    self.root.after(0, lambda: messagebox.showerror("严重错误", 
+                                                                f"还原备份失败，且无法恢复原配置。\n"
+                                                                f"原配置备份位于: {current_backup}\n"
+                                                                f"请手动恢复。"))
         
         except Exception as e:
-            colored_print(f"[错误] 还原游戏配置时出错: {e}", Colors.RED)
-            self.root.after(0, lambda: self.status_var.set("还原游戏配置时出错"))
+            colored_print(f"[错误] 还原过程中发生异常: {e}", Colors.RED)
+            self.root.after(0, lambda: self.status_var.set("还原过程中发生错误"))
+            self.root.after(0, lambda: messagebox.showerror("错误", f"还原过程中发生异常: {e}"))
 
     # 如果直接运行此文件，则创建独立窗口
     def on_closing(self):
