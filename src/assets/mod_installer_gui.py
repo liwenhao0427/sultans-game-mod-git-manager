@@ -343,7 +343,7 @@ class ModInstallerGUI:
         # 创建MOD列表视图 - 修改为支持编辑
         self.mod_tree = ttk.Treeview(
             mods_frame, 
-            columns=("name", "author", "version", "priority", "recommend"),
+            columns=("name", "author", "version", "priority", "recommend", "remark"),
             show="tree headings",  # 修改为显示树形结构和表头
             selectmode="extended"
         )
@@ -355,6 +355,7 @@ class ModInstallerGUI:
         self.mod_tree.heading("version", text="版本")
         self.mod_tree.heading("priority", text="安装顺序")
         self.mod_tree.heading("recommend", text="推荐度")
+        self.mod_tree.heading("remark", text="备注说明")
         
         self.mod_tree.column("#0", width=50, stretch=False)  # 设置勾选列宽度
         self.mod_tree.column("name", width=250)
@@ -362,6 +363,7 @@ class ModInstallerGUI:
         self.mod_tree.column("version", width=80)
         self.mod_tree.column("priority", width=70)
         self.mod_tree.column("recommend", width=70)
+        self.mod_tree.column("remark", width=200)  # 设置备注列宽度
 
         # 在创建树形视图后添加列排序功能
         for col in ("name", "author", "version", "priority", "recommend"):
@@ -579,6 +581,7 @@ class ModInstallerGUI:
                     version = mod_config.get("version", "")
                     priority = mod_config.get("priority", 100)
                     recommend = mod_config.get("recommend", 3)  # 默认推荐度为3
+                    remark = mod_config.get("remark", "无")
                     ignore = mod_config.get("ignore", False)
                     
                     # 添加到MOD列表
@@ -591,6 +594,7 @@ class ModInstallerGUI:
                         "version": version,
                         "priority": priority,
                         "recommend": recommend,
+                        "remark": remark,
                         "ignore": ignore
                     })
                     
@@ -609,7 +613,7 @@ class ModInstallerGUI:
                     "", 
                     tk.END,
                     text=checked,
-                    values=(mod["name"], mod["author"], mod["version"], mod["priority"], mod["recommend"]),
+                    values=(mod["name"], mod["author"], mod["version"], mod["priority"], mod["recommend"], mod["remark"]),
                     open=True  # 默认展开
                 )
                 # 存储MOD名称和对应的树项ID的映射
@@ -712,6 +716,64 @@ class ModInstallerGUI:
             
             # 获取列索引（#0是树形图标列，#1是第一个数据列）
             column_idx = int(column[1:]) - 1
+            if column_idx == 5:
+                property_name = "remark"
+                # 获取当前值
+                current_values = self.mod_tree.item(item_id, "values")
+                property_value = current_values[column_idx] if current_values else ""
+                title = "查看/编辑备注说明"
+                
+                # 对于备注，使用文本框编辑
+                dialog = tk.Toplevel(self.root)
+                dialog.title(title)
+                dialog.geometry("500x300")
+                dialog.transient(self.root)
+                dialog.grab_set()
+                
+                # 创建文本框
+                text_frame = ttk.Frame(dialog, padding="10")
+                text_frame.pack(fill=tk.BOTH, expand=True)
+                
+                text_label = ttk.Label(text_frame, text="备注内容:")
+                text_label.pack(anchor=tk.W, pady=(0, 5))
+                
+                text_box = scrolledtext.ScrolledText(text_frame, wrap=tk.WORD, height=10)
+                text_box.pack(fill=tk.BOTH, expand=True)
+                text_box.insert(tk.END, property_value)
+                
+                # 创建按钮框架
+                button_frame = ttk.Frame(dialog, padding="10")
+                button_frame.pack(fill=tk.X)
+                
+                # def save_remark():
+                #     new_value = text_box.get("1.0", tk.END).strip()
+                #     # 更新MOD配置
+                #     mod_config[property_name] = new_value
+                    
+                #     # 更新树形视图（显示截断的备注）
+                #     display_value = new_value
+                #     if display_value and len(display_value) > 50:
+                #         display_value = display_value[:47] + "..."
+                    
+                #     new_values = list(values)
+                #     new_values[5] = display_value
+                #     self.mod_tree.item(item, values=tuple(new_values))
+                    
+                #     # 保存MOD配置
+                #     self._save_mod_config(mod_config)
+                    
+                #     dialog.destroy()
+                
+                def cancel():
+                    dialog.destroy()
+                
+                # save_btn = ttk.Button(button_frame, text="保存", command=save_remark)
+                # save_btn.pack(side=tk.RIGHT, padx=5)
+                
+                cancel_btn = ttk.Button(button_frame, text="确定", command=cancel)
+                cancel_btn.pack(side=tk.RIGHT, padx=5)
+                
+                return
             
             # 获取列名
             column_names = ["name", "author", "version", "priority", "recommend"]

@@ -1152,7 +1152,7 @@ export default {
           const mainAppPath = require('!!file-loader?esModule=false!@/assets/苏丹的游戏mod管理器(图形界面).exe');
           const mainAppResponse = await fetch(mainAppPath);
           const mainAppBlob = await mainAppResponse.blob();
-          zip.file('苏丹的游戏mod管理器(图形界面).exe', mainAppBlob);
+          zip.file(`苏丹的游戏mod管理器(图形界面)-V${this.localVersion}.exe`, mainAppBlob);
 
           const gitAppPath = require('!!file-loader?esModule=false!@/assets/.git.zip');
           const gitAppResponse = await fetch(gitAppPath);
@@ -1186,7 +1186,7 @@ export default {
           const helperPath = require('!!file-loader?esModule=false!@/assets/苏丹的游戏帮助程序(图形界面).exe');
           const helperResponse = await fetch(helperPath);
           const helperBlob = await helperResponse.blob();
-          zip.file('苏丹的游戏帮助程序(图形界面).exe', helperBlob);
+          zip.file(`苏丹的游戏帮助程序(图形界面)-V${this.localVersion}.exe`, helperBlob);
         } catch (error) {
           console.error('帮助程序加载出错:', error);
           // 尝试从备用源下载

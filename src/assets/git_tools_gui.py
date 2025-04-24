@@ -172,10 +172,10 @@ class GitToolsGUI:
             {"text": "打开游戏冲突目录", "command": self.open_conflict_dir, "row": 3, "col": 1},
             {"text": "打开游戏存档目录", "command": self.open_save_dir, "row": 4, "col": 0},
             # {"text": "查看当前分支状态", "command": self.view_branch_status, "row": 4, "col": 1},
-            {"text": "重置游戏到纯净状态", "command": self.reset_to_clean, "row": 5, "col": 0},
-            {"text": "查看并尝试合并失败的MOD", "command": self.view_failed_mods, "row": 5, "col": 1},
-            {"text": "重做仓库", "command": self.rebuild_repository, "row": 6, "col": 0},
-            {"text": "从备份还原游戏配置", "command": self.restore_from_backup, "row": 6, "col": 1}
+            # {"text": "重置游戏到纯净状态", "command": self.reset_to_clean, "row": 5, "col": 0},
+            {"text": "查看并尝试合并失败的MOD", "command": self.view_failed_mods, "row": 4, "col": 1},
+            {"text": "重做仓库", "command": self.rebuild_repository, "row": 5, "col": 0},
+            {"text": "从备份还原游戏配置", "command": self.restore_from_backup, "row": 5, "col": 1}
         ]
         
         # 创建按钮

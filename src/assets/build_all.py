@@ -31,12 +31,12 @@ programs = [
         'console': False,
         'additional_args': ['--windowed', '--collect-all=tkinter']  # 添加tkinter依赖收集
     },
-    # {
-    #     'script': 'git_tools_gui.py',
-    #     'name': '苏丹的游戏帮助程序(图形界面)',
-    #     'console': False,
-    #     'additional_args': ['--windowed', '--collect-all=tkinter']  # 添加tkinter依赖收集
-    # }
+    {
+        'script': 'git_tools_gui.py',
+        'name': '苏丹的游戏帮助程序(图形界面)',
+        'console': False,
+        'additional_args': ['--windowed', '--collect-all=tkinter']  # 添加tkinter依赖收集
+    }
 ]
 
 # 执行打包
