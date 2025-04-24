@@ -829,8 +829,22 @@ class ModInstallerGUI:
             # 导入GitToolsGUI
             from git_tools_gui import GitToolsGUI
             
-            # 创建Git工具GUI实例
-            git_tools = GitToolsGUI(git_window)
+            # 恢复原始的标准输出和输入
+            sys.stdout = self.old_stdout
+            sys.stdin = self.old_stdin
+            
+            # 创建Git工具GUI实例 - 使用独立的消息队列
+            git_tools = GitToolsGUI(git_window, msg_queue=queue.Queue())
+            
+            # 当Git工具窗口关闭时，恢复mod_installer的重定向
+            def on_git_window_close():
+                # 恢复mod_installer的重定向
+                sys.stdout = TextRedirector(self.log_text, self.msg_queue)
+                sys.stdin = sys.stdout
+                git_window.destroy()
+            
+            # 设置关闭窗口的处理函数
+            git_window.protocol("WM_DELETE_WINDOW", on_git_window_close)
             
         except ImportError:
             messagebox.showerror("错误", "无法导入Git工具GUI模块")

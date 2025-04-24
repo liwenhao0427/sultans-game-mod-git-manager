@@ -19,18 +19,66 @@ from git_tools import (
     get_game_path, get_config_dir, prepare_git_environment, run_git_command
 )
 
+# 颜色映射，将原来的控制台颜色映射到Tkinter标签
+COLOR_TAGS = {
+    Colors.RED: "red",
+    Colors.GREEN: "green",
+    Colors.YELLOW: "yellow",
+    Colors.BLUE: "blue",
+    Colors.MAGENTA: "magenta",
+    Colors.CYAN: "cyan",
+    Colors.BOLD: "bold",
+    Colors.RED + Colors.BOLD: "red_bold",
+    Colors.GREEN + Colors.BOLD: "green_bold",
+    Colors.YELLOW + Colors.BOLD: "yellow_bold",
+    Colors.BLUE + Colors.BOLD: "blue_bold",
+    Colors.MAGENTA + Colors.BOLD: "magenta_bold",
+    Colors.CYAN + Colors.BOLD: "cyan_bold",
+}
+
 # 创建一个自定义的输出重定向类，用于捕获控制台输出并显示在GUI中
 class TextRedirector:
     def __init__(self, text_widget, queue, tag=""):
         self.text_widget = text_widget
-        self.tag = tag
         self.queue = queue
+        self.buffer = ""
+        self.tag = tag
 
     def write(self, string):
-        self.queue.put((string, self.tag))
+        # 检查是否包含颜色代码
+        if "\033[" in string:
+            # 提取颜色代码
+            for color in [Colors.RED, Colors.GREEN, Colors.YELLOW, Colors.BLUE, Colors.MAGENTA, Colors.CYAN, Colors.BOLD]:
+                if color in string:
+                    self.tag += color
+                    string = string.replace(color, "")
+            
+            # 移除剩余的颜色代码
+            string = string.replace(Colors.RESET, "")
+            string = string.replace("\033[0m", "")
+        
+        # 累积缓冲区
+        self.buffer += string
+        
+        # 如果遇到换行符，则将缓冲区内容发送到队列
+        if "\n" in self.buffer:
+            lines = self.buffer.split("\n")
+            for i in range(len(lines) - 1):
+                self.queue.put((lines[i] + "\n", self.tag))
+            
+            # 保留最后一行（可能不完整）
+            self.buffer = lines[-1]
+            
+            # 如果最后一行是空的，并且原始字符串以换行符结尾，则清空缓冲区
+            if not self.buffer and string.endswith("\n"):
+                self.tag = ""
 
     def flush(self):
-        pass
+        # 如果缓冲区中还有内容，则发送到队列
+        if self.buffer:
+            self.queue.put((self.buffer, self.tag))
+            self.buffer = ""
+            self.tag = ""
         
     def input(self, prompt=""):
         """处理输入请求，避免打包后的stdin错误"""
@@ -157,6 +205,15 @@ class GitToolsGUI:
         self.log_text.tag_configure("magenta", foreground="purple")
         self.log_text.tag_configure("cyan", foreground="teal")
         self.log_text.tag_configure("bold", font=("TkDefaultFont", 10, "bold"))
+        
+        # 配置组合颜色标签
+        for color in [Colors.RED, Colors.GREEN, Colors.YELLOW, Colors.BLUE, Colors.MAGENTA, Colors.CYAN]:
+            tag_name = COLOR_TAGS[color]
+            self.log_text.tag_configure(
+                f"{tag_name}_bold", 
+                foreground=tag_name.replace("_bold", ""), 
+                font=("TkDefaultFont", 10, "bold")
+            )
         
         # 创建状态栏
         self.status_var = tk.StringVar()
