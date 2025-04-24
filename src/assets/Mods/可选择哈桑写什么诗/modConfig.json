@@ -14,5 +14,6 @@
   },
   "files": [],
   "remark": "MOD功能：\n现在哈桑写诗会问你的意见了，你可以自由决定他写什么诗。\n\n使用说明：\n解压并将Sultan's Game_Data文件夹，放入游戏根目录，覆盖所有 \n路径：steamapps\\common\\Sultan's Game \n\n关于兼容性：\n本mod只修改了原游戏Sultan's Game_Data\\StreamingAssets\\config\\rite文件夹下的5000002.json，同时新增了一个event用于选择要写的诗。如果你玩的其他mod也更改了这个文件，而你担心兼容性问题，可以打开5000002.json（俺寻思仪式）手动合并。\n\n手动合并方法：\n用记事本打开5000002.json，搜索\n\"s1.is\":2000460\n并在其之后的第一个\"action\"中（十行之内），将{}内的内容全部删除，并改成\n\"event_on\": 5380000\n\nmod作者：\nNinetyNine九十九",
-  "patchFile": "patches\\0001-MOD.patch"
+  "patchFile": "patches\\0001-MOD.patch",
+  "ignore": false
 }

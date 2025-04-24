@@ -14,5 +14,6 @@
   "files": [],
   "remark": "升级项可以选择开局获得全冒险书！",
   "patchFile": "patches\\0001-MOD.patch",
-  "recommend": 4
+  "recommend": 4,
+  "ignore": false
 }

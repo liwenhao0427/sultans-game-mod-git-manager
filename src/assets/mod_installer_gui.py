@@ -926,9 +926,7 @@ class ModInstallerGUI:
                 if game_path:
                     prepare_git_environment(game_path)
                 self.status_var.set("MOD安装失败")
-                
-                # 在主线程中显示失败消息
-                self.root.after(0, lambda: messagebox.showwarning("安装失败", "MOD安装过程中出现问题，已执行还原操作。"))
+                self.root.after(0, lambda: self._show_rebuild_repository_prompt())
         
         except Exception as e:
             colored_print(f"\n[错误] 发生异常: {e}", Colors.RED)
@@ -950,6 +948,23 @@ class ModInstallerGUI:
         open_git = messagebox.askyesno("安装完成", "是否打开Git操作工具？")
         if open_git:
             self.open_git_tools()
+            
+    def _show_rebuild_repository_prompt(self):
+        """显示重做仓库提示"""
+        result = messagebox.askyesno(
+            "安装失败",
+            "MOD安装失败，这可能是因为您的游戏配置文件不是纯净版本，可能包含了您自己覆盖安装的MOD或其他修改。\n\n"
+            "也有可能仅仅是因为该Mod与当前版本不匹配，此时建议您在列表中移除该Mod，等待Mod作者更新。\n\n"
+            "如果您确定Mod与版本一致，建议重做仓库以获得纯净的游戏配置文件。重做仓库会将当前配置备份，并创建全新的纯净配置。\n\n"
+            "是否现在重做仓库？"
+        )
+        
+        if result:
+            # 用户选择重做仓库
+            self.rebuild_repository()
+        else:
+            # 用户选择不重做仓库，显示一般的失败消息
+            messagebox.showwarning("安装失败", "MOD安装过程中出现问题，已执行还原操作。")
     
     def reset_game_config(self):
         """重置游戏配置"""
