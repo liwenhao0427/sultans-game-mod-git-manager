@@ -6,6 +6,9 @@ import tkinter as tk
 from tkinter import ttk, scrolledtext, messagebox
 from datetime import datetime
 import queue
+from tkinter import filedialog
+import zipfile
+import shutil
 
 # 导入原有的MOD安装器模块
 from mod_installer import (
@@ -17,6 +20,10 @@ from mod_installer import (
 from common_utils import (
     Colors, colored_print, get_application_path
 )
+
+# 从git_tools导入open_directory函数
+from git_tools import open_directory
+
 
 # 创建一个自定义的输出重定向类，用于捕获控制台输出并显示在GUI中
 class TextRedirector:
@@ -84,6 +91,157 @@ COLOR_TAGS = {
 from tkinter import filedialog
 
 class ModInstallerGUI:
+
+    def open_config_dir(self):
+        """打开游戏配置目录"""
+        game_path = get_game_path()
+        if not game_path:
+            messagebox.showerror("错误", "未找到游戏路径")
+            return
+            
+        config_dir = get_config_dir(game_path)
+        if not os.path.exists(config_dir):
+            messagebox.showerror("错误", "未找到游戏配置目录")
+            return
+            
+        # 清空日志
+        self.log_text.delete(1.0, tk.END)
+        
+        # 在新线程中打开目录
+        threading.Thread(target=lambda: self._open_directory_thread(config_dir), daemon=True).start()
+    
+    def _open_directory_thread(self, directory):
+        """在新线程中打开目录"""
+        try:
+            colored_print(f"[操作] 正在打开目录: {directory}", Colors.BLUE)
+            open_directory(directory)
+            self.status_var.set(f"已打开目录: {directory}")
+        except Exception as e:
+            colored_print(f"[错误] 打开目录失败: {e}", Colors.RED)
+            self.status_var.set("打开目录失败")
+    
+    def rebuild_repository(self):
+        """重做仓库"""
+        confirm = messagebox.askyesno(
+            "确认重做仓库", 
+            "确定要重做仓库吗？这将备份当前配置目录并重新创建Git仓库。类似于检验游戏完整性，此操作会使游戏恢复到未安装任何Mod的纯净版本。"
+        )
+        
+        if not confirm:
+            return
+        
+        # 清空日志
+        self.log_text.delete(1.0, tk.END)
+        
+        # 在新线程中执行重做操作
+        threading.Thread(target=self._rebuild_repository_thread, daemon=True).start()
+    
+    def _rebuild_repository_thread(self):
+        """在新线程中执行仓库重做"""
+        try:
+            self.status_var.set("正在重做仓库...")
+            
+            game_path = get_game_path()
+            if not game_path:
+                colored_print("[错误] 无法确定游戏路径", Colors.RED)
+                self.status_var.set("重做失败: 无法确定游戏路径")
+                return
+            
+            config_dir = get_config_dir(game_path)
+            if not os.path.exists(config_dir):
+                colored_print("[错误] 游戏配置目录不存在", Colors.RED)
+                self.status_var.set("重做失败: 游戏配置目录不存在")
+                return
+            
+            # 创建备份目录名称（使用时间戳）
+            timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+            backup_dir = f"{config_dir}_backup_{timestamp}"
+            
+            colored_print(f"[备份] 正在备份配置目录到: {backup_dir}", Colors.CYAN)
+            
+            # 重命名当前配置目录为备份
+            try:
+                os.rename(config_dir, backup_dir)
+                colored_print(f"[备份] 配置目录已备份", Colors.GREEN)
+            except Exception as e:
+                colored_print(f"[错误] 备份配置目录失败: {e}", Colors.RED)
+                self.status_var.set("重做失败: 无法备份配置目录")
+                return
+            
+            # 创建新的配置目录
+            os.makedirs(config_dir, exist_ok=True)
+            
+            # 尝试使用本地.git.zip文件
+            git_zip_path = os.path.join(get_application_path(),  ".git.zip")
+            
+            if os.path.exists(git_zip_path):
+                colored_print(f"[重做] 使用本地.git.zip文件重建仓库", Colors.BLUE)
+                try:
+                    with zipfile.ZipFile(git_zip_path, 'r') as zip_ref:
+                        zip_ref.extractall(config_dir)
+                    colored_print("[重做] 成功从.git.zip解压Git仓库", Colors.GREEN)
+                    
+                    # 检查解压是否成功
+                    if not os.path.exists(os.path.join(config_dir, ".git")):
+                        raise Exception(".git目录未成功解压")
+                    
+                    # 重置工作区
+                    stdout, stderr, code = run_git_command(['git', 'reset', '--hard'], cwd=config_dir)
+                    if code != 0:
+                        raise Exception(f"重置工作区失败: {stderr}")
+                    
+                    colored_print("[完成] 仓库重建成功", Colors.GREEN)
+                    self.root.after(0, lambda: self.status_var.set("仓库重建成功"))
+                    self.root.after(0, lambda: messagebox.showinfo("重建完成", "游戏配置仓库已成功重建。"))
+                    return
+                except Exception as e:
+                    colored_print(f"[错误] 从.git.zip解压失败: {e}", Colors.RED)
+                    colored_print("[重做] 尝试从GitHub克隆仓库", Colors.YELLOW)
+            else:
+                colored_print("[信息] 未找到本地.git.zip文件，尝试从GitHub克隆仓库", Colors.YELLOW)
+            
+            # 如果本地.git.zip不存在或解压失败，尝试从GitHub克隆
+            try:
+                colored_print("[克隆] 正在从GitHub克隆仓库...", Colors.BLUE)
+                colored_print("[克隆] 这可能需要一些时间，请耐心等待...", Colors.BLUE)
+                
+                # 删除可能存在的空目录
+                if os.path.exists(config_dir):
+                    shutil.rmtree(config_dir)
+                
+                # 克隆仓库
+                cmd = ['git', 'clone', 'https://github.com/liwenhao0427/sultans-game-config.git', config_dir]
+                stdout, stderr, code = run_git_command(cmd, cwd=os.path.dirname(config_dir))
+                
+                if code != 0:
+                    raise Exception(f"克隆失败: {stderr}")
+                
+                colored_print("[完成] 仓库克隆成功", Colors.GREEN)
+                self.root.after(0, lambda: self.status_var.set("仓库重建成功"))
+                self.root.after(0, lambda: messagebox.showinfo("重建完成", "游戏配置仓库已成功从GitHub克隆。"))
+            except Exception as e:
+                colored_print(f"[错误] 克隆仓库失败: {e}", Colors.RED)
+                colored_print("[恢复] 尝试恢复备份...", Colors.YELLOW)
+                
+                # 尝试恢复备份
+                try:
+                    if os.path.exists(config_dir):
+                        shutil.rmtree(config_dir)
+                    os.rename(backup_dir, config_dir)
+                    colored_print("[恢复] 已恢复原配置目录", Colors.GREEN)
+                    self.root.after(0, lambda: self.status_var.set("重做失败，已恢复备份"))
+                    self.root.after(0, lambda: messagebox.showerror("重建失败", f"仓库重建失败: {e}\n已恢复原配置目录。"))
+                except Exception as restore_err:
+                    colored_print(f"[严重错误] 恢复备份失败: {restore_err}", Colors.RED + Colors.BOLD)
+                    self.root.after(0, lambda: self.status_var.set("重做失败，恢复备份也失败"))
+                    self.root.after(0, lambda: messagebox.showerror("严重错误", 
+                                                                  f"仓库重建失败，且无法恢复备份。\n"
+                                                                  f"原备份目录位于: {backup_dir}\n"
+                                                                  f"请手动恢复。"))
+        except Exception as e:
+            colored_print(f"[错误] 重做过程中发生异常: {e}", Colors.RED)
+            self.root.after(0, lambda: self.status_var.set("重做过程中发生错误"))
+            self.root.after(0, lambda: messagebox.showerror("错误", f"重做过程中发生异常: {e}"))
 
     # 添加新方法
     def browse_game_path(self):
@@ -251,9 +409,26 @@ class ModInstallerGUI:
         )
         reset_btn.pack(side=tk.LEFT, padx=5)
         
+        # 添加打开配置目录按钮
+        open_config_btn = ttk.Button(
+            control_frame, 
+            text="打开配置目录", 
+            command=self.open_config_dir
+        )
+        open_config_btn.pack(side=tk.LEFT, padx=5)
+
+        # 添加重做仓库按钮
+        rebuild_repo_btn = ttk.Button(
+            control_frame, 
+            text="重做仓库", 
+            command=self.rebuild_repository
+        )
+        rebuild_repo_btn.pack(side=tk.LEFT, padx=5)
+
+
         git_tools_btn = ttk.Button(
             control_frame, 
-            text="打开Git工具", 
+            text="打开Git帮助工具", 
             command=self.open_git_tools
         )
         git_tools_btn.pack(side=tk.LEFT, padx=5)
