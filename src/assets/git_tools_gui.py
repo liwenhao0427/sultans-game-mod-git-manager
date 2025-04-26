@@ -887,21 +887,23 @@ class GitToolsGUI:
             
             # 创建备份目录名称（使用时间戳）
             timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-            backup_dir = f"{config_dir}_backup_{timestamp}"
+            git_backup_dir = f"{config_dir}_.git_backup_{timestamp}"
             
-            colored_print(f"[备份] 正在备份配置目录到: {backup_dir}", Colors.CYAN)
-            
-            # 重命名当前配置目录为备份
-            try:
-                os.rename(config_dir, backup_dir)
-                colored_print(f"[备份] 配置目录已备份", Colors.GREEN)
-            except Exception as e:
-                colored_print(f"[错误] 备份配置目录失败: {e}", Colors.RED)
-                self.root.after(0, lambda: self.status_var.set("重做失败: 无法备份配置目录"))
-                return
-            
-            # 创建新的配置目录
-            os.makedirs(config_dir, exist_ok=True)
+            # 检查.git目录是否存在
+            git_dir = os.path.join(config_dir, ".git")
+            if os.path.exists(git_dir):
+                colored_print(f"[备份] 正在备份.git目录到: {git_backup_dir}", Colors.CYAN)
+                
+                # 仅移动.git目录
+                try:
+                    os.rename(git_dir, git_backup_dir)
+                    colored_print(f"[备份] .git目录已备份", Colors.GREEN)
+                except Exception as e:
+                    colored_print(f"[错误] 备份.git目录失败: {e}", Colors.RED)
+                    self.root.after(0, lambda: self.status_var.set("重做失败: 无法备份.git目录"))
+                    return
+            else:
+                colored_print("[信息] 未找到现有的.git目录，将直接创建新的", Colors.YELLOW)
             
             # 尝试使用本地.git.zip文件
             git_zip_path = os.path.join(get_application_path(),  ".git.zip")
@@ -932,6 +934,16 @@ class GitToolsGUI:
                 except Exception as e:
                     colored_print(f"[错误] 从.git.zip解压失败: {e}", Colors.RED)
                     colored_print("[重做] 尝试从GitHub克隆仓库", Colors.YELLOW)
+                    
+                    # 尝试恢复原来的.git目录
+                    if os.path.exists(git_backup_dir):
+                        try:
+                            if os.path.exists(git_dir):
+                                shutil.rmtree(git_dir)
+                            os.rename(git_backup_dir, git_dir)
+                            colored_print("[恢复] 已恢复原.git目录", Colors.GREEN)
+                        except Exception as restore_err:
+                            colored_print(f"[警告] 恢复原.git目录失败: {restore_err}", Colors.YELLOW)
             else:
                 colored_print("[信息] 未找到本地.git.zip文件，尝试从GitHub克隆仓库", Colors.YELLOW)
             
@@ -940,42 +952,58 @@ class GitToolsGUI:
                 colored_print("[克隆] 正在从GitHub克隆仓库...", Colors.BLUE)
                 colored_print("[克隆] 这可能需要一些时间，请耐心等待...", Colors.BLUE)
                 
-                # 删除可能存在的空目录
-                if os.path.exists(config_dir):
-                    shutil.rmtree(config_dir)
+                # 删除可能存在的空.git目录
+                if os.path.exists(git_dir):
+                    shutil.rmtree(git_dir)
                 
                 # 克隆仓库
-                cmd = ['git', 'clone', 'https://github.com/liwenhao0427/sultans-game-config.git', config_dir]
+                cmd = ['git', 'clone', 'https://github.com/liwenhao0427/sultans-game-config.git', 'temp_repo']
+                temp_dir = os.path.join(os.path.dirname(config_dir), 'temp_repo')
                 stdout, stderr, code = run_git_command(cmd, cwd=os.path.dirname(config_dir))
                 
                 if code != 0:
                     raise Exception(f"克隆失败: {stderr}")
                 
-                colored_print("[完成] 仓库克隆成功", Colors.GREEN)
-                self.root.after(0, lambda: self.status_var.set("仓库重建成功"))
-                self.root.after(0, lambda: messagebox.showinfo("重建完成", "游戏配置仓库已成功从GitHub克隆。"))
-                
-                # 刷新分支信息
-                self.refresh_branch_info()
+                # 移动.git目录
+                temp_git_dir = os.path.join(temp_dir, '.git')
+                if os.path.exists(temp_git_dir):
+                    shutil.move(temp_git_dir, config_dir)
+                    # 删除临时仓库
+                    shutil.rmtree(temp_dir)
+                    
+                    # 重置工作区
+                    stdout, stderr, code = run_git_command(['git', 'reset', '--hard'], cwd=config_dir)
+                    if code != 0:
+                        raise Exception(f"重置工作区失败: {stderr}")
+                    
+                    colored_print("[完成] 仓库克隆成功", Colors.GREEN)
+                    self.root.after(0, lambda: self.status_var.set("仓库重建成功"))
+                    self.root.after(0, lambda: messagebox.showinfo("重建完成", "游戏配置仓库已成功从GitHub克隆。"))
+                    
+                    # 刷新分支信息
+                    self.refresh_branch_info()
+                else:
+                    raise Exception("克隆的仓库中未找到.git目录")
             except Exception as e:
                 colored_print(f"[错误] 克隆仓库失败: {e}", Colors.RED)
                 colored_print("[恢复] 尝试恢复备份...", Colors.YELLOW)
                 
-                # 尝试恢复备份
-                try:
-                    if os.path.exists(config_dir):
-                        shutil.rmtree(config_dir)
-                    os.rename(backup_dir, config_dir)
-                    colored_print("[恢复] 已恢复原配置目录", Colors.GREEN)
-                    self.root.after(0, lambda: self.status_var.set("重做失败，已恢复备份"))
-                    self.root.after(0, lambda: messagebox.showerror("重建失败", f"仓库重建失败: {e}\n已恢复原配置目录。"))
-                except Exception as restore_err:
-                    colored_print(f"[严重错误] 恢复备份失败: {restore_err}", Colors.RED + Colors.BOLD)
-                    self.root.after(0, lambda: self.status_var.set("重做失败，恢复备份也失败"))
-                    self.root.after(0, lambda: messagebox.showerror("严重错误", 
-                                                                  f"仓库重建失败，且无法恢复备份。\n"
-                                                                  f"原备份目录位于: {backup_dir}\n"
-                                                                  f"请手动恢复。"))
+                # 尝试恢复原来的.git目录
+                if os.path.exists(git_backup_dir):
+                    try:
+                        if os.path.exists(git_dir):
+                            shutil.rmtree(git_dir)
+                        os.rename(git_backup_dir, git_dir)
+                        colored_print("[恢复] 已恢复原.git目录", Colors.GREEN)
+                        self.root.after(0, lambda: self.status_var.set("重做失败，已恢复备份"))
+                        self.root.after(0, lambda: messagebox.showerror("重建失败", f"仓库重建失败: {e}\n已恢复原.git目录。"))
+                    except Exception as restore_err:
+                        colored_print(f"[严重错误] 恢复备份失败: {restore_err}", Colors.RED + Colors.BOLD)
+                        self.root.after(0, lambda: self.status_var.set("重做失败，恢复备份也失败"))
+                        self.root.after(0, lambda: messagebox.showerror("严重错误", 
+                                                                    f"仓库重建失败，且无法恢复备份。\n"
+                                                                    f"原备份目录位于: {git_backup_dir}\n"
+                                                                    f"请手动恢复。"))
         except Exception as e:
             colored_print(f"[错误] 重做过程中发生异常: {e}", Colors.RED)
             self.root.after(0, lambda: self.status_var.set("重做过程中发生错误"))
