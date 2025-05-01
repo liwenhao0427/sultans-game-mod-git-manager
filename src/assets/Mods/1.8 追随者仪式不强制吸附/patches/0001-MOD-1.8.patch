@@ -1,0 +1,437 @@
+From 330c818bed70051c0215eec450172563b2972161 Mon Sep 17 00:00:00 2001
+From: liwenhao0427 <liwenhao0427@163.com>
+Date: Thu, 1 May 2025 18:54:41 +0800
+Subject: [PATCH] =?UTF-8?q?=E5=BA=94=E7=94=A8MOD:=201.8=20=E8=BF=BD?=
+ =?UTF-8?q?=E9=9A=8F=E8=80=85=E4=BB=AA=E5=BC=8F=E4=B8=8D=E5=BC=BA=E5=88=B6?=
+ =?UTF-8?q?=E5=90=B8=E9=99=84=20=E7=89=88=E6=9C=AC:=201.0.0=20=E4=BD=9C?=
+ =?UTF-8?q?=E8=80=85:=20=E8=90=A7=E6=95=B7=E8=89=BE=E8=8D=A3=20=E6=9D=A5?=
+ =?UTF-8?q?=E6=BA=90:=20https://tieba.baidu.com/p/9623361873?=
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+---
+ rite/5000100.json |   4 +-
+ rite/5000101.json |  36 +++++++++++-
+ rite/5000102.json |   4 +-
+ rite/5000105.json |   4 +-
+ rite/5000106.json |   4 +-
+ rite/5000107.json |   4 +-
+ rite/5000108.json |   4 +-
+ rite/5000734.json |   6 +-
+ rite/5008132.json | 140 +++++++++++++++++++++++++++++++++++++++++++++-
+ 9 files changed, 186 insertions(+), 20 deletions(-)
+
+diff --git a/rite/5000100.json b/rite/5000100.json
+index 31ea516..4cd8d8c 100644
+--- a/rite/5000100.json
++++ b/rite/5000100.json
+@@ -11,7 +11,7 @@
+         ],
+         "method_settlement": "",
+         "auto_begin": 0,
+-        "auto_result":0,
++        "auto_result":1,
+         "location": "自宅:[2,12]", 
+         "icon": "rite_12", 
+         "tag_tips": [
+@@ -239,7 +239,7 @@
+                     "type":"char",
+                     "is":2000019 //珠宝商人
+                 },
+-                "open_adsorb":1,
++                "open_adsorb":0,
+                 "is_key":0,
+                 "is_empty":0,
+                 "is_enemy":0,
+diff --git a/rite/5000101.json b/rite/5000101.json
+index 614a363..3dfe0c0 100644
+--- a/rite/5000101.json
++++ b/rite/5000101.json
+@@ -10,7 +10,7 @@
+     "waiting_round_end_action": [],
+     "method_settlement": "",
+     "auto_begin": 0,
+-    "auto_result": 0,
++    "auto_result": 1,
+     "location": "自宅:[2,12]",
+     "icon": "rite_12",
+     "tag_tips": [],
+@@ -534,7 +534,7 @@
+                 "s2.is": 2000129 //舞姬
+             },
+             "result_title": "她有着高贵的血统", //
+-            "result_text": "虽然阿图娜尔似乎有些抵触，但马尔基娜还是坚持让她尝试更高贵的装扮与衣衫……当一个贵妇人为宾客跳起那些妖冶的舞蹈时，场面几乎失控，有人就差点立即要求婚了。",
++            "result_text": "虽然阿图尔娜似乎有些抵触，但马尔基娜还是坚持让她尝试更高贵的装扮与衣衫……当一个贵妇人为宾客跳起那些妖冶的舞蹈时，场面几乎失控，有人就差点立即要求婚了。",
+             "result": {
+                 "global_counter+7200178": 1, //成就   
+                 "s2+妆扮":1,
+@@ -543,6 +543,36 @@
+                 "s2+魅力": 3 //魅力
+             },
+             "action": {}
++        },
++		{
++            "condition": {
++                "s2.is": 2000129 //舞姬
++            },
++            "result_title": "她有着高贵的血统", //
++            "result_text": "虽然阿图尔娜似乎有些抵触，但马尔基娜还是坚持让她尝试更高贵的装扮与衣衫……当一个贵妇人为宾客跳起那些妖冶的舞蹈时，场面几乎失控，有人就差点立即要求婚了。",
++            "result": {
++                "global_counter+7200178": 1, //成就   
++                "s2+妆扮":1,
++                "s2+社交": 3, //
++                "s2+隐匿": 3, //
++                "s2+魅力": 3 //魅力
++            },
++            "action": {}
++        },
++		{
++            "condition": {
++                "s2.is": 2000774 //阿鲁米娜
++            },
++            "result_title": "真是一个活着的洋娃娃", //
++            "result_text": "马尔基娜不住地掩面惊呼：“哎呀，这姑娘简直就是会走路的洋娃娃！服装什么的都太多余了，必须要用露肩款——哪怕明天王都就要因她的锁骨开战！”阿鲁米娜则是涨红了脸小声抗议，马尔基娜却大笑：“放心，我能帮你的不只是裁剪衣裳——还有让你相信自己值得被注视。”于是，在叽叽喳喳到半夜之后，即使是铁公鸡如哲瓦德也高兴得偷偷塞给了马尔基娜一大把金子。",
++            "result": {
++                "global_counter+7200178": 1, //成就   
++                "s2+妆扮":1,
++                "s2+社交": 1, //
++                "s2+魅力": 3, //魅力
++				"s2+equip_slot": "accessory"
++            },
++            "action": {}
+         },
+         {
+             "condition": {
+@@ -582,7 +612,7 @@
+                 "type": "char",
+                 "is": 2000459 //裁缝绣娘
+             },
+-            "open_adsorb": 1,
++            "open_adsorb": 0,
+             "is_key": 0,
+             "is_empty": 0,
+             "is_enemy": 0,
+diff --git a/rite/5000102.json b/rite/5000102.json
+index 9722ef1..fe9dcf7 100644
+--- a/rite/5000102.json
++++ b/rite/5000102.json
+@@ -11,7 +11,7 @@
+         ],
+         "method_settlement": "",
+         "auto_begin": 0,
+-        "auto_result":0,
++        "auto_result":1,
+         "location": "自宅:[2,12]", 
+         "icon": "rite_12", 
+         "tag_tips": [
+@@ -123,7 +123,7 @@
+                     "type":"char",
+                     "is":2000129 //舞姬
+                 },
+-                "open_adsorb":1,
++                "open_adsorb":0,
+                 "is_key":0,
+                 "is_empty":0,
+                 "is_enemy":0,
+diff --git a/rite/5000105.json b/rite/5000105.json
+index 82d966e..988e98c 100644
+--- a/rite/5000105.json
++++ b/rite/5000105.json
+@@ -11,7 +11,7 @@
+         ],
+         "method_settlement": "",
+         "auto_begin": 0,
+-        "auto_result":0,
++        "auto_result":1,
+         "location": "自宅:[2,12]", 
+         "icon": "rite_12", 
+         "tag_tips": [
+@@ -132,7 +132,7 @@
+                     "type":"char",
+                     "is":2000460 //诗人
+                 },
+-                "open_adsorb":1,
++                "open_adsorb":0,
+                 "is_key":0,
+                 "is_empty":0,
+                 "is_enemy":0,
+diff --git a/rite/5000106.json b/rite/5000106.json
+index ce7a6b6..e8321fc 100644
+--- a/rite/5000106.json
++++ b/rite/5000106.json
+@@ -11,7 +11,7 @@
+         ],
+         "method_settlement": "",
+         "auto_begin": 0,
+-        "auto_result":0,
++        "auto_result":1,
+         "location": "自宅:[2,12]", 
+         "icon": "rite_12", 
+         "tag_tips": [
+@@ -132,7 +132,7 @@
+                     "type":"char",
+                     "is":2000460 //诗人
+                 },
+-                "open_adsorb":1,
++                "open_adsorb":0,
+                 "is_key":0,
+                 "is_empty":0,
+                 "is_enemy":0,
+diff --git a/rite/5000107.json b/rite/5000107.json
+index 8265adf..584c742 100644
+--- a/rite/5000107.json
++++ b/rite/5000107.json
+@@ -11,7 +11,7 @@
+         ],
+         "method_settlement": "",
+         "auto_begin": 0,
+-        "auto_result":0,
++        "auto_result":1,
+         "location": "自宅:[2,12]", 
+         "icon": "rite_12", 
+         "tag_tips": [
+@@ -132,7 +132,7 @@
+                     "type":"char",
+                     "is":2000460 //诗人
+                 },
+-                "open_adsorb":1,
++                "open_adsorb":0,
+                 "is_key":0,
+                 "is_empty":0,
+                 "is_enemy":0,
+diff --git a/rite/5000108.json b/rite/5000108.json
+index 60055ed..aacef9a 100644
+--- a/rite/5000108.json
++++ b/rite/5000108.json
+@@ -11,7 +11,7 @@
+         ],
+         "method_settlement": "",
+         "auto_begin": 0,
+-        "auto_result":0,
++        "auto_result":1,
+         "location": "自宅:[2,12]", 
+         "icon": "rite_12", 
+         "tag_tips": [
+@@ -132,7 +132,7 @@
+                     "type":"char",
+                     "is":2000460 //诗人
+                 },
+-                "open_adsorb":1,
++                "open_adsorb":0,
+                 "is_key":0,
+                 "is_empty":0,
+                 "is_enemy":0,
+diff --git a/rite/5000734.json b/rite/5000734.json
+index c8dbdfb..7417c37 100644
+--- a/rite/5000734.json
++++ b/rite/5000734.json
+@@ -11,7 +11,7 @@
+         ],
+         "method_settlement": "",
+         "auto_begin": 0,
+-        "auto_result":0,
++        "auto_result":1,
+         "location": "上城区:[1,6]", 
+         "icon": "rite_19",  
+         "tag_tips": [
+@@ -121,7 +121,7 @@
+                     "any":{
+                         "all":{
+                             "counter.7000148<":1, //本体没有触发过
+-                            "counter.7100002>=":10 //恶名大于10
++                            "counter.7100004>=":8 //恶名大于10
+                         },
+                         "all":{
+                             "counter.7000149<":1, //本体没有触发过
+@@ -215,7 +215,7 @@
+                 {
+                     "is":2000352             
+                 },
+-                "open_adsorb":1,
++                "open_adsorb":0,
+                 "is_key":0,
+                 "is_empty":0,
+                 "is_enemy":0,
+diff --git a/rite/5008132.json b/rite/5008132.json
+index 069f9c8..2e159d6 100644
+--- a/rite/5008132.json
++++ b/rite/5008132.json
+@@ -23,7 +23,7 @@
+         ],        
+         "method_settlement": "",
+         "auto_begin": 0, 
+-        "auto_result": 0,//需要手动启动
++        "auto_result": 1,//需要手动启动
+         "location": "商业区:[10,19]",  
+         "icon": "rite_18", 
+         "tag_tips": [
+@@ -78,6 +78,26 @@
+                     "counter-7000520":1,
+                     "card":2001007 
+                     
++                },
++                "action": {
++                    "global_counter+7200207":1, //成就-美味佳肴
++                }
++            },
++			{
++                "condition": {
++
++                    "s2.is":2000426    //狮子
++                    
++                },
++                "result_title":"熏狮子全餐",
++                "result_text": "将这头凶兽扒皮剔骨的哈比卜有时候眼神看起来比狮子还要恐怖一点。",
++                "result": 
++                {
++                    "clean.s3":1,  //消耗原材料
++                    "clean.s2":1,  //消耗原材料
++                    "counter-7000520":1,
++                    "card":2001007 
++                    
+                 },
+                 "action": {
+                     "global_counter+7200207":1, //成就-美味佳肴
+@@ -336,6 +356,116 @@
+                     "counter-7000520":1,
+                     "card":2001050
+                     
++                },
++                "action": {
++                    "global_counter+7200207":1, //成就-美味佳肴
++                }
++            },         
++            {
++                "condition": {
++
++                    "s2.is":2000801    //雨林！雨林！    
++                    
++                },
++                "result_title":"烟熏野禽配酸浆菜",
++                "result_text": "哈比卜为前往雨林的探险家所研发的特制菜——只要他们有本事升起火来——以及随身携带葱姜蒜辣椒香叶丁香桂皮甘草白芷肉桂茴香八角陈皮——最好还得有一个超大号的卤鸡锅。",
++                "result": 
++                {
++                  
++                  
++                    "clean.s3":1,  //消耗原材料
++                    "clean.s2":1,  //消耗原材料
++                    "counter-7000520":1,
++                    "card":2000810
++                    
++                },
++                "action": {
++                    "global_counter+7200207":1, //成就-美味佳肴
++                }
++            },         
++            {
++                "condition": {
++
++                    "s2.is":2000224    //动物与植物图鉴    
++                    
++                },
++                "result_title":"香草炖兔肉",
++                "result_text": "哈比卜看完《动物与植物图鉴》后果断给这些大肆偷吃香草的大肥兔子判了文火慢炖之刑，并邀请了迫不及待的你们执行判决。",
++                "result": 
++                {
++                  
++                  
++                    "clean.s3":1,  //消耗原材料
++                    "clean.s2":1,  //消耗原材料
++                    "counter-7000520":1,
++                    "card":2000812
++                    
++                },
++                "action": {
++                    "global_counter+7200207":1, //成就-美味佳肴
++                }
++            },         
++            {
++                "condition": {
++
++                    "s2.is":2000225    //西行记    
++                    
++                },
++                "result_title":"烤火鸡",
++                "result_text": "哈比卜一边感慨于这本东方人所述的游记内对于烤火鸡的做法比很多西方厨子都要内行，一边哼着所谓“云宫迅音”的调调。",
++                "result": 
++                {
++                  
++                  
++                    "clean.s3":1,  //消耗原材料
++                    "clean.s2":1,  //消耗原材料
++                    "counter-7000520":1,
++                    "card":2000159
++                    
++                },
++                "action": {
++                    "global_counter+7200207":1, //成就-美味佳肴
++                }
++            },         
++            {
++                "condition": {
++
++                    "s2.is":2000804    //白鼬的宫廷    
++                    
++                },
++                "result_title":"宴会级餐饮",
++                "result_text": "哈比卜表示这本童话故事书里面对餐饮描绘之详尽有如真实存在一般——就如同它对宫廷政治权谋的描绘一样。",
++                "result": 
++                {
++                  
++                  
++                    "clean.s3":1,  //消耗原材料
++                    "clean.s2":1,  //消耗原材料
++                    "counter-7000520":1,
++                    "card":2000091
++                    
++                },
++                "action": {
++                    "global_counter+7200207":1, //成就-美味佳肴
++                }
++            },         
++            {
++                "condition": {
++
++                    "s2.is":2000802    //女主人的金拖鞋    
++                    
++                },
++                "result_title":"酸莓甜米饭",
++                "result_text": "哈比卜毫不怀疑它能被做出来，但也一脸狐疑的表示这真的有人能吃得下去的吗？尤其是这本书的作者还是一个对牛奶的第一反应是洗澡水的正宗大小姐。",
++                "result": 
++                {
++                  
++                  
++                    "clean.s3":1,  //消耗原材料
++                    "clean.s2":1,  //消耗原材料
++                    "counter-7000520":1,
++                    "card":2000811
++                    
+                 },
+                 "action": {
+                     "global_counter+7200207":1, //成就-美味佳肴
+@@ -368,6 +498,7 @@
+                     "any":{
+                         "is":2000304, //小鳄鱼
+                         "is":2000202,
++						"is":2000426,
+                         "all":{
+                             "is":2000382,
+                             "cost.可堆叠=":1
+@@ -382,7 +513,12 @@
+                         "is":2000212,
+                         "is":2000797,
+                         "is":2000803,
+-                        "is":2000213
++                        "is":2000213,
++                        "is":2000801,
++                        "is":2000802,
++                        "is":2000224,
++                        "is":2000225,
++                        "is":2000804
+                     }
+                 },
+                 "open_adsorb":0,
+-- 
+2.45.1.windows.1
+

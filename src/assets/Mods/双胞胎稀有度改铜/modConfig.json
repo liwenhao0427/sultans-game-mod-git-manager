@@ -4,7 +4,6 @@
   "version": "1.0.0",
   "gameVersion": "2025.04.18",
   "updateDate": "2025.04.20",
-  "updateTo": "2025.04.24",
   "tag": [
     "自动导入"
   ],
@@ -14,7 +13,7 @@
   },
   "files": [],
   "remark": "主要是方便区分两兄弟",
-  "patchFile": "patches\\0001-MOD.patch",
   "ignore": false,
-  "recommend": 5
+  "recommend": 5,
+  "patchFile": "patches\\0001-MOD.patch"
 }

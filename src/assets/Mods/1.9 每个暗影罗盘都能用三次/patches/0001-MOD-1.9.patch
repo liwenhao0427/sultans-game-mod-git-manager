@@ -1,0 +1,42 @@
+From ea69e9744ffbb65607fc0c858ffa638dc5e8db64 Mon Sep 17 00:00:00 2001
+From: liwenhao0427 <liwenhao0427@163.com>
+Date: Thu, 1 May 2025 18:54:42 +0800
+Subject: [PATCH] =?UTF-8?q?=E5=BA=94=E7=94=A8MOD:=201.9=20=E6=AF=8F?=
+ =?UTF-8?q?=E4=B8=AA=E6=9A=97=E5=BD=B1=E7=BD=97=E7=9B=98=E9=83=BD=E8=83=BD?=
+ =?UTF-8?q?=E7=94=A8=E4=B8=89=E6=AC=A1=20=E7=89=88=E6=9C=AC:=201.0.0=20?=
+ =?UTF-8?q?=E4=BD=9C=E8=80=85:=20=E8=90=A7=E6=95=B7=E8=89=BE=E8=8D=A3=20?=
+ =?UTF-8?q?=E6=9D=A5=E6=BA=90:=20https://tieba.baidu.com/p/9623361873?=
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+---
+ rite/5000158.json | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
+
+diff --git a/rite/5000158.json b/rite/5000158.json
+index e18b584..55f78da 100644
+--- a/rite/5000158.json
++++ b/rite/5000158.json
+@@ -12,7 +12,7 @@
+         ],
+         "method_settlement": "",
+         "auto_begin": 0,
+-        "auto_result":0,
++        "auto_result":1,
+         "location": "自宅:[2,12]", 
+         "icon": "rite_23", 
+         "tag_tips": [
+@@ -60,7 +60,8 @@
+                 "result_text": "当你第三次使用罗盘时，已经能适应天旋地转的感觉了——但当苏丹卡转动的瞬间，天地再次失色的时候，女术士突然出现在了你的怀里。\n仿佛抱着一块冰，一团雾气，一股酥麻的电流从令你的皮肤颤栗——突然，你重重地摔在地上，一切都恢复如初，而女术士仿佛没有出现过那样……但你的罗盘已经不知所踪。",
+                 "result": 
+                 {
+-                    "clean.s1":1  //消除暗影罗盘
++                    "clean.s1":1,  //消除暗影罗盘
++					"counter=7000502":0
+                 },
+                 "action": {
+                 }
+-- 
+2.45.1.windows.1
+

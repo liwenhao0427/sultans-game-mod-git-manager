@@ -20,14 +20,14 @@ def generate_default_config(mod_dir, mod_name, patch_file=None):
     # 创建默认配置
     default_config = {
         "name": mod_name,
-        "author": "未知",
+        "author": "萧敷艾荣",
         "version": "1.0.0",
-        "gameVersion": "2025.04.18",
+        "gameVersion": "2025.04.29",
         "updateDate": current_date,
         "tag": ["自动导入"],
         "source": {
             "name": "自动生成",
-            "url": "https://github.com/liwenhao0427/sultans-game-mod-git-manager"
+            "url": "https://tieba.baidu.com/p/9623361873"
         },
         "files": []
     }

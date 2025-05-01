@@ -1,0 +1,225 @@
+From 479920482d4cc20fd65fabec3e544d1cf1bb0de8 Mon Sep 17 00:00:00 2001
+From: liwenhao0427 <liwenhao0427@163.com>
+Date: Thu, 1 May 2025 18:54:43 +0800
+Subject: [PATCH] =?UTF-8?q?=E5=BA=94=E7=94=A8MOD:=202.10=20=E9=9A=8F?=
+ =?UTF-8?q?=E6=9C=BA=E4=BA=8B=E4=BB=B6=E5=85=A8=E8=A7=A6=E5=8F=91=20?=
+ =?UTF-8?q?=E7=89=88=E6=9C=AC:=201.0.0=20=E4=BD=9C=E8=80=85:=20=E8=90=A7?=
+ =?UTF-8?q?=E6=95=B7=E8=89=BE=E8=8D=A3=20=E6=9D=A5=E6=BA=90:=20https://tie?=
+ =?UTF-8?q?ba.baidu.com/p/9623361873?=
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+---
+ rite/5000001.json | 18 +++++++++++++++++-
+ rite/5001001.json | 19 ++++++++++++-------
+ rite/5001501.json |  2 +-
+ rite/5002006.json |  2 +-
+ rite/5002036.json |  4 ++--
+ rite/5002037.json |  4 ++--
+ rite/5002038.json |  4 ++--
+ 7 files changed, 37 insertions(+), 16 deletions(-)
+
+diff --git a/rite/5000001.json b/rite/5000001.json
+index 5bbe097..93ed469 100644
+--- a/rite/5000001.json
++++ b/rite/5000001.json
+@@ -858,6 +858,21 @@
+                 "action":
+                 {
+                 }
++            },
++			{
++                "condition": 
++                {
++                    "s4.is":2000595
++                },
++                "result_title":"你开始经营新绿洲",
++                "result_text": "善良好客的牧民们没有拒绝你的来往。",
++                "result": 
++                {
++                    "card": 2000029
++                },
++                "action":
++                {
++                }
+             },
+             {
+                 "condition":  
+@@ -981,7 +996,7 @@
+                         "s1":1,
+                         "s2":1
+                     },
+-                    "counter.7000200<":34 //弹框总数总数
++                    "counter.7000200<":40 //弹框总数总数
+                 },
+                 "result_title":"",
+                 "result_text": "一件值得注意的事情发生了。",
+@@ -1208,6 +1223,7 @@
+                             "is":2000365,
+                             "is":2000366,
+                             "空屋":1,
++							"is":2000595,//MOD绿洲
+                             "is":2000680, //苏丹的猜忌
+                             "is":2000700, //启发了智力的仆人
+                             "is":2000853, //险峻小径
+diff --git a/rite/5001001.json b/rite/5001001.json
+index 4ab0ea9..ff6f8e7 100644
+--- a/rite/5001001.json
++++ b/rite/5001001.json
+@@ -372,7 +372,7 @@
+ 
+                 }
+             },
+-            {
++			{
+                 "condition": {
+                     "纵欲":1,
+                     "type":"sudan",
+@@ -906,7 +906,7 @@
+                 "condition": { 
+                     "counter.7000117>=":6,
+                     "s5":1,
+-                    "counter.7000200<":34 //弹框总数总数
++                    "counter.7000200<":40 //弹框总数总数
+                 },
+                 "result_title":"",
+                 "result_text": "一件值得注意的事情发生了。",
+@@ -1187,7 +1187,9 @@
+             },
+             {
+                 "condition": {  
+-                    "s7.is":2000720 , //天象暗无天日
++                    "any":{
++                        "s7.is":2000720 , //天象暗无天日
++                    }
+                 },
+                 "result_title":"根本没什么凶兆",
+                 "result_text": "当大家在悄悄议论苏丹的恶行招来了日蚀的时候，你大胆地指出，日蚀本身可能是自然发生的，但太阳重新恢复——才是依靠君主的伟大人格。虽然这个说法荒谬至极，但你有公式、观察记录和复杂的运算数字，以及谁敢否认苏丹具有一个伟大的人格呢？",
+@@ -1199,7 +1201,7 @@
+                    
+                 }
+             },
+-            {
++			{
+                 "condition": {  
+                     "s7.is":2000721   //天象无光之夜    
+                 },
+@@ -1650,7 +1652,9 @@
+                     "!is":2000010,
+                     "!is":2000461,
+                     "!is":2000013,
+-                    "!is":2000292       
++                    "!is":2000292,
++					"!is":2000057,
++					"!is":2000774
+                 },
+                 "open_adsorb":1,
+                 "is_key":0,
+@@ -1677,8 +1681,9 @@
+                 {
+                     "type":"char",
+                     "贵族": 1,
+-                    "!is":2000013  ,
+-                    "!is":2000292       
++                    "!is":2000013,
++                    "!is":2000292
++					
+                 },
+                 "open_adsorb":0,
+                 "is_key":0,
+diff --git a/rite/5001501.json b/rite/5001501.json
+index b4ebf98..93c4713 100644
+--- a/rite/5001501.json
++++ b/rite/5001501.json
+@@ -195,7 +195,7 @@
+             {
+                 "condition": { 
+                     "counter.7000117>=":6,
+-                    "counter.7000200<":34 //弹框总数总数
++                    "counter.7000200<":40 //弹框总数总数
+                 },
+                 "result_title":"",
+                 "result_text": "一件值得注意的事情发生了。",
+diff --git a/rite/5002006.json b/rite/5002006.json
+index d862d8b..ebc9ea1 100644
+--- a/rite/5002006.json
++++ b/rite/5002006.json
+@@ -227,7 +227,7 @@
+             {
+                 "condition": { 
+                     "counter.7000117>=":6,
+-                    "counter.7000200<":34 //弹框总数总数
++                    "counter.7000200<":40 //弹框总数总数
+                 },
+                 "result_title":"",
+                 "result_text": "一件值得注意的事情发生了。",
+diff --git a/rite/5002036.json b/rite/5002036.json
+index 7de7bc2..57101d3 100644
+--- a/rite/5002036.json
++++ b/rite/5002036.json
+@@ -23,7 +23,7 @@
+         ],        
+         "method_settlement": "",
+         "auto_begin": 0,
+-        "auto_result": 0,
++        "auto_result": 1,
+         "location": "野外:[9,14]", 
+         "icon": "rite_6", 
+         "tag_tips": [
+@@ -156,7 +156,7 @@
+             {
+                 "condition": { 
+                     "counter.7000117>=":6,
+-                    "counter.7000200<":34, //弹框总数总数
++                    "counter.7000200<":40, //弹框总数总数
+                     "any":{
+                         "counter.7000330<":3,  //避免和专属弹框事件重叠
+                         "counter.7000330>":3
+diff --git a/rite/5002037.json b/rite/5002037.json
+index 352a880..5195b8a 100644
+--- a/rite/5002037.json
++++ b/rite/5002037.json
+@@ -23,7 +23,7 @@
+         ],        
+         "method_settlement": "",
+         "auto_begin": 0,
+-        "auto_result": 0,
++        "auto_result": 1,
+         "location": "上城区:[7,12]", 
+         "icon": "rite_6", 
+         "tag_tips": [
+@@ -157,7 +157,7 @@
+             {
+                 "condition": { 
+                     "counter.7000117>=":6,
+-                    "counter.7000200<":34, //弹框总数总数
++                    "counter.7000200<":40, //弹框总数总数
+                     "any":{
+                         "counter.7000331<":3,  //避免和专属弹框事件重叠
+                         "counter.7000331>":3
+diff --git a/rite/5002038.json b/rite/5002038.json
+index dc46303..0d4ca50 100644
+--- a/rite/5002038.json
++++ b/rite/5002038.json
+@@ -23,7 +23,7 @@
+         ],        
+         "method_settlement": "",
+         "auto_begin": 0,
+-        "auto_result": 0,
++        "auto_result": 1,
+         "location": "黑街:[2,5]", 
+         "icon": "rite_6", 
+         "tag_tips": [
+@@ -157,7 +157,7 @@
+             {
+                 "condition": { 
+                     "counter.7000117>=":6,
+-                    "counter.7000200<":34, //弹框总数总数
++                    "counter.7000200<":40, //弹框总数总数
+                     "any":{
+                         "counter.7000332<":3,  //避免和专属弹框事件重叠
+                         "counter.7000332>":3
+-- 
+2.45.1.windows.1
+
