@@ -75,6 +75,9 @@
         <el-button @click="resetFilters" plain>
           <i class="el-icon-refresh"></i> 重置筛选
         </el-button>
+        <el-button type="success" plain @click="openQuarkDownload">
+          <i class="el-icon-download"></i> 夸克网盘下载
+        </el-button>
       </div>
       <div>
         <el-button plain>
@@ -1397,6 +1400,9 @@ export default {
     },
     handleSearchClear() {
       this.searchQuery = '';
+    },
+    openQuarkDownload() {
+      window.open('https://pan.quark.cn/s/cc220e6ae76f', '_blank');
     },
     resetFilters() {
       this.searchQuery = '';

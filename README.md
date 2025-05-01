@@ -2,7 +2,10 @@
 
 苏丹的游戏 MOD 管理器是一个用于游戏MOD管理的项目，它使用Git来管理和更新MOD。您可以通过在线管理器轻松选择和安装MOD。
 
+Mod资源等资源均来自互联网，仅供学习交流使用，请勿用于商业用途。整合下载地址： https://pan.quark.cn/s/cc220e6ae76f
+
 Mod管理器访问地址：https://sultans-game-mod-git-manager.pages.dev/
+或者：https://liwenhao0427.github.io/sultans-game-mod-git-manager/
 
 Git.exe 下载地址（程序依赖Git运行，如果没有安装Git请先安装）：
 - GitHub下载: https://github.com/git-for-windows/git/releases/download/v2.47.0.windows.2/Git-2.47.0.2-64-bit.exe
