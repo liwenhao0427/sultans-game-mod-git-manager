@@ -462,6 +462,14 @@ class ModInstallerGUI:
             command=self.open_git_tools
         )
         git_tools_btn.pack(side=tk.LEFT, padx=5)
+
+        # 添加打开游戏按钮
+        open_game_btn = ttk.Button(
+            control_frame, 
+            text="启动游戏", 
+            command=self.open_game
+        )
+        open_game_btn.pack(side=tk.LEFT, padx=5)
         
         # 创建输出日志框架
         log_frame = ttk.LabelFrame(self.main_frame, text="安装日志", padding="5")
@@ -998,6 +1006,19 @@ class ModInstallerGUI:
         """在新线程中执行MOD安装"""
         try:
             self.status_var.set("正在安装MOD...")
+            # 确保安装前切换回master分支（对应当前游戏版本）
+            try:
+                game_path = get_game_path()
+                if game_path:
+                    config_dir = get_config_dir(game_path)
+                    colored_print("[Git] 正在切换回master分支...", Colors.BLUE)
+                    stdout, stderr, code = run_git_command(['git', 'checkout', 'master'], cwd=config_dir)
+                    if code != 0:
+                        colored_print(f"[警告] 切换到master分支失败: {stderr}", Colors.YELLOW)
+                    else:
+                        colored_print("[Git] 已切换到master分支", Colors.GREEN)
+            except Exception as e:
+                colored_print(f"[错误] 切换分支时发生异常: {e}", Colors.RED)
                         
             # 安装MOD
             colored_print("\n[安装阶段] 开始处理MOD文件...\n", Colors.CYAN)
@@ -1099,6 +1120,38 @@ class ModInstallerGUI:
             # 在主线程中显示错误消息
             self.root.after(0, lambda: messagebox.showerror("错误", f"重置过程中发生异常: {e}"))
     
+    def open_game(self):
+        """启动游戏"""
+        game_path = get_game_path()
+        if not game_path:
+            messagebox.showerror("错误", "未找到游戏路径")
+            return
+            
+        game_exe = os.path.join(game_path, "Sultan's Game.exe")
+        if not os.path.exists(game_exe):
+            messagebox.showerror("错误", "未找到游戏主程序")
+            return
+            
+        # 清空日志
+        self.log_text.delete(1.0, tk.END)
+        
+        # 在新线程中启动游戏
+        threading.Thread(target=lambda: self._open_game_thread(game_exe), daemon=True).start()
+    
+    def _open_game_thread(self, game_exe):
+        """在新线程中启动游戏"""
+        try:
+            colored_print(f"[操作] 正在启动游戏: {game_exe}", Colors.BLUE)
+            
+            # 使用subprocess启动游戏
+            import subprocess
+            subprocess.Popen(game_exe, cwd=os.path.dirname(game_exe))
+            
+            self.status_var.set("游戏已启动")
+        except Exception as e:
+            colored_print(f"[错误] 启动游戏失败: {e}", Colors.RED)
+            self.status_var.set("启动游戏失败")
+
     def open_git_tools(self):
         """打开Git工具"""
         try:
