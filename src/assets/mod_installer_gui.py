@@ -1017,6 +1017,12 @@ class ModInstallerGUI:
                         colored_print(f"[警告] 切换到master分支失败: {stderr}", Colors.YELLOW)
                     else:
                         colored_print("[Git] 已切换到master分支", Colors.GREEN)
+                    
+                    # 设置Git用户信息，避免应用补丁时的身份错误
+                    colored_print("[Git] 正在设置Git用户信息...", Colors.BLUE)
+                    run_git_command(['git', 'config', 'user.name', "MOD Installer"], cwd=config_dir)
+                    run_git_command(['git', 'config', 'user.email', "mod.installer@example.com"], cwd=config_dir)
+                    colored_print("[Git] Git用户信息已设置", Colors.GREEN)
             except Exception as e:
                 colored_print(f"[错误] 切换分支时发生异常: {e}", Colors.RED)
                         
