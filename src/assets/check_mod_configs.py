@@ -263,6 +263,12 @@ def check_mod_configs():
         input("按任意键继续...")
         return
     
+    # 设置Git用户信息，避免应用补丁时的身份错误
+    colored_print("[Git] 正在设置Git用户信息...", Colors.BLUE)
+    run_git_command(['git', 'config', 'user.name', "MOD Installer"], cwd=config_dir)
+    run_git_command(['git', 'config', 'user.email', "mod.installer@example.com"], cwd=config_dir)
+    colored_print("[Git] Git用户信息已设置", Colors.GREEN)
+    
     # 获取Mods目录
     mods_dir = os.path.join(app_path, "Mods")
     if not os.path.exists(mods_dir):
