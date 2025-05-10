@@ -1,6 +1,6 @@
-From cf5e558cef5bd38ff88672c1f564f26828887025 Mon Sep 17 00:00:00 2001
-From: liwenhao0427 <liwenhao0427@163.com>
-Date: Thu, 1 May 2025 18:47:48 +0800
+From 10cbe3a363f2d72f7f3685420881d8763d850f87 Mon Sep 17 00:00:00 2001
+From: MOD Installer <mod.installer@example.com>
+Date: Sat, 10 May 2025 15:09:57 +0800
 Subject: [PATCH] =?UTF-8?q?=E5=BA=94=E7=94=A8MOD:=20=E5=8F=8C=E8=83=9E?=
  =?UTF-8?q?=E8=83=8E=E7=A8=80=E6=9C=89=E5=BA=A6=E6=94=B9=E9=93=9C=20?=
  =?UTF-8?q?=E7=89=88=E6=9C=AC:=201.0.0=20=E4=BD=9C=E8=80=85:=20=E7=A3=81?=
@@ -15,16 +15,16 @@ Content-Transfer-Encoding: 8bit
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/cards.json b/cards.json
-index 8103141..cc7400f 100644
+index dbcfd08..50d7851 100644
 --- a/cards.json
 +++ b/cards.json
-@@ -9819,7 +9819,7 @@
+@@ -20081,7 +20081,7 @@
          "card_favour": "",
          "type": "char",
          "tips": "",
 -        "rare": 3,
-+        "rare": 2,
-         "resource": "cards/2000456",
++        "rare": 2, // 稀有度改铜
+         "resource": ["cards/2000861","cards/2000861_1","cards/2000861_2"],
          "tag": {
              "体魄": 3,
 -- 
